@@ -1,0 +1,422 @@
+<!-- TRUMOVE – FAQ SECTION (CLEAN / BROKER SAFE) -->
+<style>
+  :root {
+    --tru-green:#39ff14;
+    --tru-black:#020617;
+  }
+
+  .tru-faq-wrap{
+    width:100%;
+    background:#ffffff;
+    display:flex;
+    justify-content:center;
+    padding:48px 16px 72px;
+    box-sizing:border-box;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    color:#111827;
+  }
+
+  .tru-faq-inner{
+    width:100%;
+    max-width:900px;
+  }
+
+  .tru-faq-header{
+    text-align:center;
+    margin-bottom:28px;
+  }
+
+  .tru-faq-kicker{
+    font-size:.78rem;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    color:#9ca3af;
+    margin-bottom:6px;
+    font-weight:700;
+  }
+
+  .tru-faq-title{
+    font-size:1.7rem;
+    font-weight:800;
+    margin:0 0 8px;
+    color:#020617;
+  }
+
+  .tru-faq-sub{
+    font-size:.92rem;
+    color:#4b5563;
+    max-width:620px;
+    margin:0 auto;
+    line-height:1.4;
+  }
+
+  .tru-faq-list{margin-top:22px;}
+
+  .tru-faq-item{
+    border-radius:18px;
+    border:1px solid #e5e7eb;
+    background:#ffffff;
+    box-shadow:0 10px 24px rgba(148,163,184,.18);
+    margin-bottom:12px;
+    overflow:hidden;
+  }
+
+  .tru-faq-question{
+    width:100%;
+    border:none;
+    background:none;
+    padding:14px 16px;
+    text-align:left;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    font-size:.95rem;
+    font-weight:600;
+    color:#020617;
+  }
+
+  .tru-faq-toggle{
+    width:22px;
+    height:22px;
+    border-radius:999px;
+    border:1px solid #d1d5db;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:.9rem;
+    color:#6b7280;
+    background:#f9fafb;
+    flex-shrink:0;
+  }
+
+  .tru-faq-item.active .tru-faq-toggle{
+    border-color:var(--tru-green);
+    color:var(--tru-green);
+    background:#ecfdf5;
+  }
+
+  .tru-faq-answer-wrap{
+    max-height:0;
+    overflow:hidden;
+    transition:max-height .22s ease-out;
+    border-top:1px solid #e5e7eb;
+    background:#f9fafb;
+  }
+
+  .tru-faq-answer{
+    padding:12px 16px 14px;
+    font-size:.88rem;
+    color:#374151;
+    line-height:1.45;
+  }
+
+  .tru-faq-answer p{margin:0 0 8px;}
+  .tru-faq-answer p:last-child{margin-bottom:0;}
+
+  .tru-highlight{
+    color:var(--tru-green);
+    font-weight:600;
+  }
+
+  /* Footer CTA */
+  .tru-faq-footer{
+    margin-top:28px;
+    border-radius:20px;
+    border:1px solid #e5e7eb;
+    background:linear-gradient(135deg,#ffffff,#f9fafb);
+    padding:16px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:14px;
+    box-shadow:0 14px 32px rgba(148,163,184,.22);
+  }
+
+  .tru-faq-footer-text{
+    font-size:.9rem;
+    color:#374151;
+    line-height:1.4;
+  }
+
+  .tru-faq-footer-text strong{color:#020617;}
+
+  .tru-faq-footer-actions{
+    display:flex;
+    gap:10px;
+    flex-shrink:0;
+  }
+
+  .tru-faq-btn{
+    border-radius:999px;
+    padding:9px 16px;
+    font-size:.78rem;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+    border:1px solid #020617;
+    background:#020617;
+    color:#ffffff;
+    cursor:pointer;
+  }
+
+  .tru-faq-btn.secondary{
+    background:#ffffff;
+    color:#020617;
+    border-color:#d1d5db;
+  }
+
+  @media(max-width:640px){
+    .tru-faq-footer{
+      flex-direction:column;
+      align-items:flex-start;
+    }
+    .tru-faq-footer-actions,
+    .tru-faq-btn{
+      width:100%;
+    }
+  }
+</style>
+
+<div class="tru-faq-wrap">
+  <div class="tru-faq-inner">
+
+    <div class="tru-faq-header">
+      <div class="tru-faq-kicker">FAQ</div>
+      <h2 class="tru-faq-title">How TruMove works</h2>
+      <p class="tru-faq-sub">
+        TruMove helps you evaluate options, understand pricing, and coordinate your move with
+        licensed carriers. <strong>Final booking is confirmed with a TruMove specialist.</strong>
+      </p>
+    </div>
+
+    <div class="tru-faq-list">
+
+      <!-- Q1 -->
+      <div class="tru-faq-item">
+        <button class="tru-faq-question">
+          <span>What is TruMove in simple terms?</span>
+          <span class="tru-faq-toggle">+</span>
+        </button>
+        <div class="tru-faq-answer-wrap">
+          <div class="tru-faq-answer">
+            <p>
+              TruMove is a <span class="tru-highlight">licensed interstate moving broker</span>.
+              We help you compare options, understand estimates, and coordinate your move with
+              vetted, FMCSA-authorized motor carriers.
+            </p>
+            <p>
+              Instead of calling multiple movers yourself, TruMove does the legwork and helps
+              you make an informed decision.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q2 -->
+      <div class="tru-faq-item">
+        <button class="tru-faq-question">
+          <span>How is TruMove different from calling a mover directly?</span>
+          <span class="tru-faq-toggle">+</span>
+        </button>
+        <div class="tru-faq-answer-wrap">
+          <div class="tru-faq-answer">
+            <p>
+              When you call a single mover, you only see their availability and pricing.
+            </p>
+            <p>
+              TruMove helps you <span class="tru-highlight">compare carriers</span> based on
+              route fit, timing, pricing structure, and service history, so you are not locked
+              into the first option you speak to.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q3 -->
+      <div class="tru-faq-item">
+        <button class="tru-faq-question">
+          <span>Is my quote guaranteed?</span>
+          <span class="tru-faq-toggle">+</span>
+        </button>
+        <div class="tru-faq-answer-wrap">
+          <div class="tru-faq-answer">
+            <p>
+              Pricing depends on the carrier and the type of estimate provided.
+              Whenever possible, TruMove helps you obtain a
+              <span class="tru-highlight">binding</span> or
+              <span class="tru-highlight">not-to-exceed</span> estimate from the carrier.
+            </p>
+            <p>
+              Final charges are determined by the carrier’s published tariff and the accuracy
+              of inventory and access details.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="tru-faq-item">
+        <button class="tru-faq-question">
+          <span>Can I book a move online without speaking to anyone?</span>
+          <span class="tru-faq-toggle">+</span>
+        </button>
+        <div class="tru-faq-answer-wrap">
+          <div class="tru-faq-answer">
+            <p>
+              No. Every move is confirmed with a TruMove specialist.
+            </p>
+            <p>
+              This ensures inventory, dates, access details, and pricing are verified
+              before anything is finalized.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="tru-faq-item">
+        <button class="tru-faq-question">
+          <span>Who actually performs the move?</span>
+          <span class="tru-faq-toggle">+</span>
+        </button>
+        <div class="tru-faq-answer-wrap">
+          <div class="tru-faq-answer">
+            <p>
+              Transportation is performed by
+              <span class="tru-highlight">FMCSA-authorized motor carriers</span>.
+            </p>
+            <p>
+              TruMove coordinates and arranges service but does not transport household goods.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="tru-faq-item">
+        <button class="tru-faq-question">
+          <span>How does TruMove help reduce surprises and issues?</span>
+          <span class="tru-faq-toggle">+</span>
+        </button>
+        <div class="tru-faq-answer-wrap">
+          <div class="tru-faq-answer">
+            <p>
+              TruMove focuses on realistic inventory reviews, route planning,
+              and carrier fit before booking.
+            </p>
+            <p>
+              This helps reduce common issues like truck size problems,
+              last-minute re-pricing, or scheduling conflicts.
+            </p>
+          </div>
+        </div>
+      </div>
+	  
+	        <!-- Q7 -->
+      <div class="tru-faq-item">
+        <button class="tru-faq-question">
+          <span>What can cause my quote to change?</span>
+          <span class="tru-faq-toggle">+</span>
+        </button>
+        <div class="tru-faq-answer-wrap">
+          <div class="tru-faq-answer">
+            <p>
+  Price changes usually happen when the original details change.
+</p>
+<p>
+  The most common reasons are inventory changes, access issues
+  (stairs, elevators, long carries), date changes, or adding services
+  like packing or storage.
+</p>
+<p>
+  TruMove works with you to identify these factors early so pricing
+  is as accurate as possible before move day.
+</p>
+          </div>
+        </div>
+      </div>
+	  
+	  	        <!-- Q8 -->
+      <div class="tru-faq-item">
+        <button class="tru-faq-question">
+          <span>What if my inventory changes after I book?</span>
+          <span class="tru-faq-toggle">+</span>
+        </button>
+        <div class="tru-faq-answer-wrap">
+          <div class="tru-faq-answer">
+        <p>
+  If your inventory changes, it is important to update it as soon as possible.
+</p>
+<p>
+  Adding or removing items can affect truck size, labor, and total cost.
+  TruMove will help coordinate an updated estimate with the carrier
+  so you know what to expect before move day.
+</p>
+          </div>
+        </div>
+      </div>
+	  
+	   <!-- Q9 -->
+      <div class="tru-faq-item">
+        <button class="tru-faq-question">
+          <span>What happens if something goes wrong during the move?</span>
+          <span class="tru-faq-toggle">+</span>
+        </button>
+        <div class="tru-faq-answer-wrap">
+          <div class="tru-faq-answer">
+       <p>
+  The carrier performing your move is responsible for transportation
+  and handling of your household goods.
+</p>
+<p>
+  TruMove assists with communication and documentation if issues arise,
+  but claims, damages, and resolution are handled according to the
+  carrier’s policies and federal regulations.
+</p>
+          </div>
+        </div>
+      </div>
+	  
+	  
+
+    </div>
+
+    <!-- Footer CTA -->
+    <div class="tru-faq-footer">
+      <div class="tru-faq-footer-text">
+        <strong>Still have questions?</strong><br>
+        Speak with a TruMove specialist to review your move and available options.
+      </div>
+      <div class="tru-faq-footer-actions">
+        <button class="tru-faq-btn">Talk to a specialist</button>
+        <button class="tru-faq-btn secondary">Schedule a call</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function(){
+    var items=document.querySelectorAll(".tru-faq-item");
+    items.forEach(function(item){
+      var btn=item.querySelector(".tru-faq-question");
+      var wrap=item.querySelector(".tru-faq-answer-wrap");
+      var icon=item.querySelector(".tru-faq-toggle");
+      btn.addEventListener("click",function(){
+        var open=item.classList.contains("active");
+        items.forEach(function(i){
+          i.classList.remove("active");
+          i.querySelector(".tru-faq-answer-wrap").style.maxHeight=null;
+          i.querySelector(".tru-faq-toggle").textContent="+";
+        });
+        if(!open){
+          item.classList.add("active");
+          wrap.style.maxHeight=wrap.scrollHeight+"px";
+          icon.textContent="–";
+        }
+      });
+    });
+  })();
+</script>

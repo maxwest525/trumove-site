@@ -1,0 +1,869 @@
+<!-- TRUMOVE – CARRIER VETTING & TRUST PAGE (WHITE THEME) -->
+<style>
+  :root {
+    --tru-green: #39ff14;
+    --tru-black: #000000;
+  }
+
+  .tru-vet-wrap {
+    width: 100%;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    padding: 56px 0 72px;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #0f172a;
+  }
+
+  .tru-vet-inner {
+    width: 100%;
+    max-width: 1120px;
+  }
+
+  /* Hero */
+  .tru-vet-hero {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .tru-vet-kicker {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 6px;
+  }
+
+  .tru-vet-heading {
+    font-size: 2rem;
+    font-weight: 800;
+    margin: 0 0 8px;
+    color: #020617;
+  }
+
+  .tru-vet-sub {
+    font-size: 0.95rem;
+    color: #4b5563;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* Trust badges row */
+  .tru-vet-badges {
+    margin-top: 22px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .tru-vet-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    font-size: 0.8rem;
+    color: #111827;
+  }
+
+  .tru-vet-badge-icon {
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    border: 1px solid #d1d5db;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    background: #ffffff;
+  }
+
+  /* Top grid: overview + what we check */
+  .tru-vet-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+    gap: 24px;
+    margin-top: 36px;
+    margin-bottom: 40px;
+  }
+
+  .tru-vet-block {
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 16px 36px rgba(15,23,42,0.08);
+    padding: 20px 22px 22px;
+    box-sizing: border-box;
+  }
+
+  .tru-vet-block h3 {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #020617;
+  }
+
+  .tru-vet-block p {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin: 0 0 8px;
+  }
+
+  .tru-vet-highlight {
+    color: var(--tru-green);
+    font-weight: 600;
+  }
+
+  /* Pipeline */
+  .tru-vet-pipeline {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 12px;
+  }
+
+  .tru-vet-step {
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    background: #f9fafb;
+    padding: 10px 10px 11px;
+    font-size: 0.78rem;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .tru-vet-step-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    color: #111827;
+  }
+
+  .tru-vet-step-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 999px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+  }
+
+  .tru-vet-step-desc {
+    color: #6b7280;
+  }
+
+  /* What we check: chips */
+  .tru-vet-check-groups {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .tru-vet-check-group-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 4px;
+  }
+
+  .tru-vet-check-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .tru-vet-pill {
+    border-radius: 999px;
+    border: 1px dashed #d1d5db;
+    padding: 4px 8px;
+    font-size: 0.76rem;
+    color: #374151;
+    background: #f3f4f6;
+    white-space: nowrap;
+  }
+
+  .tru-vet-pill strong {
+    font-weight: 600;
+  }
+
+  .tru-vet-note {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #6b7280;
+  }
+
+  /* Lookup + credentials row */
+  .tru-vet-mid-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .tru-vet-lookup-card,
+  .tru-vet-cred-card {
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 16px 36px rgba(15,23,42,0.08);
+    padding: 20px 22px 22px;
+    box-sizing: border-box;
+  }
+
+  .tru-vet-lookup-title,
+  .tru-vet-cred-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: #020617;
+  }
+
+  .tru-vet-lookup-sub,
+  .tru-vet-cred-sub {
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin: 0 0 10px;
+  }
+
+  .tru-vet-input-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .tru-vet-input {
+    flex: 1;
+    min-width: 0;
+    padding: 9px 11px;
+    border-radius: 999px;
+    border: 1px solid #d1d5db;
+    font-size: 0.88rem;
+    outline: none;
+    box-sizing: border-box;
+  }
+
+  .tru-vet-input::placeholder {
+    color: #9ca3af;
+  }
+
+  .tru-vet-input:focus {
+    border-color: var(--tru-green);
+    box-shadow: 0 0 0 1px rgba(57,255,20,0.25);
+  }
+
+ .tru-vet-btn {
+  border-radius: 999px;
+  padding: 9px 18px;
+
+  /* Strong outline */
+  border: 2px solid #000000;
+
+  /* Neon gradient */
+  background: linear-gradient(180deg, #4dff32, #2fe112);
+
+  color: #020617;
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  cursor: pointer;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  /* Glow / depth */
+  box-shadow:
+    0 3px 4px rgba(0,0,0,0.25),
+    0 12px 28px rgba(57,255,20,0.32);
+
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+}
+
+.tru-vet-btn:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow:
+    0 5px 8px rgba(0,0,0,0.3),
+    0 18px 38px rgba(57,255,20,0.42);
+}
+
+.tru-vet-btn:active {
+  transform: translateY(0) scale(0.97);
+  box-shadow:
+    0 2px 4px rgba(0,0,0,0.25),
+    0 10px 22px rgba(57,255,20,0.32);
+}
+
+  .tru-vet-lookup-hint {
+    font-size: 0.78rem;
+    color: #6b7280;
+    margin-bottom: 6px;
+  }
+
+  .tru-vet-lookup-result {
+    border-radius: 18px;
+    border: 1px dashed #d1d5db;
+    background: #f9fafb;
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    color: #374151;
+  }
+
+  .tru-vet-lookup-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+
+  .tru-vet-lookup-row span:first-child {
+    font-weight: 600;
+  }
+
+  .tru-vet-lookup-links {
+    margin-top: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    font-size: 0.78rem;
+  }
+
+  .tru-vet-link-pill {
+    border-radius: 999px;
+    border: 1px solid #d1d5db;
+    padding: 3px 8px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+
+  .tru-vet-link-pill span {
+    color: #0f766e;
+    font-weight: 500;
+  }
+
+  /* Credentials card */
+  .tru-vet-cred-table {
+    margin-top: 6px;
+    font-size: 0.84rem;
+    color: #111827;
+  }
+
+  .tru-vet-cred-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 4px 0;
+    border-bottom: 1px dashed #e5e7eb;
+  }
+
+  .tru-vet-cred-row:last-child {
+    border-bottom: none;
+  }
+
+  .tru-vet-cred-label {
+    font-weight: 500;
+    color: #4b5563;
+  }
+
+  .tru-vet-cred-value {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    font-size: 0.82rem;
+    color: #111827;
+  }
+
+  .tru-vet-cred-links {
+    margin-top: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tru-vet-cred-pill {
+    border-radius: 999px;
+    border: 1px solid #d1d5db;
+    padding: 4px 10px;
+    font-size: 0.78rem;
+    background: #f9fafb;
+    cursor: pointer;
+  }
+
+  .tru-vet-cred-pill span {
+    color: #0f766e;
+    font-weight: 500;
+  }
+
+  .tru-vet-cred-note {
+    margin-top: 8px;
+    font-size: 0.78rem;
+    color: #6b7280;
+  }
+
+  /* Enforcement section */
+  .tru-vet-bottom-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 24px;
+  }
+
+  .tru-vet-enforce-card,
+  .tru-vet-incident-card {
+    background: #ffffff;
+    border-radius: 24px;
+    border: 1px solid #e5e7eb;
+    box-shadow: 0 16px 36px rgba(15,23,42,0.08);
+    padding: 20px 22px 22px;
+    box-sizing: border-box;
+  }
+
+  .tru-vet-enforce-title {
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin: 0 0 6px;
+    color: #020617;
+  }
+
+  .tru-vet-enforce-sub {
+    font-size: 0.85rem;
+    color: #4b5563;
+    margin: 0 0 10px;
+  }
+
+  .tru-vet-enforce-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.86rem;
+    color: #374151;
+  }
+
+  .tru-vet-enforce-list li {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    padding: 4px 0;
+  }
+
+  .tru-vet-enforce-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #ef4444;
+    margin-top: 6px;
+    flex-shrink: 0;
+  }
+
+  .tru-vet-enforce-list li span strong {
+    font-weight: 600;
+  }
+
+  .tru-vet-incident-steps {
+    margin-top: 6px;
+    border-radius: 18px;
+    border: 1px dashed #d1d5db;
+    padding: 10px 12px;
+    font-size: 0.82rem;
+    color: #374151;
+  }
+
+  .tru-vet-incident-row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+
+  .tru-vet-incident-number {
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    border: 1px solid #d1d5db;
+    background: #f9fafb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #111827;
+    flex-shrink: 0;
+  }
+
+  .tru-vet-incident-text {
+    flex: 1;
+  }
+
+  .tru-vet-bottom-note {
+    margin-top: 8px;
+    font-size: 0.78rem;
+    color: #6b7280;
+  }
+
+  @media (max-width: 1024px) {
+    .tru-vet-grid,
+    .tru-vet-mid-grid,
+    .tru-vet-bottom-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .tru-vet-wrap {
+      padding: 40px 16px 56px;
+    }
+    .tru-vet-heading {
+      font-size: 1.7rem;
+    }
+  }
+</style>
+
+<div class="tru-vet-wrap">
+  <div class="tru-vet-inner">
+
+    <!-- Hero -->
+    <div class="tru-vet-hero">
+      <div class="tru-vet-kicker">Carrier vetting</div>
+      <h2 class="tru-vet-heading">Every mover on TruMove is heavily vetted before they touch your stuff.</h2>
+      <p class="tru-vet-sub">
+        We treat carrier selection like a safety and compliance problem, not just a sales one.  
+        Licensing, insurance, safety scores, reviews, and live performance all flow into the TruMove AI before any mover is offered to you.
+      </p>
+
+      <div class="tru-vet-badges">
+        <div class="tru-vet-badge">
+          <div class="tru-vet-badge-icon">✔</div>
+          <span>FMCSA & USDOT verified carriers</span>
+        </div>
+        <div class="tru-vet-badge">
+          <div class="tru-vet-badge-icon">🛡</div>
+          <span>Insurance & safety record checks</span>
+        </div>
+        <div class="tru-vet-badge">
+          <div class="tru-vet-badge-icon">⭐</div>
+          <span>Live review & claims monitoring</span>
+        </div>
+        <div class="tru-vet-badge">
+          <div class="tru-vet-badge-icon">AI</div>
+          <span>AI risk scoring on every job</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Overview + what we check -->
+    <div class="tru-vet-grid">
+      <div class="tru-vet-block">
+        <h3>How a mover gets onto TruMove</h3>
+        <p>
+          TruMove does not just add every carrier that knocks on the door. Before a mover is allowed on the platform,
+          they go through a multi step review that looks at who they are, how they operate, and how they have treated
+          customers in the past.
+        </p>
+        <p>
+          Once approved, they are monitored on every job. If their performance slips or risk signals pop up, they are
+          pushed down in results or removed entirely. Our <span class="tru-vet-highlight">AI models and ops team work together</span>
+          to keep bad actors away from your move.
+        </p>
+
+        <div class="tru-vet-pipeline">
+          <div class="tru-vet-step">
+            <div class="tru-vet-step-label">
+              <div class="tru-vet-step-dot">1</div>
+              <span>Pre screen</span>
+            </div>
+            <div class="tru-vet-step-desc">Business identity, years in business, service areas, and ownership verified.</div>
+          </div>
+          <div class="tru-vet-step">
+            <div class="tru-vet-step-label">
+              <div class="tru-vet-step-dot">2</div>
+              <span>Compliance</span>
+            </div>
+            <div class="tru-vet-step-desc">USDOT / MC status, licensing, insurance, and safety record must meet TruMove standards.</div>
+          </div>
+          <div class="tru-vet-step">
+            <div class="tru-vet-step-label">
+              <div class="tru-vet-step-dot">3</div>
+              <span>Reputation</span>
+            </div>
+            <div class="tru-vet-step-desc">Reviews, complaints, and claims history screened across multiple sources.</div>
+          </div>
+          <div class="tru-vet-step">
+            <div class="tru-vet-step-label">
+              <div class="tru-vet-step-dot">4</div>
+              <span>Live scoring</span>
+            </div>
+            <div class="tru-vet-step-desc">On time rate, damages, and upcharges tracked on every TruMove job.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tru-vet-block">
+        <h3>What we check on every carrier</h3>
+        <p>
+          Here is a snapshot of the data that flows into TruMove’s carrier score before a mover is ever shown in your quotes.
+        </p>
+
+        <div class="tru-vet-check-groups">
+          <div>
+            <div class="tru-vet-check-group-title">Legal, safety & insurance</div>
+            <div class="tru-vet-check-pills">
+              <div class="tru-vet-pill"><strong>USDOT & MC</strong> active, not revoked</div>
+              <div class="tru-vet-pill"><strong>Operating authority</strong> for household goods</div>
+              <div class="tru-vet-pill"><strong>Safety rating</strong> and CSA scores</div>
+              <div class="tru-vet-pill"><strong>Cargo & liability</strong> limits in force</div>
+              <div class="tru-vet-pill"><strong>Worker’s comp</strong> where required</div>
+            </div>
+          </div>
+          <div>
+            <div class="tru-vet-check-group-title">Reputation & performance</div>
+            <div class="tru-vet-check-pills">
+              <div class="tru-vet-pill">Google, Yelp, BBB <strong>review patterns</strong></div>
+              <div class="tru-vet-pill"><strong>Hostage load</strong> and scam indicators</div>
+              <div class="tru-vet-pill"><strong>Damage & claim</strong> frequency</div>
+              <div class="tru-vet-pill"><strong>On time</strong> pickup / delivery rates</div>
+              <div class="tru-vet-pill"><strong>Surprise upcharge</strong> rate on move day</div>
+            </div>
+          </div>
+        </div>
+
+        <p class="tru-vet-note">
+          If a carrier fails any hard rule, they never go live on TruMove. If their live score drops below our threshold, they are automatically
+          removed from customer facing results until issues are resolved.
+        </p>
+      </div>
+    </div>
+
+    <!-- Lookup + verify TruMove -->
+    <div class="tru-vet-mid-grid">
+      <!-- Lookup a mover -->
+      <div class="tru-vet-lookup-card">
+        <h3 class="tru-vet-lookup-title">Check any mover’s public record.</h3>
+        <p class="tru-vet-lookup-sub">
+          Use this tool to look up a moving company by name or USDOT number. We will show you the core public info and links to the official
+          federal record and external reviews.
+        </p>
+
+        <div class="tru-vet-input-row">
+          <input
+            type="text"
+            id="truVetLookupInput"
+            class="tru-vet-input"
+            placeholder="Enter company name or USDOT number">
+          <button type="button" class="tru-vet-btn" id="truVetLookupBtn">
+            Lookup
+            <span>🔍</span>
+          </button>
+        </div>
+
+        <div class="tru-vet-lookup-hint">
+          This is a convenience lookup that surfaces public data. For full details we always link you to official sources.
+        </div>
+
+        <div class="tru-vet-lookup-result" id="truVetLookupResult">
+          <div class="tru-vet-lookup-row">
+            <span>Company</span>
+            <span id="truVetCompanyName">Waiting for a search…</span>
+          </div>
+          <div class="tru-vet-lookup-row">
+            <span>USDOT</span>
+            <span id="truVetCompanyDot">—</span>
+          </div>
+          <div class="tru-vet-lookup-row">
+            <span>Status</span>
+            <span id="truVetCompanyStatus">—</span>
+          </div>
+          <div class="tru-vet-lookup-row">
+            <span>Home base</span>
+            <span id="truVetCompanyCity">—</span>
+          </div>
+
+          <div class="tru-vet-lookup-links" id="truVetLookupLinks">
+            <div class="tru-vet-link-pill">
+              <span>View on FMCSA (SAFER)</span>
+            </div>
+            <div class="tru-vet-link-pill">
+              <span>View Google Reviews</span>
+            </div>
+            <div class="tru-vet-link-pill">
+              <span>View BBB Profile</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Verify TruMove -->
+      <div class="tru-vet-cred-card">
+        <h3 class="tru-vet-cred-title">Verify TruMove’s own credentials.</h3>
+        <p class="tru-vet-cred-sub">
+          You should be able to vet us just as easily as we vet carriers.  
+          Here are TruMove’s credentials and where to verify them directly.
+        </p>
+
+        <div class="tru-vet-cred-table">
+          <div class="tru-vet-cred-row">
+            <div class="tru-vet-cred-label">Legal entity</div>
+            <div class="tru-vet-cred-value">TruMove Inc. (placeholder)</div>
+          </div>
+          <div class="tru-vet-cred-row">
+            <div class="tru-vet-cred-label">USDOT</div>
+            <div class="tru-vet-cred-value">0000000</div>
+          </div>
+          <div class="tru-vet-cred-row">
+            <div class="tru-vet-cred-label">MC / FF</div>
+            <div class="tru-vet-cred-value">MC 000000</div>
+          </div>
+          <div class="tru-vet-cred-row">
+            <div class="tru-vet-cred-label">Primary office</div>
+            <div class="tru-vet-cred-value">City, State (update with real)</div>
+          </div>
+        </div>
+
+        <div class="tru-vet-cred-links">
+          <button type="button" class="tru-vet-cred-pill">
+            <span>View TruMove on FMCSA</span>
+          </button>
+          <button type="button" class="tru-vet-cred-pill">
+            <span>View TruMove on BBB</span>
+          </button>
+          <button type="button" class="tru-vet-cred-pill">
+            <span>View TruMove on Google Reviews</span>
+          </button>
+        </div>
+
+        <div class="tru-vet-cred-note">
+          Links above will point directly to TruMove’s official public records and review profiles once your credentials are finalized.
+        </div>
+      </div>
+    </div>
+
+    <!-- Enforcement & incident handling -->
+    <div class="tru-vet-bottom-grid">
+      <div class="tru-vet-enforce-card">
+        <h3 class="tru-vet-enforce-title">Zero tolerance for bad behavior.</h3>
+        <p class="tru-vet-enforce-sub">
+          TruMove has written rules that every carrier agrees to before they ever see a job. Certain behavior gets an immediate suspension
+          or permanent removal from the platform.
+        </p>
+
+        <ul class="tru-vet-enforce-list">
+          <li>
+            <div class="tru-vet-enforce-dot"></div>
+            <span><strong>Hostage loads or extortion</strong> – demanding more money after loading or refusing delivery.</span>
+          </li>
+          <li>
+            <div class="tru-vet-enforce-dot"></div>
+            <span><strong>Systematic bait and switch pricing</strong> – large, unjustified increases far beyond the quoted range.</span>
+          </li>
+          <li>
+            <div class="tru-vet-enforce-dot"></div>
+            <span><strong>Serious safety violations</strong> – unqualified drivers, blatant hours of service abuse, or unsafe vehicles.</span>
+          </li>
+          <li>
+            <div class="tru-vet-enforce-dot"></div>
+            <span><strong>Fraudulent reviews or identities</strong> – fake review farms, shell companies, or repeated reincarnations.</span>
+          </li>
+          <li>
+            <div class="tru-vet-enforce-dot"></div>
+            <span><strong>Chronic damage and unpaid claims</strong> – patterns that show customers consistently being left unprotected.</span>
+          </li>
+        </ul>
+      </div>
+
+      <div class="tru-vet-incident-card">
+        <h3 class="tru-vet-enforce-title">What happens if something goes wrong.</h3>
+        <p class="tru-vet-enforce-sub">
+          If there is ever an issue on a TruMove job, the platform and human team step in quickly.
+        </p>
+
+        <div class="tru-vet-incident-steps">
+          <div class="tru-vet-incident-row">
+            <div class="tru-vet-incident-number">1</div>
+            <div class="tru-vet-incident-text">
+              You report a problem inside your TruMove dashboard or to a client advocate.  
+              We capture details, photos, and any documents.
+            </div>
+          </div>
+          <div class="tru-vet-incident-row">
+            <div class="tru-vet-incident-number">2</div>
+            <div class="tru-vet-incident-text">
+              TruMove pulls internal data – quotes, call logs, GPS pings (where available), and job notes – and opens a case with the carrier.
+            </div>
+          </div>
+          <div class="tru-vet-incident-row">
+            <div class="tru-vet-incident-number">3</div>
+            <div class="tru-vet-incident-text">
+              The carrier has a strict response window. Depending on findings, TruMove may apply credits, refunds, or remove that
+              carrier from future jobs.
+            </div>
+          </div>
+          <div class="tru-vet-incident-row">
+            <div class="tru-vet-incident-number">4</div>
+            <div class="tru-vet-incident-text">
+              The outcome feeds back into the carrier’s live score so the next customer benefits from what we learned on your move.
+            </div>
+          </div>
+        </div>
+
+        <div class="tru-vet-bottom-note">
+          The goal is simple, keep bad actors out of your move and reward movers who consistently do the right thing.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    var input = document.getElementById("truVetLookupInput");
+    var btn = document.getElementById("truVetLookupBtn");
+
+    var nameEl = document.getElementById("truVetCompanyName");
+    var dotEl = document.getElementById("truVetCompanyDot");
+    var statusEl = document.getElementById("truVetCompanyStatus");
+    var cityEl = document.getElementById("truVetCompanyCity");
+
+    function fakeLookup(value) {
+      var trimmed = (value || "").trim();
+      if (!trimmed) {
+        nameEl.textContent = "Enter a mover name or USDOT number to see sample results.";
+        dotEl.textContent = "—";
+        statusEl.textContent = "—";
+        cityEl.textContent = "—";
+        return;
+      }
+
+      // Super simple placeholder logic just so the card feels alive.
+      var isDot = /^\d{5,}$/.test(trimmed);
+      if (isDot) {
+        nameEl.textContent = "Sample Carrier linked to DOT " + trimmed;
+        dotEl.textContent = trimmed;
+        statusEl.textContent = "Active • Authorized for Household Goods";
+        cityEl.textContent = "Example City, ST";
+      } else {
+        nameEl.textContent = trimmed + " (example match)";
+        dotEl.textContent = "1234567";
+        statusEl.textContent = "Active • Authorized for Household Goods";
+        cityEl.textContent = "Sample Town, ST";
+      }
+    }
+
+    btn.addEventListener("click", function () {
+      fakeLookup(input.value);
+    });
+
+    input.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        fakeLookup(input.value);
+      }
+    });
+  })();
+</script>

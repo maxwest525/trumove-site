@@ -1,0 +1,792 @@
+<!-- TRUMOVE – VIDEO CONSULT BOOKING SECTION (CLEAN FINAL + HORIZONTAL QUICK CALL COPY) -->
+<style>
+  :root { --tru-green:#39ff14; --tru-dark:#020617; }
+
+  .tru-book-wrap{
+    width:100%;
+    background:#fff;
+    padding:56px 0;
+    box-sizing:border-box;
+    font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+
+  .tru-book-inner{
+    width:100%;
+    max-width:1100px;
+    margin:0 auto;
+    padding:0 16px;
+    box-sizing:border-box;
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+
+  .tru-book-grid{
+    width:100%;
+    display:grid;
+    grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);
+    gap:28px;
+    align-items:stretch;
+  }
+
+  .tru-book-card,
+  .tru-book-preview-card{
+    background:#fff;
+    border-radius:24px;
+    border:1px solid #e5e7eb;
+    box-shadow:0 20px 45px rgba(15,23,42,0.06), 0 0 0 1px rgba(148,163,184,0.18);
+    box-sizing:border-box;
+  }
+
+  /* Left card */
+  .tru-book-card{ padding:22px; }
+  .tru-book-kicker{
+    font-size:0.78rem; letter-spacing:0.16em; text-transform:uppercase;
+    color:#9ca3af; margin-bottom:6px; font-weight:900;
+  }
+  .tru-book-title{
+    font-size:1.6rem; font-weight:950; margin:0 0 4px;
+    color:#020617; line-height:1.15;
+  }
+  .tru-book-sub{
+    font-size:0.9rem; color:#4b5563; margin:0 0 16px; line-height:1.35;
+  }
+
+  .tru-book-date-row-label,.tru-book-time-row-label{
+    font-size:0.85rem; color:#6b7280; margin:10px 0 4px; font-weight:850;
+  }
+
+  .tru-book-date-row{ display:flex; gap:8px; margin-bottom:14px; }
+  .tru-book-date-pill{
+    flex:1; min-width:0; border-radius:18px; border:1px solid #e5e7eb;
+    background:#f9fafb; padding:7px 6px; text-align:center;
+    font-size:0.8rem; color:#111827; cursor:pointer;
+    transition:border-color .15s ease, background .15s ease, transform .08s ease, box-shadow .15s ease;
+  }
+  .tru-book-date-pill span{display:block;}
+  .tru-book-date-pill small{font-size:0.7rem;color:#6b7280;}
+  .tru-book-date-pill:hover{ border-color:var(--tru-green); box-shadow:0 10px 20px rgba(15,23,42,0.08); }
+  .tru-book-date-pill.selected{
+    border-color:var(--tru-green);
+    background:radial-gradient(circle at top, rgba(57,255,20,0.18), #f9fafb 70%);
+    transform:translateY(-1px);
+    box-shadow:0 14px 26px rgba(15,23,42,0.12), 0 0 0 1px rgba(57,255,20,0.4);
+  }
+
+  .tru-book-time-grid{ display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px; margin-bottom:10px; }
+  .tru-book-time-pill{
+    border-radius:999px; border:1px solid #e5e7eb; background:#fff;
+    padding:6px 8px; font-size:0.8rem; text-align:center; color:#111827;
+    cursor:pointer; transition:border-color .15s ease, background .15s ease, transform .08s ease, box-shadow .15s ease;
+  }
+  .tru-book-time-pill:hover{ border-color:var(--tru-green); box-shadow:0 8px 18px rgba(15,23,42,0.08); }
+  .tru-book-time-pill.selected{
+    border-color:var(--tru-green);
+    background:radial-gradient(circle at top, rgba(57,255,20,0.18), #ffffff 70%);
+    transform:translateY(-1px);
+    box-shadow:0 12px 24px rgba(15,23,42,0.12), 0 0 0 1px rgba(57,255,20,0.4);
+  }
+
+  .tru-book-selected-line{ font-size:0.8rem; color:#6b7280; margin-bottom:12px; line-height:1.35; }
+  .tru-book-selected-line strong{ color:#111827; font-weight:950; }
+
+  .tru-book-cta-btn{
+    margin-top:6px; border-radius:999px; padding:11px 24px;
+    border:2px solid #000; background:linear-gradient(180deg,#4dff32,#2fe112);
+    color:#020617; font-size:0.9rem; font-weight:950;
+    text-transform:uppercase; letter-spacing:0.08em; cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px;
+    box-shadow:0 3px 4px rgba(0,0,0,0.25), 0 8px 18px rgba(57,255,20,0.35);
+    transition:transform .15s ease, box-shadow .2s ease;
+  }
+  .tru-book-cta-btn:hover{ transform:translateY(-2px); box-shadow:0 5px 8px rgba(0,0,0,0.3), 0 14px 28px rgba(57,255,20,0.45); }
+  .tru-book-cta-btn:active{ transform:translateY(0); box-shadow:0 2px 4px rgba(0,0,0,0.25), 0 6px 14px rgba(57,255,20,0.3); }
+
+  .tru-book-cta-btn.secondary{
+    margin-top:10px; border:1px solid #e5e7eb; background:#fff; letter-spacing:0.06em;
+    box-shadow:0 10px 24px rgba(15,23,42,0.08);
+  }
+
+  .tru-book-footnote{ margin-top:8px; font-size:0.78rem; color:#6b7280; line-height:1.35; }
+
+  .tru-avail-ticker{
+    margin-top:12px;
+    border-radius:18px;
+    border:1px solid rgba(57,255,20,0.35);
+    background:linear-gradient(180deg, rgba(57,255,20,0.10), rgba(255,255,255,0.92));
+    box-shadow:0 14px 28px rgba(15,23,42,0.06);
+    padding:10px 12px;
+    display:flex; align-items:center; gap:10px;
+    color:#020617; font-size:0.82rem;
+  }
+  .tru-avail-dot{
+    width:10px;height:10px;border-radius:999px;
+    background:var(--tru-green);
+    box-shadow:0 0 10px rgba(57,255,20,0.9);
+    animation:truAvailPulse 1.2s ease-in-out infinite;
+    flex:0 0 auto;
+  }
+  @keyframes truAvailPulse{
+    0%{transform:scale(1);box-shadow:0 0 7px rgba(57,255,20,0.7);}
+    50%{transform:scale(1.2);box-shadow:0 0 16px rgba(57,255,20,1);}
+    100%{transform:scale(1);box-shadow:0 0 7px rgba(57,255,20,0.7);}
+  }
+  .tru-avail-text strong{ font-weight:950; }
+
+  /* Right preview */
+  .tru-book-preview-card{ padding:18px; display:flex; flex-direction:column; }
+  .tru-preview-top{
+    display:flex; justify-content:space-between; align-items:center;
+    font-size:0.8rem; color:#6b7280; margin-bottom:10px;
+  }
+  .tru-preview-live{ display:flex; align-items:center; gap:8px; font-size:0.78rem; }
+  .tru-preview-dot{
+    width:10px;height:10px;border-radius:999px;background:var(--tru-green);
+    box-shadow:0 0 10px rgba(57,255,20,0.9);
+    animation:truPulse 1.4s ease-in-out infinite;
+  }
+  @keyframes truPulse{
+    0%{transform:scale(1);box-shadow:0 0 7px rgba(57,255,20,0.75);}
+    50%{transform:scale(1.2);box-shadow:0 0 16px rgba(57,255,20,1);}
+    100%{transform:scale(1);box-shadow:0 0 7px rgba(57,255,20,0.75);}
+  }
+
+  .tru-preview-stage{
+    flex:1;
+    border-radius:18px;
+    border:1px solid #e5e7eb;
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(57,255,20,0.12), transparent 50%),
+      radial-gradient(circle at 80% 30%, rgba(15,23,42,0.07), transparent 55%),
+      linear-gradient(180deg,#fbfdff,#f3f4f6);
+    padding:14px;
+    box-sizing:border-box;
+  }
+
+  .tru-preview-stage::before{
+    content:"";
+    position:absolute; inset:-40%;
+    background:repeating-linear-gradient(135deg, rgba(2,6,23,0.035) 0px, rgba(2,6,23,0.035) 8px, rgba(255,255,255,0) 8px, rgba(255,255,255,0) 18px);
+    transform:rotate(10deg);
+    animation:truDrift 8s linear infinite;
+    pointer-events:none;
+  }
+  @keyframes truDrift{
+    0%{transform:translate3d(-2%,-2%,0) rotate(10deg);}
+    50%{transform:translate3d(2%,2%,0) rotate(10deg);}
+    100%{transform:translate3d(-2%,-2%,0) rotate(10deg);}
+  }
+
+  .tru-preview-ui{ position:relative; z-index:2; display:flex; flex-direction:column; gap:10px; height:100%; }
+
+  .tru-preview-head{ display:flex; justify-content:space-between; gap:10px; align-items:flex-start; }
+  .tru-preview-title{ font-size:0.95rem; font-weight:950; color:#020617; line-height:1.15; }
+  .tru-preview-sub{ font-size:0.78rem; color:#4b5563; margin-top:3px; line-height:1.25; }
+
+  .tru-preview-chip{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:7px 10px; border-radius:999px;
+    border:1px solid rgba(57,255,20,0.55);
+    background:rgba(57,255,20,0.10);
+    color:#020617; font-size:0.75rem; font-weight:950;
+    box-shadow:0 10px 22px rgba(15,23,42,0.08);
+    white-space:nowrap;
+  }
+  .tru-preview-chip b{
+    width:8px;height:8px;border-radius:999px;background:var(--tru-green);
+    box-shadow:0 0 10px rgba(57,255,20,0.95);
+    display:inline-block;
+  }
+
+  .tru-preview-grid{ display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:2px; }
+  .tru-preview-panel{
+    border-radius:16px; border:1px solid #e5e7eb;
+    background:rgba(255,255,255,0.85);
+    box-shadow:0 14px 28px rgba(15,23,42,0.06);
+    padding:12px; box-sizing:border-box;
+  }
+  .tru-preview-panel .label{
+    font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:#9ca3af; margin-bottom:6px; font-weight:950;
+  }
+
+  .tru-preview-bars{ display:flex; flex-direction:column; gap:8px; }
+  .tru-preview-bar{ height:10px; border-radius:999px; background:#e5e7eb; overflow:hidden; position:relative; }
+  .tru-preview-bar span{
+    position:absolute; inset:0; width:42%;
+    background:linear-gradient(90deg, rgba(57,255,20,0), rgba(57,255,20,0.75), rgba(57,255,20,0));
+    transform:translateX(-60%);
+    animation:truScan 1.8s ease-in-out infinite;
+  }
+  .tru-preview-bar:nth-child(2) span{ animation-delay:0.25s; }
+  .tru-preview-bar:nth-child(3) span{ animation-delay:0.5s; }
+  @keyframes truScan{
+    0%{transform:translateX(-70%);}
+    50%{transform:translateX(150%);}
+    100%{transform:translateX(150%);}
+  }
+
+  .tru-preview-list{ display:flex; flex-direction:column; gap:8px; }
+  .tru-preview-item{ display:flex; gap:10px; align-items:flex-start; }
+  .tru-preview-check{
+    width:18px;height:18px;border-radius:6px;
+    border:1px solid rgba(57,255,20,0.6);
+    background:rgba(57,255,20,0.12);
+    box-shadow:0 0 0 3px rgba(57,255,20,0.08);
+    position:relative; flex:0 0 auto; margin-top:1px;
+  }
+  .tru-preview-check::after{
+    content:""; position:absolute; left:5px; top:3px; width:6px; height:10px;
+    border-right:2px solid #0b3b10; border-bottom:2px solid #0b3b10; transform:rotate(40deg);
+  }
+  .tru-preview-item strong{ font-size:0.82rem; color:#020617; font-weight:950; }
+  .tru-preview-item div{ font-size:0.78rem; color:#4b5563; line-height:1.25; }
+
+  .tru-preview-rotator{
+    margin-top:auto;
+    border-radius:16px; border:1px solid #e5e7eb;
+    background:rgba(255,255,255,0.9);
+    box-shadow:0 14px 28px rgba(15,23,42,0.06);
+    padding:12px; position:relative; overflow:hidden;
+  }
+  .tru-preview-rotator .k{
+    font-size:0.72rem; letter-spacing:0.14em; text-transform:uppercase;
+    color:#9ca3af; font-weight:950; margin-bottom:6px;
+  }
+  .tru-preview-rotator .line{ font-size:0.9rem; font-weight:950; color:#020617; line-height:1.2; }
+  .tru-preview-rotator .sub{ font-size:0.78rem; color:#4b5563; margin-top:4px; line-height:1.25; }
+
+  .tru-preview-caption{ margin-top:10px; font-size:0.8rem; color:#6b7280; line-height:1.35; }
+
+  /* QUICK CALL PILL (KEEP SHAPE/SIZE, NOW ALL HORIZONTAL TEXT) */
+  .tru-quickcall-pill{
+    width:100%;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:12px;
+    padding:10px 12px;
+    border-radius:999px;
+    margin:0 0 4px;
+    border:1px solid rgba(2,6,23,0.18);
+    background:linear-gradient(180deg, rgba(57,255,20,0.14), rgba(255,255,255,0.95));
+    box-shadow:0 16px 34px rgba(15,23,42,0.08), 0 0 0 1px rgba(148,163,184,0.14);
+    text-decoration:none;
+    color:#020617;
+    transition:transform .15s ease, box-shadow .2s ease, border-color .2s ease;
+    box-sizing:border-box;
+  }
+  .tru-quickcall-pill:hover{
+    transform:translateY(-1px);
+    border-color:rgba(57,255,20,0.45);
+    box-shadow:0 18px 40px rgba(15,23,42,0.10), 0 0 0 1px rgba(57,255,20,0.20);
+  }
+
+  .tru-quickcall-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:0;
+  }
+
+  .tru-quickcall-ic{
+    width:36px;height:36px;
+    border-radius:999px;
+    border:1px solid rgba(57,255,20,0.55);
+    background:radial-gradient(circle at top, rgba(57,255,20,0.18), rgba(255,255,255,0.95) 70%);
+    box-shadow:0 0 0 3px rgba(57,255,20,0.08);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    flex:0 0 auto;
+  }
+  .tru-quickcall-ic svg{ width:18px;height:18px; stroke:#020617; }
+  .tru-quickcall-pulse{
+    position:absolute;
+    inset:-6px;
+    border-radius:999px;
+    border:2px solid rgba(57,255,20,0.45);
+    animation:truPhonePulse 1.35s ease-in-out infinite;
+    pointer-events:none;
+  }
+  @keyframes truPhonePulse{
+    0%{ transform:scale(0.92); opacity:0; }
+    35%{ opacity:0.7; }
+    100%{ transform:scale(1.25); opacity:0; }
+  }
+
+  /* One horizontal line with a rotating segment */
+  .tru-quickcall-line{
+    display:flex;
+    align-items:baseline;
+    gap:10px;
+    min-width:0;
+    flex-wrap:wrap;
+    white-space:nowrap;
+  }
+
+  .tru-quickcall-kicker{
+    font-size:0.78rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    font-weight:950;
+    color:#020617;
+    line-height:1;
+    flex:0 0 auto;
+  }
+
+  .tru-quickcall-divider{
+    width:1px;
+    height:16px;
+    background:rgba(2,6,23,.12);
+    flex:0 0 auto;
+  }
+
+  .tru-quickcall-cta{
+    font-size:0.88rem;
+    font-weight:950;
+    color:#020617;
+    line-height:1.1;
+    flex:0 0 auto;
+  }
+
+  .tru-quickcall-rot{
+    font-size:0.84rem;
+    color:#334155;
+    line-height:1.1;
+    opacity:0.92;
+    min-width:0;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+    will-change:opacity, transform;
+    transition:opacity .26s ease, transform .26s ease;
+  }
+  .tru-quickcall-rot.is-out{ opacity:0; transform:translateY(-2px); }
+  .tru-quickcall-rot.is-in{ opacity:0.92; transform:translateY(0); }
+
+  .tru-quickcall-arrow{ font-size:1.05rem; font-weight:950; opacity:.55; flex:0 0 auto; }
+
+  /* TRUST STRIP */
+  .tru-trust-strip{
+    width:100%;
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:stretch;
+    margin-top:2px;
+  }
+  .tru-trust-pill{
+    flex:1 1 230px;
+    border-radius:999px;
+    border:1px solid #e5e7eb;
+    background:linear-gradient(180deg,#ffffff,#f9fafb);
+    box-shadow:0 14px 28px rgba(15,23,42,0.06);
+    padding:10px 12px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:220px;
+  }
+  .tru-trust-ic{
+    width:34px;height:34px;border-radius:12px;
+    border:1px solid rgba(57,255,20,0.55);
+    background:radial-gradient(circle at top, rgba(57,255,20,0.18), rgba(255,255,255,0.9) 70%);
+    box-shadow:0 0 0 3px rgba(57,255,20,0.08);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .tru-trust-ic svg{ width:18px;height:18px; stroke:#020617; }
+  .tru-trust-text strong{ display:block; font-size:0.82rem; font-weight:950; color:#020617; line-height:1.1; }
+  .tru-trust-text span{ display:block; font-size:0.78rem; color:#4b5563; margin-top:2px; line-height:1.2; }
+
+  /* FAQ */
+  .tru-faq{ margin-top:6px; display:flex; flex-direction:column; gap:10px; }
+  .tru-faq-item{
+    border-radius:16px; border:1px solid #e5e7eb;
+    background:linear-gradient(180deg,#ffffff,#f9fafb);
+    padding:12px 12px 10px;
+    box-shadow:0 14px 28px rgba(15,23,42,0.06);
+  }
+  .tru-faq-q{ display:flex; justify-content:space-between; align-items:center; gap:10px; font-weight:950; color:#020617; font-size:0.86rem; }
+  .tru-faq-a{ margin-top:6px; font-size:0.8rem; color:#4b5563; line-height:1.3; }
+  .tru-faq-badge{
+    font-size:0.72rem; font-weight:950; color:#020617;
+    padding:4px 10px; border-radius:999px;
+    border:1px solid rgba(57,255,20,0.55);
+    background:rgba(57,255,20,0.10);
+    white-space:nowrap;
+  }
+
+  @media (max-width:960px){
+    .tru-book-grid{ grid-template-columns:minmax(0,1fr); }
+    .tru-trust-pill{ min-width:unset; }
+  }
+
+  @media (max-width:640px){
+    .tru-quickcall-pill{ border-radius:24px; }
+    .tru-quickcall-line{ white-space:normal; }
+    .tru-quickcall-rot{ white-space:normal; }
+  }
+</style>
+
+<div class="tru-book-wrap">
+  <div class="tru-book-inner">
+
+    <div class="tru-book-grid">
+      <!-- Left -->
+      <div class="tru-book-card">
+        <div class="tru-book-kicker">Video consult</div>
+        <h3 class="tru-book-title">Book a live TruMove session.</h3>
+        <p class="tru-book-sub">
+          Pick a time that works for you and meet face to face with a TruMove client advocate to review quotes and plan your move.
+        </p>
+
+        <div class="tru-book-date-row-label">Choose a day</div>
+        <div class="tru-book-date-row" id="truBookDates">
+          <button type="button" class="tru-book-date-pill" data-label="Today"><span>Today</span><small>3 slots</small></button>
+          <button type="button" class="tru-book-date-pill" data-label="Tomorrow"><span>Tomorrow</span><small>5 slots</small></button>
+          <button type="button" class="tru-book-date-pill" data-label="This Friday"><span>Fri</span><small>7 slots</small></button>
+        </div>
+
+        <div class="tru-book-time-row-label">Available times (local)</div>
+        <div class="tru-book-time-grid" id="truBookTimes">
+          <button type="button" class="tru-book-time-pill" data-time="10:00 AM">10:00 AM</button>
+          <button type="button" class="tru-book-time-pill" data-time="11:30 AM">11:30 AM</button>
+          <button type="button" class="tru-book-time-pill" data-time="1:00 PM">1:00 PM</button>
+          <button type="button" class="tru-book-time-pill" data-time="3:00 PM">3:00 PM</button>
+          <button type="button" class="tru-book-time-pill" data-time="4:30 PM">4:30 PM</button>
+          <button type="button" class="tru-book-time-pill" data-time="6:00 PM">6:00 PM</button>
+        </div>
+
+        <div class="tru-book-selected-line" id="truBookSelected">Select a day and time to continue.</div>
+
+        <button type="button" class="tru-book-cta-btn" id="truBookConfirm">Confirm video consult <span>→</span></button>
+        <button type="button" class="tru-book-cta-btn secondary" id="truBookMoreTimes">Choose another date and time <span>↗</span></button>
+
+        <div class="tru-book-footnote">
+          You will receive a calendar invite with a secure video link. No downloads required.
+        </div>
+
+        <div class="tru-avail-ticker" id="truAvailTicker" role="status" aria-live="polite">
+          <span class="tru-avail-dot"></span>
+          <span class="tru-avail-text"><strong>More availability:</strong> Click <strong>Choose another date and time</strong> to see every open slot.</span>
+        </div>
+      </div>
+
+      <!-- Right -->
+      <div class="tru-book-preview-card">
+        <div class="tru-preview-top">
+          <div>TruMove • Live session preview</div>
+          <div class="tru-preview-live">
+            <span class="tru-preview-dot"></span><span>Secure</span><span id="truPreviewClock">00:14</span>
+          </div>
+        </div>
+
+        <div class="tru-preview-stage">
+          <div class="tru-preview-ui">
+            <div class="tru-preview-head">
+              <div>
+                <div class="tru-preview-title">What happens on your video consult</div>
+                <div class="tru-preview-sub">We compare quotes, vet movers, and map next steps.</div>
+              </div>
+              <div class="tru-preview-chip"><b></b><span>Screen share enabled</span></div>
+            </div>
+
+            <div class="tru-preview-grid">
+              <div class="tru-preview-panel">
+                <div class="label">Quote comparison</div>
+                <div class="tru-preview-bars">
+                  <div class="tru-preview-bar"><span></span></div>
+                  <div class="tru-preview-bar"><span></span></div>
+                  <div class="tru-preview-bar"><span></span></div>
+                </div>
+              </div>
+
+              <div class="tru-preview-panel">
+                <div class="label">Mover credibility check</div>
+                <div class="tru-preview-list">
+                  <div class="tru-preview-item">
+                    <div class="tru-preview-check"></div>
+                    <div><strong>FMCSA record</strong><div>We verify status, authority, and safety basics.</div></div>
+                  </div>
+                  <div class="tru-preview-item">
+                    <div class="tru-preview-check"></div>
+                    <div><strong>Reviews and patterns</strong><div>We look for red flags, not just stars.</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="tru-preview-rotator" aria-live="polite">
+              <div class="k">Live walkthrough</div>
+              <div class="line" id="truRotateLine">We break down your quote line by line.</div>
+              <div class="sub" id="truRotateSub">No pressure, just clarity and a clean plan.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tru-preview-caption">
+          After you book, you will get an email and calendar invite with a secure video link.
+        </div>
+      </div>
+    </div>
+
+    <!-- QUICK CALL PILL (HORIZONTAL COPY, ROTATING SEGMENT) -->
+    <a href="tel:+16097277647" class="tru-quickcall-pill" aria-label="Call TruMove 609-727-7647">
+      <div class="tru-quickcall-left">
+        <span class="tru-quickcall-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none">
+            <path d="M6.5 4.5L9.5 4L11 7.5L9.3 8.7C9.9 9.9 10.8 10.9 12 11.7L13.9 10.4L17 12L16.3 15.3C16.2 15.8 15.8 16.1 15.3 16.2C14.1 16.5 12.3 16.1 10.3 14.8C8.3 13.4 6.9 11.7 6.1 10.1C5.5 8.9 5.3 7.8 5.5 6.9C5.6 6.4 5.9 5.9 6.5 4.5Z"
+                  stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span class="tru-quickcall-pulse"></span>
+        </span>
+
+        <div class="tru-quickcall-line">
+          <span class="tru-quickcall-kicker">Prefer a quick call?</span>
+          <span class="tru-quickcall-divider"></span>
+          <span class="tru-quickcall-cta">Click to reach the support team now or dial 609-727-7647</span>
+          <span class="tru-quickcall-divider"></span>
+          <span id="truQuickCallRot" class="tru-quickcall-rot is-in">Support team available now → Same day help, no pressure</span>
+        </div>
+      </div>
+
+      <span class="tru-quickcall-arrow">→</span>
+    </a>
+
+    <!-- Trust strip -->
+    <div class="tru-trust-strip">
+      <div class="tru-trust-pill">
+        <div class="tru-trust-ic">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M12 3L20 7V12C20 16.4 16.9 20.3 12 21C7.1 20.3 4 16.4 4 12V7L12 3Z" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 12L11 14L15 10" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <div class="tru-trust-text"><strong>Secure booking</strong><span>Calendar invite and video link sent after you confirm.</span></div>
+      </div>
+
+      <div class="tru-trust-pill">
+        <div class="tru-trust-ic">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M4 19V5" stroke-width="1.7" stroke-linecap="round"/><path d="M8 17V9" stroke-width="1.7" stroke-linecap="round"/><path d="M12 19V7" stroke-width="1.7" stroke-linecap="round"/><path d="M16 16V10" stroke-width="1.7" stroke-linecap="round"/><path d="M20 19V6" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <div class="tru-trust-text"><strong>No pressure</strong><span>We only help you evaluate options, you decide.</span></div>
+      </div>
+
+      <div class="tru-trust-pill">
+        <div class="tru-trust-ic">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 12H17" stroke-width="1.7" stroke-linecap="round"/><path d="M12 7V17" stroke-width="1.7" stroke-linecap="round"/><path d="M4.5 12C4.5 7.9 7.9 4.5 12 4.5C16.1 4.5 19.5 7.9 19.5 12C19.5 16.1 16.1 19.5 12 19.5C7.9 19.5 4.5 16.1 4.5 12Z" stroke-width="1.7"/></svg>
+        </div>
+        <div class="tru-trust-text"><strong>Fast clarity</strong><span>Walk away with next steps and what to ask the mover.</span></div>
+      </div>
+
+      <div class="tru-trust-pill">
+        <div class="tru-trust-ic">
+          <svg viewBox="0 0 24 24" fill="none"><path d="M7 7H17V17H7V7Z" stroke-width="1.7" stroke-linejoin="round"/><path d="M9 11H15" stroke-width="1.7" stroke-linecap="round"/><path d="M9 14H13" stroke-width="1.7" stroke-linecap="round"/></svg>
+        </div>
+        <div class="tru-trust-text"><strong>Summary after</strong><span>We can send a quick recap of what we reviewed.</span></div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="tru-faq">
+      <div class="tru-faq-item">
+        <div class="tru-faq-q"><span>Do I need to download anything?</span><span class="tru-faq-badge">No</span></div>
+        <div class="tru-faq-a">Your link opens in a browser, phone, or computer.</div>
+      </div>
+      <div class="tru-faq-item">
+        <div class="tru-faq-q"><span>Can you help even if I already booked a mover?</span><span class="tru-faq-badge">Yes</span></div>
+        <div class="tru-faq-a">We can sanity check the estimate, paperwork, and what to confirm before move day.</div>
+      </div>
+      <div class="tru-faq-item">
+        <div class="tru-faq-q"><span>What should I bring to the call?</span><span class="tru-faq-badge">Easy</span></div>
+        <div class="tru-faq-a">Any quotes you have and your move date, plus a quick list of big items.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  (function () {
+    var CALENDLY_EVENT_URL = "https://calendly.com/maxw-trumoveinc/30min";
+    var TIMEZONE = "America/New_York";
+
+    var dateButtons = document.querySelectorAll("#truBookDates .tru-book-date-pill");
+    var timeButtons = document.querySelectorAll("#truBookTimes .tru-book-time-pill");
+    var selectedLine = document.getElementById("truBookSelected");
+    var confirmBtn = document.getElementById("truBookConfirm");
+    var moreTimesBtn = document.getElementById("truBookMoreTimes");
+    var tickerEl = document.getElementById("truAvailTicker");
+
+    var selectedDateLabel = "";
+    var selectedTimeLabel = "";
+
+    function labelToDate(label) {
+      var now = new Date();
+      var d = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 12, 0, 0);
+      if (label === "Today") return d;
+      if (label === "Tomorrow") { d.setDate(d.getDate() + 1); return d; }
+      if (label === "This Friday" || label === "Fri") {
+        var day = d.getDay();
+        var diff = (5 - day + 7) % 7;
+        if (diff === 0) diff = 7;
+        d.setDate(d.getDate() + diff);
+        return d;
+      }
+      return null;
+    }
+
+    function parseTimeTo24h(timeStr) {
+      var m = timeStr.match(/^(\d{1,2}):(\d{2})\s*(AM|PM)$/i);
+      if (!m) return null;
+      var h = parseInt(m[1], 10);
+      var min = parseInt(m[2], 10);
+      var ap = m[3].toUpperCase();
+      if (ap === "PM" && h !== 12) h += 12;
+      if (ap === "AM" && h === 12) h = 0;
+      return { h: h, m: min };
+    }
+
+    function toISO(dt) {
+      var y = dt.getFullYear();
+      var mo = String(dt.getMonth() + 1).padStart(2, "0");
+      var da = String(dt.getDate()).padStart(2, "0");
+      var hh = String(dt.getHours()).padStart(2, "0");
+      var mm = String(dt.getMinutes()).padStart(2, "0");
+      return y + "-" + mo + "-" + da + "T" + hh + ":" + mm + ":00";
+    }
+
+    function updateTicker() {
+      if (!tickerEl) return;
+      var textEl = tickerEl.querySelector(".tru-avail-text");
+      if (!textEl) return;
+
+      if (selectedDateLabel && selectedTimeLabel) {
+        textEl.innerHTML =
+          "<strong>Selected:</strong> " + selectedDateLabel + " at <strong>" + selectedTimeLabel +
+          "</strong>. Want more options? Use <strong>Choose another date and time</strong>.";
+        return;
+      }
+      if (selectedDateLabel) {
+        textEl.innerHTML =
+          "<strong>" + selectedDateLabel + ":</strong> Pick a time, or click <strong>Choose another date and time</strong> for full availability.";
+        return;
+      }
+      textEl.innerHTML =
+        "<strong>More availability:</strong> Click <strong>Choose another date and time</strong> to see every open slot.";
+    }
+
+    function updateSelectedLine() {
+      if (selectedDateLabel && selectedTimeLabel) {
+        selectedLine.innerHTML =
+          "You selected <strong>" + selectedDateLabel + "</strong> at <strong>" + selectedTimeLabel + "</strong>.";
+      } else if (selectedDateLabel) {
+        selectedLine.textContent = "You selected " + selectedDateLabel + ". Choose a time to continue.";
+      } else if (selectedTimeLabel) {
+        selectedLine.textContent = "You selected " + selectedTimeLabel + ". Choose a day to continue.";
+      } else {
+        selectedLine.textContent = "Select a day and time to continue.";
+      }
+      updateTicker();
+    }
+
+    dateButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        dateButtons.forEach(function (b) { b.classList.remove("selected"); });
+        btn.classList.add("selected");
+        selectedDateLabel = btn.getAttribute("data-label") || "";
+        updateSelectedLine();
+      });
+    });
+
+    timeButtons.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        timeButtons.forEach(function (b) { b.classList.remove("selected"); });
+        btn.classList.add("selected");
+        selectedTimeLabel = btn.getAttribute("data-time") || "";
+        updateSelectedLine();
+      });
+    });
+
+    function buildCalendlyUrl(withPrefill) {
+      var url = CALENDLY_EVENT_URL;
+      var sep = (url.indexOf("?") >= 0) ? "&" : "?";
+      url += sep + "timezone=" + encodeURIComponent(TIMEZONE);
+
+      if (withPrefill && selectedDateLabel && selectedTimeLabel) {
+        var baseDate = labelToDate(selectedDateLabel);
+        var t = parseTimeTo24h(selectedTimeLabel);
+        if (baseDate && t) {
+          baseDate.setHours(t.h, t.m, 0, 0);
+          url += "&date=" + encodeURIComponent(toISO(baseDate));
+        }
+      }
+      return url;
+    }
+
+    confirmBtn.addEventListener("click", function () {
+      if (!selectedDateLabel || !selectedTimeLabel) {
+        selectedLine.textContent = "Pick a day and time first, then confirm.";
+        updateTicker();
+        return;
+      }
+      window.open(buildCalendlyUrl(true), "_blank", "noopener");
+    });
+
+    moreTimesBtn.addEventListener("click", function () {
+      window.open(buildCalendlyUrl(false), "_blank", "noopener");
+    });
+
+    /* Right card rotator + clock */
+    var lines = [
+      { line: "We break down your quote line by line.", sub: "We highlight hidden fees, deposit rules, and payment traps." },
+      { line: "We verify mover credibility before you pay.", sub: "We check authority basics and review patterns for red flags." },
+      { line: "We map the cleanest path to move day.", sub: "Inventory, timing, packing, and what to ask on the final call." }
+    ];
+    var idx = 0;
+    var lineEl = document.getElementById("truRotateLine");
+    var subEl = document.getElementById("truRotateSub");
+    setInterval(function () {
+      idx = (idx + 1) % lines.length;
+      if (lineEl) lineEl.textContent = lines[idx].line;
+      if (subEl) subEl.textContent = lines[idx].sub;
+    }, 3200);
+
+    var clockEl = document.getElementById("truPreviewClock");
+    var seconds = 14;
+    setInterval(function () {
+      seconds++;
+      var mm = String(Math.floor(seconds / 60)).padStart(2, "0");
+      var ss = String(seconds % 60).padStart(2, "0");
+      if (clockEl) clockEl.textContent = mm + ":" + ss;
+    }, 1000);
+
+    /* Quick call rotating segment (smooth, no flash) */
+    (function(){
+      var el = document.getElementById("truQuickCallRot");
+      if (!el) return;
+
+      var phrases = [
+        "Support team available now → Same day help, no pressure",
+        "Fast answers → Usually answers in under a minute",
+        "Real humans → Quote clarity and next steps, quick"
+      ];
+
+      var i = 0;
+      function swap(){
+        el.classList.remove("is-in");
+        el.classList.add("is-out");
+        setTimeout(function(){
+          i = (i + 1) % phrases.length;
+          el.textContent = phrases[i];
+          el.classList.remove("is-out");
+          el.classList.add("is-in");
+        }, 260);
+      }
+      setInterval(swap, 3200);
+    })();
+
+    updateTicker();
+  })();
+</script>

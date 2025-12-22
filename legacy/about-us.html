@@ -1,0 +1,447 @@
+<!-- TRUMOVE - ABOUT / LEARN MORE PAGE (LIGHT / EMBEDDED) -->
+<style>
+  :root {
+    --tru-green: #39ff14;
+    --tru-black: #000000;
+  }
+
+  .tru-about-wrap {
+    width: 100%;
+    background: #ffffff;
+    display: flex;
+    justify-content: center;
+    padding: 56px 0 72px;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    color: #111827;
+  }
+
+  .tru-about-inner {
+    width: 100%;
+    max-width: 1120px;
+  }
+
+  /* Hero */
+  .tru-about-hero {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .tru-about-kicker {
+    font-size: 0.78rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #9ca3af;
+    margin-bottom: 6px;
+  }
+
+  .tru-about-heading {
+    font-size: 2.1rem;
+    font-weight: 800;
+    margin: 0 0 10px;
+    color: #020617;
+  }
+
+  .tru-about-sub {
+    font-size: 0.95rem;
+    color: #4b5563;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  /* About two column */
+  .tru-about-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+    gap: 34px;
+    margin-bottom: 40px;
+  }
+
+  .tru-about-block {
+    background: #ffffff;
+    border-radius: 26px;
+    border: 1px solid #e5e7eb;
+    box-shadow:
+      0 22px 50px rgba(148,163,184,0.25),
+      0 0 0 1px rgba(226,232,240,0.8);
+    padding: 22px 24px 24px;
+    box-sizing: border-box;
+  }
+
+  .tru-about-block h3 {
+    margin: 0 0 8px;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #020617;
+  }
+
+  .tru-about-block p {
+    font-size: 0.92rem;
+    color: #374151;
+    margin: 0 0 10px;
+  }
+
+  .tru-about-highlight {
+    font-size: 0.9rem;
+    color: #4b5563;
+    margin-top: 6px;
+  }
+
+  .tru-about-highlight span {
+    color: var(--tru-green);
+    font-weight: 600;
+  }
+
+  /* Stats */
+  .tru-about-stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin-top: 14px;
+  }
+
+  .tru-about-stat {
+    border-radius: 18px;
+    border: 1px solid #e5e7eb;
+    background: radial-gradient(circle at top left, #f9fafb, #e5e7eb 70%);
+    padding: 12px 14px;
+    font-size: 0.84rem;
+    box-sizing: border-box;
+  }
+
+  .tru-about-stat-value {
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #020617;
+  }
+
+  .tru-about-stat-label {
+    color: #4b5563;
+  }
+
+  .tru-about-tagline {
+    margin-top: 6px;
+    font-size: 0.82rem;
+    color: #9ca3af;
+  }
+
+  /* Comparison table */
+  .tru-about-compare-wrapper {
+    margin-top: 40px;
+  }
+
+  .tru-about-compare-heading {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #020617;
+  }
+
+  .tru-about-compare-sub {
+    font-size: 0.92rem;
+    color: #4b5563;
+    margin-bottom: 16px;
+    max-width: 760px;
+  }
+
+  .tru-about-compare-note {
+    font-size: 0.8rem;
+    color: #9ca3af;
+    margin-bottom: 10px;
+  }
+
+  .tru-about-table-scroll {
+    border-radius: 22px;
+    border: 1px solid #e5e7eb;
+    background: #ffffff;
+    box-shadow:
+      0 22px 55px rgba(148,163,184,0.25),
+      0 0 0 1px rgba(226,232,240,0.9);
+    overflow: hidden;
+  }
+
+  .tru-about-table-scroll-inner {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  table.tru-about-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 720px;
+    font-size: 0.86rem;
+  }
+
+  .tru-about-table thead {
+    background: #f3f4f6;
+  }
+
+  .tru-about-table th,
+  .tru-about-table td {
+    text-align: left;
+    padding: 10px 12px;
+    vertical-align: top;
+  }
+
+  .tru-about-table th {
+    font-weight: 600;
+    color: #6b7280;
+    border-bottom: 1px solid #e5e7eb;
+  }
+
+  .tru-about-table tbody tr:nth-child(even) {
+    background: #f9fafb;
+  }
+
+  .tru-about-table tbody tr:nth-child(odd) {
+    background: #ffffff;
+  }
+
+  .tru-about-table-area {
+    font-weight: 600;
+    color: #111827;
+    width: 18%;
+  }
+
+  .tru-about-old {
+    color: #374151;
+  }
+
+  .tru-about-new {
+    color: #065f46;
+  }
+
+  .tru-about-old-label,
+  .tru-about-new-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    display: inline-block;
+    margin-bottom: 3px;
+  }
+
+  .tru-about-old-label {
+    color: #f97316;
+  }
+
+  .tru-about-new-label {
+    color: var(--tru-green);
+  }
+
+  @media (max-width: 960px) {
+    .tru-about-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+    .tru-about-stats {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 640px) {
+    .tru-about-wrap {
+      padding: 40px 16px 56px;
+    }
+    .tru-about-heading {
+      font-size: 1.7rem;
+    }
+  }
+</style>
+
+<div class="tru-about-wrap">
+  <div class="tru-about-inner">
+
+    <!-- Hero -->
+    <div class="tru-about-hero">
+      <div class="tru-about-kicker">Learn more</div>
+      <h2 class="tru-about-heading">The first AI powered way to book your move.</h2>
+      <p class="tru-about-sub">
+        TruMove is built to make moving feel less like a gamble and more like a clean, predictable transaction.  
+        No guesswork, no mystery fees, just data driven quotes and movers who actually show up.
+      </p>
+    </div>
+
+    <!-- About + stats -->
+    <div class="tru-about-grid">
+      <div class="tru-about-block">
+        <h3>About TruMove</h3>
+        <p>
+          TruMove was created by people who have seen both sides of the moving industry – the customers who feel
+          stressed and in the dark, and the operations teams trying to juggle trucks, crews, and unpredictable demand.
+        </p>
+        <p>
+          Instead of another broker making calls in the background, TruMove works more like a flight search engine.
+          Our AI connects to real carrier data, capacity, and route networks so you can compare options in one place,
+          then lock in a transparent price in minutes.
+        </p>
+        <p>
+          Every move that runs through TruMove feeds back into the system. That means better price predictions,
+          smarter carrier matching, and fewer surprises for the next customer. The platform gets smarter with
+          every truck that rolls.
+        </p>
+        <p class="tru-about-highlight">
+          Our goal is simple: <span>make moving as easy and transparent as booking a flight.</span>
+        </p>
+      </div>
+
+      <div class="tru-about-block">
+        <h3>What TruMove does for you</h3>
+        <p>
+          When you enter your details, TruMove is doing a lot behind the scenes: checking verified movers on your lanes,
+          cross checking licensing and reviews, and stress testing the quote against what actually happened on similar
+          moves in the past.
+        </p>
+        <p>
+          The result is a price that is designed to hold up in the real world, not just look good on a website.
+        </p>
+
+        <div class="tru-about-stats">
+          <div class="tru-about-stat">
+            <div class="tru-about-stat-value">60 sec</div>
+            <div class="tru-about-stat-label">Average time to get an AI backed quote</div>
+          </div>
+          <div class="tru-about-stat">
+            <div class="tru-about-stat-value">±5-8%</div>
+            <div class="tru-about-stat-label">Typical accuracy window vs final invoice</div>
+          </div>
+          <div class="tru-about-stat">
+            <div class="tru-about-stat-value">24/7</div>
+            <div class="tru-about-stat-label">AI monitoring for pricing and carrier risk</div>
+          </div>
+        </div>
+
+        <div class="tru-about-tagline">
+          *Numbers shown are target benchmarks TruMove is built to hit as the platform scales.
+        </div>
+      </div>
+    </div>
+
+    <!-- Comparison table -->
+    <div class="tru-about-compare-wrapper">
+      <h3 class="tru-about-compare-heading">Why choose TruMove over the old way.</h3>
+      <p class="tru-about-compare-sub">
+        Traditional moving brokers rely on phone calls, manual quotes, and whoever they have a relationship with that day.
+        TruMove uses real data, AI models, and constant feedback from completed jobs to give you a smarter way to move.
+      </p>
+      <div class="tru-about-compare-note">
+        The table below shows how a typical experience with a human broker compares to the AI powered TruMove approach.
+      </div>
+
+      <div class="tru-about-table-scroll">
+        <div class="tru-about-table-scroll-inner">
+          <table class="tru-about-table">
+            <thead>
+            <tr>
+              <th>Area</th>
+              <th>Old way (human broker)</th>
+              <th>AI powered way (TruMove)</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <td class="tru-about-table-area">Instant quotes</td>
+              <td class="tru-about-old">
+                <div class="tru-about-old-label">Old way</div>
+                Takes hours or days, often inaccurate.
+              </td>
+              <td class="tru-about-new">
+                <div class="tru-about-new-label">TruMove</div>
+                AI scrapes real time carrier availability, truck locations, fuel costs, seasonal demand, and historical job data, then gives you a binding or guaranteed not to exceed price in under 60 seconds.
+              </td>
+            </tr>
+            <tr>
+              <td class="tru-about-table-area">Price accuracy</td>
+              <td class="tru-about-old">
+                <div class="tru-about-old-label">Old way</div>
+                Bait and switch is common.
+              </td>
+              <td class="tru-about-new">
+                <div class="tru-about-new-label">TruMove</div>
+                Machine learning models trained on millions of past moves predict the final cost within about 5 to 8 percent. No more "oops, your stuff is heavier" surprises.
+              </td>
+            </tr>
+            <tr>
+              <td class="tru-about-table-area">Carrier matching</td>
+              <td class="tru-about-old">
+                <div class="tru-about-old-label">Old way</div>
+                Sales rep picks whoever pays the highest commission.
+              </td>
+              <td class="tru-about-new">
+                <div class="tru-about-new-label">TruMove</div>
+                AI scores and ranks movers by on time percentage, damage claims, reviews, licensing status, current capacity, and route efficiency, then matches you with the actual best fit, not the highest bidder.
+              </td>
+            </tr>
+            <tr>
+              <td class="tru-about-table-area">Fraud and scam detection</td>
+              <td class="tru-about-old">
+                <div class="tru-about-old-label">Old way</div>
+                Almost none.
+              </td>
+              <td class="tru-about-new">
+                <div class="tru-about-new-label">TruMove</div>
+                AI flags red flags in real time: unlicensed carriers, fake reviews, companies with sudden price spikes, or patterns of holding items hostage. Bad actors are automatically blocked from the platform.
+              </td>
+            </tr>
+            <tr>
+              <td class="tru-about-table-area">Dynamic pricing</td>
+              <td class="tru-about-old">
+                <div class="tru-about-old-label">Old way</div>
+                Fixed or quietly inflated to pad margins.
+              </td>
+              <td class="tru-about-new">
+                <div class="tru-about-new-label">TruMove</div>
+                Like ride share surge, but fair. Prices adjust in real time based on demand, but the algorithm is transparent and capped so customers are not gouged.
+              </td>
+            </tr>
+            <tr>
+              <td class="tru-about-table-area">Inventory and volume</td>
+              <td class="tru-about-old">
+                <div class="tru-about-old-label">Old way</div>
+                You guess cubic feet or pick "2 bedroom" and hope for the best.
+              </td>
+              <td class="tru-about-new">
+                <div class="tru-about-new-label">TruMove</div>
+                Upload a quick video or photos and computer vision AI estimates volume and flags bulky or heavy items. Zero guesswork.
+              </td>
+            </tr>
+            <tr>
+              <td class="tru-about-table-area">Route and load optimization</td>
+              <td class="tru-about-old">
+                <div class="tru-about-old-label">Old way</div>
+                Carriers figure it out later, trucks run half empty.
+              </td>
+              <td class="tru-about-new">
+                <div class="tru-about-new-label">TruMove</div>
+                AI consolidates compatible moves on the same route and optimizes packing so there are fewer empty miles and lower prices.
+              </td>
+            </tr>
+            <tr>
+              <td class="tru-about-table-area">Customer support</td>
+              <td class="tru-about-old">
+                <div class="tru-about-old-label">Old way</div>
+                Endless phone tag and "let me check with dispatch".
+              </td>
+              <td class="tru-about-new">
+                <div class="tru-about-new-label">TruMove</div>
+                AI chat and voice handle most questions instantly. "Where is my truck" pulls live GPS and status. Humans step in for edge cases and problem solving.
+              </td>
+            </tr>
+            <tr>
+              <td class="tru-about-table-area">Post move feedback loop</td>
+              <td class="tru-about-old">
+                <div class="tru-about-old-label">Old way</div>
+                Reviews are often faked or ignored. Bad carriers keep getting booked.
+              </td>
+              <td class="tru-about-new">
+                <div class="tru-about-new-label">TruMove</div>
+                Every completed move feeds the AI. Movers who underperform are pushed down or removed. Movers who consistently deliver get more volume. The system gets smarter with every job.
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
