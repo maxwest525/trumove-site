@@ -1,0 +1,180 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+
+const NAV = [
+  { href: "/", label: "Home" },
+  { href: "/how-it-works", label: "How It Works" },
+  { href: "/estimate", label: "Get an Estimate" },
+  { href: "/carrier-standards", label: "Carrier Standards" },
+  { href: "/contact", label: "Contact" },
+];
+
+export default function SiteShell({ children }) {
+  const path = usePathname();
+
+  return (
+    <div className="tm-shell">
+      <header className="tm-header">
+        <div className="tm-header-inner">
+          <Link className="tm-logo" href="/">
+            TruMove
+          </Link>
+
+          <nav className="tm-nav">
+            {NAV.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`tm-nav-link ${path === item.href ? "active" : ""}`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
+
+          <Link className="tm-cta" href="/estimate">
+            Get a Quote
+          </Link>
+        </div>
+      </header>
+
+      <main className="tm-main">{children}</main>
+
+      <footer className="tm-footer">
+        <div className="tm-footer-inner">
+          <div className="tm-footer-left">
+            <div className="tm-footer-brand">TruMove</div>
+            <div className="tm-footer-sub">
+              AI-powered moving quotes and carrier coordination.
+            </div>
+          </div>
+
+          <div className="tm-footer-right">
+            <Link className="tm-footer-link" href="/carrier-standards">
+              Carrier Standards
+            </Link>
+            <Link className="tm-footer-link" href="/contact">
+              Contact
+            </Link>
+          </div>
+        </div>
+      </footer>
+
+      <style jsx>{`
+        .tm-shell {
+          min-height: 100vh;
+          display: flex;
+          flex-direction: column;
+          background: #fff;
+          color: #0f172a;
+          font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial,
+            sans-serif;
+        }
+        .tm-header {
+          position: sticky;
+          top: 0;
+          z-index: 50;
+          background: rgba(255, 255, 255, 0.9);
+          backdrop-filter: blur(10px);
+          border-bottom: 1px solid #e5e7eb;
+        }
+        .tm-header-inner {
+          max-width: 1120px;
+          margin: 0 auto;
+          padding: 14px 18px;
+          display: flex;
+          align-items: center;
+          gap: 16px;
+        }
+        .tm-logo {
+          font-weight: 800;
+          letter-spacing: -0.02em;
+          text-decoration: none;
+          color: #000;
+          font-size: 18px;
+          margin-right: 6px;
+        }
+        .tm-nav {
+          display: flex;
+          gap: 12px;
+          flex: 1;
+          align-items: center;
+          flex-wrap: wrap;
+        }
+        .tm-nav-link {
+          text-decoration: none;
+          color: #111827;
+          font-size: 14px;
+          padding: 8px 10px;
+          border-radius: 10px;
+        }
+        .tm-nav-link:hover {
+          background: #f3f4f6;
+        }
+        .tm-nav-link.active {
+          background: #111827;
+          color: #fff;
+        }
+        .tm-cta {
+          text-decoration: none;
+          font-size: 14px;
+          font-weight: 700;
+          padding: 10px 14px;
+          border-radius: 12px;
+          background: #39ff14;
+          color: #000;
+          border: 1px solid #16a34a33;
+          white-space: nowrap;
+        }
+        .tm-cta:hover {
+          filter: brightness(0.96);
+        }
+        .tm-main {
+          flex: 1;
+          width: 100%;
+        }
+        .tm-footer {
+          border-top: 1px solid #e5e7eb;
+          background: #fff;
+        }
+        .tm-footer-inner {
+          max-width: 1120px;
+          margin: 0 auto;
+          padding: 24px 18px;
+          display: flex;
+          align-items: flex-start;
+          justify-content: space-between;
+          gap: 16px;
+          flex-wrap: wrap;
+        }
+        .tm-footer-brand {
+          font-weight: 800;
+          color: #000;
+        }
+        .tm-footer-sub {
+          margin-top: 6px;
+          color: #6b7280;
+          font-size: 13px;
+          max-width: 420px;
+        }
+        .tm-footer-right {
+          display: flex;
+          gap: 14px;
+          flex-wrap: wrap;
+        }
+        .tm-footer-link {
+          text-decoration: none;
+          color: #111827;
+          font-size: 13px;
+          padding: 8px 10px;
+          border-radius: 10px;
+        }
+        .tm-footer-link:hover {
+          background: #f3f4f6;
+        }
+      `}</style>
+    </div>
+  );
+}
