@@ -5,10 +5,10 @@ import { usePathname } from "next/navigation";
 
 const NAV = [
   { href: "/", label: "Home" },
-  { href: "/how-it-works", label: "How It Works" },
-  { href: "/estimate", label: "Get an Estimate" },
-  { href: "/carrier-standards", label: "Carrier Standards" },
-  { href: "/contact", label: "Contact" },
+  { href: "/online-estimate", label: "Get an Estimate" },
+  { href: "/vetting", label: "Carrier Standards" },
+  { href: "/faq", label: "FAQ" },
+  { href: "/about", label: "About" },
 ];
 
 export default function SiteShell({ children }) {
@@ -34,9 +34,9 @@ export default function SiteShell({ children }) {
             ))}
           </nav>
 
-          <Link className="tm-cta" href="/estimate">
-            Get a Quote
-          </Link>
+<Link className="tm-cta" href="/online-estimate">
+  Get a Quote
+</Link>
         </div>
       </header>
 
@@ -52,12 +52,19 @@ export default function SiteShell({ children }) {
           </div>
 
           <div className="tm-footer-right">
-            <Link className="tm-footer-link" href="/carrier-standards">
-              Carrier Standards
-            </Link>
-            <Link className="tm-footer-link" href="/contact">
-              Contact
-            </Link>
+            <Link className="tm-footer-link" href="/vetting">
+  Carrier Standards
+</Link>
+<Link className="tm-footer-link" href="/book">
+  Book a consult
+</Link>
+<Link className="tm-footer-link" href="/privacy">
+  Privacy
+</Link>
+<Link className="tm-footer-link" href="/terms">
+  Terms
+</Link>
+
           </div>
         </div>
       </footer>
