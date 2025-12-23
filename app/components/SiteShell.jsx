@@ -99,6 +99,7 @@ export default function SiteShell({ children }) {
   align-items:center;
   justify-content:space-between;
   gap:24px;
+  white-space:nowrap;
 }
 
 .tm-logo{
@@ -107,10 +108,12 @@ export default function SiteShell({ children }) {
   text-decoration:none;
 }
 .tm-logo img{
-  height:36px;
+  height:24px;
+  max-height:24px;
   width:auto;
   display:block;
 }
+
 
 
         .tm-nav {
