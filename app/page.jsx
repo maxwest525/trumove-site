@@ -458,7 +458,7 @@ export default function HomePage() {
 
     // See all features -> carrier vetting
 const featuresBtn = document.querySelector(".tru-simple-cta-btn");
-const onFeaturesClick = () => router.push("/carrier-standards");
+const onFeaturesClick = () => router.push("/vetting");
 featuresBtn?.addEventListener("click", onFeaturesClick);
     
 
