@@ -277,213 +277,29 @@ const HTML = `<!-- TRUMOVE – INVENTORY + QUOTE (WHITE THEME, CLEAN REBUILD, RO
   </div>
 </div>`;
 
+"use client";
+
+import { useEffect } from "react";
+
+const HTML = `PUT YOUR BIG HTML STRING HERE EXACTLY AS IS`;
+
 export default function OnlineEstimatePage() {
   useEffect(() => {
     try {
-      const code =
-        "(function(){\n" +
-        "  /* =========================\n" +
-        "     CONFIG\n" +
-        "  ========================== */\n" +
-        "  var TRUMOVE = {\n" +
-        "    inboxEmail: \"info@trumoveinc.com\",\n" +
-        "    bookingUrl: \"https://trumoveinc.com/book-video%2Fphone-consult\",\n" +
-        "    callNumberE164: \"\"\n" +
-        "  };\n" +
-        "  var inventory = [];\n" +
-        "  var totalItems = 0;\n" +
-        "  var totalWeight = 0;\n" +
-        "  var moveType = \"auto\";\n" +
-        "  var tableBody = document.getElementById(\"invTableBody\");\n" +
-        "  var totalItemsEl = document.getElementById(\"invTotalItems\");\n" +
-        "  var totalWeightEl = document.getElementById(\"invTotalWeight\");\n" +
-        "  var moveSizeLabelEl = document.getElementById(\"invMoveSizeLabel\");\n" +
-        "  var nameInput = document.getElementById(\"invItemName\");\n" +
-        "  var roomSelect = document.getElementById(\"invRoom\");\n" +
-        "  var qtyInput = document.getElementById(\"invQty\");\n" +
-        "  var weightInput = document.getElementById(\"invWeight\");\n" +
-        "  var addBtn = document.getElementById(\"invAddBtn\");\n" +
-        "  var roomTabs = document.querySelectorAll(\"#invRoomTabs .tru-inv-room-tab\");\n" +
-        "  var suggestList = document.getElementById(\"invSuggestList\");\n" +
-        "  var printBtn = document.getElementById(\"invPrintBtn\");\n" +
-        "  var pdfBtn = document.getElementById(\"invPdfBtn\");\n" +
-        "  var quoteFromInput = document.getElementById(\"quoteFrom\");\n" +
-        "  var quoteToInput = document.getElementById(\"quoteTo\");\n" +
-        "  var quoteDistanceInput = document.getElementById(\"quoteDistance\");\n" +
-        "  var quoteDateInput = document.getElementById(\"quoteDate\");\n" +
-        "  var quoteNameInput = document.getElementById(\"quoteName\");\n" +
-        "  var quoteEmailInput = document.getElementById(\"quoteEmail\");\n" +
-        "  var quotePhoneInput = document.getElementById(\"quotePhone\");\n" +
-        "  var moveTypeButtons = document.querySelectorAll(\"#quoteTypeRow .tru-quote-type-pill\");\n" +
-        "  var finalizeBtn = document.getElementById(\"quoteFinalizeBtn\");\n" +
-        "  var snapFromEl = document.getElementById(\"snapFrom\");\n" +
-        "  var snapToEl = document.getElementById(\"snapTo\");\n" +
-        "  var snapDistanceEl = document.getElementById(\"snapDistance\");\n" +
-        "  var snapMoveTypeEl = document.getElementById(\"snapMoveType\");\n" +
-        "  var snapDateEl = document.getElementById(\"snapDate\");\n" +
-        "  var snapWeightEl = document.getElementById(\"snapWeight\");\n" +
-        "  var roughPriceEl = document.getElementById(\"invRoughPrice\");\n" +
-        "  var sizePillTextEl = document.getElementById(\"invSizePillText\");\n" +
-        "  var snapSizeChip = document.getElementById(\"snapSizeChip\");\n" +
-        "  var snapSizeText = document.getElementById(\"snapSizeText\");\n" +
-        "  var quoteVideoBtn = document.getElementById(\"quoteVideoBtn\");\n" +
-        "  var quoteCallBtn = document.getElementById(\"quoteCallBtn\");\n" +
-        "  var suggestionData = [\n" +
-        "    { room:\"Living Room\", name:\"Sofa\", weight:150 },\n" +
-        "    { room:\"Living Room\", name:\"Coffee table\", weight:40 },\n" +
-        "    { room:\"Living Room\", name:\"TV stand\", weight:60 },\n" +
-        "    { room:\"Living Room\", name:\"Television\", weight:40 },\n" +
-        "    { room:\"Living Room\", name:\"Bookshelf\", weight:70 },\n" +
-        "    { room:\"Bedroom\", name:\"Queen bed frame\", weight:120 },\n" +
-        "    { room:\"Bedroom\", name:\"Mattress\", weight:100 },\n" +
-        "    { room:\"Bedroom\", name:\"Dresser\", weight:120 },\n" +
-        "    { room:\"Bedroom\", name:\"Nightstands\", weight:40 },\n" +
-        "    { room:\"Bedroom\", name:\"Wardrobe\", weight:130 },\n" +
-        "    { room:\"Kitchen\", name:\"Dining table\", weight:110 },\n" +
-        "    { room:\"Kitchen\", name:\"Dining chairs\", weight:15 },\n" +
-        "    { room:\"Kitchen\", name:\"Bar stools\", weight:15 },\n" +
-        "    { room:\"Kitchen\", name:\"Microwave\", weight:40 },\n" +
-        "    { room:\"Kitchen\", name:\"Boxes, kitchen items\", weight:50 },\n" +
-        "    { room:\"Garage\", name:\"Tool chest\", weight:90 },\n" +
-        "    { room:\"Garage\", name:\"Bicycle\", weight:35 },\n" +
-        "    { room:\"Garage\", name:\"Storage bins\", weight:30 },\n" +
-        "    { room:\"Garage\", name:\"Lawn mower\", weight:80 },\n" +
-        "    { room:\"Garage\", name:\"Sports equipment\", weight:40 }\n" +
-        "  ];\n" +
-        "  function safeNum(n){ var x=parseFloat(n); return (isNaN(x)||!isFinite(x))?0:x; }\n" +
-        "  function escapeHtml(s){ return String(s||\"\").replace(/&/g,\"&amp;\").replace(/</g,\"&lt;\").replace(/>/g,\"&gt;\").replace(/\\\"/g,\"&quot;\").replace(/'/g,\"&#039;\"); }\n" +
-        "  function formatMoney(n){ var v=Math.round(n); return \"$\"+v.toString().replace(/\\B(?=(\\d{3})+(?!\\d))/g,\",\"); }\n" +
-        "  function formatPriceRange(base){ if(!base||base<=0) return \"$0\"; var low=Math.round(base*0.9); var high=Math.round(base*1.15); if(low===high) return formatMoney(low); return formatMoney(low)+\" - \"+formatMoney(high); }\n" +
-        "  function getMoveSizeLabel(w){ if(w===0) return \"Waiting on items…\"; if(w<=1200) return \"Studio or small one bedroom\"; if(w<=3000) return \"One to two bedroom home\"; if(w<=6000) return \"Two to three bedroom home\"; if(w<=9000) return \"Three to four bedroom home\"; return \"Large home or multi load move\"; }\n" +
-        "  function getEffectiveMoveType(dist){ if(moveType===\"local\") return \"local\"; if(moveType===\"long\") return \"long\"; if(dist&&dist>0){ return (dist<=150)?\"local\":\"long\"; } return \"auto\"; }\n" +
-        "  function calculatePrice(weight, distance, type){ if(!weight||weight<=0||!distance||distance<=0) return 0; var ratePerLb; if(distance<=200){ if(weight>=4000) ratePerLb=0.5; else if(weight>=2000) ratePerLb=0.6; else ratePerLb=0.7; } else if(distance<=800){ if(weight>=4000) ratePerLb=0.7; else if(weight>=2000) ratePerLb=0.8; else ratePerLb=0.9; } else { if(weight>=4000) ratePerLb=0.8; else if(weight>=2000) ratePerLb=0.9; else ratePerLb=1.0; } if(type===\"local\"&&distance<=150) ratePerLb*=0.9; return weight*ratePerLb; }\n" +
-        "  function addItem(item){ inventory.push(item); renderTable(); updateTotals(); renderSuggestions(); }\n" +
-        "  function renderTable(){\n" +
-        "    if(!tableBody) return;\n" +
-        "    if(inventory.length===0){ tableBody.innerHTML='<tr><td colspan=\"6\" class=\"tru-inv-empty\">No items yet. Start by adding a sofa, bed, or boxes.</td></tr>'; return; }\n" +
-        "    var rows=inventory.map(function(item,index){ var qty=safeNum(item.quantity)||1; if(qty<1) qty=1; var each=safeNum(item.weight); if(each<0) each=0; var total=Math.round(qty*each);\n" +
-        "      return '<tr>'+\n" +
-        "        '<td>'+escapeHtml(item.name)+'</td>'+\n" +
-        "        '<td>'+escapeHtml(item.room)+'</td>'+\n" +
-        "        '<td><input type=\"number\" class=\"tru-inv-cell-input\" min=\"1\" data-index=\"'+index+'\" data-field=\"quantity\" value=\"'+qty+'\"></td>'+\n" +
-        "        '<td><input type=\"number\" class=\"tru-inv-cell-input\" min=\"0\" data-index=\"'+index+'\" data-field=\"weightEach\" value=\"'+Math.round(each)+'\"></td>'+\n" +
-        "        '<td><input type=\"number\" class=\"tru-inv-cell-input\" min=\"0\" data-index=\"'+index+'\" data-field=\"totalWeight\" value=\"'+total+'\"></td>'+\n" +
-        "        '<td><button type=\"button\" class=\"tru-inv-remove-btn\" data-index=\"'+index+'\">✕</button></td>'+\n" +
-        "      '</tr>'; }).join('');\n" +
-        "    tableBody.innerHTML=rows;\n" +
-        "    tableBody.querySelectorAll('.tru-inv-remove-btn').forEach(function(btn){ btn.addEventListener('click', function(){ var idx=parseInt(btn.getAttribute('data-index'),10); inventory.splice(idx,1); renderTable(); updateTotals(); renderSuggestions(); }); });\n" +
-        "    tableBody.querySelectorAll('.tru-inv-cell-input').forEach(function(input){ input.addEventListener('input', function(){ var idx=parseInt(input.getAttribute('data-index'),10); var field=input.getAttribute('data-field'); var val=safeNum(input.value); var item=inventory[idx]; if(!item) return;\n" +
-        "      if(field==='quantity'){ if(val<1) val=1; item.quantity=val; input.value=val; }\n" +
-        "      if(field==='weightEach'){ if(val<0) val=0; item.weight=val; }\n" +
-        "      if(field==='totalWeight'){ if(val<0) val=0; var q=safeNum(item.quantity)||1; var newEach=(q>0)?(val/q):0; item.weight=newEach; var eachInput=tableBody.querySelector('.tru-inv-cell-input[data-index=\"'+idx+'\"][data-field=\"weightEach\"]'); if(eachInput) eachInput.value=Math.round(newEach); }\n" +
-        "      var totalCell=tableBody.querySelector('.tru-inv-cell-input[data-index=\"'+idx+'\"][data-field=\"totalWeight\"]'); if(totalCell){ totalCell.value=Math.round((safeNum(item.quantity)||1)*safeNum(item.weight)); }\n" +
-        "      updateTotals(); }); });\n" +
-        "  }\n" +
-        "  function updateTotals(){ totalItems=0; totalWeight=0; inventory.forEach(function(it){ totalItems+=safeNum(it.quantity); totalWeight+=safeNum(it.quantity)*safeNum(it.weight); });\n" +
-        "    if(totalItemsEl) totalItemsEl.textContent=totalItems;\n" +
-        "    if(totalWeightEl) totalWeightEl.textContent=totalWeight+' lbs';\n" +
-        "    if(moveSizeLabelEl) moveSizeLabelEl.textContent=getMoveSizeLabel(totalWeight);\n" +
-        "    if(snapWeightEl) snapWeightEl.textContent=totalWeight+' lbs';\n" +
-        "    updateSnapshot();\n" +
-        "  }\n" +
-        "  if(addBtn){ addBtn.addEventListener('click', function(){ var name=(nameInput.value||'').trim(); if(!name){ nameInput && nameInput.focus(); return; }\n" +
-        "    var room=roomSelect?roomSelect.value:'Other'; var qty=parseInt(qtyInput.value,10); if(isNaN(qty)||qty<1) qty=1; var w=safeNum(weightInput.value); if(w<0) w=0;\n" +
-        "    addItem({name:name,room:room,quantity:qty,weight:w}); if(nameInput) nameInput.value=''; if(qtyInput) qtyInput.value='1'; if(weightInput) weightInput.value=''; nameInput && nameInput.focus(); }); }\n" +
-        "  function renderSuggestions(){ if(!suggestList) return; var activeTab=document.querySelector('#invRoomTabs .tru-inv-room-tab.active'); var activeRoom=activeTab?(activeTab.getAttribute('data-room')||'Living Room'):'Living Room';\n" +
-        "    var items=suggestionData.filter(function(s){return s.room===activeRoom;});\n" +
-        "    suggestList.innerHTML=items.map(function(s){ var already=inventory.some(function(it){return it.name===s.name && it.room===s.room;}); var used=already?' used':'';\n" +
-        "      return '<button type=\"button\" class=\"tru-inv-suggest-pill'+used+'\" data-name=\"'+escapeHtml(s.name)+'\" data-room=\"'+escapeHtml(s.room)+'\" data-weight=\"'+s.weight+'\">'+escapeHtml(s.name)+'</button>'; }).join('');\n" +
-        "    suggestList.querySelectorAll('.tru-inv-suggest-pill').forEach(function(pill){ pill.addEventListener('click', function(){ var n=pill.getAttribute('data-name'); var r=pill.getAttribute('data-room'); var w=safeNum(pill.getAttribute('data-weight')); addItem({name:n,room:r,quantity:1,weight:w}); }); });\n" +
-        "  }\n" +
-        "  roomTabs && roomTabs.forEach(function(tab){ tab.addEventListener('click', function(){ roomTabs.forEach(function(t){t.classList.remove('active');}); tab.classList.add('active'); renderSuggestions(); }); });\n" +
-        "  function openInventoryPrintWindow(){ var w=window.open('','_blank'); if(!w) return; var html='<html><head><title>Your TruMove Inventory</title></head><body class=\"tru-print-inventory\">';\n" +
-        "    html+='<h1>Your move inventory</h1><p>Generated from TruMove inventory builder.</p>';\n" +
-        "    html+='<p><strong>Total items:</strong> '+totalItems+' &nbsp; | &nbsp; <strong>Estimated total weight:</strong> '+totalWeight+' lbs</p>';\n" +
-        "    if(inventory.length>0){ html+='<table><thead><tr><th>Item</th><th>Room</th><th>Qty</th><th>Weight each (lbs)</th><th>Total weight (lbs)</th></tr></thead><tbody>';\n" +
-        "      inventory.forEach(function(it){ var rowW=(safeNum(it.quantity)||1)*safeNum(it.weight);\n" +
-        "        html+='<tr><td>'+escapeHtml(it.name)+'</td><td>'+escapeHtml(it.room)+'</td><td>'+(safeNum(it.quantity)||1)+'</td><td>'+Math.round(safeNum(it.weight))+'</td><td>'+Math.round(rowW)+'</td></tr>'; });\n" +
-        "      html+='</tbody></table>'; } else { html+='<p>No items added yet.</p>'; }\n" +
-        "    html+='</body></html>'; w.document.open(); w.document.write(html); w.document.close(); w.focus(); w.print(); }\n" +
-        "  printBtn && printBtn.addEventListener('click', openInventoryPrintWindow);\n" +
-        "  pdfBtn && pdfBtn.addEventListener('click', openInventoryPrintWindow);\n" +
-        "  function updateSnapshot(){\n" +
-        "    var from=(quoteFromInput&&quoteFromInput.value||'').trim();\n" +
-        "    var to=(quoteToInput&&quoteToInput.value||'').trim();\n" +
-        "    var dist=safeNum(quoteDistanceInput&&quoteDistanceInput.value);\n" +
-        "    var dateVal=quoteDateInput&&quoteDateInput.value;\n" +
-        "    if(snapFromEl) snapFromEl.textContent=from||'Not set';\n" +
-        "    if(snapToEl) snapToEl.textContent=to||'Not set';\n" +
-        "    if(snapDistanceEl) snapDistanceEl.textContent=dist>0?(dist+' miles'):'Add miles';\n" +
-        "    if(snapMoveTypeEl){\n" +
-        "      if(moveType==='local') snapMoveTypeEl.textContent='Local move';\n" +
-        "      else if(moveType==='long') snapMoveTypeEl.textContent='Long distance move';\n" +
-        "      else if(dist>0) snapMoveTypeEl.textContent=(dist<=150)?'Local (auto based on miles)':'Long distance (auto based on miles)';\n" +
-        "      else snapMoveTypeEl.textContent='Auto based on miles';\n" +
-        "    }\n" +
-        "    if(snapDateEl){\n" +
-        "      if(dateVal){ var d=new Date(dateVal+'T00:00:00'); snapDateEl.textContent=isNaN(d.getTime())?'Select date':d.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'}); }\n" +
-        "      else snapDateEl.textContent='Select date';\n" +
-        "    }\n" +
-        "    if(!roughPriceEl || !sizePillTextEl || !snapSizeChip || !snapSizeText) return;\n" +
-        "    if(!totalWeight || totalWeight<=0){ roughPriceEl.textContent='$0'; sizePillTextEl.textContent='Add items in Step 1 to see a starting range.'; snapSizeChip.style.display='none'; return; }\n" +
-        "    var sizeLabel=getMoveSizeLabel(totalWeight); snapSizeChip.style.display='inline-flex'; snapSizeText.textContent=sizeLabel+' based on your inventory.';\n" +
-        "    if(!dist || dist<=0){ roughPriceEl.textContent='$0'; sizePillTextEl.textContent='Add approximate distance in miles to see a more accurate range.'; return; }\n" +
-        "    var eff=getEffectiveMoveType(dist); var priced=(eff==='auto')?'long':eff; var base=calculatePrice(totalWeight,dist,priced);\n" +
-        "    roughPriceEl.textContent=formatPriceRange(base);\n" +
-        "    sizePillTextEl.textContent='Estimate updates as your inventory and route details change.';\n" +
-        "  }\n" +
-        "  [quoteFromInput,quoteToInput,quoteDistanceInput,quoteNameInput,quoteEmailInput,quotePhoneInput].forEach(function(el){ el && el.addEventListener('input', updateSnapshot); });\n" +
-        "  quoteDateInput && quoteDateInput.addEventListener('change', updateSnapshot);\n" +
-        "  moveTypeButtons && moveTypeButtons.forEach(function(btn){ btn.addEventListener('click', function(){ moveTypeButtons.forEach(function(b){b.classList.remove('active');}); btn.classList.add('active'); moveType=btn.getAttribute('data-type')||'auto'; updateSnapshot(); }); });\n" +
-        "  function goBooking(){ window.location.assign(TRUMOVE.bookingUrl); }\n" +
-        "  quoteVideoBtn && quoteVideoBtn.addEventListener('click', goBooking);\n" +
-        "  quoteCallBtn && quoteCallBtn.addEventListener('click', goBooking);\n" +
-        "  function buildEmailBody(){\n" +
-        "    var from=(quoteFromInput&&quoteFromInput.value||'').trim(); var to=(quoteToInput&&quoteToInput.value||'').trim(); var dist=safeNum(quoteDistanceInput&&quoteDistanceInput.value);\n" +
-        "    var dateVal=(quoteDateInput&&quoteDateInput.value)||''; var fullName=(quoteNameInput&&quoteNameInput.value||'').trim(); var email=(quoteEmailInput&&quoteEmailInput.value||'').trim(); var phone=(quotePhoneInput&&quotePhoneInput.value||'').trim();\n" +
-        "    var eff=getEffectiveMoveType(dist);\n" +
-        "    var typeLabel=(moveType==='local')?'Local':(moveType==='long')?'Long Distance':(eff==='local')?'Local (Auto)':(eff==='long')?'Long Distance (Auto)':'Auto';\n" +
-        "    var priced=(eff==='auto')?'long':eff; var base=(totalWeight>0&&dist>0)?calculatePrice(totalWeight,dist,priced):0; var rough=formatPriceRange(base);\n" +
-        "    var lines=[];\n" +
-        "    lines.push('NEW TRUMOVE QUOTE REQUEST','');\n" +
-        "    lines.push('Customer');\n" +
-        "    lines.push('Name: '+(fullName||'Not provided'));\n" +
-        "    lines.push('Email: '+(email||'Not provided'));\n" +
-        "    lines.push('Phone: '+(phone||'Not provided'),'');\n" +
-        "    lines.push('Move Details');\n" +
-        "    lines.push('From: '+(from||'Not set'));\n" +
-        "    lines.push('To: '+(to||'Not set'));\n" +
-        "    lines.push('Distance (miles): '+(dist>0?dist:'Not set'));\n" +
-        "    lines.push('Move type: '+typeLabel);\n" +
-        "    lines.push('Target move date: '+(dateVal||'Not set'),'');\n" +
-        "    lines.push('Inventory Summary');\n" +
-        "    lines.push('Total items: '+totalItems);\n" +
-        "    lines.push('Estimated total weight: '+totalWeight+' lbs');\n" +
-        "    lines.push('Estimated move size: '+getMoveSizeLabel(totalWeight),'');\n" +
-        "    lines.push('Rough Estimate');\n" +
-        "    lines.push(rough,'');\n" +
-        "    lines.push('Inventory Line Items');\n" +
-        "    if(inventory.length===0){ lines.push('No items added.'); }\n" +
-        "    else { inventory.forEach(function(it,i){ var q=safeNum(it.quantity)||1; var w=safeNum(it.weight); var tw=Math.round(q*w); lines.push((i+1)+'. '+(it.name||'')+' | Room: '+(it.room||'')+' | Qty: '+q+' | Each lbs: '+Math.round(w)+' | Total lbs: '+tw); }); }\n" +
-        "    lines.push('');\n" +
-        "    lines.push('Note: This is an estimate based on the information provided. Final pricing depends on access details, timing, and any inventory changes.');\n" +
-        "    return lines.join('\\n');\n" +
-        "  }\n" +
-        "  function openMailTo(){ var subject='TruMove Quote Request'; var body=buildEmailBody(); var mailto='mailto:'+encodeURIComponent(TRUMOVE.inboxEmail)+'?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body); window.location.href=mailto; }\n" +
-        "  function maybeTriggerCall(){ if(!TRUMOVE.callNumberE164) return; setTimeout(function(){ var num=TRUMOVE.callNumberE164.replace(/[^\\d]/g,''); if(!num) return; window.location.href='tel:+'+num; },700); }\n" +
-        "  finalizeBtn && finalizeBtn.addEventListener('click', function(){ updateSnapshot(); openMailTo(); maybeTriggerCall(); });\n" +
-        "  renderSuggestions(); updateTotals(); updateSnapshot();\n" +
-        "})();";
+      const code = `PUT YOUR BIG JS STRING HERE EXACTLY AS IS`;
 
-useEffect(() => {
-  try {
-    requestAnimationFrame(() => {
-      // eslint-disable-next-line no-new-func
-      new Function(code)();
-    });
-  } catch (e) {
-    console.error("Online estimate script error:", e);
-  }
+      requestAnimationFrame(() => {
+        // eslint-disable-next-line no-new-func
+        new Function(code)();
+      });
+    } catch (e) {
+      console.error("Online estimate script error:", e);
+    }
+  }, []);
+
+  return <main dangerouslySetInnerHTML={{ __html: HTML }} />;
+}
+
 }, []);
 
 
