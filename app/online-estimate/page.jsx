@@ -281,7 +281,7 @@ var TRUMOVE = {
   inboxEmail: "info@trumoveinc.com",
   bookingUrl: "https://trumoveinc.com/book-video-phone-consult",
   callNumberE164: "",
-  leadEndpoint: "https://formspree.io/f/abcdwxyz"
+  leadEndpoint: "https://formspree.io/f/mnjawdrl"
 };
 
 
