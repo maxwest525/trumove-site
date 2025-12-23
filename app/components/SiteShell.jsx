@@ -96,35 +96,44 @@ export default function SiteShell({ children }) {
     border-bottom:1px solid #e5e7eb;
   }
 
-.tm-header-inner{
-  max-width:1120px;
-  margin:0 auto;
-  padding:14px 18px;
-  display:grid;
-  grid-template-columns:auto 1fr auto;
-  align-items:center;
-  column-gap:18px;
-}
+  /* HEADER LAYOUT (no overlap) */
+  .tm-header-inner{
+    max-width:1120px;
+    margin:0 auto;
+    padding:12px 18px;
+    display:grid;
+    grid-template-columns:auto minmax(0,1fr) auto;
+    align-items:center;
+    gap:14px;
+  }
 
-.tm-logo{ display:flex; align-items:center; }
-.tm-logo-img{
-  height:62px;
-  width:auto;
-  display:block;
-  max-width:220px;
-}
+  /* LOGO */
+  .tm-logo{
+    display:flex;
+    align-items:center;
+    flex-shrink:0;
+    line-height:0;
+  }
+  .tm-logo-img{
+    height:62px;
+    width:auto;
+    display:block;
+    max-width:240px;
+    object-fit:contain;
+  }
 
+  /* NAV (stays centered, never overlaps, wraps cleanly) */
+  .tm-nav{
+    min-width:0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px 18px;
+    padding:0 6px;
+  }
 
-.tm-nav{
-  display:flex;
-  justify-content:center;
-  gap:18px;
-  flex-wrap:nowrap;
-  white-space:nowrap;
-  min-width:0;
-}
-
-  /* clean Godaddy-style links (NOT pills) */
+  /* clean Godaddy-style links */
   .tm-nav-link{
     position:relative;
     text-decoration:none;
@@ -156,77 +165,83 @@ export default function SiteShell({ children }) {
   .tm-nav-link.active{opacity:1}
   .tm-nav-link.active::after{transform:scaleX(1)}
 
-.tm-header-actions{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  white-space:nowrap;
-}
+  /* ACTIONS */
+  .tm-header-actions{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-shrink:0;
+    white-space:nowrap;
+  }
 
+  /* pills */
+  .tm-call,
+  .tm-cta{
+    display:inline-flex;
+    align-items:center;
+    gap:10px;
+    height:40px;
+    padding:0 14px;
+    border-radius:999px;
+    text-decoration:none;
+    white-space:nowrap;
 
-.tm-logo{
-  flex-shrink:0;
-}
+    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    font-size:12.5px;
+    font-weight:500;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
 
-.tm-nav-link{
-  font-weight:500;
-}
-
-  /* nicer pills */
-.tm-call,
-.tm-cta{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  height:40px;
-  padding:0 14px;
-  border-radius:999px;
-  text-decoration:none;
-  white-space:nowrap;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-
-
-font-size:13px;
-font-weight:500;
-letter-spacing:0.08em;
-text-transform:uppercase;
-
-  color:#0f172a;
-  background:linear-gradient(180deg, rgba(57,255,20,0.22), rgba(57,255,20,0.08));
-  border-color:rgba(57,255,20,0.45);
-  box-shadow:0 10px 22px rgba(15,23,42,0.08);
-
+    color:#0f172a;
     background:rgba(57,255,20,0.12);
-  border-color:rgba(57,255,20,0.45);
+    border:1px solid rgba(57,255,20,0.45);
+    box-shadow:0 10px 22px rgba(15,23,42,0.08);
 
-  transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
-}
+    transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+  }
 
-.tm-call::before,
-.tm-cta::before{
-  content:"";
-  width:18px;
-  height:18px;
-  border-radius:999px;
-  background:
-    radial-gradient(circle at center,
-      #39ff14 32%,
-      rgba(57,255,20,0.28) 33%,
-      rgba(57,255,20,0.12) 58%,
-      transparent 62%
-    );
-}
+  /* dot (not cartoonish) */
+  .tm-call::before,
+  .tm-cta::before{
+    content:"";
+    width:16px;
+    height:16px;
+    border-radius:999px;
+    background:
+      radial-gradient(circle at center,
+        #39ff14 28%,
+        rgba(57,255,20,0.22) 29%,
+        rgba(57,255,20,0.10) 60%,
+        transparent 64%
+      );
+  }
 
+  .tm-call:hover,
+  .tm-cta:hover{
+    transform:translateY(-1px);
+    box-shadow:0 16px 34px rgba(15,23,42,0.12);
+    border-color:rgba(57,255,20,0.35);
+    background:rgba(255,255,255,0.92);
+  }
 
-.tm-call:hover,
-.tm-cta:hover{
-  transform:translateY(-1px);
-  box-shadow:0 16px 34px rgba(15,23,42,0.12);
-  border-color:rgba(57,255,20,0.35);
-  background:rgba(255,255,255,0.92);
-}
+  /* RESPONSIVE: stack actions under nav before overlap ever happens */
+  @media (max-width: 980px){
+    .tm-header-inner{
+      grid-template-columns:auto minmax(0,1fr);
+      grid-template-areas:
+        "logo actions"
+        "nav nav";
+      align-items:center;
+    }
+    .tm-logo{grid-area:logo}
+    .tm-header-actions{grid-area:actions; justify-self:end}
+    .tm-nav{grid-area:nav; justify-content:flex-start; padding:6px 0 2px}
+  }
 
-
+  @media (max-width: 560px){
+    .tm-logo-img{height:54px; max-width:200px}
+    .tm-call,.tm-cta{height:38px; padding:0 12px; font-size:12px}
+  }
 
   .tm-main{flex:1;width:100%}
 
@@ -250,6 +265,7 @@ text-transform:uppercase;
   .tm-footer-link{text-decoration:none;color:#111827;font-size:13px;padding:8px 10px;border-radius:10px}
   .tm-footer-link:hover{background:#f3f4f6}
 `}</style>
+
     </div>
   );
 }
