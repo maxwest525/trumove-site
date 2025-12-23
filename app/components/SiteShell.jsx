@@ -99,25 +99,25 @@ export default function SiteShell({ children }) {
 .tm-header-inner{
   max-width:1120px;
   margin:0 auto;
-  padding:14px 18px;
+  padding:12px 18px;
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:20px;
+  gap:18px;
 }
 
 
   .tm-logo{display:flex;align-items:center;flex:0 0 auto}
   .tm-logo-img{height:62px;width:auto;display:block}
 
-  .tm-nav{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:18px;
-    flex:1;
-    min-width:0;
-  }
+.tm-nav{
+  flex:1;
+  display:flex;
+  justify-content:center;
+  gap:18px;
+  white-space:nowrap;
+  min-width:0;
+}
 
   /* clean Godaddy-style links (NOT pills) */
   .tm-nav-link{
@@ -151,12 +151,21 @@ export default function SiteShell({ children }) {
   .tm-nav-link.active{opacity:1}
   .tm-nav-link.active::after{transform:scaleX(1)}
 
-  .tm-header-actions{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    flex:0 0 auto;
-  }
+.tm-header-actions{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  flex-shrink:0;
+  white-space:nowrap;
+}
+
+.tm-logo{
+  flex-shrink:0;
+}
+
+.tm-nav-link{
+  font-weight:500;
+}
 
   /* nicer pills */
 .tm-call,
@@ -193,13 +202,13 @@ text-transform:uppercase;
   content:"";
   width:18px;
   height:18px;
-  border-radius:50%;
+  border-radius:999px;
   background:
-    radial-gradient(circle at center,
+    radial-gradient(circle,
       #39ff14 35%,
       rgba(57,255,20,0.35) 36%,
-      rgba(57,255,20,0.15) 55%,
-      transparent 60%
+      rgba(57,255,20,0.12) 62%,
+      transparent 64%
     );
 }
 
