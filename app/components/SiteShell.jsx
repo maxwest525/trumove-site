@@ -77,7 +77,7 @@ export default function SiteShell({ children }) {
         </div>
       </footer>
 
- <style jsx>{`
+<style jsx global>{`
   .tm-shell{
     min-height:100vh;
     display:flex;
