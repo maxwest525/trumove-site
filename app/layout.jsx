@@ -1,3 +1,5 @@
+import "./globals.css";
+
 export const metadata = {
   title: "TruMove",
   description: "AI-powered moving quotes and carrier coordination.",
