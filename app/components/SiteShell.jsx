@@ -24,7 +24,7 @@ export default function SiteShell({ children }) {
   <img
     src="/logo.png"
     alt="TruMove"
-    style={{ height: "22px", width: "auto", display: "block" }}
+    style={{ height: "28px", width: "auto", display: "block" }}
   />
 </Link>
 
