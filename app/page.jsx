@@ -3,7 +3,7 @@
 import "./globals.css";
 import { useEffect } from "react";
 
-const HTML = <!DOCTYPE html>
+const HTML = 
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
