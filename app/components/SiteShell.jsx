@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 const NAV = [
   { href: "/", label: "Home" },
   { href: "/online-estimate", label: "Get an Estimate" },
-  { href: "/book", label: "Book a Consult" },
   { href: "/vetting", label: "Carrier Standards" },
   { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About" },
