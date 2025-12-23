@@ -21,8 +21,13 @@ export default function SiteShell({ children }) {
       <header className="tm-header">
         <div className="tm-header-inner">
 <Link href="/" className="tm-logo">
-  <img src="/logo.png" alt="TruMove" />
+  <img
+    src="/logo.png"
+    alt="TruMove"
+    style={{ height: "22px", width: "auto", display: "block" }}
+  />
 </Link>
+
 
 
           <nav className="tm-nav">
