@@ -36,8 +36,9 @@ export default function SiteShell({ children }) {
             ))}
           </nav>
 
-<Link className="tm-cta" href="/book">
-  Book a Consult
+<Link className="tm-cta" href="/book" aria-label="Book a consult">
+  <span className="tm-cta-icon" aria-hidden="true">☎</span>
+  <span className="tm-cta-text">BOOK A CONSULT</span>
 </Link>
         </div>
       </header>
@@ -126,20 +127,40 @@ export default function SiteShell({ children }) {
           background: #111827;
           color: #fff;
         }
-        .tm-cta {
-          text-decoration: none;
-          font-size: 14px;
-          font-weight: 700;
-          padding: 10px 14px;
-          border-radius: 12px;
-          background: #39ff14;
-          color: #000;
-          border: 1px solid #16a34a33;
-          white-space: nowrap;
-        }
-        .tm-cta:hover {
-          filter: brightness(0.96);
-        }
+.tm-cta{
+  text-decoration:none;
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 14px 10px 10px;
+  border-radius:999px;
+  background:#39ff14;
+  color:#000;
+  border:1px solid #16a34a33;
+  font-weight:900;
+  letter-spacing:0.12em;
+  font-size:12px;
+  white-space:nowrap;
+}
+.tm-cta:hover{ filter:brightness(0.96); }
+
+.tm-cta-icon{
+  width:28px;
+  height:28px;
+  border-radius:999px;
+  background:#fff;
+  border:1px solid rgba(0,0,0,0.12);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  font-size:18px;
+  line-height:1;
+}
+.tm-cta-text{
+  position:relative;
+  top:1px;
+}
+
         .tm-main {
           flex: 1;
           width: 100%;
