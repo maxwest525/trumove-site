@@ -277,11 +277,13 @@ const HTML = `<!-- TRUMOVE – INVENTORY + QUOTE (WHITE THEME, CLEAN REBUILD, RO
 </div>`;
 
 const CODE = `(function(){
-  var TRUMOVE = {
-    inboxEmail: "info@trumoveinc.com",
-    bookingUrl: "https://trumoveinc.com/book-video%2Fphone-consult",
-    callNumberE164: ""
-  };
+var TRUMOVE = {
+  inboxEmail: "info@trumoveinc.com",
+  bookingUrl: "https://trumoveinc.com/book-video-phone-consult",
+  callNumberE164: "",
+  leadEndpoint: "https://formspree.io/f/abcdwxyz"
+};
+
 
   var inventory = [];
   var totalItems = 0;
@@ -665,10 +667,96 @@ const CODE = `(function(){
     window.location.href=mailto;
   }
 
-  finalizeBtn && finalizeBtn.addEventListener("click", function(){
-    updateSnapshot();
-    openMailTo();
+async function submitLead(){
+  var payload = {
+    source: "TruMove Online Estimate",
+    createdAt: new Date().toISOString(),
+    customer: {
+      name: (quoteNameInput && quoteNameInput.value || "").trim(),
+      email: (quoteEmailInput && quoteEmailInput.value || "").trim(),
+      phone: (quotePhoneInput && quotePhoneInput.value || "").trim()
+    },
+    move: {
+      from: (quoteFromInput && quoteFromInput.value || "").trim(),
+      to: (quoteToInput && quoteToInput.value || "").trim(),
+      distanceMiles: safeNum(quoteDistanceInput && quoteDistanceInput.value),
+      moveType: getEffectiveMoveType(safeNum(quoteDistanceInput && quoteDistanceInput.value)),
+      targetDate: (quoteDateInput && quoteDateInput.value) || ""
+    },
+    inventory: {
+      totalItems: totalItems,
+      totalWeightLbs: totalWeight,
+      moveSizeLabel: getMoveSizeLabel(totalWeight),
+      items: inventory.map(function(it){
+        var q = safeNum(it.quantity) || 1;
+        var w = safeNum(it.weight) || 0;
+        return {
+          name: it.name || "",
+          room: it.room || "",
+          quantity: q,
+          weightEachLbs: Math.round(w),
+          totalWeightLbs: Math.round(q * w)
+        };
+      })
+    },
+    estimate: {
+      roughRange: (roughPriceEl && roughPriceEl.textContent) ? roughPriceEl.textContent : ""
+    }
+  };
+
+  // basic required fields
+  if(!payload.customer.name || !payload.customer.phone || !payload.customer.email){
+    alert("Please enter your name, email, and phone.");
+    return false;
+  }
+  if(!payload.move.from || !payload.move.to){
+    alert("Please enter where you are moving from and to.");
+    return false;
+  }
+
+  if(!TRUMOVE.leadEndpoint){
+    alert("Lead endpoint not set.");
+    return false;
+  }
+
+  var res = await fetch(TRUMOVE.leadEndpoint, {
+    method: "POST",
+    headers: { "Content-Type": "application/json", "Accept": "application/json" },
+    body: JSON.stringify(payload)
   });
+
+  if(!res.ok){
+    throw new Error("Lead submit failed");
+  }
+  return true;
+}
+
+function setFinalizeLoading(isLoading){
+  if(!finalizeBtn) return;
+  finalizeBtn.disabled = !!isLoading;
+  finalizeBtn.style.opacity = isLoading ? "0.7" : "1";
+  finalizeBtn.style.pointerEvents = isLoading ? "none" : "auto";
+  finalizeBtn.innerHTML = isLoading ? "<span>Submitting…</span>" : "<span>Finalize My Estimate</span><span>→</span>";
+}
+
+finalizeBtn && finalizeBtn.addEventListener("click", async function(){
+  try{
+    updateSnapshot();
+    setFinalizeLoading(true);
+    var ok = await submitLead();
+    if(ok){
+      alert("Submitted. A TruMove representative will reach out shortly.");
+      // optional: send them to booking page after submit
+      // window.location.assign(TRUMOVE.bookingUrl);
+    }
+  } catch(e){
+    console.error(e);
+    alert("Something went wrong submitting your request. Please try again.");
+  } finally{
+    setFinalizeLoading(false);
+  }
+});
+
 
   renderSuggestions();
   updateTotals();
