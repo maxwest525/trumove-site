@@ -91,23 +91,27 @@ export default function SiteShell({ children }) {
           backdrop-filter: blur(10px);
           border-bottom: 1px solid #e5e7eb;
         }
-        .tm-header-inner {
-          max-width: 1120px;
-          margin: 0 auto;
-          padding: 14px 18px;
-          display: flex;
-          align-items: center;
-          gap: 16px;
-        }
-.tm-logo {
-  display: flex;
-  align-items: center;
+.tm-header-inner{
+  max-width:1120px;
+  margin:0 auto;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:24px;
 }
 
-.tm-logo img {
-  height: 36px;
-  width: auto;
+.tm-logo{
+  display:flex;
+  align-items:center;
+  text-decoration:none;
 }
+.tm-logo img{
+  height:36px;
+  width:auto;
+  display:block;
+}
+
 
         .tm-nav {
           display: flex;
