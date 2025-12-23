@@ -38,7 +38,7 @@ export default function SiteShell({ children }) {
 
     <div className="tm-header-actions">
       <a className="tm-call" href="tel:+10000000000">
-        Call Us
+        Call Us Now
       </a>
 
       <Link className="tm-cta" href="/book-a-consult">
@@ -257,7 +257,7 @@ export default function SiteShell({ children }) {
 }
 
 .tm-logo-img {
-  height: 36px;
+  height: 62px;
   width: auto;
   display: block;
   object-fit: contain;
@@ -300,32 +300,30 @@ export default function SiteShell({ children }) {
 .tm-call {
   text-decoration: none;
   font-size: 13px;
-  font-weight: 700;
-  padding: 9px 12px;
-  border-radius: 999px;
-  background: #ffffff;
-  color: #111827;
-  border: 1px solid #e5e7eb;
-}
-
-.tm-call:hover {
-  background: #f9fafb;
-}
-
-.tm-cta {
-  text-decoration: none;
-  font-size: 13px;
   font-weight: 800;
   padding: 10px 14px;
   border-radius: 999px;
-  background: #39ff14;
-  color: #000;
-  border: 1px solid #16a34a33;
+  background: #111827;
+  color: #fff;
+  border: 1px solid #111827;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.tm-cta:hover {
-  filter: brightness(0.96);
+.tm-call::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: #39ff14;
+  box-shadow: 0 0 0 4px rgba(57, 255, 20, 0.18);
 }
+
+.tm-call:hover {
+  filter: brightness(1.05);
+}
+
 
 /* Mobile */
 @media (max-width: 860px) {
