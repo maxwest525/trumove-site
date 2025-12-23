@@ -455,6 +455,34 @@ export default function HomePage() {
   const router = useRouter();
 
   useEffect(() => {
+
+    // See all features -> carrier vetting
+const featuresBtn = document.querySelector(".tru-simple-cta-btn");
+const onFeaturesClick = () => router.push("/carrier-standards");
+featuresBtn?.addEventListener("click", onFeaturesClick);
+    
+
+    // Contact form -> email for now
+const contactForm = document.getElementById("truContactForm");
+const onContactSubmit = (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById("contactName")?.value || "";
+  const email = document.getElementById("contactEmail")?.value || "";
+  const message = document.getElementById("contactMessage")?.value || "";
+
+  const body =
+    `Name: ${name}%0D%0A` +
+    `Email: ${email}%0D%0A%0D%0A` +
+    `Message:%0D%0A${message}`;
+
+  window.location.href =
+    `mailto:info@trumoveinc.com?subject=TruMove Contact Request&body=${body}`;
+};
+
+contactForm?.addEventListener("submit", onContactSubmit);
+
+
     // 1) Hero button scrolls to the mini form
     const heroBtn = document.getElementById("truHeroStartQuote");
     const miniSection = document.getElementById("truMiniSection");
@@ -493,6 +521,8 @@ export default function HomePage() {
       miniBtn?.removeEventListener("click", onMiniClick);
       howBtn?.removeEventListener("click", onHowClick);
       talkBtn?.removeEventListener("click", onTalkClick);
+      contactForm?.removeEventListener("submit", onContactSubmit);
+featuresBtn?.removeEventListener("click", onFeaturesClick);
     };
   }, [router]);
 
