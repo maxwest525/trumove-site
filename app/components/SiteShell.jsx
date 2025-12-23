@@ -18,35 +18,36 @@ export default function SiteShell({ children }) {
 
   return (
     <div className="tm-shell">
-      <header className="tm-header">
-        <div className="tm-header-inner">
-<Link href="/" className="tm-logo">
-  <img
-    src="/logo.png"
-    alt="TruMove"
-    style={{ height: 62, width: "auto", maxWidth: "none" }}
-  />
-</Link>
+<header className="tm-header">
+  <div className="tm-header-inner">
+    <Link href="/" className="tm-logo" aria-label="TruMove Home">
+      <img className="tm-logo-img" src="/logo.png" alt="TruMove" />
+    </Link>
 
+    <nav className="tm-nav" aria-label="Primary">
+      {NAV.map((item) => (
+        <Link
+          key={item.href}
+          href={item.href}
+          className={`tm-nav-link ${path === item.href ? "active" : ""}`}
+        >
+          {item.label}
+        </Link>
+      ))}
+    </nav>
 
-          <nav className="tm-nav">
-            {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`tm-nav-link ${path === item.href ? "active" : ""}`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
+    <div className="tm-header-actions">
+      <a className="tm-call" href="tel:+10000000000">
+        Call Us
+      </a>
 
-<Link className="tm-cta call" href="/book">
-  <span className="call-dot"></span>
-  Call Us Now
-</Link>
-        </div>
-      </header>
+      <Link className="tm-cta" href="/book-a-consult">
+        Book a Consult
+      </Link>
+    </div>
+  </div>
+</header>
+
 
       <main className="tm-main">{children}</main>
 
@@ -229,6 +230,122 @@ export default function SiteShell({ children }) {
   justify-content: center;
   box-shadow: 0 0 0 4px rgba(57,255,20,0.2);
 }
+
+.tm-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.tm-header-inner {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 12px 18px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 14px;
+}
+
+.tm-logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.tm-logo-img {
+  height: 36px;
+  width: auto;
+  display: block;
+  object-fit: contain;
+}
+
+.tm-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.tm-nav-link {
+  text-decoration: none;
+  color: #111827;
+  font-size: 14px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+.tm-nav-link:hover {
+  background: #f3f4f6;
+}
+
+.tm-nav-link.active {
+  background: #111827;
+  color: #fff;
+}
+
+.tm-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.tm-call {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 9px 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+}
+
+.tm-call:hover {
+  background: #f9fafb;
+}
+
+.tm-cta {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: #39ff14;
+  color: #000;
+  border: 1px solid #16a34a33;
+}
+
+.tm-cta:hover {
+  filter: brightness(0.96);
+}
+
+/* Mobile */
+@media (max-width: 860px) {
+  .tm-header-inner {
+    grid-template-columns: auto auto;
+    grid-template-rows: auto auto;
+  }
+
+  .tm-nav {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding-bottom: 6px;
+  }
+
+  .tm-nav::-webkit-scrollbar {
+    height: 6px;
+  }
+}
+
 
       `}</style>
     </div>
