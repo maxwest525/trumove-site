@@ -475,12 +475,17 @@ export default function OnlineEstimatePage() {
         "  renderSuggestions(); updateTotals(); updateSnapshot();\n" +
         "})();";
 
+useEffect(() => {
+  try {
+    requestAnimationFrame(() => {
       // eslint-disable-next-line no-new-func
       new Function(code)();
-    } catch (e) {
-      console.error("Online estimate script error:", e);
-    }
-  }, []);
+    });
+  } catch (e) {
+    console.error("Online estimate script error:", e);
+  }
+}, []);
+
 
   return <main dangerouslySetInnerHTML={{ __html: HTML }} />;
 }
