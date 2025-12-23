@@ -513,7 +513,7 @@ contactForm?.addEventListener("submit", onContactSubmit);
 
     // 4) “Talk to a TruMove specialist” button -> book consult page
     const talkBtn = document.querySelector(".tru-contact-secondary-btn");
-    const onTalkClick = () => router.push("/book-a-consult");
+    const onTalkClick = () => router.push("/book");
     talkBtn?.addEventListener("click", onTalkClick);
 
     return () => {
