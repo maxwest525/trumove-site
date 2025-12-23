@@ -502,7 +502,7 @@ contactForm?.addEventListener("submit", onContactSubmit);
 
     // 3) “See how TruMove works” button -> How It Works page (if you have it)
     const howBtn = document.querySelector(".tru-hero-btn-secondary");
-    const onHowClick = () => router.push("/how-it-works");
+    const onHowClick = () => router.push("/about");
     howBtn?.addEventListener("click", onHowClick);
 
     // 4) “Talk to a TruMove specialist” button -> book consult page
