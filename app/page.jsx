@@ -46,6 +46,13 @@ const HTML = `
                 Start my quote
               </button>
 
+                            <button class="tru-hero-btn-secondary" type="button">
+                <span>See how TruMove works</span>
+                <span class="chevron">→</span>
+              </button>
+            </div>
+
+
             <div class="tru-hero-note">
               No hidden fees, no endless phone calls, just one clean dashboard for your whole move.
             </div>
