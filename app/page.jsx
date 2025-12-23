@@ -1,6 +1,9 @@
 "use client";
 
 import "./globals.css";
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+
 
 const HTML = `
   <div class="tru-page-frame">
@@ -101,8 +104,8 @@ const HTML = `
           <div class="tru-mini-sub">Enter a few quick details and we will take you to your personalized quote.</div>
 
           <form class="tru-mini-form" id="truMiniForm" onsubmit="return false;">
-            <input type="text" id="miniName" class="tru-mini-input" placeholder="Your name" required>
-            <input type="text" id="miniZip" class="tru-mini-input" placeholder="Your ZIP code" required>
+            <input type="text" id="miniName" class="tru-mini-input" placeholder="Your name" autocomplete="name" required>
+            <input type="text" id="miniZip" class="tru-mini-input" placeholder="Your ZIP code" inputmode="numeric" maxlength="10" required>
             <select id="miniSize" class="tru-mini-select" required>
               <option value="" disabled selected>Move size</option>
               <option value="Studio">Studio</option>
@@ -449,9 +452,49 @@ const HTML = `
 
 
 export default function HomePage() {
-  return (
-    <main dangerouslySetInnerHTML={{ __html: HTML }} />
-  );
+  const router = useRouter();
+
+  useEffect(() => {
+    // 1) Hero button scrolls to the mini form
+    const heroBtn = document.getElementById("truHeroStartQuote");
+    const miniSection = document.getElementById("truMiniSection");
+    const onHeroClick = () => miniSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+    heroBtn?.addEventListener("click", onHeroClick);
+
+    // 2) Mini form button -> route to estimate page (no external URL)
+    const miniBtn = document.getElementById("truMiniSubmit");
+    const onMiniClick = () => {
+      const name = (document.getElementById("miniName")?.value || "").trim();
+      const zip = (document.getElementById("miniZip")?.value || "").trim();
+      const size = (document.getElementById("miniSize")?.value || "").trim();
+
+      if (!name || !zip || !size) {
+        alert("Please fill out all fields to proceed.");
+        return;
+      }
+
+      // send them to your Next.js estimate page
+      router.push("/online-estimate");
+    };
+    miniBtn?.addEventListener("click", onMiniClick);
+
+    // 3) “See how TruMove works” button -> How It Works page (if you have it)
+    const howBtn = document.querySelector(".tru-hero-btn-secondary");
+    const onHowClick = () => router.push("/how-it-works");
+    howBtn?.addEventListener("click", onHowClick);
+
+    // 4) “Talk to a TruMove specialist” button -> book consult page
+    const talkBtn = document.querySelector(".tru-contact-secondary-btn");
+    const onTalkClick = () => router.push("/book-video-phone-consult");
+    talkBtn?.addEventListener("click", onTalkClick);
+
+    return () => {
+      heroBtn?.removeEventListener("click", onHeroClick);
+      miniBtn?.removeEventListener("click", onMiniClick);
+      howBtn?.removeEventListener("click", onHowClick);
+      talkBtn?.removeEventListener("click", onTalkClick);
+    };
+  }, [router]);
+
+  return <main dangerouslySetInnerHTML={{ __html: HTML }} />;
 }
-
-
