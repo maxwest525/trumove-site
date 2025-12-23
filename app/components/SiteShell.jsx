@@ -19,21 +19,21 @@ export default function SiteShell({ children }) {
     <div className="tm-shell">
 <header className="tm-header">
   <div className="tm-header-inner">
-    <Link href="/" className="tm-logo" aria-label="TruMove Home">
-      <img className="tm-logo-img" src="/logo.png" alt="TruMove" />
-    </Link>
+<Link href="/" className="tm-logo" aria-label="TruMove Home">
+  <img className="tm-logo-img" src="/logo.png" alt="TruMove" />
+</Link>
 
-    <nav className="tm-nav" aria-label="Primary">
-      {NAV.map((item) => (
-        <Link
-          key={item.href}
-          href={item.href}
-          className={`tm-nav-link ${path === item.href ? "active" : ""}`}
-        >
-          {item.label}
-        </Link>
-      ))}
-    </nav>
+<nav className="tm-nav" aria-label="Primary">
+  {NAV.map((item) => (
+    <Link
+      key={item.href}
+      href={item.href}
+      className={`tm-nav-link ${path === item.href ? "active" : ""}`}
+    >
+      {item.label}
+    </Link>
+  ))}
+</nav>
 
     <div className="tm-header-actions">
       <a className="tm-call" href="tel:+10000000000">
@@ -102,8 +102,8 @@ export default function SiteShell({ children }) {
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:24px;
-  white-space:nowrap;
+  gap:14px;
+ flex-wrap: nowrap;
 }
 
 .tm-logo{
@@ -118,6 +118,10 @@ export default function SiteShell({ children }) {
           flex: 1;
           align-items: center;
           flex-wrap: wrap;
+           overflow-x: auto;
+  scrollbar-width: none;
+}
+.tm-nav::-webkit-scrollbar{ display:none; }
         }
         .tm-nav-link {
           text-decoration: none;
@@ -251,16 +255,12 @@ export default function SiteShell({ children }) {
   gap: 14px;
 }
 
-.tm-logo {
-  display: inline-flex;
-  align-items: center;
-  text-decoration: none;
-  flex: 0 0 auto;
-}
-.tm-logo img {
+.tm-logo { display:flex; align-items:center; }
+.tm-logo-img{
   height: 62px;
   width: auto;
-  display: block;
+  max-height: 62px;
+  display:block;
 }
 
 .tm-nav {
@@ -277,30 +277,58 @@ export default function SiteShell({ children }) {
   display: none;
 }
 
-.tm-nav-pill {
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 800;
-  letter-spacing: 0.01em;
-  color: #0f172a;
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: #f3f4f6;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  white-space: nowrap;
-  transition: transform 0.12s ease, filter 0.12s ease, background 0.12s ease;
+.tm-nav{
+  display:flex;
+  align-items:center;
+  gap: 18px;
+  flex: 1;
+  min-width: 0;
+  justify-content: center;
 }
 
-.tm-nav-pill:hover {
-  filter: brightness(0.98);
+.tm-nav-link{
+  position: relative;
+  text-decoration:none;
+  color:#0f172a;
+  font-size:14px;
+  font-weight:700;
+  padding: 10px 2px;
+  white-space: nowrap;
+  opacity: 0.9;
+  transition: opacity .15s ease, transform .15s ease;
+}
+
+.tm-nav-link:hover{
+  opacity: 1;
   transform: translateY(-1px);
 }
 
-.tm-nav-pill.active {
-  background: #0f172a;
-  color: #ffffff;
-  border-color: rgba(15, 23, 42, 0.35);
+.tm-nav-link::after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom: 4px;
+  height: 2px;
+  border-radius: 2px;
+  background: #39ff14;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .18s ease;
 }
+
+.tm-nav-link:hover::after{
+  transform: scaleX(1);
+}
+
+.tm-nav-link.active{
+  opacity: 1;
+}
+
+.tm-nav-link.active::after{
+  transform: scaleX(1);
+}
+
 
 .tm-call {
   text-decoration: none;
