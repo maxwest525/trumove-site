@@ -658,14 +658,8 @@ var TRUMOVE = {
     lines.push("");
     lines.push("Note: This is an estimate based on the information provided. Final pricing depends on access details, timing, and any inventory changes.");
     return lines.join("\\n");
-  }
+  }   // <-- THIS closing brace must be here
 
-  function openMailTo(){
-    var subject="TruMove Quote Request";
-    var body=buildEmailBody();
-    var mailto="mailto:"+encodeURIComponent(TRUMOVE.inboxEmail)+"?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
-    window.location.href=mailto;
-  }
 
 async function submitLead(){
   var payload = {
@@ -714,10 +708,6 @@ async function submitLead(){
     return false;
   }
 
-  if(!TRUMOVE.leadEndpoint){
-    alert("Lead endpoint not set.");
-    return false;
-  }
 
   var res = await fetch(TRUMOVE.leadEndpoint, {
     method: "POST",
