@@ -237,7 +237,7 @@ export default function SiteShell({ children }) {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid #e5e7eb;
 }
@@ -246,8 +246,7 @@ export default function SiteShell({ children }) {
   max-width: 1120px;
   margin: 0 auto;
   padding: 12px 18px;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
+  display: flex;
   align-items: center;
   gap: 14px;
 }
@@ -256,67 +255,70 @@ export default function SiteShell({ children }) {
   display: inline-flex;
   align-items: center;
   text-decoration: none;
+  flex: 0 0 auto;
 }
-
-.tm-logo-img {
+.tm-logo img {
   height: 62px;
   width: auto;
   display: block;
-  object-fit: contain;
 }
 
 .tm-nav {
   display: flex;
   align-items: center;
   gap: 10px;
-  justify-content: center;
-  overflow: hidden;
-  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  padding: 6px 4px;
+  scrollbar-width: none;
+}
+.tm-nav::-webkit-scrollbar {
+  display: none;
 }
 
-.tm-nav-link {
+.tm-nav-pill {
   text-decoration: none;
-  color: #111827;
-  font-size: 14px;
-  padding: 8px 10px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: #0f172a;
+  padding: 10px 14px;
   border-radius: 999px;
-  flex: 0 0 auto;
-}
-
-.tm-nav-link:hover {
   background: #f3f4f6;
-}
-
-.tm-nav-link.active {
-  background: #111827;
-  color: #fff;
-}
-
-.tm-header-actions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
   white-space: nowrap;
+  transition: transform 0.12s ease, filter 0.12s ease, background 0.12s ease;
+}
+
+.tm-nav-pill:hover {
+  filter: brightness(0.98);
+  transform: translateY(-1px);
+}
+
+.tm-nav-pill.active {
+  background: #0f172a;
+  color: #ffffff;
+  border-color: rgba(15, 23, 42, 0.35);
 }
 
 .tm-call {
   text-decoration: none;
   font-size: 13px;
-  font-weight: 800;
+  font-weight: 900;
   letter-spacing: 0.02em;
   padding: 11px 16px;
   border-radius: 999px;
-  background:
-    linear-gradient(180deg, #1f2937 0%, #0f172a 100%);
+  background: linear-gradient(180deg, #1f2937 0%, #0f172a 100%);
   color: #fff;
-  border: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  box-shadow:
-    0 6px 14px rgba(0,0,0,0.25),
-    inset 0 1px 0 rgba(255,255,255,0.08);
-  transition: all 0.15s ease;
+  white-space: nowrap;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.22),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
 }
 
 .tm-call::before {
@@ -325,24 +327,16 @@ export default function SiteShell({ children }) {
   height: 10px;
   border-radius: 999px;
   background: #39ff14;
-  box-shadow:
-    0 0 0 4px rgba(57,255,20,0.18),
-    0 0 12px rgba(57,255,20,0.8);
+  box-shadow: 0 0 0 4px rgba(57, 255, 20, 0.18),
+    0 0 12px rgba(57, 255, 20, 0.8);
 }
 
 .tm-call:hover {
   transform: translateY(-1px);
-  box-shadow:
-    0 10px 20px rgba(0,0,0,0.35),
-    inset 0 1px 0 rgba(255,255,255,0.12);
+  box-shadow: 0 14px 26px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.12);
 }
 
-.tm-call:active {
-  transform: translateY(0);
-  box-shadow:
-    0 6px 14px rgba(0,0,0,0.25),
-    inset 0 2px 6px rgba(0,0,0,0.35);
-}
 
 
 
