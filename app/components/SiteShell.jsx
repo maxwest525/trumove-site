@@ -111,12 +111,6 @@ export default function SiteShell({ children }) {
   align-items:center;
 }
 
-.tm-logo img{
-  height: 28px !important;
-  width: auto !important;
-  max-width: none !important;
-  display:block;
-}
 
         .tm-nav {
           display: flex;
