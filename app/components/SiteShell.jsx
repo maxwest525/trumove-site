@@ -20,9 +20,10 @@ export default function SiteShell({ children }) {
     <div className="tm-shell">
       <header className="tm-header">
         <div className="tm-header-inner">
-          <Link className="tm-logo" href="/">
-            TruMove
-          </Link>
+<Link href="/" className="tm-logo">
+  <img src="/logo.png" alt="TruMove" />
+</Link>
+
 
           <nav className="tm-nav">
             {NAV.map((item) => (
