@@ -2,7 +2,7 @@
 
 import "./globals.css";
 
-const HTML = `
+const HTML = '
   <div class="tru-page-frame">
     <div class="tru-page-inner">
 
