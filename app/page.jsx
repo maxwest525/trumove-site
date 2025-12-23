@@ -2,7 +2,7 @@
 
 import "./globals.css";
 
-const HTML = '
+const HTML = `
   <div class="tru-page-frame">
     <div class="tru-page-inner">
 
@@ -444,7 +444,8 @@ const HTML = '
     </div>
   </div>
 
-  ';
+  `;
+
 
 
 export default function HomePage() {
