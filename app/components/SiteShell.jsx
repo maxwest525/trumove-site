@@ -127,9 +127,12 @@ export default function SiteShell({ children }) {
           padding: 8px 10px;
           border-radius: 10px;
         }
-        .tm-nav-link:hover {
-          background: #f3f4f6;
-        }
+.tm-nav-link:hover {
+  background: rgba(17,24,39,0.06);
+  color: #000;
+}
+
+
         .tm-nav-link.active {
           background: #111827;
           color: #fff;
@@ -301,14 +304,20 @@ export default function SiteShell({ children }) {
   text-decoration: none;
   font-size: 13px;
   font-weight: 800;
-  padding: 10px 14px;
+  letter-spacing: 0.02em;
+  padding: 11px 16px;
   border-radius: 999px;
-  background: #111827;
+  background:
+    linear-gradient(180deg, #1f2937 0%, #0f172a 100%);
   color: #fff;
-  border: 1px solid #111827;
+  border: 1px solid rgba(255,255,255,0.08);
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  box-shadow:
+    0 6px 14px rgba(0,0,0,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  transition: all 0.15s ease;
 }
 
 .tm-call::before {
@@ -317,12 +326,25 @@ export default function SiteShell({ children }) {
   height: 10px;
   border-radius: 999px;
   background: #39ff14;
-  box-shadow: 0 0 0 4px rgba(57, 255, 20, 0.18);
+  box-shadow:
+    0 0 0 4px rgba(57,255,20,0.18),
+    0 0 12px rgba(57,255,20,0.8);
 }
 
 .tm-call:hover {
-  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow:
+    0 10px 20px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.12);
 }
+
+.tm-call:active {
+  transform: translateY(0);
+  box-shadow:
+    0 6px 14px rgba(0,0,0,0.25),
+    inset 0 2px 6px rgba(0,0,0,0.35);
+}
+
 
 
 /* Mobile */
