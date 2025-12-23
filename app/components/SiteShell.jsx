@@ -38,7 +38,7 @@ export default function SiteShell({ children }) {
 
 <Link className="tm-cta" href="/book" aria-label="Book a consult">
   <span className="tm-cta-icon" aria-hidden="true">☎</span>
-  <span className="tm-cta-text">BOOK A CONSULT</span>
+  <span className="tm-cta-text">Call Us Now</span>
 </Link>
         </div>
       </header>
