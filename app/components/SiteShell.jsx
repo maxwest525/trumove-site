@@ -96,14 +96,16 @@ export default function SiteShell({ children }) {
     border-bottom:1px solid #e5e7eb;
   }
 
-  .tm-header-inner{
-    max-width:1120px;
-    margin:0 auto;
-     padding: 16px 20px;
-    display:flex;
-    align-items:center;
-    gap:14px;
-  }
+.tm-header-inner{
+  max-width:1120px;
+  margin:0 auto;
+  padding:14px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
 
   .tm-logo{display:flex;align-items:center;flex:0 0 auto}
   .tm-logo-img{height:62px;width:auto;display:block}
@@ -113,7 +115,7 @@ export default function SiteShell({ children }) {
     align-items:center;
     justify-content:center;
     gap:18px;
-    flex:1 1 auto;
+    flex:1;
     min-width:0;
   }
 
@@ -167,16 +169,21 @@ export default function SiteShell({ children }) {
   border-radius:999px;
   text-decoration:none;
   white-space:nowrap;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 
-  font-size:14px;
-  font-weight:600;
-  letter-spacing:0.06em;
-  text-transform:uppercase;
+
+font-size:13px;
+font-weight:500;
+letter-spacing:0.08em;
+text-transform:uppercase;
 
   color:#0f172a;
   background:linear-gradient(180deg, rgba(57,255,20,0.22), rgba(57,255,20,0.08));
   border-color:rgba(57,255,20,0.45);
   box-shadow:0 10px 22px rgba(15,23,42,0.08);
+
+    background:rgba(57,255,20,0.12);
+  border-color:rgba(57,255,20,0.45);
 
   transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
 }
@@ -184,12 +191,18 @@ export default function SiteShell({ children }) {
 .tm-call::before,
 .tm-cta::before{
   content:"";
-  width:10px;
-  height:10px;
-  border-radius:999px;
-  background:#39ff14;
-  box-shadow:0 0 0 4px rgba(57,255,20,0.14);
+  width:18px;
+  height:18px;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at center,
+      #39ff14 35%,
+      rgba(57,255,20,0.35) 36%,
+      rgba(57,255,20,0.15) 55%,
+      transparent 60%
+    );
 }
+
 
 .tm-call:hover,
 .tm-cta:hover{
