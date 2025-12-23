@@ -21,8 +21,13 @@ export default function SiteShell({ children }) {
       <header className="tm-header">
         <div className="tm-header-inner">
 <Link href="/" className="tm-logo">
-  <img src="/logo.png" alt="TruMove" />
+  <img
+    src="/logo.png"
+    alt="TruMove"
+    style={{ height: 28, width: "auto", maxWidth: "none" }}
+  />
 </Link>
+
 
           <nav className="tm-nav">
             {NAV.map((item) => (
@@ -104,15 +109,14 @@ export default function SiteShell({ children }) {
 .tm-logo{
   display:flex;
   align-items:center;
-  gap:10px;
 }
+
 .tm-logo img{
-  height:28px !important;
-  width:auto !important;
+  height: 28px !important;
+  width: auto !important;
+  max-width: none !important;
   display:block;
 }
-
-
 
         .tm-nav {
           display: flex;
