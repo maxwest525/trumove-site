@@ -5,11 +5,13 @@ import { usePathname } from "next/navigation";
 
 const NAV = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
   { href: "/online-estimate", label: "Get an Estimate" },
+  { href: "/book", label: "Book a Consult" },
   { href: "/vetting", label: "Carrier Standards" },
   { href: "/faq", label: "FAQ" },
+  { href: "/about", label: "About" },
 ];
+
 
 export default function SiteShell({ children }) {
   const path = usePathname();
@@ -34,8 +36,8 @@ export default function SiteShell({ children }) {
             ))}
           </nav>
 
-<Link className="tm-cta" href="/online-estimate">
-  Get a Quote
+<Link className="tm-cta" href="/book">
+  Book a Consult
 </Link>
         </div>
       </header>
