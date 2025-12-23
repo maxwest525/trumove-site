@@ -37,9 +37,9 @@ export default function SiteShell({ children }) {
             ))}
           </nav>
 
-<Link className="tm-cta" href="/book" aria-label="Book a consult">
-  <span className="tm-cta-icon" aria-hidden="true">☎</span>
-  <span className="tm-cta-text">Call Us Now</span>
+<Link className="tm-cta call" href="/book">
+  <span className="call-dot"></span>
+  Call Us Now
 </Link>
         </div>
       </header>
@@ -99,14 +99,16 @@ export default function SiteShell({ children }) {
           align-items: center;
           gap: 16px;
         }
-        .tm-logo {
-          font-weight: 800;
-          letter-spacing: -0.02em;
-          text-decoration: none;
-          color: #000;
-          font-size: 18px;
-          margin-right: 6px;
-        }
+.tm-logo {
+  display: flex;
+  align-items: center;
+}
+
+.tm-logo img {
+  height: 36px;
+  width: auto;
+}
+
         .tm-nav {
           display: flex;
           gap: 12px;
@@ -205,6 +207,26 @@ export default function SiteShell({ children }) {
         .tm-footer-link:hover {
           background: #f3f4f6;
         }
+        .tm-cta.call {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #eaffea;
+  border: 1px solid #39ff14;
+  color: #000;
+}
+
+.call-dot {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: #39ff14;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 4px rgba(57,255,20,0.2);
+}
+
       `}</style>
     </div>
   );
