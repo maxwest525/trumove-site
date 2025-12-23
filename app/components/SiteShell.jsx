@@ -99,22 +99,27 @@ export default function SiteShell({ children }) {
 .tm-header-inner{
   max-width:1120px;
   margin:0 auto;
-  padding:12px 18px;
-  display:flex;
+  padding:14px 18px;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
   align-items:center;
-  justify-content:space-between;
-  gap:18px;
+  column-gap:18px;
+}
+
+.tm-logo{ display:flex; align-items:center; }
+.tm-logo-img{
+  height:62px;
+  width:auto;
+  display:block;
+  max-width:220px;
 }
 
 
-  .tm-logo{display:flex;align-items:center;flex:0 0 auto}
-  .tm-logo-img{height:62px;width:auto;display:block}
-
 .tm-nav{
-  flex:1;
   display:flex;
   justify-content:center;
   gap:18px;
+  flex-wrap:nowrap;
   white-space:nowrap;
   min-width:0;
 }
@@ -154,10 +159,10 @@ export default function SiteShell({ children }) {
 .tm-header-actions{
   display:flex;
   align-items:center;
-  gap:10px;
-  flex-shrink:0;
+  gap:12px;
   white-space:nowrap;
 }
+
 
 .tm-logo{
   flex-shrink:0;
@@ -204,11 +209,11 @@ text-transform:uppercase;
   height:18px;
   border-radius:999px;
   background:
-    radial-gradient(circle,
-      #39ff14 35%,
-      rgba(57,255,20,0.35) 36%,
-      rgba(57,255,20,0.12) 62%,
-      transparent 64%
+    radial-gradient(circle at center,
+      #39ff14 32%,
+      rgba(57,255,20,0.28) 33%,
+      rgba(57,255,20,0.12) 58%,
+      transparent 62%
     );
 }
 
