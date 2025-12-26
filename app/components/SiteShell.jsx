@@ -45,27 +45,31 @@ export default function SiteShell({ children }) {
       </Link>
     </div>
   </div>
-</header>
+  
+      </header>
 
-{/* Trust / Status Strip */}
-<div className="tm-status-strip">
-  <div className="tm-status-inner">
-    <div className="tm-status-item">
-      <span className="tm-status-dot"></span>
-      FMCSA & DOT Compliant
-    </div>
-    <div className="tm-status-item">
-      <span className="tm-status-dot muted"></span>
-      Placeholder Trust Signal
-    </div>
-    <div className="tm-status-item">
-      <span className="tm-status-dot muted"></span>
-      Placeholder Trust Signal
-    </div>
-  </div>
-</div>
+      {/* STATUS STRIP */}
+      <div className="tm-status-strip" role="status" aria-label="Trust status">
+        <div className="tm-status-inner">
+          <div className="tm-status-item">
+            <span className="tm-status-dot" />
+            <span className="tm-status-text">FMCSA & DOT COMPLIANT</span>
+          </div>
 
-<main className="tm-main">{children}</main>
+          <div className="tm-status-item">
+            <span className="tm-status-dot" />
+            <span className="tm-status-text">PLACEHOLDER 2</span>
+          </div>
+
+          <div className="tm-status-item">
+            <span className="tm-status-dot" />
+            <span className="tm-status-text">PLACEHOLDER 3</span>
+          </div>
+        </div>
+      </div>
+
+      <main className="tm-main">{children}</main>
+
 
 
       <footer className="tm-footer">
