@@ -96,7 +96,7 @@ export default function SiteShell({ children }) {
     border-bottom:1px solid #e5e7eb;
   }
 
-  /* HEADER LAYOUT (no overlap) */
+  /* HEADER LAYOUT (no wrap in nav) */
   .tm-header-inner{
     max-width:1120px;
     margin:0 auto;
@@ -122,15 +122,17 @@ export default function SiteShell({ children }) {
     object-fit:contain;
   }
 
-  /* NAV (stays centered, never overlaps, wraps cleanly) */
+  /* NAV: single line, center, shrink if needed instead of wrapping */
   .tm-nav{
     min-width:0;
     display:flex;
     justify-content:center;
     align-items:center;
-    flex-wrap:wrap;
-    gap:14px 18px;
+    flex-wrap:nowrap;
+    gap:14px;
     padding:0 6px;
+    white-space:nowrap;
+    overflow:hidden;
   }
 
   /* clean Godaddy-style links */
@@ -138,7 +140,7 @@ export default function SiteShell({ children }) {
     position:relative;
     text-decoration:none;
     color:#0f172a;
-    font-size:15.5px;
+    font-size:14.5px;            /* slightly smaller so it fits */
     letter-spacing:0.06em;
     font-weight:500;
     padding:10px 4px;
@@ -146,6 +148,7 @@ export default function SiteShell({ children }) {
     opacity:.9;
     transition:opacity .15s ease, transform .15s ease;
     text-transform:uppercase;
+    flex:0 0 auto;
   }
   .tm-nav-link:hover{opacity:1;transform:translateY(-1px)}
   .tm-nav-link::after{
@@ -174,20 +177,20 @@ export default function SiteShell({ children }) {
     white-space:nowrap;
   }
 
-  /* pills */
+  /* pills (slightly tighter to stop wrap) */
   .tm-call,
   .tm-cta{
     display:inline-flex;
     align-items:center;
-    gap:10px;
-    height:40px;
-    padding:0 14px;
+    gap:9px;
+    height:38px;                /* was 40 */
+    padding:0 12px;             /* was 14 */
     border-radius:999px;
     text-decoration:none;
     white-space:nowrap;
 
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    font-size:12.5px;
+    font-size:12px;             /* was 12.5 */
     font-weight:500;
     letter-spacing:0.08em;
     text-transform:uppercase;
@@ -200,12 +203,11 @@ export default function SiteShell({ children }) {
     transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
   }
 
-  /* dot (not cartoonish) */
   .tm-call::before,
   .tm-cta::before{
     content:"";
-    width:16px;
-    height:16px;
+    width:14px;                 /* was 16 */
+    height:14px;
     border-radius:999px;
     background:
       radial-gradient(circle at center,
@@ -224,8 +226,8 @@ export default function SiteShell({ children }) {
     background:rgba(255,255,255,0.92);
   }
 
-  /* RESPONSIVE: stack actions under nav before overlap ever happens */
-  @media (max-width: 980px){
+  /* Only stack on truly narrow screens */
+  @media (max-width: 820px){
     .tm-header-inner{
       grid-template-columns:auto minmax(0,1fr);
       grid-template-areas:
@@ -236,11 +238,6 @@ export default function SiteShell({ children }) {
     .tm-logo{grid-area:logo}
     .tm-header-actions{grid-area:actions; justify-self:end}
     .tm-nav{grid-area:nav; justify-content:flex-start; padding:6px 0 2px}
-  }
-
-  @media (max-width: 560px){
-    .tm-logo-img{height:54px; max-width:200px}
-    .tm-call,.tm-cta{height:38px; padding:0 12px; font-size:12px}
   }
 
   .tm-main{flex:1;width:100%}
@@ -265,6 +262,7 @@ export default function SiteShell({ children }) {
   .tm-footer-link{text-decoration:none;color:#111827;font-size:13px;padding:8px 10px;border-radius:10px}
   .tm-footer-link:hover{background:#f3f4f6}
 `}</style>
+
 
     </div>
   );
