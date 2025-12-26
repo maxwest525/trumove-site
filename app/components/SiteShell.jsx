@@ -223,14 +223,14 @@ export default function SiteShell({ children }) {
           height:16px;
           background:rgba(15,23,42,0.14);
         }
-        .tm-status-dot{
-          width:6px;
-          height:6px;
-          border-radius:999px;
-          background:rgba(15,23,42,0.26);
-          box-shadow:0 0 0 5px rgba(15,23,42,0.06);
-          flex:0 0 auto;
-        }
+.tm-status-dot{
+  width:6px;
+  height:6px;
+  border-radius:999px;
+  background:var(--tm-green);
+  box-shadow:0 0 0 5px rgba(57,255,20,0.14);
+  flex:0 0 auto;
+}
 
         /* fade masks */
         .tm-status-mask{
@@ -257,13 +257,7 @@ export default function SiteShell({ children }) {
         html[data-tm-route="home"] .tm-status-item[data-page="home"]{
           color:rgba(15,23,42,0.92);
         }
-        html[data-tm-route="online-estimate"] .tm-status-item[data-page="online-estimate"] .tm-status-dot,
-        html[data-tm-route="vetting"] .tm-status-item[data-page="vetting"] .tm-status-dot,
-        html[data-tm-route="book"] .tm-status-item[data-page="book"] .tm-status-dot,
-        html[data-tm-route="home"] .tm-status-item[data-page="home"] .tm-status-dot{
-          background:var(--tm-green);
-          box-shadow:0 0 0 6px rgba(57,255,20,0.14);
-        }
+
 
         @keyframes tm-marquee{
           from{ transform:translateX(0); }
