@@ -47,8 +47,26 @@ export default function SiteShell({ children }) {
   </div>
 </header>
 
+{/* Trust / Status Strip */}
+<div className="tm-status-strip">
+  <div className="tm-status-inner">
+    <div className="tm-status-item">
+      <span className="tm-status-dot"></span>
+      FMCSA & DOT Compliant
+    </div>
+    <div className="tm-status-item">
+      <span className="tm-status-dot muted"></span>
+      Placeholder Trust Signal
+    </div>
+    <div className="tm-status-item">
+      <span className="tm-status-dot muted"></span>
+      Placeholder Trust Signal
+    </div>
+  </div>
+</div>
 
-      <main className="tm-main">{children}</main>
+<main className="tm-main">{children}</main>
+
 
       <footer className="tm-footer">
         <div className="tm-footer-inner">
@@ -87,6 +105,73 @@ export default function SiteShell({ children }) {
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   }
 
+  /* STATUS STRIP */
+  .tm-status-strip{
+    border-bottom:1px solid rgba(15,23,42,0.06);
+    background:linear-gradient(180deg, rgba(57,255,20,0.10), rgba(255,255,255,0.92));
+  }
+  .tm-status-inner{
+    max-width:1120px;
+    margin:0 auto;
+    padding:8px 18px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+  }
+  .tm-status-group{
+    display:flex;
+    align-items:center;
+    gap:14px;
+    flex-wrap:wrap;
+    min-width:0;
+  }
+  .tm-status-item{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:6px 10px;
+    border-radius:999px;
+    border:1px solid rgba(15,23,42,0.08);
+    background:rgba(255,255,255,0.70);
+    box-shadow:0 10px 22px rgba(15,23,42,0.06);
+    font-size:12px;
+    letter-spacing:0.10em;
+    text-transform:uppercase;
+    font-weight:600;
+    white-space:nowrap;
+  }
+  .tm-status-dot{
+    width:10px;
+    height:10px;
+    border-radius:999px;
+    background:
+      radial-gradient(circle at 35% 35%,
+        #ffffff 0%,
+        rgba(255,255,255,0.0) 38%,
+        rgba(255,255,255,0.0) 40%),
+      radial-gradient(circle at center,
+        #39ff14 0%,
+        #39ff14 55%,
+        rgba(57,255,20,0.25) 56%,
+        rgba(57,255,20,0.10) 100%);
+    box-shadow:0 0 0 3px rgba(57,255,20,0.14);
+    flex:0 0 auto;
+  }
+  .tm-status-right{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    white-space:nowrap;
+    color:rgba(15,23,42,0.72);
+    font-size:12px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+  .tm-status-mini{ font-weight:600; }
+  .tm-status-sep{ opacity:0.55; }
+
+  /* HEADER */
   .tm-header{
     position:sticky;
     top:0;
@@ -96,61 +181,100 @@ export default function SiteShell({ children }) {
     border-bottom:1px solid #e5e7eb;
   }
 
-  /* HEADER LAYOUT (no wrap in nav) */
   .tm-header-inner{
     max-width:1120px;
     margin:0 auto;
-    padding:12px 18px;
+    padding:14px 18px;
     display:grid;
-    grid-template-columns:auto minmax(0,1fr) auto;
+    grid-template-columns:auto 1fr auto;
     align-items:center;
-    gap:14px;
+    column-gap:18px;
   }
 
-  /* LOGO */
   .tm-logo{
     display:flex;
     align-items:center;
     flex-shrink:0;
-    line-height:0;
+    text-decoration:none;
   }
   .tm-logo-img{
     height:62px;
     width:auto;
     display:block;
     max-width:240px;
-    object-fit:contain;
   }
 
-  /* NAV: single line, center, shrink if needed instead of wrapping */
+  /* STATUS STRIP */
+.tm-status-strip{
+  border-bottom:1px solid rgba(15,23,42,0.08);
+  background:linear-gradient(180deg, rgba(57,255,20,0.10), rgba(255,255,255,0.96));
+}
+.tm-status-inner{
+  max-width:1120px;
+  margin:0 auto;
+  padding:10px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+.tm-status-item{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:7px 12px;
+  border-radius:999px;
+  background:rgba(255,255,255,0.78);
+  border:1px solid rgba(15,23,42,0.10);
+  box-shadow:0 10px 22px rgba(15,23,42,0.06);
+}
+.tm-status-dot{
+  width:10px;
+  height:10px;
+  border-radius:999px;
+  background:#39ff14;
+  box-shadow:0 0 0 4px rgba(57,255,20,0.14);
+  flex:0 0 auto;
+}
+.tm-status-text{
+  font-size:12px;
+  letter-spacing:0.10em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:#0f172a;
+  opacity:.88;
+  white-space:nowrap;
+}
+
+
+  /* NAV */
   .tm-nav{
-    min-width:0;
     display:flex;
     justify-content:center;
-    align-items:center;
+    gap:18px;
     flex-wrap:nowrap;
-    gap:14px;
-    padding:0 6px;
     white-space:nowrap;
-    overflow:hidden;
+    min-width:0;
   }
 
-  /* clean Godaddy-style links */
   .tm-nav-link{
     position:relative;
     text-decoration:none;
     color:#0f172a;
-    font-size:14.5px;            /* slightly smaller so it fits */
-    letter-spacing:0.06em;
+    font-size:15.5px;
+    letter-spacing:0.08em;
     font-weight:500;
     padding:10px 4px;
     white-space:nowrap;
-    opacity:.9;
-    transition:opacity .15s ease, transform .15s ease;
+    opacity:0.88;
+    transition:opacity 0.15s ease, transform 0.15s ease;
     text-transform:uppercase;
-    flex:0 0 auto;
   }
-  .tm-nav-link:hover{opacity:1;transform:translateY(-1px)}
+  .tm-nav-link:hover{
+    opacity:1;
+    transform:translateY(-1px);
+  }
   .tm-nav-link::after{
     content:"";
     position:absolute;
@@ -162,85 +286,63 @@ export default function SiteShell({ children }) {
     background:#39ff14;
     transform:scaleX(0);
     transform-origin:left;
-    transition:transform .18s ease;
+    transition:transform 0.18s ease;
   }
-  .tm-nav-link:hover::after{transform:scaleX(1)}
-  .tm-nav-link.active{opacity:1}
-  .tm-nav-link.active::after{transform:scaleX(1)}
+  .tm-nav-link:hover::after{ transform:scaleX(1); }
+  .tm-nav-link.active{ opacity:1; }
+  .tm-nav-link.active::after{ transform:scaleX(1); }
 
   /* ACTIONS */
   .tm-header-actions{
     display:flex;
     align-items:center;
     gap:10px;
-    flex-shrink:0;
     white-space:nowrap;
+    flex-shrink:0;
   }
 
-  /* pills (slightly tighter to stop wrap) */
   .tm-call,
   .tm-cta{
     display:inline-flex;
     align-items:center;
-    gap:9px;
-    height:38px;                /* was 40 */
-    padding:0 12px;             /* was 14 */
+    gap:10px;
+    height:40px;
+    padding:0 14px;
     border-radius:999px;
     text-decoration:none;
     white-space:nowrap;
-
     font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-    font-size:12px;             /* was 12.5 */
-    font-weight:500;
-    letter-spacing:0.08em;
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:0.10em;
     text-transform:uppercase;
-
     color:#0f172a;
-    background:rgba(57,255,20,0.12);
     border:1px solid rgba(57,255,20,0.45);
+    background:linear-gradient(180deg, rgba(57,255,20,0.18), rgba(57,255,20,0.06));
     box-shadow:0 10px 22px rgba(15,23,42,0.08);
-
-    transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+    transition:transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
   }
 
   .tm-call::before,
   .tm-cta::before{
     content:"";
-    width:14px;                 /* was 16 */
-    height:14px;
+    width:10px;
+    height:10px;
     border-radius:999px;
-    background:
-      radial-gradient(circle at center,
-        #39ff14 28%,
-        rgba(57,255,20,0.22) 29%,
-        rgba(57,255,20,0.10) 60%,
-        transparent 64%
-      );
+    background:#39ff14;
+    box-shadow:0 0 0 4px rgba(57,255,20,0.16);
+    flex:0 0 auto;
   }
 
   .tm-call:hover,
   .tm-cta:hover{
     transform:translateY(-1px);
     box-shadow:0 16px 34px rgba(15,23,42,0.12);
-    border-color:rgba(57,255,20,0.35);
-    background:rgba(255,255,255,0.92);
+    background:linear-gradient(180deg, rgba(255,255,255,0.92), rgba(57,255,20,0.06));
   }
 
-  /* Only stack on truly narrow screens */
-  @media (max-width: 820px){
-    .tm-header-inner{
-      grid-template-columns:auto minmax(0,1fr);
-      grid-template-areas:
-        "logo actions"
-        "nav nav";
-      align-items:center;
-    }
-    .tm-logo{grid-area:logo}
-    .tm-header-actions{grid-area:actions; justify-self:end}
-    .tm-nav{grid-area:nav; justify-content:flex-start; padding:6px 0 2px}
-  }
-
-  .tm-main{flex:1;width:100%}
+  /* MAIN + FOOTER */
+  .tm-main{ flex:1; width:100%; }
 
   .tm-footer{
     border-top:1px solid #e5e7eb;
@@ -256,12 +358,40 @@ export default function SiteShell({ children }) {
     gap:16px;
     flex-wrap:wrap;
   }
-  .tm-footer-brand{font-weight:800;color:#000}
-  .tm-footer-sub{margin-top:6px;color:#6b7280;font-size:13px;max-width:420px}
-  .tm-footer-right{display:flex;gap:14px;flex-wrap:wrap}
-  .tm-footer-link{text-decoration:none;color:#111827;font-size:13px;padding:8px 10px;border-radius:10px}
-  .tm-footer-link:hover{background:#f3f4f6}
+  .tm-footer-brand{ font-weight:800; color:#000; }
+  .tm-footer-sub{ margin-top:6px; color:#6b7280; font-size:13px; max-width:420px; }
+  .tm-footer-right{ display:flex; gap:14px; flex-wrap:wrap; }
+  .tm-footer-link{ text-decoration:none; color:#111827; font-size:13px; padding:8px 10px; border-radius:10px; }
+  .tm-footer-link:hover{ background:#f3f4f6; }
+
+  /* RESPONSIVE FIXES (prevents wrapping and overlap) */
+  @media (max-width: 980px){
+    .tm-header-inner{
+      grid-template-columns:auto 1fr;
+      grid-template-rows:auto auto;
+      row-gap:10px;
+    }
+    .tm-header-actions{
+      grid-column:2;
+      justify-content:flex-end;
+    }
+    .tm-nav{
+      grid-column:1 / -1;
+      justify-content:flex-start;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      padding-bottom:6px;
+    }
+    .tm-nav-link{ font-size:14.5px; }
+  }
+
+  @media (max-width: 520px){
+    .tm-logo-img{ height:54px; }
+    .tm-call, .tm-cta{ height:38px; padding:0 12px; }
+    .tm-status-right{ display:none; }
+  }
 `}</style>
+
 
 
     </div>
