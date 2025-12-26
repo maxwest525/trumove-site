@@ -129,8 +129,8 @@ export default function SiteShell({ children }) {
           speed === "fast" ? "is-fast" : "",
         ].join(" ")}
         aria-label="Platform capabilities"
-        onMouseEnter={() => setSpeed("fast")}
-        onMouseLeave={() => setSpeed("normal")}
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
       >
         <div className="tm-status-mask tm-status-mask-left" aria-hidden="true" />
         <div className="tm-status-mask tm-status-mask-right" aria-hidden="true" />
@@ -394,7 +394,7 @@ export default function SiteShell({ children }) {
         .tm-nav{
           display:flex;
           justify-content:center;
-          gap:22px;
+          gap:26px;
           flex-wrap:nowrap;
           white-space:nowrap;
           min-width:0;
@@ -404,10 +404,10 @@ export default function SiteShell({ children }) {
           position:relative;
           text-decoration:none;
           color:var(--tm-ink);
-          font-size:16.5px;
+          font-size:17.5px;
           letter-spacing:0.08em;
           font-weight:520;
-          padding:10px 4px;
+          padding:12px 6px;
           white-space:nowrap;
           opacity:0.86;
           text-transform:uppercase;
