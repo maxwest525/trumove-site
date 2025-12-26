@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -10,127 +10,148 @@ const NAV = [
   { href: "/vetting", label: "Carrier Standards" },
   { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About" },
-  { href: "/book", label: "Book a Consult" },
 ];
 
-const TRUST = [
-  { tag: "USDOT", text: "USDOT Compliant" },
-  { tag: "INSURED", text: "Bonded and Insured" },
-  { tag: "FMCSA", text: "FMCSA Authorized Motor Carriers" },
-  { tag: "BROKER", text: "Licensed Interstate Moving Broker" },
+const STATUS_ITEMS = [
+  { key: "ai", label: "Instant AI quotes" },
+  { key: "vetted", label: "Vetted mover network" },
+  { key: "updates", label: "Real time updates" },
+  { key: "video", label: "Virtual video consults" },
+  { key: "claims", label: "Live review and claims monitoring" },
+  { key: "tracking", label: "Load tracking" },
 ];
 
-const STATUS = [
-  { text: "Instant AI quotes", key: "online-estimate" },
-  { text: "Vetted mover network", key: "vetting" },
-  { text: "Real time updates", key: "home" },
-  { text: "Virtual video consults", key: "book" },
-  { text: "Live review and claims monitoring", key: "home" },
-  { text: "Load tracking", key: "home" },
+const TRUST_ITEMS = [
+  "USDOT compliant",
+  "Bonded and insured",
+  "FMCSA authorized motor carriers",
+  "Licensed interstate moving broker",
 ];
+
+// simple contextual highlighting by route
+function getHighlightKeys(path) {
+  if (path === "/online-estimate") return new Set(["ai", "vetted", "updates"]);
+  if (path === "/vetting") return new Set(["vetted", "claims"]);
+  if (path === "/book") return new Set(["video"]);
+  return new Set();
+}
+
+function BadgeIcon() {
+  // official-looking “seal” icon (no checkmark)
+  return (
+    <span className="tm-seal" aria-hidden="true">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none">
+        <path
+          d="M12 2.7l2.6 1.3 2.9.4 1.9 2.2 2.1 1.8-.6 2.8.6 2.8-2.1 1.8-1.9 2.2-2.9.4L12 21.3l-2.6-1.3-2.9-.4-1.9-2.2-2.1-1.8.6-2.8-.6-2.8 2.1-1.8 1.9-2.2 2.9-.4L12 2.7z"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          opacity="0.9"
+        />
+        <path
+          d="M8.2 12.1c1.6-2.4 6-2.4 7.6 0"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          opacity="0.9"
+        />
+      </svg>
+    </span>
+  );
+}
 
 export default function SiteShell({ children }) {
   const path = usePathname();
 
+  // marquee pause behavior (hover + scroll)
+  const [paused, setPaused] = useState(false);
+  const scrollT = useRef(null);
+
   useEffect(() => {
-    // Pause marquee while user scrolls
-    let scrollTimer = null;
-    const onScroll = () => {
-      document.documentElement.classList.add("tm-scrolling");
-      if (scrollTimer) window.clearTimeout(scrollTimer);
-      scrollTimer = window.setTimeout(() => {
-        document.documentElement.classList.remove("tm-scrolling");
-      }, 150);
-    };
+    function onScroll() {
+      setPaused(true);
+      if (scrollT.current) window.clearTimeout(scrollT.current);
+      scrollT.current = window.setTimeout(() => setPaused(false), 600);
+    }
     window.addEventListener("scroll", onScroll, { passive: true });
-
-    // Route key for contextual highlight
-    const route = (path || "/").toLowerCase();
-    let key = "home";
-    if (route.startsWith("/online-estimate")) key = "online-estimate";
-    else if (route.startsWith("/vetting")) key = "vetting";
-    else if (route.startsWith("/book")) key = "book";
-    else if (route === "/") key = "home";
-    document.documentElement.setAttribute("data-tm-route", key);
-
     return () => {
       window.removeEventListener("scroll", onScroll);
-      if (scrollTimer) window.clearTimeout(scrollTimer);
+      if (scrollT.current) window.clearTimeout(scrollT.current);
     };
-  }, [path]);
+  }, []);
 
-  const loop = [...STATUS, ...STATUS];
+  const highlight = useMemo(() => getHighlightKeys(path), [path]);
 
   return (
     <div className="tm-shell">
-      {/* STATUS STRIP (TOP) */}
-      <div className="tm-status" aria-label="Platform capabilities">
-        <div className="tm-status-mask tm-status-mask-left" aria-hidden="true" />
-        <div className="tm-status-mask tm-status-mask-right" aria-hidden="true" />
+      {/* TOP CHROME (status above header) */}
+      <div className="tm-top">
+        {/* STATUS STRIP (marquee) */}
+        <div
+          className={`tm-statusbar ${paused ? "is-paused" : ""}`}
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+        >
+          <div className="tm-status-mask tm-status-mask-left" aria-hidden="true" />
+          <div className="tm-status-mask tm-status-mask-right" aria-hidden="true" />
 
-        <div className="tm-status-track">
-          <div className="tm-status-inner">
-            {loop.map((s, i) => (
-              <span
-                key={`${s.text}-${i}`}
-                className="tm-status-item"
-                data-page={s.key}
-              >
-                <span className="tm-status-dot" aria-hidden="true" />
-                {s.text}
-              </span>
+          <div className="tm-status-track" role="list" aria-label="Platform capabilities">
+            {/* duplicate rows for seamless loop */}
+            {[0, 1].map((dup) => (
+              <div className="tm-status-row" key={dup} role="presentation">
+                {STATUS_ITEMS.map((it) => (
+                  <span
+                    key={`${dup}-${it.key}`}
+                    className={`tm-status-chip ${highlight.has(it.key) ? "is-hot" : ""}`}
+                    role="listitem"
+                  >
+                    {it.label}
+                  </span>
+                ))}
+              </div>
             ))}
           </div>
         </div>
+
+        {/* HEADER */}
+        <header className="tm-header">
+          <div className="tm-header-inner">
+            <Link href="/" className="tm-logo" aria-label="TruMove Home">
+              <img className="tm-logo-img" src="/logo.png" alt="TruMove" />
+            </Link>
+
+            <nav className="tm-nav" aria-label="Primary">
+              {NAV.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`tm-nav-link ${path === item.href ? "active" : ""}`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </nav>
+
+            <div className="tm-header-actions">
+              <a className="tm-call" href="tel:+10000000000">
+                Call Us Now
+              </a>
+              <Link className="tm-cta" href="/book">
+                Book a Consult
+              </Link>
+            </div>
+          </div>
+        </header>
       </div>
 
-      {/* HEADER */}
-      <header className="tm-header">
-        <div className="tm-header-inner">
-          <Link href="/" className="tm-logo" aria-label="TruMove Home">
-            <img className="tm-logo-img" src="/logo.png" alt="TruMove" />
-          </Link>
-
-          <nav className="tm-nav" aria-label="Primary">
-            {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`tm-nav-link ${path === item.href ? "active" : ""}`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className="tm-header-actions">
-            <a className="tm-call" href="tel:+10000000000">
-              Call Us Now
-            </a>
-            <Link className="tm-cta" href="/book">
-              Book a Consult
-            </Link>
-          </div>
-        </div>
-      </header>
-
-      {/* TRUST STRIP (OFFICIAL, NO CHECKMARKS) */}
+      {/* TRUST STRIP (official, no pills, no extra marketing copy) */}
       <div className="tm-trust" aria-label="Compliance and authority">
         <div className="tm-trust-inner">
-          <div className="tm-trust-items">
-            {TRUST.map((t, idx) => (
-              <span key={t.tag} className="tm-trust-item">
-                <span className="tm-trust-badge" aria-hidden="true">
-                  <span className="tm-trust-badge-top">Verified</span>
-                  <span className="tm-trust-badge-tag">{t.tag}</span>
-                </span>
-                <span className="tm-trust-text">{t.text}</span>
-                {idx < TRUST.length - 1 ? (
-                  <span className="tm-trust-divider" aria-hidden="true" />
-                ) : null}
-              </span>
-            ))}
-          </div>
+          {TRUST_ITEMS.map((t) => (
+            <div className="tm-trust-item" key={t}>
+              <BadgeIcon />
+              <span className="tm-trust-text">{t}</span>
+            </div>
+          ))}
         </div>
       </div>
 
@@ -140,24 +161,14 @@ export default function SiteShell({ children }) {
         <div className="tm-footer-inner">
           <div className="tm-footer-left">
             <div className="tm-footer-brand">TruMove</div>
-            <div className="tm-footer-sub">
-              AI-powered moving quotes and carrier coordination.
-            </div>
+            <div className="tm-footer-sub">AI-powered moving quotes and carrier coordination.</div>
           </div>
 
           <div className="tm-footer-right">
-            <Link className="tm-footer-link" href="/vetting">
-              Carrier Standards
-            </Link>
-            <Link className="tm-footer-link" href="/book">
-              Book a consult
-            </Link>
-            <Link className="tm-footer-link" href="/privacy">
-              Privacy
-            </Link>
-            <Link className="tm-footer-link" href="/terms">
-              Terms
-            </Link>
+            <Link className="tm-footer-link" href="/vetting">Carrier Standards</Link>
+            <Link className="tm-footer-link" href="/book">Book a consult</Link>
+            <Link className="tm-footer-link" href="/privacy">Privacy</Link>
+            <Link className="tm-footer-link" href="/terms">Terms</Link>
           </div>
         </div>
       </footer>
@@ -167,7 +178,8 @@ export default function SiteShell({ children }) {
           --tm-green:#39ff14;
           --tm-ink:#0f172a;
           --tm-line:rgba(15,23,42,0.10);
-          --tm-max:1480px;
+          --tm-soft:rgba(15,23,42,0.04);
+          --tm-max:1480px; /* wider to prevent overlap */
         }
 
         .tm-shell{
@@ -179,131 +191,121 @@ export default function SiteShell({ children }) {
           font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
         }
 
-        /* STATUS STRIP */
-        .tm-status{
+        /* TOP CHROME wraps status + header as one sticky unit */
+        .tm-top{
           position:sticky;
           top:0;
           z-index:80;
+          background:#fff;
+        }
+
+        /* STATUS (marquee) */
+        .tm-statusbar{
+          position:relative;
           border-bottom:1px solid var(--tm-line);
-          background:linear-gradient(180deg, rgba(255,255,255,0.98), #ffffff);
+          background:linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,1));
           overflow:hidden;
         }
-        .tm-status-track{ overflow:hidden; }
-        .tm-status-inner{
+        .tm-status-track{
           display:flex;
-          align-items:center;
-          width:max-content;
-          gap:0;
-          animation:tm-marquee 34s linear infinite;
+          gap:24px;
+          width:100%;
+          padding:10px 0;
           will-change:transform;
         }
-        html.tm-scrolling .tm-status-inner{ animation-play-state:paused; }
-        .tm-status:hover .tm-status-inner{ animation-play-state:paused; }
+        .tm-status-row{
+          display:flex;
+          gap:12px;
+          align-items:center;
+          padding:0 22px;
+          animation:tmMarquee 28s linear infinite;
+        }
+        .tm-statusbar.is-paused .tm-status-row{
+          animation-play-state:paused;
+        }
+        @keyframes tmMarquee{
+          0%{ transform:translateX(0); }
+          100%{ transform:translateX(-100%); }
+        }
 
-        .tm-status-item{
+        .tm-status-chip{
           display:inline-flex;
           align-items:center;
-          gap:10px;
-          padding:10px 18px;
+          padding:8px 12px;
+          border-radius:999px;
+          background:rgba(15,23,42,0.03);
+          border:1px solid rgba(15,23,42,0.08);
+          color:rgba(15,23,42,0.86);
           font-size:12px;
-          letter-spacing:0.14em;
+          letter-spacing:0.10em;
           text-transform:uppercase;
           font-weight:650;
           white-space:nowrap;
-          color:rgba(15,23,42,0.72);
-          position:relative;
         }
-        .tm-status-item::after{
-          content:"";
-          position:absolute;
-          right:0;
-          top:50%;
-          transform:translateY(-50%);
-          width:1px;
-          height:16px;
-          background:rgba(15,23,42,0.14);
+        .tm-status-chip.is-hot{
+          border-color:rgba(57,255,20,0.45);
+          background:linear-gradient(180deg, rgba(57,255,20,0.14), rgba(255,255,255,0.86));
+          box-shadow:0 14px 28px rgba(15,23,42,0.10);
         }
-.tm-status-dot{
-  width:6px;
-  height:6px;
-  border-radius:999px;
-  background:var(--tm-green);
-  box-shadow:0 0 0 5px rgba(57,255,20,0.14);
-  flex:0 0 auto;
-}
 
         /* fade masks */
         .tm-status-mask{
           position:absolute;
           top:0;
           bottom:0;
-          width:90px;
+          width:86px;
           pointer-events:none;
           z-index:2;
         }
         .tm-status-mask-left{
           left:0;
-          background:linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0));
+          background:linear-gradient(90deg, #ffffff 0%, rgba(255,255,255,0) 100%);
         }
         .tm-status-mask-right{
           right:0;
-          background:linear-gradient(270deg, rgba(255,255,255,1), rgba(255,255,255,0));
-        }
-
-        /* contextual highlight by route */
-        html[data-tm-route="online-estimate"] .tm-status-item[data-page="online-estimate"],
-        html[data-tm-route="vetting"] .tm-status-item[data-page="vetting"],
-        html[data-tm-route="book"] .tm-status-item[data-page="book"],
-        html[data-tm-route="home"] .tm-status-item[data-page="home"]{
-          color:rgba(15,23,42,0.92);
-        }
-
-
-        @keyframes tm-marquee{
-          from{ transform:translateX(0); }
-          to{ transform:translateX(-50%); }
+          background:linear-gradient(270deg, #ffffff 0%, rgba(255,255,255,0) 100%);
         }
 
         /* HEADER */
         .tm-header{
-          position:sticky;
-          top:44px; /* sits below the status strip */
-          z-index:70;
           background:rgba(255,255,255,0.92);
           backdrop-filter:blur(10px);
           border-bottom:1px solid var(--tm-line);
         }
-
-.tm-header-inner{
-  max-width:var(--tm-max);
-  margin:0 auto;
-  padding:16px 28px;
-  display:grid;
-  grid-template-columns:auto minmax(0,1fr) auto;
-  align-items:center;
-  column-gap:32px;
-}
-
-
-        .tm-logo{display:flex;align-items:center;flex-shrink:0;text-decoration:none}
-        .tm-logo-img{
-          height:62px;
-          width:auto;
-          display:block;
-          max-width:260px;
+        .tm-header-inner{
+          max-width:var(--tm-max);
+          margin:0 auto;
+          padding:14px 26px;
+          display:grid;
+          grid-template-columns:auto 1fr auto;
+          align-items:center;
+          column-gap:26px;
         }
 
-.tm-nav{
-  display:flex;
-  justify-content:center;
-  gap:26px;
-  flex-wrap:nowrap;
-  white-space:nowrap;
-  min-width:0;
-}
+        .tm-logo{display:flex;align-items:center;flex-shrink:0;text-decoration:none}
+        .tm-logo-img{height:62px;width:auto;display:block;max-width:280px}
 
-
-.tm-nav-link{
+        .tm-nav{
+          display:flex;
+          justify-content:center;
+          gap:22px;
+          flex-wrap:nowrap;
+          white-space:nowrap;
+          min-width:0;
+        }
+        .tm-nav-link{
+          position:relative;
+          text-decoration:none;
+          color:var(--tm-ink);
+          font-size:16.5px; /* larger */
+          letter-spacing:0.08em;
+          font-weight:520;
+          padding:10px 4px;
+          white-space:nowrap;
+          opacity:0.86;
+          text-transform:uppercase;
+          transition:opacity .15s ease, transform .15s ease;
+        }
         .tm-nav-link:hover{opacity:1;transform:translateY(-1px)}
         .tm-nav-link::after{
           content:"";
@@ -329,7 +331,7 @@ export default function SiteShell({ children }) {
           flex-shrink:0;
         }
 
-        /* premium pills stay */
+        /* keep your premium pills */
         .tm-call,
         .tm-cta{
           position:relative;
@@ -357,8 +359,9 @@ export default function SiteShell({ children }) {
           width:10px;
           height:10px;
           border-radius:999px;
-          background:radial-gradient(circle at 30% 30%, #ffffff 0%, rgba(255,255,255,0) 40%),
-                     radial-gradient(circle at center, var(--tm-green) 0%, var(--tm-green) 62%, rgba(57,255,20,0.18) 100%);
+          background:
+            radial-gradient(circle at 30% 30%, #ffffff 0%, rgba(255,255,255,0) 40%),
+            radial-gradient(circle at center, var(--tm-green) 0%, var(--tm-green) 62%, rgba(57,255,20,0.18) 100%);
           box-shadow:0 0 0 4px rgba(57,255,20,0.14);
           flex:0 0 auto;
         }
@@ -370,88 +373,57 @@ export default function SiteShell({ children }) {
           background:linear-gradient(180deg, rgba(255,255,255,0.94), rgba(57,255,20,0.08));
         }
 
-        /* TRUST STRIP (OFFICIAL PLAQUES) */
+        /* TRUST STRIP (official, dark, no pills, no checkmarks) */
         .tm-trust{
-          border-bottom:1px solid rgba(255,255,255,0.10);
-          background:linear-gradient(180deg, #0b1220, #070b14);
+          border-bottom:1px solid rgba(255,255,255,0.06);
+          background:linear-gradient(180deg, #101828, #0b1220);
         }
         .tm-trust-inner{
           max-width:var(--tm-max);
           margin:0 auto;
-          padding:12px 22px;
-        }
-        .tm-trust-items{
+          padding:12px 26px;
           display:flex;
           align-items:center;
           justify-content:center;
-          gap:14px;
+          gap:18px;
           flex-wrap:wrap;
         }
         .tm-trust-item{
           display:inline-flex;
           align-items:center;
-          gap:12px;
+          gap:10px;
+          padding:0;
+          color:rgba(255,255,255,0.92);
+          letter-spacing:0.12em;
+          text-transform:uppercase;
+          font-weight:700;
+          font-size:12px;
           white-space:nowrap;
         }
-        .tm-trust-divider{
-          width:1px;
+        .tm-seal{
+          width:22px;
           height:22px;
-          background:rgba(255,255,255,0.18);
-          display:inline-block;
-          margin-left:14px;
-        }
-
-        /* the “badge plaque” */
-        .tm-trust-badge{
-          width:56px;
-          height:34px;
-          border-radius:10px;
-          border:1px solid rgba(255,255,255,0.14);
-          background:
-            radial-gradient(circle at 20% 10%, rgba(255,255,255,0.18), rgba(255,255,255,0) 55%),
-            linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
-          box-shadow:0 16px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.10);
-          display:flex;
-          flex-direction:column;
+          display:inline-flex;
           align-items:center;
           justify-content:center;
-          line-height:1;
+          border-radius:999px;
+          color:rgba(255,255,255,0.92);
+          background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.16), rgba(255,255,255,0) 60%),
+                     linear-gradient(180deg, rgba(57,255,20,0.18), rgba(57,255,20,0.06));
+          border:1px solid rgba(57,255,20,0.26);
+          box-shadow:0 18px 36px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.08);
           flex:0 0 auto;
         }
-        .tm-trust-badge-top{
-          font-size:8px;
-          letter-spacing:0.18em;
-          text-transform:uppercase;
-          color:rgba(255,255,255,0.66);
-          font-weight:700;
-        }
-        .tm-trust-badge-tag{
-          margin-top:4px;
-          font-size:10px;
-          letter-spacing:0.22em;
-          text-transform:uppercase;
-          color:rgba(255,255,255,0.92);
-          font-weight:800;
-        }
-        .tm-trust-text{
-          font-size:12px;
-          letter-spacing:0.14em;
-          text-transform:uppercase;
-          font-weight:650;
-          color:rgba(255,255,255,0.92);
-        }
+        .tm-trust-text{ opacity:0.92; }
 
         .tm-main{flex:1;width:100%}
 
         /* FOOTER */
-        .tm-footer{
-          border-top:1px solid var(--tm-line);
-          background:#fff;
-        }
+        .tm-footer{border-top:1px solid var(--tm-line);background:#fff}
         .tm-footer-inner{
           max-width:var(--tm-max);
           margin:0 auto;
-          padding:24px 22px;
+          padding:24px 26px;
           display:flex;
           align-items:flex-start;
           justify-content:space-between;
@@ -462,25 +434,17 @@ export default function SiteShell({ children }) {
         .tm-footer-brand{font-weight:800;color:#000}
         .tm-footer-sub{color:#6b7280;font-size:13px;max-width:420px}
         .tm-footer-right{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
-        .tm-footer-link{
-          text-decoration:none;
-          color:#111827;
-          font-size:13px;
-          padding:8px 10px;
-          border-radius:10px;
-        }
+        .tm-footer-link{text-decoration:none;color:#111827;font-size:13px;padding:8px 10px;border-radius:10px}
         .tm-footer-link:hover{background:#f3f4f6}
 
-        /* RESPONSIVE: prevent overlap */
-        @media (max-width: 1320px){
+        /* RESPONSIVE: stop overlap and keep nav usable */
+        @media (max-width: 1100px){
           .tm-header-inner{
             grid-template-columns:auto 1fr;
             grid-template-rows:auto auto;
             row-gap:10px;
           }
-          .tm-header-actions{
-            justify-content:flex-end;
-          }
+          .tm-header-actions{justify-content:flex-end}
           .tm-nav{
             grid-column:1 / -1;
             justify-content:flex-start;
@@ -490,12 +454,10 @@ export default function SiteShell({ children }) {
             scrollbar-width:none;
           }
           .tm-nav::-webkit-scrollbar{display:none}
-          .tm-nav-link{font-size:14.5px}
         }
-
         @media (max-width: 520px){
           .tm-logo-img{height:54px}
-          .tm-call,.tm-cta{height:46px;padding:0 14px}
+          .tm-call,.tm-cta{height:38px;padding:0 12px}
           .tm-status-mask{width:64px}
         }
       `}</style>
