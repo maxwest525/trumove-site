@@ -923,7 +923,7 @@ html.tm-scrolling .tm-status-inner{ animation-play-state:paused; }
 
 
         html[data-tm-route="home"] .tm-trust{ display:none; }
-
+}
       `}</style>
     </div>
   );
