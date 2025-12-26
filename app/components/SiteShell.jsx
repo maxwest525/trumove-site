@@ -46,41 +46,31 @@ export default function SiteShell({ children }) {
           </div>
         </div>
 
-        {/* Trust strip (dark, official) */}
-        <div className="tm-trust">
-          <div className="tm-trust-inner">
-            <div className="tm-trust-left" aria-label="Compliance badges">
-              <span className="tm-trust-item">
-                <span className="tm-trust-mark" aria-hidden="true" />
-                USDOT compliant
-              </span>
-              <span className="tm-trust-sep" aria-hidden="true">•</span>
+{/* TRUST STRIP */}
+<div className="tm-trust">
+  <div className="tm-trust-inner" aria-label="Compliance and authority badges">
+    <span className="tm-badge">
+      <span className="tm-badge-seal" aria-hidden="true" />
+      <span className="tm-badge-text">USDOT compliant</span>
+    </span>
 
-              <span className="tm-trust-item">
-                <span className="tm-trust-mark" aria-hidden="true" />
-                Bonded and insured
-              </span>
-              <span className="tm-trust-sep" aria-hidden="true">•</span>
+    <span className="tm-badge">
+      <span className="tm-badge-seal" aria-hidden="true" />
+      <span className="tm-badge-text">Bonded and insured</span>
+    </span>
 
-              <span className="tm-trust-item">
-                <span className="tm-trust-mark" aria-hidden="true" />
-                FMCSA authorized motor carriers
-              </span>
-              <span className="tm-trust-sep" aria-hidden="true">•</span>
+    <span className="tm-badge">
+      <span className="tm-badge-seal" aria-hidden="true" />
+      <span className="tm-badge-text">FMCSA authorized motor carriers</span>
+    </span>
 
-              <span className="tm-trust-item">
-                <span className="tm-trust-mark" aria-hidden="true" />
-                Licensed interstate moving broker
-              </span>
-            </div>
+    <span className="tm-badge">
+      <span className="tm-badge-seal" aria-hidden="true" />
+      <span className="tm-badge-text">Licensed interstate moving broker</span>
+    </span>
+  </div>
+</div>
 
-            <div className="tm-trust-right" aria-label="Positioning">
-              <span className="tm-trust-mini">Enterprise-grade quoting</span>
-              <span className="tm-trust-sep" aria-hidden="true">•</span>
-              <span className="tm-trust-mini">Vetted carrier network</span>
-            </div>
-          </div>
-        </div>
 
         {/* Status strip (light, feature rail) */}
         <div className="tm-status" aria-label="Platform capabilities">
@@ -256,116 +246,126 @@ export default function SiteShell({ children }) {
           background:linear-gradient(180deg, rgba(255,255,255,0.94), rgba(57,255,20,0.08));
         }
 
-        /* TRUST STRIP (official) */
-        .tm-trust{
-          border-top:1px solid rgba(15,23,42,0.06);
-          border-bottom:1px solid rgba(255,255,255,0.06);
-          background:linear-gradient(180deg, #0f172a, #0b1220);
-        }
+/* TRUST STRIP (authority badge rail) */
+.tm-trust{
+  border-top:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
+    linear-gradient(180deg, #0b1220, #070b14);
+}
 
-        .tm-trust-inner{
-          max-width:var(--tm-max);
-          margin:0 auto;
-          padding:10px 22px;
-          display:flex;
-          align-items:center;
-          justify-content:space-between;
-          gap:14px;
-          flex-wrap:wrap;
-        }
+.tm-trust-inner{
+  max-width:var(--tm-max);
+  margin:0 auto;
+  padding:10px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
 
-        .tm-trust-left{
-          display:flex;
-          align-items:center;
-          gap:12px;
-          flex-wrap:wrap;
-          min-width:0;
-        }
+/* each credential looks like a “plate”, not a pill */
+.tm-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.10);
+  background:
+    radial-gradient(120px 40px at 20% 0%, rgba(255,255,255,0.10), rgba(255,255,255,0) 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+  box-shadow:
+    0 16px 34px rgba(0,0,0,0.30),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+}
 
-        .tm-trust-item{
-          display:inline-flex;
-          align-items:center;
-          gap:10px;
-          color:rgba(255,255,255,0.92);
-          font-size:12px;
-          letter-spacing:0.12em;
-          text-transform:uppercase;
-          font-weight:650;
-          white-space:nowrap;
-        }
+.tm-badge-seal{
+  width:18px;
+  height:18px;
+  border-radius:6px;
+  border:1px solid rgba(57,255,20,0.30);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.22), rgba(255,255,255,0) 55%),
+    linear-gradient(180deg, rgba(57,255,20,0.18), rgba(57,255,20,0.06));
+  box-shadow:
+    0 12px 26px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+  position:relative;
+  flex:0 0 auto;
+}
 
-        .tm-trust-mark{
-          width:18px;
-          height:18px;
-          border-radius:6px;
-          border:1px solid rgba(57,255,20,0.32);
-          background:
-            radial-gradient(circle at 35% 30%, rgba(255,255,255,0.22), rgba(255,255,255,0) 55%),
-            linear-gradient(180deg, rgba(57,255,20,0.18), rgba(57,255,20,0.06));
-          box-shadow:0 10px 22px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.10);
-          position:relative;
-          flex:0 0 auto;
-        }
+/* make it feel like a seal/mark, not a checkmark */
+.tm-badge-seal::after{
+  content:"";
+  position:absolute;
+  inset:4px;
+  border-radius:4px;
+  border:1px solid rgba(255,255,255,0.12);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.18);
+}
 
-        .tm-trust-mark::after{
-          content:"";
-          position:absolute;
-          left:6px;
-          top:4px;
-          width:5px;
-          height:9px;
-          border-right:2px solid var(--tm-green);
-          border-bottom:2px solid var(--tm-green);
-          transform:rotate(40deg);
-        }
+/* subtle “micro text” vibe */
+.tm-badge-text{
+  color:rgba(255,255,255,0.92);
+  font-size:11.5px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  font-weight:650;
+  white-space:nowrap;
+}
 
-        .tm-trust-right{
-          display:flex;
-          align-items:center;
-          gap:10px;
-          color:rgba(255,255,255,0.70);
-          font-size:12px;
-          letter-spacing:0.06em;
-          text-transform:uppercase;
-          white-space:nowrap;
-        }
+/* STATUS STRIP (capability rail, not badges) */
+.tm-status{
+  border-bottom:1px solid var(--tm-line);
+  background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,1));
+}
 
-        .tm-trust-mini{font-weight:650}
-        .tm-trust-sep{opacity:0.45}
+.tm-status-inner{
+  max-width:var(--tm-max);
+  margin:0 auto;
+  padding:12px 22px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:0;
+  flex-wrap:wrap;
+}
 
-        /* STATUS STRIP */
-        .tm-status{
-          border-bottom:1px solid var(--tm-line);
-          background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,1));
-        }
+.tm-status-item{
+  display:inline-flex;
+  align-items:center;
+  padding:8px 14px;
+  color:rgba(15,23,42,0.80);
+  font-size:12px;
+  letter-spacing:0.10em;
+  text-transform:uppercase;
+  font-weight:600;
+  white-space:nowrap;
+}
 
-        .tm-status-inner{
-          max-width:var(--tm-max);
-          margin:0 auto;
-          padding:12px 22px;
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          gap:14px;
-          flex-wrap:wrap;
-        }
+/* clean separators, no “cheap pill” feeling */
+.tm-status-item + .tm-status-item{
+  position:relative;
+}
+.tm-status-item + .tm-status-item::before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:50%;
+  transform:translateY(-50%);
+  width:1px;
+  height:16px;
+  background:rgba(15,23,42,0.14);
+}
 
-        .tm-status-item{
-          display:inline-flex;
-          align-items:center;
-          padding:8px 12px;
-          border-radius:999px;
-          background:rgba(15,23,42,0.03);
-          border:1px solid rgba(15,23,42,0.08);
-          color:rgba(15,23,42,0.88);
-          font-size:12px;
-          letter-spacing:0.08em;
-          text-transform:uppercase;
-          font-weight:600;
-          white-space:nowrap;
-        }
+/* tiny premium hover, not button-like */
+.tm-status-item:hover{
+  color:rgba(15,23,42,0.92);
+}
 
-        .tm-main{flex:1;width:100%}
 
         /* FOOTER */
         .tm-footer{
@@ -421,6 +421,7 @@ export default function SiteShell({ children }) {
           .tm-logo-img{height:54px}
           .tm-call,.tm-cta{height:38px;padding:0 12px}
           .tm-trust-right{display:none}
+          .tm-badge-text{ letter-spacing:0.10em; }
         }
       `}</style>
     </div>
