@@ -186,7 +186,7 @@ export default function SiteShell({ children }) {
   }
 
   .tm-header-inner{
-    max-width:1120px;
+    max-width:1280px;
     margin:0 auto;
     padding:14px 18px;
     display:grid;
@@ -208,19 +208,20 @@ export default function SiteShell({ children }) {
     max-width:240px;
   }
 
-  /* STATUS STRIP */
+/* STATUS STRIP (official badge style) */
 .tm-status-strip{
-  border-bottom:1px solid rgba(15,23,42,0.08);
-  background:linear-gradient(180deg, rgba(57,255,20,0.10), rgba(255,255,255,0.96));
+  border-bottom:1px solid rgba(15,23,42,0.10);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.96), rgba(255,255,255,0.98));
 }
 .tm-status-inner{
-  max-width:1120px;
+  max-width:1280px;
   margin:0 auto;
   padding:10px 18px;
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:14px;
+  gap:12px;
   flex-wrap:wrap;
 }
 .tm-status-item{
@@ -228,26 +229,41 @@ export default function SiteShell({ children }) {
   align-items:center;
   gap:10px;
   padding:7px 12px;
-  border-radius:999px;
-  background:rgba(255,255,255,0.78);
-  border:1px solid rgba(15,23,42,0.10);
-  box-shadow:0 10px 22px rgba(15,23,42,0.06);
+  border-radius:12px;              /* not pills */
+  background:#ffffff;
+  border:1px solid rgba(15,23,42,0.14);
+  box-shadow:
+    0 10px 22px rgba(15,23,42,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.9);
 }
 .tm-status-dot{
-  width:10px;
-  height:10px;
-  border-radius:999px;
-  background:#39ff14;
-  box-shadow:0 0 0 4px rgba(57,255,20,0.14);
-  flex:0 0 auto;
+  width:16px;
+  height:16px;
+  border-radius:6px;
+  background:
+    linear-gradient(180deg, rgba(57,255,20,0.25), rgba(57,255,20,0.08));
+  border:1px solid rgba(57,255,20,0.55);
+  box-shadow:0 6px 14px rgba(15,23,42,0.08);
+  position:relative;
+}
+.tm-status-dot:after{
+  content:"";
+  position:absolute;
+  left:5px;
+  top:3px;
+  width:4px;
+  height:7px;
+  border-right:2px solid #0f172a;
+  border-bottom:2px solid #0f172a;
+  transform:rotate(40deg);
+  opacity:0.9;
 }
 .tm-status-text{
   font-size:12px;
   letter-spacing:0.10em;
   text-transform:uppercase;
-  font-weight:600;
+  font-weight:650;
   color:#0f172a;
-  opacity:.88;
   white-space:nowrap;
 }
 
@@ -394,6 +410,29 @@ export default function SiteShell({ children }) {
     .tm-call, .tm-cta{ height:38px; padding:0 12px; }
     .tm-status-right{ display:none; }
   }
+
+  /* prevent header overlap */
+@media (max-width: 1100px){
+  .tm-header-inner{
+    grid-template-columns:auto 1fr;
+    grid-template-rows:auto auto;
+    row-gap:10px;
+  }
+  .tm-nav{
+    grid-column:1 / -1;
+    justify-content:flex-start;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    padding-bottom:6px;
+    scrollbar-width:none;
+  }
+  .tm-nav::-webkit-scrollbar{display:none;}
+  .tm-header-actions{
+    grid-column:2;
+    justify-content:flex-end;
+  }
+}
+
 `}</style>
 
 
