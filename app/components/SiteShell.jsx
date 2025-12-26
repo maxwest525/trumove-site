@@ -55,16 +55,21 @@ export default function SiteShell({ children }) {
 
   // pause while user scrolls
   useEffect(() => {
+    let t = null;
     const onScroll = () => {
       document.documentElement.classList.add("tm-scrolling");
-      setPaused(true);
-
-      if (scrollT.current) window.clearTimeout(scrollT.current);
-      scrollT.current = window.setTimeout(() => {
+      if (t) window.clearTimeout(t);
+      t = window.setTimeout(() => {
         document.documentElement.classList.remove("tm-scrolling");
-        setPaused(false);
-      }, 180);
+      }, 150);
     };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (t) window.clearTimeout(t);
+    };
+  }, []);
+
 
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
@@ -113,25 +118,19 @@ export default function SiteShell({ children }) {
   return (
     <div className="tm-shell">
       {/* STATUS STRIP (TOP) */}
-      <div
-        className={`tm-status ${paused ? "is-paused" : ""}`}
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        aria-label="Platform capabilities"
-      >
+      <div className="tm-status" aria-label="Platform capabilities">
         <div className="tm-status-mask tm-status-mask-left" aria-hidden="true" />
         <div className="tm-status-mask tm-status-mask-right" aria-hidden="true" />
 
         <div className="tm-status-track">
-          <div className="tm-status-inner" role="list">
+          <div className="tm-status-inner">
             {loop.map((s, i) => (
               <button
                 key={`${s.text}-${i}`}
                 type="button"
                 className="tm-status-item"
                 data-page={s.key}
-                role="listitem"
-                onClick={() => snapTo(s)}
+                onClick={() => onStatusClick(s)}
               >
                 <span className="tm-status-dot" aria-hidden="true" />
                 <span className="tm-status-text">{s.text}</span>
@@ -140,6 +139,7 @@ export default function SiteShell({ children }) {
           </div>
         </div>
       </div>
+
 
       {/* HEADER */}
       <header ref={headerRef} className="tm-header" role="banner">
@@ -271,8 +271,9 @@ export default function SiteShell({ children }) {
         }
 
         /* Pause behavior */
-        html.tm-scrolling .tm-status-inner{ animation-play-state:paused; }
-        .tm-status.is-paused .tm-status-inner{ animation-play-state:paused; }
+html.tm-scrolling .tm-status-inner{ animation-play-state:paused; }
+.tm-status:hover .tm-status-inner{ animation-play-state:paused; }
+
 
         /* Speed ramp on hover */
         .tm-status:hover .tm-status-inner{ animation-duration:var(--tm-marquee-fast); }
@@ -672,6 +673,9 @@ export default function SiteShell({ children }) {
           font-size:12px;
           color:rgba(15,23,42,0.60);
         }
+
+        html[data-tm-route="home"] .tm-trust{ display:none; }
+
       `}</style>
     </div>
   );
