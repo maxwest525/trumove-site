@@ -167,7 +167,7 @@ export default function SiteShell({ children }) {
           --tm-green:#39ff14;
           --tm-ink:#0f172a;
           --tm-line:rgba(15,23,42,0.10);
-          --tm-max:1320px;
+          --tm-max:1480px;
         }
 
         .tm-shell{
@@ -274,15 +274,16 @@ export default function SiteShell({ children }) {
           border-bottom:1px solid var(--tm-line);
         }
 
-        .tm-header-inner{
-          max-width:var(--tm-max);
-          margin:0 auto;
-          padding:14px 22px;
-          display:grid;
-          grid-template-columns:auto 1fr auto;
-          align-items:center;
-          column-gap:22px;
-        }
+.tm-header-inner{
+  max-width:var(--tm-max);
+  margin:0 auto;
+  padding:16px 28px;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
+  align-items:center;
+  column-gap:32px;
+}
+
 
         .tm-logo{display:flex;align-items:center;flex-shrink:0;text-decoration:none}
         .tm-logo-img{
@@ -292,28 +293,17 @@ export default function SiteShell({ children }) {
           max-width:260px;
         }
 
-        .tm-nav{
-          display:flex;
-          justify-content:center;
-          gap:20px;
-          flex-wrap:nowrap;
-          white-space:nowrap;
-          min-width:0;
-        }
+.tm-nav{
+  display:flex;
+  justify-content:center;
+  gap:26px;
+  flex-wrap:nowrap;
+  white-space:nowrap;
+  min-width:0;
+}
 
-        .tm-nav-link{
-          position:relative;
-          text-decoration:none;
-          color:var(--tm-ink);
-          font-size:15.5px;
-          letter-spacing:0.08em;
-          font-weight:500;
-          padding:10px 4px;
-          white-space:nowrap;
-          opacity:0.86;
-          text-transform:uppercase;
-          transition:opacity .15s ease, transform .15s ease;
-        }
+
+.tm-nav-link{
         .tm-nav-link:hover{opacity:1;transform:translateY(-1px)}
         .tm-nav-link::after{
           content:"";
@@ -482,7 +472,7 @@ export default function SiteShell({ children }) {
         .tm-footer-link:hover{background:#f3f4f6}
 
         /* RESPONSIVE: prevent overlap */
-        @media (max-width: 1280px){
+        @media (max-width: 1320px){
           .tm-header-inner{
             grid-template-columns:auto 1fr;
             grid-template-rows:auto auto;
@@ -505,7 +495,7 @@ export default function SiteShell({ children }) {
 
         @media (max-width: 520px){
           .tm-logo-img{height:54px}
-          .tm-call,.tm-cta{height:38px;padding:0 12px}
+          .tm-call,.tm-cta{height:46px;padding:0 14px}
           .tm-status-mask{width:64px}
         }
       `}</style>
