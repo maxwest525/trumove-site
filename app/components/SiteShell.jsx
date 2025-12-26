@@ -242,11 +242,10 @@ export default function SiteShell({ children }) {
         }
 
         /* Pause behavior */
-        html.tm-scrolling .tm-status-inner { animation-play-state: paused; }
-        .tm-status:hover .tm-status-inner { animation-play-state: paused; }
+html.tm-scrolling .tm-status-inner{ animation-play-state:paused; }
+.tm-status:hover .tm-status-inner{ animation-play-state:paused; }
+.tm-status:focus-within .tm-status-inner{ animation-play-state:paused; }
 
-        /* Speed ramp on hover */
-        .tm-status:hover .tm-status-inner { animation-duration: var(--tm-marquee-fast); }
 
         .tm-status-item {
           appearance: none;
