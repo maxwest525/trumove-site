@@ -48,25 +48,45 @@ export default function SiteShell({ children }) {
   
       </header>
 
-      {/* STATUS STRIP */}
-      <div className="tm-status-strip" role="status" aria-label="Trust status">
-        <div className="tm-status-inner">
-          <div className="tm-status-item">
-            <span className="tm-status-dot" />
-            <span className="tm-status-text">FMCSA & DOT COMPLIANT</span>
-          </div>
+  {/* TRUST STRIP */}
+<div className="tm-trust-strip">
+  <div className="tm-trust-inner">
+    <div className="tm-trust-item">
+      <span className="tm-trust-badge" />
+      <span className="tm-trust-text">FMCSA & DOT Compliant</span>
+    </div>
 
-          <div className="tm-status-item">
-            <span className="tm-status-dot" />
-            <span className="tm-status-text">PLACEHOLDER 2</span>
-          </div>
+    <div className="tm-trust-item">
+      <span className="tm-trust-badge" />
+      <span className="tm-trust-text">Bonded & Insured</span>
+    </div>
 
-          <div className="tm-status-item">
-            <span className="tm-status-dot" />
-            <span className="tm-status-text">PLACEHOLDER 3</span>
-          </div>
-        </div>
-      </div>
+    <div className="tm-trust-item">
+      <span className="tm-trust-badge" />
+      <span className="tm-trust-text">Verified Carrier Network</span>
+    </div>
+  </div>
+</div>
+
+{/* STATUS STRIP */}
+<div className="tm-status-strip">
+  <div className="tm-status-inner">
+    <div className="tm-status-item">
+      <span className="tm-status-dot" />
+      <span className="tm-status-text">Live Quotes Available</span>
+    </div>
+
+    <div className="tm-status-item">
+      <span className="tm-status-dot" />
+      <span className="tm-status-text">Real Humans, No Spam Calls</span>
+    </div>
+
+    <div className="tm-status-item">
+      <span className="tm-status-dot" />
+      <span className="tm-status-text">Avg Response Under 1 Business Day</span>
+    </div>
+  </div>
+</div>
 
       <main className="tm-main">{children}</main>
 
@@ -431,6 +451,86 @@ export default function SiteShell({ children }) {
     grid-column:2;
     justify-content:flex-end;
   }
+.tm-trust-strip{
+  background:#0f172a;
+  color:#ffffff;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.tm-trust-inner{
+  max-width:1280px;
+  margin:0 auto;
+  padding:10px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+  flex-wrap:wrap;
+}
+.tm-trust-item{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:6px 12px;
+  border-radius:8px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.12);
+}
+.tm-trust-badge{
+  width:16px;
+  height:16px;
+  border-radius:4px;
+  background:
+    linear-gradient(180deg,#39ff14,#1fae0b);
+  box-shadow:0 0 0 3px rgba(57,255,20,0.25);
+}
+.tm-trust-text{
+  font-size:12px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  font-weight:650;
+  white-space:nowrap;
+}
+.tm-status-strip{
+  border-bottom:1px solid rgba(15,23,42,0.10);
+  background:linear-gradient(180deg,#ffffff,#f9fafb);
+}
+.tm-status-inner{
+  max-width:1280px;
+  margin:0 auto;
+  padding:8px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:16px;
+  flex-wrap:wrap;
+}
+.tm-status-item{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:6px 10px;
+  border-radius:10px;
+  background:#ffffff;
+  border:1px solid rgba(15,23,42,0.12);
+  box-shadow:0 6px 18px rgba(15,23,42,0.06);
+}
+.tm-status-dot{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:#39ff14;
+  box-shadow:0 0 0 3px rgba(57,255,20,0.20);
+}
+.tm-status-text{
+  font-size:11.5px;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  font-weight:600;
+  color:#0f172a;
+  white-space:nowrap;
+}
+
+  
 }
 
 `}</style>
