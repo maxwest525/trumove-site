@@ -12,91 +12,64 @@ const HTML = `
       <!-- HERO -->
       <section class="tru-hero">
         <div class="tru-hero-grid">
-          <div>
-            <div class="tru-hero-pill">
-              <span class="tru-hero-pill-dot"></span>
-              <span>Smarter moving, powered by TruMove</span>
-            </div>
-
-            <h1 class="tru-hero-title">
-              Move day control, without the stress.
-            </h1>
-
-            <p class="tru-hero-sub">
-              TruMove turns a few simple questions into instant pricing, vetted movers, and live support. No spam calls, no surprise add ons, no getting bounced around.
-            </p>
-
-            <div class="tru-hero-bullets">
-              <div class="tru-hero-badge">
-                <span class="tru-hero-badge-dot"></span>
-                <span>Instant AI quotes</span>
-              </div>
-              <div class="tru-hero-badge">
-                <span class="tru-hero-badge-dot"></span>
-                <span>Vetted mover network</span>
-              </div>
-              <div class="tru-hero-badge">
-                <span class="tru-hero-badge-dot"></span>
-                <span>Real time updates</span>
-              </div>
-            </div>
-
-            <div class="tru-hero-actions">
-              <button class="tru-hero-btn-primary" id="truHeroStartQuote">
-                Start my quote
-              </button>
-
-                            <button class="tru-hero-btn-secondary" type="button">
-                <span>See how TruMove works</span>
-                <span class="chevron">→</span>
-              </button>
-            </div>
-
-
-            <div class="tru-hero-note">
-              No hidden fees, no endless phone calls, just one clean dashboard for your whole move.
-            </div>
-          </div>
-
-<div class="tru-hero-visual">
-  <div class="tru-hero-visual-tag">
-    <span class="tru-hero-visual-tag-dot"></span>
-    <span>Start Your Move</span>
+<div>
+  <div class="tru-hero-pill">
+    <span class="tru-hero-pill-dot"></span>
+    <span>Smarter moving, powered by TruMove</span>
   </div>
 
-  <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
-    <div class="tru-hero-form-title">Get your quote in seconds</div>
-    <div class="tru-hero-form-sub">
-      Enter a few details, we’ll route you to your personalized estimate.
+  <h1 class="tru-hero-title">
+    Move day control, without the stress.
+  </h1>
+
+  <p class="tru-hero-sub">
+    TruMove turns a few simple questions into instant pricing, vetted movers, and live support. No spam calls, no surprise add ons, no getting bounced around.
+  </p>
+
+  <div class="tru-hero-bullets">
+    <div class="tru-hero-badge">
+      <span class="tru-hero-badge-dot"></span>
+      <span>Instant AI quotes</span>
     </div>
+    <div class="tru-hero-badge">
+      <span class="tru-hero-badge-dot"></span>
+      <span>Vetted mover network</span>
+    </div>
+    <div class="tru-hero-badge">
+      <span class="tru-hero-badge-dot"></span>
+      <span>Real time updates</span>
+    </div>
+  </div>
 
-    <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
-      <div class="tru-hero-form-row">
-        <input type="text" id="miniName" class="tru-hero-input" placeholder="Your name" required>
-      </div>
+  <!-- HERO START BOX (form moved up here) -->
+  <div class="tru-hero-startbox" id="truHeroStartBox">
+    <div class="tru-hero-startbox-title">Start Your Move</div>
+    <div class="tru-hero-startbox-sub">Enter a few quick details, then we’ll generate your personalized estimate.</div>
 
-      <div class="tru-hero-form-row two">
-        <input type="text" id="miniZip" class="tru-hero-input" placeholder="ZIP code" required>
-        <select id="miniSize" class="tru-hero-select" required>
-          <option value="" disabled selected>Move size</option>
-          <option value="Studio">Studio</option>
-          <option value="1 Bedroom">1 Bedroom</option>
-          <option value="2 Bedroom">2 Bedroom</option>
-          <option value="3 Bedroom">3 Bedroom</option>
-          <option value="4+ Bedroom">4+ Bedroom</option>
-        </select>
-      </div>
+    <form class="tru-hero-startbox-form" id="truMiniForm" onsubmit="return false;">
+      <input type="text" id="miniName" class="tru-mini-input" placeholder="Your name" required>
+      <input type="text" id="miniZip" class="tru-mini-input" placeholder="Your ZIP code" required>
 
-      <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
+      <select id="miniSize" class="tru-mini-select" required>
+        <option value="" disabled selected>Move size</option>
+        <option value="Studio">Studio</option>
+        <option value="1 Bedroom">1 Bedroom</option>
+        <option value="2 Bedroom">2 Bedroom</option>
+        <option value="3 Bedroom">3 Bedroom</option>
+        <option value="4+ Bedroom">4+ Bedroom</option>
+      </select>
+
+      <button class="tru-hero-btn-primary" id="truMiniSubmit" type="button">
         Get My Quote →
       </button>
-
-      <div class="tru-hero-form-foot">
-        No spam calls, no lead reselling.
-      </div>
     </form>
+
+    <div class="tru-hero-note">
+      No spam calls, no bait pricing, one clean dashboard for your whole move.
+    </div>
   </div>
 </div>
+
 
       </section>
 
