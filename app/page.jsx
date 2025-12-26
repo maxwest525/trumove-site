@@ -58,68 +58,49 @@ const HTML = `
             </div>
           </div>
 
-          <div class="tru-hero-visual">
-            <div class="tru-hero-visual-tag">
-              <span class="tru-hero-visual-tag-dot"></span>
-              <span>Preview from your dashboard</span>
-            </div>
+<div class="tru-hero-visual">
+  <div class="tru-hero-visual-tag">
+    <span class="tru-hero-visual-tag-dot"></span>
+    <span>Start Your Move</span>
+  </div>
 
-            <div class="tru-hero-visual-body">
-              <div class="tru-hero-mini-header">
-                <div class="tru-hero-mini-title">
-                  TruMove Smart Quote
-                </div>
-                <div class="tru-hero-mini-status">
-                  <span class="tru-hero-mini-status-dot"></span>
-                  <span>Pre approved movers found</span>
-                </div>
-              </div>
+  <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
+    <div class="tru-hero-form-title">Get your quote in seconds</div>
+    <div class="tru-hero-form-sub">
+      Enter a few details, we’ll route you to your personalized estimate.
+    </div>
 
-              <div class="tru-hero-mini-row">
-                <span class="tru-hero-mini-label">Move size</span>
-                <span class="tru-hero-mini-value">2 Bedroom, local</span>
-              </div>
+    <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
+      <div class="tru-hero-form-row">
+        <input type="text" id="miniName" class="tru-hero-input" placeholder="Your name" required>
+      </div>
 
-              <div class="tru-hero-mini-row">
-                <span class="tru-hero-mini-label">Estimated range</span>
-                <span class="tru-hero-mini-value">$930 - $1,180</span>
-              </div>
+      <div class="tru-hero-form-row two">
+        <input type="text" id="miniZip" class="tru-hero-input" placeholder="ZIP code" required>
+        <select id="miniSize" class="tru-hero-select" required>
+          <option value="" disabled selected>Move size</option>
+          <option value="Studio">Studio</option>
+          <option value="1 Bedroom">1 Bedroom</option>
+          <option value="2 Bedroom">2 Bedroom</option>
+          <option value="3 Bedroom">3 Bedroom</option>
+          <option value="4+ Bedroom">4+ Bedroom</option>
+        </select>
+      </div>
 
-              <div class="tru-hero-mini-row">
-                <span class="tru-hero-mini-label">Recommended crew</span>
-                <span class="tru-hero-mini-value">3 movers, 1 truck</span>
-              </div>
+      <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
+        Get My Quote →
+      </button>
 
-              <div class="tru-hero-mini-bar">
-                <div class="tru-hero-mini-bar-fill"></div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="tru-hero-form-foot">
+        No spam calls, no lead reselling.
+      </div>
+    </form>
+  </div>
+</div>
+
       </section>
 
-      <!-- QUICK MINI QUOTE FORM -->
-      <section class="tru-mini-wrap" id="truMiniSection">
-        <div class="tru-mini-card">
-          <div class="tru-mini-title">Start Your Move</div>
-          <div class="tru-mini-sub">Enter a few quick details and we will take you to your personalized quote.</div>
 
-          <form class="tru-mini-form" id="truMiniForm" onsubmit="return false;">
-            <input type="text" id="miniName" class="tru-mini-input" placeholder="Your name" autocomplete="name" required>
-            <input type="text" id="miniZip" class="tru-mini-input" placeholder="Your ZIP code" inputmode="numeric" maxlength="10" required>
-            <select id="miniSize" class="tru-mini-select" required>
-              <option value="" disabled selected>Move size</option>
-              <option value="Studio">Studio</option>
-              <option value="1 Bedroom">1 Bedroom</option>
-              <option value="2 Bedroom">2 Bedroom</option>
-              <option value="3 Bedroom">3 Bedroom</option>
-              <option value="4+ Bedroom">4+ Bedroom</option>
-            </select>
-          </form>
-
-          <button class="tru-mini-btn" id="truMiniSubmit">Get My Quote →</button>
-        </div>
-      </section>
 
       <!-- FEATURES SECTION -->
       <section class="tru-simple-wrap">
