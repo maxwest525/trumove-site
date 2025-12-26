@@ -11,94 +11,94 @@ const NAV = [
   { href: "/about", label: "About" },
 ];
 
-
 export default function SiteShell({ children }) {
   const path = usePathname();
 
   return (
     <div className="tm-shell">
-<header className="tm-header">
-  <div className="tm-header-inner">
-<Link href="/" className="tm-logo" aria-label="TruMove Home">
-  <img className="tm-logo-img" src="/logo.png" alt="TruMove" />
-</Link>
+      {/* HEADER STACK (sticky) */}
+      <header className="tm-header">
+        {/* Top row: logo + nav + CTAs */}
+        <div className="tm-header-inner">
+          <Link href="/" className="tm-logo" aria-label="TruMove Home">
+            <img className="tm-logo-img" src="/logo.png" alt="TruMove" />
+          </Link>
 
-<nav className="tm-nav" aria-label="Primary">
-  {NAV.map((item) => (
-    <Link
-      key={item.href}
-      href={item.href}
-      className={`tm-nav-link ${path === item.href ? "active" : ""}`}
-    >
-      {item.label}
-    </Link>
-  ))}
-</nav>
+          <nav className="tm-nav" aria-label="Primary">
+            {NAV.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`tm-nav-link ${path === item.href ? "active" : ""}`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </nav>
 
-    <div className="tm-header-actions">
-      <a className="tm-call" href="tel:+10000000000">
-        Call Us Now
-      </a>
+          <div className="tm-header-actions">
+            <a className="tm-call" href="tel:+10000000000">
+              Call Us Now
+            </a>
+            <Link className="tm-cta" href="/book">
+              Book a Consult
+            </Link>
+          </div>
+        </div>
 
-      <Link className="tm-cta" href="/book-a-consult">
-        Book a Consult
-      </Link>
-    </div>
-  </div>
-  
-</header>
+        {/* Trust strip (dark, official) */}
+        <div className="tm-trust">
+          <div className="tm-trust-inner">
+            <div className="tm-trust-left" aria-label="Compliance badges">
+              <span className="tm-trust-item">
+                <span className="tm-trust-mark" aria-hidden="true" />
+                USDOT compliant
+              </span>
+              <span className="tm-trust-sep" aria-hidden="true">•</span>
 
-{/* TRUST STRIP (dark, official) */}
-<section className="tm-trust" aria-label="Trust">
-  <div className="tm-trust-inner">
-    <div className="tm-trust-left">
-      <span className="tm-trust-badge">
-        <span className="tm-i tm-i-shield" aria-hidden="true" />
-        FMCSA &amp; DOT COMPLIANT
-      </span>
-      <span className="tm-trust-sep" aria-hidden="true" />
-      <span className="tm-trust-badge">
-        <span className="tm-i tm-i-check" aria-hidden="true" />
-        BONDED &amp; INSURED
-      </span>
-      <span className="tm-trust-sep" aria-hidden="true" />
-      <span className="tm-trust-badge">
-        <span className="tm-i tm-i-star" aria-hidden="true" />
-        PLACEHOLDER
-      </span>
-    </div>
+              <span className="tm-trust-item">
+                <span className="tm-trust-mark" aria-hidden="true" />
+                Bonded and insured
+              </span>
+              <span className="tm-trust-sep" aria-hidden="true">•</span>
 
-    <div className="tm-trust-right">
-      <span className="tm-trust-mini">Enterprise-grade quoting</span>
-      <span className="tm-trust-dot" aria-hidden="true" />
-      <span className="tm-trust-mini">Vetted carrier network</span>
-    </div>
-  </div>
-</section>
+              <span className="tm-trust-item">
+                <span className="tm-trust-mark" aria-hidden="true" />
+                FMCSA authorized motor carriers
+              </span>
+              <span className="tm-trust-sep" aria-hidden="true">•</span>
 
-{/* STATUS STRIP (light, product status) */}
-<section className="tm-status" aria-label="Status">
-  <div className="tm-status-inner">
-    <div className="tm-status-item">
-      <span className="tm-status-led" aria-hidden="true" />
-      Live quote ranges
-    </div>
-    <div className="tm-status-item">
-      <span className="tm-status-led" aria-hidden="true" />
-      No spam calls
-    </div>
-    <div className="tm-status-item">
-      <span className="tm-status-led" aria-hidden="true" />
-      PLACEHOLDER
-    </div>
-  </div>
-</section>
+              <span className="tm-trust-item">
+                <span className="tm-trust-mark" aria-hidden="true" />
+                Licensed interstate moving broker
+              </span>
+            </div>
 
-<main className="tm-main">{children}</main>
+            <div className="tm-trust-right" aria-label="Positioning">
+              <span className="tm-trust-mini">Enterprise-grade quoting</span>
+              <span className="tm-trust-sep" aria-hidden="true">•</span>
+              <span className="tm-trust-mini">Vetted carrier network</span>
+            </div>
+          </div>
+        </div>
 
+        {/* Status strip (light, feature rail) */}
+        <div className="tm-status" aria-label="Platform capabilities">
+          <div className="tm-status-inner">
+            <span className="tm-status-item">Instant AI quotes</span>
+            <span className="tm-status-item">Vetted mover network</span>
+            <span className="tm-status-item">Real time updates</span>
+            <span className="tm-status-item">Virtual video consults</span>
+            <span className="tm-status-item">Live review and claims monitoring</span>
+            <span className="tm-status-item">Load tracking</span>
+          </div>
+        </div>
+      </header>
 
+      {/* MAIN */}
+      <main className="tm-main">{children}</main>
 
-
+      {/* FOOTER */}
       <footer className="tm-footer">
         <div className="tm-footer-inner">
           <div className="tm-footer-left">
@@ -109,372 +109,320 @@ export default function SiteShell({ children }) {
           </div>
 
           <div className="tm-footer-right">
-            <Link className="tm-footer-link" href="/vetting">
-  Carrier Standards
-</Link>
-<Link className="tm-footer-link" href="/book">
-  Book a consult
-</Link>
-<Link className="tm-footer-link" href="/privacy">
-  Privacy
-</Link>
-<Link className="tm-footer-link" href="/terms">
-  Terms
-</Link>
-
+            <Link className="tm-footer-link" href="/vetting">Carrier Standards</Link>
+            <Link className="tm-footer-link" href="/book">Book a Consult</Link>
+            <Link className="tm-footer-link" href="/privacy">Privacy</Link>
+            <Link className="tm-footer-link" href="/terms">Terms</Link>
           </div>
         </div>
       </footer>
 
-<style jsx global>{`
-  :root{
-    --tm-green:#39ff14;
-    --tm-ink:#0b1220;
-    --tm-text:#0f172a;
-    --tm-muted:rgba(15,23,42,0.70);
-    --tm-line:rgba(15,23,42,0.10);
-  }
+      <style jsx global>{`
+        :root{
+          --tm-green:#39ff14;
+          --tm-ink:#0f172a;
+          --tm-line:rgba(15,23,42,0.10);
+          --tm-soft:rgba(15,23,42,0.04);
+          --tm-max:1320px;
+        }
 
-  .tm-shell{
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    background:#fff;
-    color:var(--tm-text);
-    font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
-  }
+        .tm-shell{
+          min-height:100vh;
+          display:flex;
+          flex-direction:column;
+          background:#fff;
+          color:var(--tm-ink);
+          font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+        }
 
-  /* HEADER */
-  .tm-header{
-    position:sticky;
-    top:0;
-    z-index:60;
-    background:rgba(255,255,255,0.86);
-    backdrop-filter:blur(14px);
-    border-bottom:1px solid rgba(15,23,42,0.08);
-  }
+        /* HEADER STACK */
+        .tm-header{
+          position:sticky;
+          top:0;
+          z-index:60;
+          background:rgba(255,255,255,0.92);
+          backdrop-filter:blur(10px);
+          border-bottom:1px solid var(--tm-line);
+        }
 
-  .tm-header-inner{
-    max-width:1280px;
-    margin:0 auto;
-    padding:14px 22px;
-    display:grid;
-    grid-template-columns:auto 1fr auto;
-    align-items:center;
-    column-gap:22px;
-  }
+        .tm-header-inner{
+          max-width:var(--tm-max);
+          margin:0 auto;
+          padding:14px 22px;
+          display:grid;
+          grid-template-columns:auto 1fr auto;
+          align-items:center;
+          column-gap:22px;
+        }
 
-  .tm-logo{
-    display:flex;
-    align-items:center;
-    flex-shrink:0;
-    text-decoration:none;
-  }
+        .tm-logo{display:flex;align-items:center;flex-shrink:0;text-decoration:none}
+        .tm-logo-img{
+          height:62px;
+          width:auto;
+          display:block;
+          max-width:260px;
+        }
 
-  .tm-logo-img{
-    height:62px;
-    width:auto;
-    display:block;
-    max-width:260px;
-  }
+        /* NAV */
+        .tm-nav{
+          display:flex;
+          justify-content:center;
+          gap:20px;
+          white-space:nowrap;
+          min-width:0;
+          overflow:hidden;
+        }
 
-  /* NAV LINKS */
-  .tm-nav{
-    display:flex;
-    justify-content:center;
-    gap:18px;
-    align-items:center;
-    white-space:nowrap;
-    min-width:0;
-  }
+        .tm-nav-link{
+          position:relative;
+          text-decoration:none;
+          color:var(--tm-ink);
+          font-size:15.5px;
+          letter-spacing:0.08em;
+          font-weight:500;
+          padding:10px 4px;
+          opacity:0.86;
+          text-transform:uppercase;
+          transition:opacity .15s ease, transform .15s ease;
+          flex:0 0 auto;
+        }
+        .tm-nav-link:hover{opacity:1;transform:translateY(-1px)}
+        .tm-nav-link::after{
+          content:"";
+          position:absolute;
+          left:4px; right:4px;
+          bottom:6px;
+          height:2px;
+          border-radius:2px;
+          background:var(--tm-green);
+          transform:scaleX(0);
+          transform-origin:left;
+          transition:transform .18s ease;
+        }
+        .tm-nav-link:hover::after{transform:scaleX(1)}
+        .tm-nav-link.active{opacity:1}
+        .tm-nav-link.active::after{transform:scaleX(1)}
 
-  .tm-nav-link{
-    position:relative;
-    text-decoration:none;
-    color:rgba(15,23,42,0.86);
-    font-size:15px;
-    letter-spacing:0.06em;
-    font-weight:500;
-    padding:10px 4px;
-    text-transform:uppercase;
-    transition:color .15s ease, transform .15s ease;
-  }
+        /* CTAs */
+        .tm-header-actions{
+          display:flex;
+          align-items:center;
+          gap:10px;
+          white-space:nowrap;
+          flex-shrink:0;
+        }
 
-  .tm-nav-link:hover{
-    color:rgba(15,23,42,1);
-    transform:translateY(-1px);
-  }
+        .tm-call,
+        .tm-cta{
+          display:inline-flex;
+          align-items:center;
+          gap:10px;
+          height:40px;
+          padding:0 16px;
+          border-radius:999px;
+          text-decoration:none;
+          white-space:nowrap;
 
-  .tm-nav-link::after{
-    content:"";
-    position:absolute;
-    left:4px;
-    right:4px;
-    bottom:6px;
-    height:2px;
-    border-radius:2px;
-    background:var(--tm-green);
-    transform:scaleX(0);
-    transform-origin:left;
-    transition:transform .18s ease;
-    opacity:0.9;
-  }
+          font-size:12.5px;
+          font-weight:600;
+          letter-spacing:0.10em;
+          text-transform:uppercase;
 
-  .tm-nav-link:hover::after{ transform:scaleX(1); }
-  .tm-nav-link.active{ color:rgba(15,23,42,1); }
-  .tm-nav-link.active::after{ transform:scaleX(1); }
+          color:var(--tm-ink);
+          border:1px solid rgba(57,255,20,0.40);
+          background:linear-gradient(180deg, rgba(57,255,20,0.18), rgba(57,255,20,0.06));
+          box-shadow:0 14px 30px rgba(15,23,42,0.10), inset 0 1px 0 rgba(255,255,255,0.7);
+          transition:transform .15s ease, box-shadow .15s ease, background .15s ease, border-color .15s ease;
+        }
 
-  /* ACTIONS (keep, but not cartoonish) */
-  .tm-header-actions{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    white-space:nowrap;
-    flex-shrink:0;
-  }
+        .tm-call::before,
+        .tm-cta::before{
+          content:"";
+          width:10px;
+          height:10px;
+          border-radius:999px;
+          background:
+            radial-gradient(circle at 30% 30%, #ffffff 0%, rgba(255,255,255,0) 40%),
+            radial-gradient(circle at center, var(--tm-green) 0%, var(--tm-green) 62%, rgba(57,255,20,0.18) 100%);
+          box-shadow:0 0 0 4px rgba(57,255,20,0.14);
+          flex:0 0 auto;
+        }
 
-  .tm-call,
-  .tm-cta{
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    height:40px;
-    padding:0 14px;
-    border-radius:999px;
-    text-decoration:none;
-    white-space:nowrap;
-    font-size:12.5px;
-    font-weight:600;
-    letter-spacing:0.10em;
-    text-transform:uppercase;
-    color:rgba(15,23,42,0.92);
-    border:1px solid rgba(15,23,42,0.14);
-    background:rgba(255,255,255,0.85);
-    box-shadow:0 10px 22px rgba(15,23,42,0.08);
-    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-  }
+        .tm-call:hover,
+        .tm-cta:hover{
+          transform:translateY(-1px);
+          border-color:rgba(57,255,20,0.55);
+          box-shadow:0 20px 44px rgba(15,23,42,0.14), inset 0 1px 0 rgba(255,255,255,0.8);
+          background:linear-gradient(180deg, rgba(255,255,255,0.94), rgba(57,255,20,0.08));
+        }
 
-  .tm-call:hover,
-  .tm-cta:hover{
-    transform:translateY(-1px);
-    box-shadow:0 18px 38px rgba(15,23,42,0.12);
-    border-color:rgba(15,23,42,0.20);
-  }
+        /* TRUST STRIP (official) */
+        .tm-trust{
+          border-top:1px solid rgba(15,23,42,0.06);
+          border-bottom:1px solid rgba(255,255,255,0.06);
+          background:linear-gradient(180deg, #0f172a, #0b1220);
+        }
 
-  /* Trust strip (dark, official) */
-  .tm-trust{
-    position:relative;
-    z-index:55;
-    background:linear-gradient(180deg, rgba(11,18,32,0.96), rgba(11,18,32,0.92));
-    border-bottom:1px solid rgba(255,255,255,0.10);
-  }
+        .tm-trust-inner{
+          max-width:var(--tm-max);
+          margin:0 auto;
+          padding:10px 22px;
+          display:flex;
+          align-items:center;
+          justify-content:space-between;
+          gap:14px;
+          flex-wrap:wrap;
+        }
 
-  .tm-trust-inner{
-    max-width:1280px;
-    margin:0 auto;
-    padding:10px 22px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:16px;
-    flex-wrap:wrap;
-  }
+        .tm-trust-left{
+          display:flex;
+          align-items:center;
+          gap:12px;
+          flex-wrap:wrap;
+          min-width:0;
+        }
 
-  .tm-trust-left{
-    display:flex;
-    align-items:center;
-    gap:14px;
-    flex-wrap:wrap;
-    min-width:0;
-  }
+        .tm-trust-item{
+          display:inline-flex;
+          align-items:center;
+          gap:10px;
+          color:rgba(255,255,255,0.92);
+          font-size:12px;
+          letter-spacing:0.12em;
+          text-transform:uppercase;
+          font-weight:650;
+          white-space:nowrap;
+        }
 
-  .tm-trust-badge{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    font-size:12px;
-    letter-spacing:0.12em;
-    text-transform:uppercase;
-    font-weight:650;
-    color:rgba(255,255,255,0.90);
-  }
+        .tm-trust-mark{
+          width:18px;
+          height:18px;
+          border-radius:6px;
+          border:1px solid rgba(57,255,20,0.32);
+          background:
+            radial-gradient(circle at 35% 30%, rgba(255,255,255,0.22), rgba(255,255,255,0) 55%),
+            linear-gradient(180deg, rgba(57,255,20,0.18), rgba(57,255,20,0.06));
+          box-shadow:0 10px 22px rgba(0,0,0,0.30), inset 0 1px 0 rgba(255,255,255,0.10);
+          position:relative;
+          flex:0 0 auto;
+        }
 
-  .tm-trust-sep{
-    width:1px;
-    height:14px;
-    background:rgba(255,255,255,0.18);
-  }
+        .tm-trust-mark::after{
+          content:"";
+          position:absolute;
+          left:6px;
+          top:4px;
+          width:5px;
+          height:9px;
+          border-right:2px solid var(--tm-green);
+          border-bottom:2px solid var(--tm-green);
+          transform:rotate(40deg);
+        }
 
-  .tm-trust-right{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    white-space:nowrap;
-    color:rgba(255,255,255,0.72);
-    font-size:12px;
-    letter-spacing:0.06em;
-    text-transform:uppercase;
-    font-weight:600;
-  }
+        .tm-trust-right{
+          display:flex;
+          align-items:center;
+          gap:10px;
+          color:rgba(255,255,255,0.70);
+          font-size:12px;
+          letter-spacing:0.06em;
+          text-transform:uppercase;
+          white-space:nowrap;
+        }
 
-  .tm-trust-mini{ opacity:0.95; }
-  .tm-trust-dot{
-    width:4px;
-    height:4px;
-    border-radius:99px;
-    background:rgba(255,255,255,0.35);
-  }
+        .tm-trust-mini{font-weight:650}
+        .tm-trust-sep{opacity:0.45}
 
-  /* Minimal icons (no emoji, no cheesy dots) */
-  .tm-i{
-    width:14px;
-    height:14px;
-    display:inline-block;
-    position:relative;
-    flex:0 0 auto;
-  }
+        /* STATUS STRIP */
+        .tm-status{
+          border-bottom:1px solid var(--tm-line);
+          background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,1));
+        }
 
-  .tm-i-check::before{
-    content:"";
-    position:absolute;
-    left:3px;
-    top:6px;
-    width:4px;
-    height:2px;
-    border-left:2px solid var(--tm-green);
-    border-bottom:2px solid var(--tm-green);
-    transform:rotate(-45deg);
-    box-shadow:0 0 0 3px rgba(57,255,20,0.10);
-  }
+        .tm-status-inner{
+          max-width:var(--tm-max);
+          margin:0 auto;
+          padding:12px 22px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          gap:14px;
+          flex-wrap:wrap;
+        }
 
-  .tm-i-shield::before{
-    content:"";
-    position:absolute;
-    inset:1px 2px 2px 2px;
-    border:1.6px solid rgba(57,255,20,0.85);
-    border-bottom-left-radius:10px;
-    border-bottom-right-radius:10px;
-    border-top-left-radius:6px;
-    border-top-right-radius:6px;
-    clip-path:polygon(50% 0%, 100% 15%, 100% 55%, 50% 100%, 0% 55%, 0% 15%);
-    box-shadow:0 0 0 3px rgba(57,255,20,0.08);
-  }
+        .tm-status-item{
+          display:inline-flex;
+          align-items:center;
+          padding:8px 12px;
+          border-radius:999px;
+          background:rgba(15,23,42,0.03);
+          border:1px solid rgba(15,23,42,0.08);
+          color:rgba(15,23,42,0.88);
+          font-size:12px;
+          letter-spacing:0.08em;
+          text-transform:uppercase;
+          font-weight:600;
+          white-space:nowrap;
+        }
 
-  .tm-i-star::before{
-    content:"";
-    position:absolute;
-    left:6px;
-    top:1px;
-    width:2px;
-    height:12px;
-    background:rgba(255,255,255,0.75);
-    transform:rotate(20deg);
-    opacity:0.55;
-  }
+        .tm-main{flex:1;width:100%}
 
-  /* Status strip (light, product status) */
-  .tm-status{
-    background:linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92));
-    border-bottom:1px solid rgba(15,23,42,0.08);
-  }
+        /* FOOTER */
+        .tm-footer{
+          border-top:1px solid var(--tm-line);
+          background:#fff;
+        }
+        .tm-footer-inner{
+          max-width:var(--tm-max);
+          margin:0 auto;
+          padding:24px 22px;
+          display:flex;
+          align-items:flex-start;
+          justify-content:space-between;
+          gap:16px;
+          flex-wrap:wrap;
+        }
+        .tm-footer-left{display:flex;flex-direction:column;gap:6px}
+        .tm-footer-brand{font-weight:800;color:#000}
+        .tm-footer-sub{color:#6b7280;font-size:13px;max-width:420px}
+        .tm-footer-right{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
+        .tm-footer-link{
+          text-decoration:none;
+          color:#111827;
+          font-size:13px;
+          padding:8px 10px;
+          border-radius:10px;
+        }
+        .tm-footer-link:hover{background:#f3f4f6}
 
-  .tm-status-inner{
-    max-width:1280px;
-    margin:0 auto;
-    padding:10px 22px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:18px;
-    flex-wrap:wrap;
-  }
+        /* RESPONSIVE: prevents overlap and wrapping */
+        @media (max-width: 1020px){
+          .tm-header-inner{
+            grid-template-columns:auto 1fr;
+            grid-template-rows:auto auto;
+            row-gap:10px;
+          }
+          .tm-header-actions{
+            justify-content:flex-end;
+          }
+          .tm-nav{
+            grid-column:1 / -1;
+            justify-content:flex-start;
+            overflow-x:auto;
+            -webkit-overflow-scrolling:touch;
+            padding-bottom:6px;
+            scrollbar-width:none;
+          }
+          .tm-nav::-webkit-scrollbar{display:none}
+          .tm-nav-link{font-size:14.5px}
+        }
 
-  .tm-status-item{
-    display:inline-flex;
-    align-items:center;
-    gap:10px;
-    font-size:12px;
-    letter-spacing:0.10em;
-    text-transform:uppercase;
-    font-weight:650;
-    color:rgba(15,23,42,0.78);
-    padding:6px 0;
-  }
-
-  .tm-status-led{
-    width:8px;
-    height:8px;
-    border-radius:999px;
-    background:var(--tm-green);
-    box-shadow:0 0 0 4px rgba(57,255,20,0.12);
-  }
-
-  /* MAIN + FOOTER */
-  .tm-main{ flex:1; width:100%; }
-
-  .tm-footer{
-    border-top:1px solid rgba(15,23,42,0.10);
-    background:#fff;
-  }
-
-  .tm-footer-inner{
-    max-width:1280px;
-    margin:0 auto;
-    padding:26px 22px;
-    display:flex;
-    align-items:flex-start;
-    justify-content:space-between;
-    gap:16px;
-    flex-wrap:wrap;
-  }
-
-  .tm-footer-brand{ font-weight:800; color:#000; }
-  .tm-footer-sub{ margin-top:6px; color:rgba(15,23,42,0.60); font-size:13px; max-width:420px; }
-  .tm-footer-right{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
-
-  .tm-footer-link{
-    text-decoration:none;
-    color:rgba(15,23,42,0.82);
-    font-size:13px;
-    padding:8px 10px;
-    border-radius:10px;
-  }
-
-  .tm-footer-link:hover{ background:rgba(15,23,42,0.04); }
-
-  /* RESPONSIVE: remove overlap without making it feel cramped */
-  @media (max-width: 1040px){
-    .tm-header-inner{
-      grid-template-columns:auto 1fr;
-      grid-template-rows:auto auto;
-      row-gap:10px;
-    }
-
-    .tm-header-actions{
-      grid-column:2;
-      justify-content:flex-end;
-    }
-
-    .tm-nav{
-      grid-column:1 / -1;
-      justify-content:flex-start;
-      overflow-x:auto;
-      -webkit-overflow-scrolling:touch;
-      padding-bottom:6px;
-    }
-
-    .tm-nav::-webkit-scrollbar{ display:none; }
-  }
-
-  @media (max-width: 620px){
-    .tm-logo-img{ height:54px; }
-    .tm-trust-right{ display:none; }
-  }
-`}</style>
-
-
-
-
+        @media (max-width: 520px){
+          .tm-logo-img{height:54px}
+          .tm-call,.tm-cta{height:38px;padding:0 12px}
+          .tm-trust-right{display:none}
+        }
+      `}</style>
     </div>
   );
 }
