@@ -482,7 +482,7 @@ export default function SiteShell({ children }) {
         .tm-footer-link:hover{background:#f3f4f6}
 
         /* RESPONSIVE: prevent overlap */
-        @media (max-width: 1120px){
+        @media (max-width: 1280px){
           .tm-header-inner{
             grid-template-columns:auto 1fr;
             grid-template-rows:auto auto;
