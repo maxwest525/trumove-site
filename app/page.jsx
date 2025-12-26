@@ -1,111 +1,97 @@
 "use client";
 
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
-
-const HTML = `
-<section class="tm-hero">
-  <div class="tm-hero-inner">
-    <div class="tm-hero-grid">
-
-      <!-- LEFT -->
-      <div class="tm-hero-copy">
-        <div class="tm-hero-kicker">
-          AI-assisted quoting, regulated move intelligence
-        </div>
-
-        <h1 class="tm-hero-title">
-          Get a real moving price
-          <br />
-          before you commit.
-        </h1>
-
-        <p class="tm-hero-sub">
-          TruMove generates accurate long-distance price ranges using
-          federally regulated move data, route intelligence, and verified
-          carrier performance. No bait pricing, no guesswork.
-        </p>
-
-        <ul class="tm-hero-points">
-          <li>USDOT and FMCSA regulated move signals</li>
-          <li>Vetted interstate carrier network</li>
-          <li>Optional live video inventory review</li>
-          <li>One transparent workflow from quote to move day</li>
-        </ul>
-      </div>
-
-      <!-- RIGHT -->
-      <div class="tm-hero-form">
-        <div class="tm-form-card">
-          <div class="tm-form-head">
-            <div class="tm-form-title">Start your quote</div>
-            <div class="tm-form-sub">
-              Enter a few details to receive a realistic price range.
-            </div>
-          </div>
-
-          <form id="heroQuoteForm" class="tm-form">
-            <label class="tm-field">
-              <span>Full name</span>
-              <input type="text" id="name" placeholder="Your name" />
-            </label>
-
-            <label class="tm-field">
-              <span>ZIP code</span>
-              <input type="text" id="zip" placeholder="ZIP code" />
-            </label>
-
-            <label class="tm-field">
-              <span>Move size</span>
-              <select id="size">
-                <option value="">Select size</option>
-                <option>Studio or 1 bedroom</option>
-                <option>2 bedrooms</option>
-                <option>3 bedrooms</option>
-                <option>4 bedrooms or more</option>
-              </select>
-            </label>
-
-            <button type="submit" class="tm-form-btn">
-              Get my quote
-            </button>
-
-            <div class="tm-form-foot">
-              No spam calls. No obligation. Review details before confirming.
-            </div>
-          </form>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-`;
+import { useEffect } from "react";
 
 export default function HomePage() {
   const router = useRouter();
 
   useEffect(() => {
-    const form = document.getElementById("heroQuoteForm");
+    const form = document.getElementById("tm-hero-form");
+    if (!form) return;
 
     const onSubmit = (e) => {
       e.preventDefault();
-
-      const name = document.getElementById("name")?.value.trim();
-      const zip = document.getElementById("zip")?.value.trim();
-      const size = document.getElementById("size")?.value;
-
-      if (!name || !zip || !size) {
-        alert("Please complete all fields to continue.");
-        return;
-      }
-
       router.push("/online-estimate");
     };
 
-    form?.addEventListener("submit", onSubmit);
-    return () => form?.removeEventListener("submit", onSubmit);
+    form.addEventListener("submit", onSubmit);
+    return () => form.removeEventListener("submit", onSubmit);
   }, [router]);
 
-  return <main dangerouslySetInnerHTML={{ __html: HTML }} />;
+  return (
+    <main>
+      {/* HERO */}
+      <section className="tm-hero">
+        <div className="tm-hero-inner">
+          <div className="tm-hero-grid">
+
+            {/* LEFT */}
+            <div className="tm-hero-copy">
+              <div className="tm-hero-kicker">
+                AI-assisted pricing • Regulated carrier data
+              </div>
+
+              <h1 className="tm-hero-title">
+                Long-distance moving,
+                <br />
+                priced the right way.
+              </h1>
+
+              <p className="tm-hero-sub">
+                TruMove generates realistic price ranges using federally regulated
+                move data, route intelligence, and verified carrier standards.
+                No bait pricing. No pressure.
+              </p>
+
+              {/* Integrated trust signals */}
+              <div className="tm-hero-trust">
+                <span>USDOT compliant</span>
+                <span>FMCSA-authorized carriers</span>
+                <span>Bonded and insured</span>
+                <span>No lead reselling</span>
+              </div>
+            </div>
+
+            {/* RIGHT */}
+            <div className="tm-hero-card">
+              <div className="tm-hero-card-head">
+                Start your quote
+              </div>
+
+              <form id="tm-hero-form" className="tm-hero-form">
+                <input
+                  type="text"
+                  placeholder="Full name"
+                  required
+                />
+                <input
+                  type="text"
+                  placeholder="ZIP code"
+                  inputMode="numeric"
+                  required
+                />
+                <select required>
+                  <option value="">Move size</option>
+                  <option>Studio / 1BR</option>
+                  <option>2 Bedroom</option>
+                  <option>3 Bedroom</option>
+                  <option>4 Bedroom+</option>
+                </select>
+
+                <button type="submit">
+                  Get my price range →
+                </button>
+
+                <div className="tm-hero-card-foot">
+                  Transparent pricing. Verified carriers. Human support if needed.
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </section>
+    </main>
+  );
 }
