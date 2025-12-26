@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
+
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -13,6 +15,34 @@ const NAV = [
 
 export default function SiteShell({ children }) {
   const path = usePathname();
+
+  useEffect(() => {
+  // Pause marquee while user is scrolling
+  let scrollTimer = null;
+  const onScroll = () => {
+    document.documentElement.classList.add("tm-scrolling");
+    if (scrollTimer) window.clearTimeout(scrollTimer);
+    scrollTimer = window.setTimeout(() => {
+      document.documentElement.classList.remove("tm-scrolling");
+    }, 140);
+  };
+  window.addEventListener("scroll", onScroll, { passive: true });
+
+  // Context highlight based on current route
+  const route = (path || "/").toLowerCase();
+  let key = "home";
+  if (route.startsWith("/online-estimate")) key = "online-estimate";
+  else if (route.startsWith("/vetting")) key = "vetting";
+  else if (route.startsWith("/book")) key = "book";
+  else if (route === "/" ) key = "home";
+  document.documentElement.setAttribute("data-tm-route", key);
+
+  return () => {
+    window.removeEventListener("scroll", onScroll);
+    if (scrollTimer) window.clearTimeout(scrollTimer);
+  };
+}, [path]);
+
 
   return (
     <div className="tm-shell">
@@ -47,42 +77,66 @@ export default function SiteShell({ children }) {
         </div>
 
 {/* TRUST STRIP */}
-<div className="tm-trust">
-  <div className="tm-trust-inner" aria-label="Compliance and authority badges">
-    <span className="tm-badge">
-      <span className="tm-badge-seal" aria-hidden="true" />
-      <span className="tm-badge-text">USDOT compliant</span>
-    </span>
+<div className="tm-trust" aria-label="Compliance and authority">
+  <div className="tm-trust-inner">
+    <div className="tm-trust-items">
+      <span className="tm-trust-item">
+        <span className="tm-trust-badge" aria-hidden="true" />
+        USDOT compliant
+      </span>
 
-    <span className="tm-badge">
-      <span className="tm-badge-seal" aria-hidden="true" />
-      <span className="tm-badge-text">Bonded and insured</span>
-    </span>
+      <span className="tm-trust-divider" aria-hidden="true" />
 
-    <span className="tm-badge">
-      <span className="tm-badge-seal" aria-hidden="true" />
-      <span className="tm-badge-text">FMCSA authorized motor carriers</span>
-    </span>
+      <span className="tm-trust-item">
+        <span className="tm-trust-badge" aria-hidden="true" />
+        Bonded and insured
+      </span>
 
-    <span className="tm-badge">
-      <span className="tm-badge-seal" aria-hidden="true" />
-      <span className="tm-badge-text">Licensed interstate moving broker</span>
-    </span>
+      <span className="tm-trust-divider" aria-hidden="true" />
+
+      <span className="tm-trust-item">
+        <span className="tm-trust-badge" aria-hidden="true" />
+        FMCSA authorized motor carriers
+      </span>
+
+      <span className="tm-trust-divider" aria-hidden="true" />
+
+      <span className="tm-trust-item">
+        <span className="tm-trust-badge" aria-hidden="true" />
+        Licensed interstate moving broker
+      </span>
+    </div>
   </div>
 </div>
 
 
-        {/* Status strip (light, feature rail) */}
-        <div className="tm-status" aria-label="Platform capabilities">
-          <div className="tm-status-inner">
-            <span className="tm-status-item">Instant AI quotes</span>
-            <span className="tm-status-item">Vetted mover network</span>
-            <span className="tm-status-item">Real time updates</span>
-            <span className="tm-status-item">Virtual video consults</span>
-            <span className="tm-status-item">Live review and claims monitoring</span>
-            <span className="tm-status-item">Load tracking</span>
-          </div>
-        </div>
+
+{/* STATUS STRIP */}
+<div className="tm-status" aria-label="Platform capabilities">
+  <div className="tm-status-mask tm-status-mask-left" aria-hidden="true" />
+  <div className="tm-status-mask tm-status-mask-right" aria-hidden="true" />
+
+  <div className="tm-status-track">
+    <div className="tm-status-inner">
+      <span className="tm-status-item" data-page="online-estimate">Instant AI quotes</span>
+      <span className="tm-status-item" data-page="vetting">Vetted mover network</span>
+      <span className="tm-status-item" data-page="home">Real time updates</span>
+      <span className="tm-status-item" data-page="book">Virtual video consults</span>
+      <span className="tm-status-item" data-page="home">Live review and claims monitoring</span>
+      <span className="tm-status-item" data-page="home">Load tracking</span>
+
+      {/* duplicate once for seamless loop */}
+      <span className="tm-status-item" data-page="online-estimate">Instant AI quotes</span>
+      <span className="tm-status-item" data-page="vetting">Vetted mover network</span>
+      <span className="tm-status-item" data-page="home">Real time updates</span>
+      <span className="tm-status-item" data-page="book">Virtual video consults</span>
+      <span className="tm-status-item" data-page="home">Live review and claims monitoring</span>
+      <span className="tm-status-item" data-page="home">Load tracking</span>
+    </div>
+  </div>
+</div>
+
+
       </header>
 
       {/* MAIN */}
@@ -423,6 +477,225 @@ export default function SiteShell({ children }) {
           .tm-trust-right{display:none}
           .tm-badge-text{ letter-spacing:0.10em; }
         }
+        /* STATUS STRIP – scrolling capability rail */
+.tm-status{
+  border-bottom:1px solid var(--tm-line);
+  background:linear-gradient(180deg, rgba(255,255,255,0.98), #ffffff);
+  overflow:hidden;
+}
+
+.tm-status-track{
+  max-width:100%;
+  overflow:hidden;
+}
+
+.tm-status-inner{
+  display:flex;
+  align-items:center;
+  gap:0;
+  width:max-content;
+  animation:tm-marquee 36s linear infinite;
+}
+
+.tm-status:hover .tm-status-inner{
+  animation-play-state:paused;
+}
+
+.tm-status-item{
+  display:inline-flex;
+  align-items:center;
+  padding:10px 18px;
+  color:rgba(15,23,42,0.78);
+  font-size:12px;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  font-weight:600;
+  white-space:nowrap;
+  position:relative;
+}
+
+/* vertical divider */
+.tm-status-item::after{
+  content:"";
+  position:absolute;
+  right:0;
+  top:50%;
+  transform:translateY(-50%);
+  width:1px;
+  height:16px;
+  background:rgba(15,23,42,0.14);
+}
+
+.tm-status-item:last-child::after{
+  display:none;
+}
+
+@keyframes tm-marquee{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(-50%); }
+}
+/* TRUST STRIP – official, not pills */
+.tm-trust{
+  background:linear-gradient(180deg, #0b1220, #070b14);
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+.tm-trust-inner{
+  max-width:var(--tm-max);
+  margin:0 auto;
+  padding:10px 22px;
+}
+.tm-trust-items{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  flex-wrap:wrap;
+}
+.tm-trust-item{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  color:rgba(255,255,255,0.92);
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  font-weight:650;
+  white-space:nowrap;
+}
+.tm-trust-divider{
+  width:1px;
+  height:16px;
+  background:rgba(255,255,255,0.18);
+  display:inline-block;
+}
+.tm-trust-badge{
+  width:18px;
+  height:18px;
+  border-radius:4px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.02));
+  border:1px solid rgba(255,255,255,0.18);
+  box-shadow:
+    0 10px 22px rgba(0,0,0,0.35),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+  position:relative;
+  flex:0 0 auto;
+}
+/* crisp “official” check (not cartoon) */
+.tm-trust-badge::after{
+  content:"";
+  position:absolute;
+  left:6px;
+  top:4px;
+  width:5px;
+  height:9px;
+  border-right:2px solid var(--tm-green);
+  border-bottom:2px solid var(--tm-green);
+  transform:rotate(40deg);
+  opacity:0.95;
+}
+
+/* STATUS STRIP – marquee + fade masks + page-aware highlight */
+.tm-status{
+  position:relative;
+  border-bottom:1px solid var(--tm-line);
+  background:linear-gradient(180deg, rgba(255,255,255,0.98), #ffffff);
+  overflow:hidden;
+}
+.tm-status-track{
+  max-width:100%;
+  overflow:hidden;
+}
+.tm-status-inner{
+  display:flex;
+  align-items:center;
+  width:max-content;
+  animation:tm-marquee 34s linear infinite;
+  will-change:transform;
+}
+html.tm-scrolling .tm-status-inner{
+  animation-play-state:paused;
+}
+.tm-status:hover .tm-status-inner{
+  animation-play-state:paused;
+}
+
+.tm-status-item{
+  display:inline-flex;
+  align-items:center;
+  padding:10px 18px;
+  font-size:12px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  font-weight:650;
+  white-space:nowrap;
+  color:rgba(15,23,42,0.72);
+  position:relative;
+}
+.tm-status-item::after{
+  content:"";
+  position:absolute;
+  right:0;
+  top:50%;
+  transform:translateY(-50%);
+  width:1px;
+  height:16px;
+  background:rgba(15,23,42,0.14);
+}
+.tm-status-item:last-child::after{ display:none; }
+
+/* subtle masks on edges */
+.tm-status-mask{
+  position:absolute;
+  top:0;
+  bottom:0;
+  width:90px;
+  pointer-events:none;
+  z-index:2;
+}
+.tm-status-mask-left{
+  left:0;
+  background:linear-gradient(90deg, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+.tm-status-mask-right{
+  right:0;
+  background:linear-gradient(270deg, rgba(255,255,255,1), rgba(255,255,255,0));
+}
+
+/* contextual highlight: match route to data-page */
+html[data-tm-route="online-estimate"] .tm-status-item[data-page="online-estimate"],
+html[data-tm-route="vetting"] .tm-status-item[data-page="vetting"],
+html[data-tm-route="book"] .tm-status-item[data-page="book"],
+html[data-tm-route="home"] .tm-status-item[data-page="home"]{
+  color:rgba(15,23,42,0.92);
+  text-shadow:0 1px 0 rgba(255,255,255,0.7);
+}
+html[data-tm-route="online-estimate"] .tm-status-item[data-page="online-estimate"]::before,
+html[data-tm-route="vetting"] .tm-status-item[data-page="vetting"]::before,
+html[data-tm-route="book"] .tm-status-item[data-page="book"]::before,
+html[data-tm-route="home"] .tm-status-item[data-page="home"]::before{
+  content:"";
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  margin-right:10px;
+  background:var(--tm-green);
+  box-shadow:0 0 0 6px rgba(57,255,20,0.14);
+}
+
+/* marquee motion */
+@keyframes tm-marquee{
+  from{ transform:translateX(0); }
+  to{ transform:translateX(-50%); }
+}
+
+/* mobile tuning */
+@media (max-width: 520px){
+  .tm-status-mask{ width:64px; }
+  .tm-trust-divider{ display:none; }
+}
+
+
       `}</style>
     </div>
   );
