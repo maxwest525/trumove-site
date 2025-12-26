@@ -10,65 +10,112 @@ const HTML = `
     <div class="tru-page-inner">
 
       <!-- HERO -->
-      <section class="tru-hero">
-        <div class="tru-hero-grid">
-<div>
-  <div class="tru-hero-pill">
-    <span class="tru-hero-pill-dot"></span>
-    <span>Smarter moving, powered by TruMove</span>
+<section class="tru-hero2" id="tm-home">
+  <div class="tru-hero2-inner">
+    <div class="tru-hero2-grid">
+
+      <!-- LEFT -->
+      <div class="tru-hero2-left">
+        <div class="tru-hero2-kicker">
+          <span class="tru-kdot" aria-hidden="true"></span>
+          AI-ASSISTED QUOTING, VERIFIED CARRIER STANDARDS
+        </div>
+
+        <h1 class="tru-hero2-h1">
+          Accurate long-distance quotes,
+          <span class="tru-hero2-accent"> without the games.</span>
+        </h1>
+
+        <p class="tru-hero2-sub">
+          Get a real price range in minutes using regulated move signals, route intelligence, and a vetted carrier network.
+          Built for transparency, not bait-and-switch.
+        </p>
+
+        <!-- TRUST, integrated -->
+        <div class="tru-hero2-trust" aria-label="Compliance and authority">
+          <div class="tru-trust-plaque">
+            <div class="tru-trust-top">Verified</div>
+            <div class="tru-trust-tag">USDOT</div>
+            <div class="tru-trust-text">USDOT Compliant</div>
+          </div>
+          <div class="tru-trust-plaque">
+            <div class="tru-trust-top">Verified</div>
+            <div class="tru-trust-tag">INSURED</div>
+            <div class="tru-trust-text">Bonded and Insured</div>
+          </div>
+          <div class="tru-trust-plaque">
+            <div class="tru-trust-top">Verified</div>
+            <div class="tru-trust-tag">FMCSA</div>
+            <div class="tru-trust-text">FMCSA Authorized Carriers</div>
+          </div>
+          <div class="tru-trust-plaque">
+            <div class="tru-trust-top">Verified</div>
+            <div class="tru-trust-tag">BROKER</div>
+            <div class="tru-trust-text">Licensed Interstate Broker</div>
+          </div>
+        </div>
+
+        <!-- FEATURE LINE, no corny pills -->
+        <div class="tru-hero2-metrics" aria-label="Platform highlights">
+          <div class="tru-metric"><span class="tru-metric-dot"></span> Instant AI quote range</div>
+          <div class="tru-metric"><span class="tru-metric-dot"></span> Video consult option</div>
+          <div class="tru-metric"><span class="tru-metric-dot"></span> Claims and review monitoring</div>
+        </div>
+      </div>
+
+      <!-- RIGHT: FORM -->
+      <div class="tru-hero2-right">
+        <div class="tru-formcard2">
+          <div class="tru-formcard2-head">
+            <div class="tru-formcard2-title">Start your quote</div>
+            <div class="tru-formcard2-sub">
+              Enter the basics, get an accurate range, then confirm inventory when you are ready.
+            </div>
+          </div>
+
+          <form class="tru-form2" id="truHeroQuoteForm">
+            <label class="tru-field">
+              <span class="tru-label">Full name</span>
+              <input class="tru-input" type="text" name="name" placeholder="Your name" autocomplete="name" />
+            </label>
+
+            <div class="tru-row2">
+              <label class="tru-field">
+                <span class="tru-label">ZIP code</span>
+                <input class="tru-input" type="text" name="zip" placeholder="ZIP" inputmode="numeric" />
+              </label>
+
+              <label class="tru-field">
+                <span class="tru-label">Move size</span>
+                <select class="tru-select" name="size">
+                  <option value="">Select size</option>
+                  <option>Studio / 1BR</option>
+                  <option>2BR</option>
+                  <option>3BR</option>
+                  <option>4BR+</option>
+                </select>
+              </label>
+            </div>
+
+            <button class="tru-btn2" type="submit">
+              Get my quote <span aria-hidden="true">→</span>
+            </button>
+
+            <div class="tru-formcard2-foot">
+              You stay in control, no spam, transparent workflow, verified carriers.
+            </div>
+          </form>
+        </div>
+
+        <div class="tru-right-note">
+          Prefer a human walkthrough, book a video consult and build the inventory together.
+        </div>
+      </div>
+
+    </div>
   </div>
+</section>
 
-  <h1 class="tru-hero-title">
-    Move day control, without the stress.
-  </h1>
-
-  <p class="tru-hero-sub">
-    TruMove turns a few simple questions into instant pricing, vetted movers, and live support. No spam calls, no surprise add ons, no getting bounced around.
-  </p>
-
-  <div class="tru-hero-bullets">
-    <div class="tru-hero-badge">
-      <span class="tru-hero-badge-dot"></span>
-      <span>Instant AI quotes</span>
-    </div>
-    <div class="tru-hero-badge">
-      <span class="tru-hero-badge-dot"></span>
-      <span>Vetted mover network</span>
-    </div>
-    <div class="tru-hero-badge">
-      <span class="tru-hero-badge-dot"></span>
-      <span>Real time updates</span>
-    </div>
-  </div>
-
-  <!-- HERO START BOX (form moved up here) -->
-  <div class="tru-hero-startbox" id="truHeroStartBox">
-    <div class="tru-hero-startbox-title">Start Your Move</div>
-    <div class="tru-hero-startbox-sub">Enter a few quick details, then we’ll generate your personalized estimate.</div>
-
-    <form class="tru-hero-startbox-form" id="truMiniForm" onsubmit="return false;">
-      <input type="text" id="miniName" class="tru-mini-input" placeholder="Your name" required>
-      <input type="text" id="miniZip" class="tru-mini-input" placeholder="Your ZIP code" required>
-
-      <select id="miniSize" class="tru-mini-select" required>
-        <option value="" disabled selected>Move size</option>
-        <option value="Studio">Studio</option>
-        <option value="1 Bedroom">1 Bedroom</option>
-        <option value="2 Bedroom">2 Bedroom</option>
-        <option value="3 Bedroom">3 Bedroom</option>
-        <option value="4+ Bedroom">4+ Bedroom</option>
-      </select>
-
-      <button class="tru-hero-btn-primary" id="truMiniSubmit" type="button">
-        Get My Quote →
-      </button>
-    </form>
-
-    <div class="tru-hero-note">
-      No spam calls, no bait pricing, one clean dashboard for your whole move.
-    </div>
-  </div>
-</div>
 
 
       </section>
