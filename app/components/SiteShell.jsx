@@ -12,12 +12,19 @@ const NAV = [
   { href: "/about", label: "About" },
 ];
 
+const TRUST = [
+  { tag: "USDOT", text: "USDOT Compliant" },
+  { tag: "INSURED", text: "Bonded and Insured" },
+  { tag: "FMCSA", text: "FMCSA Authorized Motor Carriers" },
+  { tag: "BROKER", text: "Licensed Interstate Moving Broker" },
+];
+
 const STATUS = [
   { text: "Instant AI quotes", key: "online-estimate", href: "/online-estimate" },
   { text: "Vetted mover network", key: "vetting", href: "/vetting" },
+  { text: "Real time updates", key: "home", href: "/" },
   { text: "Virtual video consults", key: "book", href: "/book" },
-  { text: "Live review monitoring", key: "home", href: "/" },
-  { text: "Claims support routing", key: "home", href: "/" },
+  { text: "Live review and claims monitoring", key: "home", href: "/" },
   { text: "Load tracking", key: "home", href: "/" },
 ];
 
@@ -34,12 +41,14 @@ export default function SiteShell({ children }) {
   const router = useRouter();
 
   const routeKey = useMemo(() => getRouteKey(path), [path]);
-  const loop = useMemo(() => [...STATUS, ...STATUS, ...STATUS], []);
+  const loop = useMemo(() => [...STATUS, ...STATUS], []);
 
+  // Page-aware highlighting
   useEffect(() => {
     document.documentElement.setAttribute("data-tm-route", routeKey);
   }, [routeKey]);
 
+  // Pause marquee while user scrolls
   useEffect(() => {
     let t = null;
     const onScroll = () => {
@@ -47,7 +56,7 @@ export default function SiteShell({ children }) {
       if (t) window.clearTimeout(t);
       t = window.setTimeout(() => {
         document.documentElement.classList.remove("tm-scrolling");
-      }, 160);
+      }, 150);
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => {
@@ -66,18 +75,21 @@ export default function SiteShell({ children }) {
       return;
     }
 
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    const id = `tm-${item.key}`;
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    else window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
   return (
     <div className="tm-shell">
-      {/* STATUS STRIP */}
+      {/* STATUS STRIP (TOP) */}
       <div className="tm-status" aria-label="Platform capabilities">
         <div className="tm-status-mask tm-status-mask-left" aria-hidden="true" />
         <div className="tm-status-mask tm-status-mask-right" aria-hidden="true" />
 
         <div className="tm-status-track">
-          <div className="tm-status-inner" aria-hidden="true">
+          <div className="tm-status-inner">
             {loop.map((s, i) => (
               <button
                 key={`${s.text}-${i}`}
@@ -124,6 +136,28 @@ export default function SiteShell({ children }) {
         </div>
       </header>
 
+      {/* TRUST STRIP */}
+      <section className="tm-trust" aria-label="Compliance and authority">
+        <div className="tm-trust-inner">
+          <div className="tm-trust-items" role="list">
+            {TRUST.map((t, idx) => (
+              <div key={t.tag} className="tm-trust-item" role="listitem">
+                <span className="tm-trust-badge" aria-hidden="true">
+                  <span className="tm-trust-badge-top">Verified</span>
+                  <span className="tm-trust-badge-tag">{t.tag}</span>
+                </span>
+
+                <span className="tm-trust-text">{t.text}</span>
+
+                {idx < TRUST.length - 1 ? (
+                  <span className="tm-trust-divider" aria-hidden="true" />
+                ) : null}
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <main className="tm-main" role="main">
         {children}
       </main>
@@ -163,22 +197,15 @@ export default function SiteShell({ children }) {
 
           --tm-status-h: 44px;
           --tm-marquee-normal: 34s;
-          --tm-marquee-fast: 18s;
         }
 
-        /* Keep shell styling neutral so page CSS can shine */
         .tm-shell {
           min-height: 100vh;
           display: flex;
           flex-direction: column;
-          background: #ffffff;
+          background: #fff;
           color: var(--tm-ink);
           font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        }
-
-        .tm-main {
-          flex: 1;
-          width: 100%;
         }
 
         /* STATUS STRIP */
@@ -188,8 +215,7 @@ export default function SiteShell({ children }) {
           z-index: 90;
           height: var(--tm-status-h);
           border-bottom: 1px solid var(--tm-line);
-          background: rgba(255, 255, 255, 0.96);
-          backdrop-filter: blur(10px);
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.98), #ffffff);
           overflow: hidden;
         }
 
@@ -203,18 +229,29 @@ export default function SiteShell({ children }) {
           display: flex;
           align-items: center;
           width: max-content;
+          gap: 0;
           animation: tm-marquee var(--tm-marquee-normal) linear infinite;
           will-change: transform;
         }
 
         @keyframes tm-marquee {
-          from { transform: translateX(0); }
-          to { transform: translateX(-33.333%); }
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
         }
 
-        html.tm-scrolling .tm-status-inner { animation-play-state: paused; }
-        .tm-status:hover .tm-status-inner { animation-play-state: paused; }
-        .tm-status:focus-within .tm-status-inner { animation-play-state: paused; }
+        html.tm-scrolling .tm-status-inner {
+          animation-play-state: paused;
+        }
+        .tm-status:hover .tm-status-inner {
+          animation-play-state: paused;
+        }
+        .tm-status:focus-within .tm-status-inner {
+          animation-play-state: paused;
+        }
 
         .tm-status-item {
           appearance: none;
@@ -234,10 +271,12 @@ export default function SiteShell({ children }) {
           cursor: pointer;
         }
 
-        .tm-status-item:hover { color: rgba(15, 23, 42, 0.92); }
+        .tm-status-item:hover {
+          color: rgba(15, 23, 42, 0.92);
+        }
 
         .tm-status-item:focus-visible {
-          outline: 2px solid rgba(57, 255, 20, 0.40);
+          outline: 2px solid rgba(57, 255, 20, 0.45);
           outline-offset: 2px;
           border-radius: 10px;
         }
@@ -250,7 +289,7 @@ export default function SiteShell({ children }) {
           transform: translateY(-50%);
           width: 1px;
           height: 16px;
-          background: rgba(15, 23, 42, 0.12);
+          background: rgba(15, 23, 42, 0.14);
         }
 
         .tm-status-dot {
@@ -277,12 +316,10 @@ export default function SiteShell({ children }) {
           pointer-events: none;
           z-index: 2;
         }
-
         .tm-status-mask-left {
           left: 0;
           background: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
         }
-
         .tm-status-mask-right {
           right: 0;
           background: linear-gradient(270deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
@@ -314,7 +351,6 @@ export default function SiteShell({ children }) {
           flex-shrink: 0;
           text-decoration: none;
         }
-
         .tm-logo-img {
           height: 62px;
           width: auto;
@@ -338,7 +374,7 @@ export default function SiteShell({ children }) {
           font-size: 18px;
           line-height: 1;
           letter-spacing: 0.09em;
-          font-weight: 520;
+          font-weight: 480;
           padding: 14px 6px;
           white-space: nowrap;
           opacity: 0.86;
@@ -346,8 +382,10 @@ export default function SiteShell({ children }) {
           transition: opacity 0.15s ease, transform 0.15s ease;
         }
 
-        .tm-nav-link:hover { opacity: 1; transform: translateY(-1px); }
-
+        .tm-nav-link:hover {
+          opacity: 1;
+          transform: translateY(-1px);
+        }
         .tm-nav-link::after {
           content: "";
           position: absolute;
@@ -361,10 +399,15 @@ export default function SiteShell({ children }) {
           transform-origin: left;
           transition: transform 0.18s ease;
         }
-
-        .tm-nav-link:hover::after { transform: scaleX(1); }
-        .tm-nav-link.active { opacity: 1; }
-        .tm-nav-link.active::after { transform: scaleX(1); }
+        .tm-nav-link:hover::after {
+          transform: scaleX(1);
+        }
+        .tm-nav-link.active {
+          opacity: 1;
+        }
+        .tm-nav-link.active::after {
+          transform: scaleX(1);
+        }
 
         .tm-header-actions {
           display: flex;
@@ -386,29 +429,113 @@ export default function SiteShell({ children }) {
           text-decoration: none;
           white-space: nowrap;
           font-size: 12.5px;
-          font-weight: 700;
+          font-weight: 650;
           letter-spacing: 0.10em;
           text-transform: uppercase;
           color: var(--tm-ink);
-          border: 1px solid rgba(15, 23, 42, 0.12);
-          background: #ffffff;
-          box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10);
-          transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+          border: 1px solid rgba(57, 255, 20, 0.40);
+          background: linear-gradient(180deg, rgba(57, 255, 20, 0.18), rgba(57, 255, 20, 0.06));
+          box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+          transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
+            border-color 0.15s ease;
+        }
+
+        .tm-call::before,
+        .tm-cta::before {
+          content: "";
+          width: 10px;
+          height: 10px;
+          border-radius: 999px;
+          background: radial-gradient(circle at center, var(--tm-green) 0%, var(--tm-green) 62%, rgba(57, 255, 20, 0.18) 100%);
+          box-shadow: 0 0 0 4px rgba(57, 255, 20, 0.14);
+          flex: 0 0 auto;
         }
 
         .tm-call:hover,
         .tm-cta:hover {
           transform: translateY(-1px);
-          border-color: rgba(57, 255, 20, 0.45);
-          box-shadow: 0 20px 44px rgba(15, 23, 42, 0.14);
+          border-color: rgba(57, 255, 20, 0.55);
+          box-shadow: 0 20px 44px rgba(15, 23, 42, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(57, 255, 20, 0.08));
+        }
+
+        /* TRUST STRIP */
+        .tm-trust {
+          border-bottom: 1px solid rgba(255, 255, 255, 0.10);
+          background: linear-gradient(180deg, #0b1220, #070b14);
+        }
+        .tm-trust-inner {
+          max-width: var(--tm-max);
+          margin: 0 auto;
+          padding: 12px 22px;
+        }
+        .tm-trust-items {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 14px;
+          flex-wrap: wrap;
+        }
+        .tm-trust-item {
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          white-space: nowrap;
+        }
+        .tm-trust-divider {
+          width: 1px;
+          height: 22px;
+          background: rgba(255, 255, 255, 0.18);
+          display: inline-block;
+          margin-left: 14px;
+        }
+        .tm-trust-badge {
+          width: 56px;
+          height: 34px;
+          border-radius: 10px;
+          border: 1px solid rgba(255, 255, 255, 0.14);
+          background: linear-gradient(180deg, rgba(255, 255, 255, 0.10), rgba(255, 255, 255, 0.02));
+          box-shadow: 0 16px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          line-height: 1;
+          flex: 0 0 auto;
+        }
+        .tm-trust-badge-top {
+          font-size: 8px;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          color: rgba(255, 255, 255, 0.66);
+          font-weight: 800;
+        }
+        .tm-trust-badge-tag {
+          margin-top: 4px;
+          font-size: 10px;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          color: rgba(255, 255, 255, 0.92);
+          font-weight: 900;
+        }
+        .tm-trust-text {
+          font-size: 12px;
+          letter-spacing: 0.14em;
+          text-transform: uppercase;
+          font-weight: 650;
+          color: rgba(255, 255, 255, 0.92);
+        }
+
+        .tm-main {
+          flex: 1;
+          width: 100%;
         }
 
         /* FOOTER */
         .tm-footer {
           border-top: 1px solid var(--tm-line);
-          background: #ffffff;
+          background: #fff;
         }
-
         .tm-footer-inner {
           max-width: var(--tm-max);
           margin: 0 auto;
@@ -419,32 +546,26 @@ export default function SiteShell({ children }) {
           gap: 16px;
           flex-wrap: wrap;
         }
-
         .tm-footer-left {
           display: flex;
           flex-direction: column;
           gap: 6px;
         }
-
         .tm-footer-brand {
           font-weight: 900;
-          color: #000000;
-          letter-spacing: 0.02em;
+          color: #000;
         }
-
         .tm-footer-sub {
           color: #6b7280;
           font-size: 13px;
           max-width: 420px;
         }
-
         .tm-footer-right {
           display: flex;
           gap: 14px;
           flex-wrap: wrap;
           align-items: center;
         }
-
         .tm-footer-link {
           text-decoration: none;
           color: #111827;
@@ -452,8 +573,9 @@ export default function SiteShell({ children }) {
           padding: 8px 10px;
           border-radius: 10px;
         }
-
-        .tm-footer-link:hover { background: #f3f4f6; }
+        .tm-footer-link:hover {
+          background: #f3f4f6;
+        }
 
         @media (max-width: 1180px) {
           .tm-header-inner {
@@ -461,20 +583,19 @@ export default function SiteShell({ children }) {
             grid-template-rows: auto auto;
             row-gap: 10px;
           }
-
-          .tm-header-actions { justify-content: flex-end; }
-
+          .tm-header-actions {
+            justify-content: flex-end;
+          }
           .tm-nav {
             grid-column: 1 / -1;
             justify-content: flex-start;
             overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
             padding-bottom: 8px;
             scrollbar-width: none;
           }
-
-          .tm-nav::-webkit-scrollbar { display: none; }
-
+          .tm-nav::-webkit-scrollbar {
+            display: none;
+          }
           .tm-nav-link {
             font-size: 16px;
             padding: 12px 6px;
@@ -482,9 +603,17 @@ export default function SiteShell({ children }) {
         }
 
         @media (max-width: 520px) {
-          .tm-logo-img { height: 54px; }
-          .tm-call, .tm-cta { height: 38px; padding: 0 12px; }
-          .tm-status-mask { width: 64px; }
+          .tm-logo-img {
+            height: 54px;
+          }
+          .tm-call,
+          .tm-cta {
+            height: 38px;
+            padding: 0 12px;
+          }
+          .tm-status-mask {
+            width: 64px;
+          }
         }
       `}</style>
     </div>
