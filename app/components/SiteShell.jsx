@@ -404,7 +404,7 @@ export default function SiteShell({ children }) {
           position:relative;
           text-decoration:none;
           color:var(--tm-ink);
-          font-size:17.5px;
+          font-size:19.5px;
           letter-spacing:0.08em;
           font-weight:520;
           padding:12px 6px;
