@@ -74,16 +74,6 @@ const HTML = `
 </div>
 
 
-
-<div class="tru-hero-actions">
-  <button class="tru-hero-btn-secondary" type="button">
-    <span>See how TruMove works</span>
-    <span class="chevron">→</span>
-  </button>
-</div>
-
-
-
   <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
   <div class="tru-hero-visual-tag is-premium">
   <span class="tru-hero-visual-orb"></span>
