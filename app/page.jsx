@@ -106,9 +106,15 @@ const HTML = `
         </select>
       </div>
 
-      <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
-        Get My Quote →
-      </button>
+<button class="tru-hero-form-btn is-step" id="truMiniSubmit" type="button">
+  <span class="step-track">
+    <span class="step active">Inventory</span>
+    <span class="step">Route</span>
+    <span class="step">Pricing</span>
+  </span>
+  <span class="step-cta">Start</span>
+</button>
+
 
       <div class="tru-hero-form-foot">
         No spam calls, no lead reselling.
