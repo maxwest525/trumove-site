@@ -710,12 +710,6 @@ export default function SiteShell({ children }) {
   letter-spacing:0.08em;
 }
 
-
-.tru-hero-form-foot{
-  margin-top:6px;
-  font-size:12px;
-  color:rgba(15,23,42,0.60);
-}
 .tru-hero-visual {
   position: relative;
 }
