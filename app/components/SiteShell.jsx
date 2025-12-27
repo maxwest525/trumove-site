@@ -663,6 +663,43 @@ export default function SiteShell({ children }) {
   font-size:12px;
   color:rgba(15,23,42,0.60);
 }
+.tru-hero-visual {
+  position: relative;
+}
+
+.tru-hero-visual-tag {
+  position: absolute;
+  top: -14px;
+  left: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 700;
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.95),
+    rgba(255,255,255,0.85)
+  );
+  border: 1px solid rgba(15,23,42,0.12);
+  box-shadow:
+    0 12px 30px rgba(15,23,42,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.7);
+  z-index: 5;
+}
+
+.tru-hero-visual-tag-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #39ff14;
+  box-shadow: 0 0 0 4px rgba(57,255,20,0.18);
+}
+
 
       `}</style>
     </div>
