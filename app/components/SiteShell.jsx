@@ -935,6 +935,50 @@ export default function SiteShell({ children }) {
   opacity: 0.7 !important;
 }
 
+const miniBtn = document.getElementById("truMiniSubmit");
+
+const onMiniClick = () => {
+  const name = (document.getElementById("miniName")?.value || "").trim();
+  const zip = (document.getElementById("miniZip")?.value || "").trim();
+  const size = (document.getElementById("miniSize")?.value || "").trim();
+
+  if (!name || !zip || !size) {
+    alert("Please fill out all fields to proceed.");
+    return;
+  }
+
+  const cta = document.getElementById("truMiniCta");
+
+  // lock button + animate steps
+  miniBtn.disabled = true;
+  miniBtn.style.opacity = "0.85";
+  miniBtn.style.pointerEvents = "none";
+
+  miniBtn.setAttribute("data-step", "0");
+  if (cta) cta.textContent = "Building…";
+
+  setTimeout(() => {
+    miniBtn.setAttribute("data-step", "1");
+    document.querySelectorAll(".tru-hero-form-btn.is-step .step").forEach((el) => el.classList.remove("active"));
+    document.querySelector('.tru-hero-form-btn.is-step .step[data-step="1"]')?.classList.add("active");
+    if (cta) cta.textContent = "Routing…";
+  }, 260);
+
+  setTimeout(() => {
+    miniBtn.setAttribute("data-step", "2");
+    document.querySelectorAll(".tru-hero-form-btn.is-step .step").forEach((el) => el.classList.remove("active"));
+    document.querySelector('.tru-hero-form-btn.is-step .step[data-step="2"]')?.classList.add("active");
+    if (cta) cta.textContent = "Pricing…";
+  }, 520);
+
+  // route after the “pizza tracker” completes
+  setTimeout(() => {
+    window.location.href = "/online-estimate";
+  }, 780);
+};
+
+miniBtn?.addEventListener("click", onMiniClick);
+
 
       `}</style>
     </div>
