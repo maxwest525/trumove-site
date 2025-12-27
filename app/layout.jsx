@@ -1,4 +1,3 @@
-import "./globals.css";
 import SiteShell from "./components/SiteShell";
 
 export const metadata = {
