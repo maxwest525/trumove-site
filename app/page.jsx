@@ -33,38 +33,38 @@ const HTML = `
       <div class="tm-trust-items">
 
         <span class="tm-trust-item">
-          <span class="tm-trust-badge" aria-hidden="true">
+          <span class="tm-trust-badge">
             <span class="tm-trust-badge-top">Verified</span>
             <span class="tm-trust-badge-tag">USDOT</span>
           </span>
           <span class="tm-trust-text">USDOT Compliant</span>
-          <span class="tm-trust-divider" aria-hidden="true"></span>
+          <span class="tm-trust-divider"></span>
         </span>
 
         <span class="tm-trust-item">
-          <span class="tm-trust-badge" aria-hidden="true">
+          <span class="tm-trust-badge">
             <span class="tm-trust-badge-top">Verified</span>
             <span class="tm-trust-badge-tag">INSURED</span>
           </span>
           <span class="tm-trust-text">Bonded and Insured</span>
-          <span class="tm-trust-divider" aria-hidden="true"></span>
+          <span class="tm-trust-divider"></span>
         </span>
 
         <span class="tm-trust-item">
-          <span class="tm-trust-badge" aria-hidden="true">
+          <span class="tm-trust-badge">
             <span class="tm-trust-badge-top">Verified</span>
             <span class="tm-trust-badge-tag">FMCSA</span>
           </span>
-          <span class="tm-trust-text">FMCSA Authorized Motor Carriers</span>
-          <span class="tm-trust-divider" aria-hidden="true"></span>
+          <span class="tm-trust-text">FMCSA Authorized Carriers</span>
+          <span class="tm-trust-divider"></span>
         </span>
 
         <span class="tm-trust-item">
-          <span class="tm-trust-badge" aria-hidden="true">
+          <span class="tm-trust-badge">
             <span class="tm-trust-badge-top">Verified</span>
             <span class="tm-trust-badge-tag">BROKER</span>
           </span>
-          <span class="tm-trust-text">Licensed Interstate Moving Broker</span>
+          <span class="tm-trust-text">Licensed Interstate Broker</span>
         </span>
 
       </div>
