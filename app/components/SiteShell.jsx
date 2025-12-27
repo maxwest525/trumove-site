@@ -185,25 +185,7 @@ export default function SiteShell({ children }) {
         </div>
       </header>
 
-      {/* TRUST STRIP (OFFICIAL PLAQUES) */}
-      <div className="tm-trust" aria-label="Compliance and authority">
-        <div className="tm-trust-inner">
-          <div className="tm-trust-items">
-            {TRUST.map((t, idx) => (
-              <span key={t.tag} className="tm-trust-item">
-                <span className="tm-trust-badge" aria-hidden="true">
-                  <span className="tm-trust-badge-top">Verified</span>
-                  <span className="tm-trust-badge-tag">{t.tag}</span>
-                </span>
-                <span className="tm-trust-text">{t.text}</span>
-                {idx < TRUST.length - 1 ? (
-                  <span className="tm-trust-divider" aria-hidden="true" />
-                ) : null}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
+
 
       <main className="tm-main">{children}</main>
 
