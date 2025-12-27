@@ -897,6 +897,43 @@ export default function SiteShell({ children }) {
   overflow:hidden;
 }
 
+/* HERO trust strip integration (prevents full-width "bar" look) */
+.tru-hero-trust{
+  margin-top: 14px;
+}
+
+.tru-hero-trust .tm-trust{
+  background: transparent !important;
+  border-bottom: 0 !important;
+}
+
+.tru-hero-trust .tm-trust-inner{
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.tru-hero-trust .tm-trust-items{
+  justify-content: flex-start !important;
+  gap: 12px !important;
+}
+
+/* Make plaques slightly tighter inside hero */
+.tru-hero-trust .tm-trust-badge{
+  width: 52px !important;
+  height: 32px !important;
+  border-radius: 10px !important;
+}
+
+.tru-hero-trust .tm-trust-text{
+  font-size: 11px !important;
+  letter-spacing: 0.12em !important;
+}
+
+.tru-hero-trust .tm-trust-divider{
+  height: 18px !important;
+  opacity: 0.7 !important;
+}
 
 
       `}</style>
