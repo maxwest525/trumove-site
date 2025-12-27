@@ -888,6 +888,15 @@ export default function SiteShell({ children }) {
   text-transform:uppercase;
   color:rgba(15,23,42,0.88);
 }
+/* Home hero: trust strip spacing */
+.tru-hero-trust{
+  margin:16px 0 14px;
+}
+.tru-hero-trust .tm-trust{
+  border-radius:16px;
+  overflow:hidden;
+}
+
 
 
       `}</style>
