@@ -111,14 +111,16 @@ const HTML = `
         </select>
       </div>
 
-<button class="tru-hero-form-btn is-step" id="truHeroStartQuote" type="button">
-  <span class="step-track">
-    <span class="step active">Inventory</span>
-    <span class="step">Route</span>
-    <span class="step">Pricing</span>
+<button class="tru-hero-form-btn is-step" id="truMiniSubmit" type="button">
+  <span class="step-bar" aria-hidden="true"></span>
+  <span class="step-track" aria-label="Quote steps">
+    <span class="step active" data-step="0">Inventory</span>
+    <span class="step" data-step="1">Route</span>
+    <span class="step" data-step="2">Pricing</span>
   </span>
-  <span class="step-cta">Build My Inventory →</span>
+  <span class="step-cta" id="truMiniCta">Start</span>
 </button>
+
 
 
     </form>
