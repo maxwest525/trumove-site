@@ -484,11 +484,8 @@ const onContactSubmit = (e) => {
     `Email: ${email}%0D%0A%0D%0A` +
     `Message:%0D%0A${message}`;
 
-  window.location.href =
-    `mailto:info@trumoveinc.com?subject=TruMove Contact Request&body=${body}`;
+window.location.href = "/online-estimate";
 };
-
-contactForm?.addEventListener("submit", onContactSubmit);
 
 
     // 2) Mini form button -> route to estimate page (no external URL)
