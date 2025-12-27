@@ -672,6 +672,45 @@ export default function SiteShell({ children }) {
   background:linear-gradient(180deg, rgba(57,255,20,0.26), rgba(57,255,20,0.12));
 }
 
+.tru-hero-form-btn.is-step{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  padding:0 18px;
+}
+
+.step-track{
+  display:flex;
+  gap:10px;
+  align-items:center;
+}
+
+.step{
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+  opacity:0.35;
+  position:relative;
+}
+
+.step.active{
+  opacity:1;
+}
+
+.step:not(:last-child)::after{
+  content:"→";
+  margin-left:10px;
+  opacity:0.4;
+}
+
+.step-cta{
+  font-weight:800;
+  letter-spacing:0.08em;
+}
+
+
 .tru-hero-form-foot{
   margin-top:6px;
   font-size:12px;
