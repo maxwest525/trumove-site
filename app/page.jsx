@@ -26,7 +26,7 @@ const HTML = `
 </p>
 
 
-{/* TRUST STRIP (OFFICIAL PLAQUES) */}
+<!-- TRUST STRIP (OFFICIAL PLAQUES) -->
 <div class="tru-hero-trust">
   <div class="tm-trust" aria-label="Compliance and authority">
     <div class="tm-trust-inner">
@@ -71,6 +71,7 @@ const HTML = `
     </div>
   </div>
 </div>
+
 
 
 <div class="tru-hero-actions">
