@@ -1,520 +1,415 @@
 "use client";
 
-import "./globals.css";
-import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-
-const HTML = `
-  <div class="tru-page-frame">
-    <div class="tru-page-inner">
-
-      <!-- HERO -->
-      <section class="tru-hero">
-        <div class="tru-hero-grid">
-          <div>
-
-<h1 class="tru-hero-title">
-  Build your inventory.<br />
-  Plan your route.<br />
-  <span>See real pricing.</span>
-</h1>
-
-
-<p class="tru-hero-sub">
-  TruMove turns a few simple questions into instant pricing, vetted movers, and live support.
-</p>
-
-
-
-<!-- TRUST STRIP (OFFICIAL PLAQUES) -->
-<div class="tru-hero-trust">
-  <div class="tm-trust" aria-label="Compliance and authority">
-    <div class="tm-trust-inner">
-      <div class="tm-trust-items">
-        <span class="tm-trust-item">
-          <span class="tm-trust-badge" aria-hidden="true">
-            <span class="tm-trust-badge-top">Verified</span>
-            <span class="tm-trust-badge-tag">USDOT</span>
-          </span>
-          <span class="tm-trust-text">USDOT Compliant</span>
-          <span class="tm-trust-divider" aria-hidden="true"></span>
-        </span>
-
-        <span class="tm-trust-item">
-          <span class="tm-trust-badge" aria-hidden="true">
-            <span class="tm-trust-badge-top">Verified</span>
-            <span class="tm-trust-badge-tag">INSURED</span>
-          </span>
-          <span class="tm-trust-text">Bonded and Insured</span>
-          <span class="tm-trust-divider" aria-hidden="true"></span>
-        </span>
-
-        <span class="tm-trust-item">
-          <span class="tm-trust-badge" aria-hidden="true">
-            <span class="tm-trust-badge-top">Verified</span>
-            <span class="tm-trust-badge-tag">FMCSA</span>
-          </span>
-          <span class="tm-trust-text">FMCSA Authorized Motor Carriers</span>
-          <span class="tm-trust-divider" aria-hidden="true"></span>
-        </span>
-
-        <span class="tm-trust-item">
-          <span class="tm-trust-badge" aria-hidden="true">
-            <span class="tm-trust-badge-top">Verified</span>
-            <span class="tm-trust-badge-tag">BROKER</span>
-          </span>
-          <span class="tm-trust-text">Licensed Interstate Moving Broker</span>
-        </span>
-      </div>
-    </div>
-  </div>
-</div>
-
-
-
-  <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
-  <div class="tru-hero-visual-tag is-premium">
-  <span class="tru-hero-visual-orb"></span>
-  <span class="tru-hero-visual-text">Start Your Move</span>
-</div>
-
-    <div class="tru-hero-form-title">Get your quote in seconds</div>
-    <div class="tru-hero-form-sub">
-      Enter a few details, we’ll route you to your personalized estimate.
-    </div>
-
-    <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
-      <div class="tru-hero-form-row">
-        <input type="text" id="miniName" class="tru-hero-input" placeholder="Your name" required>
-      </div>
-
-      <div class="tru-hero-form-row two">
-        <input type="text" id="miniZip" class="tru-hero-input" placeholder="ZIP code" required>
-        <select id="miniSize" class="tru-hero-select" required>
-          <option value="" disabled selected>Move size</option>
-          <option value="Studio">Studio</option>
-          <option value="1 Bedroom">1 Bedroom</option>
-          <option value="2 Bedroom">2 Bedroom</option>
-          <option value="3 Bedroom">3 Bedroom</option>
-          <option value="4+ Bedroom">4+ Bedroom</option>
-        </select>
-      </div>
-
-<button class="tru-hero-form-btn is-step" id="truMiniSubmit" type="button">
-  <span class="step-bar" aria-hidden="true"></span>
-  <span class="step-track" aria-label="Quote steps">
-    <span class="step active" data-step="0">Inventory</span>
-    <span class="step" data-step="1">Route</span>
-    <span class="step" data-step="2">Pricing</span>
-  </span>
-  <span class="step-cta" id="truMiniCta">Start</span>
-</button>
-
-
-
-    </form>
-  </div>
-</div>
-
-      </section>
-
-
-
-      <!-- FEATURES SECTION -->
-      <section class="tru-simple-wrap">
-        <div class="tru-simple-inner">
-          <div class="tru-simple-kicker">All in one platform</div>
-          <h2 class="tru-simple-title">The essentials, done right.</h2>
-          <p class="tru-simple-sub">
-            From instant quotes to live support, TruMove keeps every part of your move in one place so nothing slips through the cracks.
-          </p>
-
-          <div class="tru-simple-grid">
-
-            <article class="tru-simple-card">
-              <div class="tru-simple-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M13 2L5 14H11L11 22L19 10H13L13 2Z"
-                        stroke-width="1.6"
-                        stroke-linejoin="round"
-                        stroke-linecap="round" />
-                </svg>
-              </div>
-              <div class="tru-simple-card-title">Instant Pricing</div>
-              <div class="tru-simple-card-text">Turn a few details into AI powered quotes in seconds.</div>
-            </article>
-
-            <article class="tru-simple-card">
-              <div class="tru-simple-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M9 6H20M9 12H20M9 18H20" stroke-width="1.6"
-                        stroke-linecap="round" />
-                  <path d="M4 6L5.5 7.5L8 4.5" stroke-width="1.6"
-                        stroke-linecap="round"
-                        stroke-linejoin="round" />
-                  <path d="M4 12L5.5 13.5L8 10.5" stroke-width="1.6"
-                        stroke-linecap="round"
-                        stroke-linejoin="round" />
-                  <path d="M4 18L5.5 19.5L8 16.5" stroke-width="1.6"
-                        stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-              </div>
-              <div class="tru-simple-card-title">Inventory Made Easy</div>
-              <div class="tru-simple-card-text">Tap through rooms, add items, and watch your move build itself.</div>
-            </article>
-
-            <article class="tru-simple-card">
-              <div class="tru-simple-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <rect x="3.5" y="6" width="11" height="12" rx="2"
-                        stroke-width="1.6" />
-                  <path d="M15 10L20.5 7.5V16.5L15 14"
-                        stroke-width="1.6"
-                        stroke-linejoin="round"
-                        stroke-linecap="round" />
-                </svg>
-              </div>
-              <div class="tru-simple-card-title">Live Video Help</div>
-              <div class="tru-simple-card-text">Walk your home with a TruMove specialist over secure video.</div>
-            </article>
-
-            <article class="tru-simple-card">
-              <div class="tru-simple-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <circle cx="9" cy="8" r="2.2" stroke-width="1.6" />
-                  <circle cx="15" cy="8" r="2.2" stroke-width="1.6" />
-                  <circle cx="9" cy="16" r="2.2" stroke-width="1.6" />
-                  <circle cx="15" cy="16" r="2.2" stroke-width="1.6" />
-                  <path d="M11.2 8H12.8M9 10.2V13.8M15 10.2V13.8M11 16H13"
-                        stroke-width="1.6"
-                        stroke-linecap="round" />
-                </svg>
-              </div>
-              <div class="tru-simple-card-title">Smart Matching</div>
-              <div class="tru-simple-card-text">We rank movers on real performance, not paid placement.</div>
-            </article>
-
-            <article class="tru-simple-card">
-              <div class="tru-simple-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <circle cx="11" cy="13" r="3.2" stroke-width="1.6" />
-                  <path d="M11 4V6.5M18 11H15.5M6.5 11H4M15.2 6.8L13.7 8.3M8.3 8.3L6.8 6.8"
-                        stroke-width="1.6"
-                        stroke-linecap="round" />
-                  <path d="M17 17L20 20" stroke-width="1.6"
-                        stroke-linecap="round" />
-                </svg>
-              </div>
-              <div class="tru-simple-card-title">Real Time Updates</div>
-              <div class="tru-simple-card-text">Track confirmations, crews, and timing from one live timeline.</div>
-            </article>
-
-            <article class="tru-simple-card">
-              <div class="tru-simple-icon" aria-hidden="true">
-                <svg viewBox="0 0 24 24" fill="none">
-                  <path d="M12 3L6 5.5V11.5C6 15.1 8.4 18.4 12 19.5C15.6 18.4 18 15.1 18 11.5V5.5L12 3Z"
-                        stroke-width="1.6"
-                        stroke-linejoin="round" />
-                  <path d="M9 11.5L11 13.5L15 9.5"
-                        stroke-width="1.6"
-                        stroke-linecap="round"
-                        stroke-linejoin="round" />
-                </svg>
-              </div>
-              <div class="tru-simple-card-title">Built In Protection</div>
-              <div class="tru-simple-card-text">We screen carriers and flag red flag reviews before you book.</div>
-            </article>
-          </div>
-
-          <div class="tru-simple-cta">
-            <div class="tru-simple-cta-text">
-              <span class="tru-simple-cta-strong">Want the full breakdown.</span>
-              Compare TruMove to a traditional moving broker in one quick view.
-            </div>
-            <button class="tru-simple-cta-btn" type="button">
-              <span>See all features</span>
-              <span class="chevron">→</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      <!-- MISSION + STATS + GUARANTEE + TRUST -->
-      <section class="tru-mission-wrap">
-        <div class="tru-mission-inner">
-          <div class="tru-mission-kicker">OUR MISSION</div>
-          <h2 class="tru-mission-title">
-            Making moving <span>honest</span>, <span>clear</span>, and <span>predictable</span>.
-          </h2>
-          <p class="tru-mission-text">
-            Our mission is to make moving honest, clear, and predictable, using AI and real carrier data to give you transparent prices, trusted movers, and a move that goes the way it should.
-          </p>
-
-          <div class="tru-mission-stats-shell">
-            <div class="tru-mission-stats-bar">
-
-              <div class="tru-mission-stat">
-                <div class="tru-mission-stat-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M12 4L13.9 8.24L18.5 8.74L15 11.79L15.9 16.3L12 14.1L8.1 16.3L9 11.79L5.5 8.74L10.1 8.24L12 4Z"
-                          stroke-width="1.5"
-                          stroke-linejoin="round" />
-                  </svg>
-                </div>
-                <div class="tru-mission-stat-copy">
-                  <div class="tru-mission-stat-number">4.9★</div>
-                  <div class="tru-mission-stat-label">Average Rating</div>
-                </div>
-              </div>
-
-              <div class="tru-mission-stat">
-                <div class="tru-mission-stat-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M4 8L12 4L20 8V16L12 20L20 16V8L12 12L4 8Z"
-                          stroke-width="1.5"
-                          stroke-linejoin="round" />
-                  </svg>
-                </div>
-                <div class="tru-mission-stat-copy">
-                  <div class="tru-mission-stat-number">10,000+</div>
-                  <div class="tru-mission-stat-label">Moves Assisted</div>
-                </div>
-              </div>
-
-              <div class="tru-mission-stat">
-                <div class="tru-mission-stat-icon" aria-hidden="true">
-                  <svg viewBox="0 0 24 24" fill="none">
-                    <path d="M12 3L6 5.5V11.5C6 15.1 8.4 18.4 12 19.5C15.6 18.4 18 15.1 18 11.5V5.5L12 3Z"
-                          stroke-width="1.5"
-                          stroke-linejoin="round" />
-                  </svg>
-                </div>
-                <div class="tru-mission-stat-copy">
-                  <div class="tru-mission-stat-number">0</div>
-                  <div class="tru-mission-stat-label">Spam Calls, Ever</div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="tru-guarantee-wrap">
-            <div class="tru-guarantee-card">
-              <div>
-                <div class="tru-guarantee-tag">
-                  <span class="tru-guarantee-tag-dot"></span>
-                  <span>TruMove Guarantee</span>
-                </div>
-                <div class="tru-guarantee-title">If it feels off, we flag it before you ever sign.</div>
-                <div class="tru-guarantee-text">
-                  Every quote on TruMove passes through our checks so you do not waste time on carriers that are going to play games on price or service.
-                </div>
-                <ul class="tru-guarantee-list">
-                  <li>No spam calls sold to other brokers.</li>
-                  <li>No last minute surprise add ons without receipts.</li>
-                  <li>Help from a real human if anything feels wrong on move day.</li>
-                </ul>
-              </div>
-
-              <div class="tru-guarantee-side">
-                <span class="tru-guarantee-highlight">We built TruMove from bad experiences.</span>
-                <br />
-                You should know the real range, the real crew, and the real reputation before you say yes. If we would not book a mover for our own families, they do not show up in your options.
-              </div>
-            </div>
-          </div>
-
-          <div class="tru-trust-wrap">
-            <div class="tru-trust-row">
-              <span class="tru-trust-label">Trusted across thousands of moves.</span>
-
-              <span class="tru-trust-badge">
-                <span class="tru-trust-dot"></span>
-                <span>Google Reviews</span>
-              </span>
-
-              <span class="tru-trust-badge">
-                <span class="tru-trust-dot"></span>
-                <span>Yelp Movers</span>
-              </span>
-
-              <span class="tru-trust-badge">
-                <span class="tru-trust-dot"></span>
-                <span>Better Business Bureau</span>
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- CONTACT -->
-      <section class="tru-contact-wrap">
-        <div class="tru-contact-inner">
-          <h2 class="tru-contact-title">Contact Us</h2>
-          <p class="tru-contact-sub">
-            Have a question. Send us a message and a TruMove specialist will respond shortly.
-          </p>
-
-          <div class="tru-contact-card" id="truContactCard">
-            <form class="tru-contact-form" id="truContactForm" novalidate>
-              <div class="tru-field" data-field="name">
-                <div class="tru-field-inner">
-                  <span class="tru-field-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <circle cx="12" cy="9" r="3.2" stroke-width="1.6" />
-                      <path d="M6.5 18.4C7.6 16.5 9.7 15.3 12 15.3C14.3 15.3 16.4 16.5 17.5 18.4"
-                            stroke-width="1.6"
-                            stroke-linecap="round" />
-                    </svg>
-                  </span>
-                  <input
-                    type="text"
-                    id="contactName"
-                    class="tru-contact-input"
-                    autocomplete="name"
-                    required
-                  />
-                  <label for="contactName" class="tru-field-label">Your name</label>
-                </div>
-                <div class="tru-field-error-text">Please enter your name.</div>
-              </div>
-
-              <div class="tru-field" data-field="email">
-                <div class="tru-field-inner">
-                  <span class="tru-field-icon" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.6" />
-                      <path d="M4 7L12 12.5L20 7" stroke-width="1.6" stroke-linecap="round" />
-                    </svg>
-                  </span>
-                  <input
-                    type="email"
-                    id="contactEmail"
-                    class="tru-contact-input"
-                    autocomplete="email"
-                    required
-                  />
-                  <label for="contactEmail" class="tru-field-label">Your email</label>
-                </div>
-                <div class="tru-field-error-text">Please enter a valid email address.</div>
-              </div>
-
-              <div class="tru-field textarea-field" data-field="message">
-                <div class="tru-field-inner">
-                  <span class="tru-field-icon" aria-hidden="true" style="top: 18px; transform: none;">
-                    <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M5 5H19V14H9L5 18V5Z"
-                            stroke-width="1.6"
-                            stroke-linejoin="round" />
-                    </svg>
-                  </span>
-                  <textarea
-                    id="contactMessage"
-                    class="tru-contact-textarea"
-                    required
-                  ></textarea>
-                  <label for="contactMessage" class="tru-field-label textarea-label">Write your message here</label>
-                </div>
-                <div class="tru-field-error-text">Please add a short message.</div>
-              </div>
-
-              <div class="tru-contact-btn-row">
-                <button type="submit" class="tru-contact-btn" id="truContactBtn">
-                  Send Message
-                </button>
-                <span class="tru-contact-hint">Average reply time under one business day.</span>
-              </div>
-            </form>
-          </div>
-
-          <div class="tru-contact-secondary">
-            <span>Prefer to talk to a real person.</span>
-            <button class="tru-contact-secondary-btn" type="button">
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="M6.5 4.5L9.5 4L11 7.5L9.3 8.7C9.9 9.9 10.8 10.9 12 11.7L13.9 10.4L17 12L16.3 15.3C16.2 15.8 15.8 16.1 15.3 16.2C14.1 16.5 12.3 16.1 10.3 14.8C8.3 13.4 6.9 11.7 6.1 10.1C5.5 8.9 5.3 7.8 5.5 6.9C5.6 6.4 5.9 5.9 6.5 4.5Z"
-                      stroke-width="1.6"
-                      stroke-linecap="round"
-                      stroke-linejoin="round" />
-              </svg>
-              <span>Talk to a TruMove specialist</span>
-              <span class="chevron">→</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-    </div>
-  </div>
-
-  `;
-
-
+const TRUST = [
+  { tag: "USDOT", text: "USDOT Compliant" },
+  { tag: "INSURED", text: "Bonded and Insured" },
+  { tag: "FMCSA", text: "FMCSA Authorized Motor Carriers" },
+  { tag: "BROKER", text: "Licensed Interstate Moving Broker" },
+];
 
 export default function HomePage() {
   const router = useRouter();
 
-  useEffect(() => {
+  const onStart = () => {
+    const name = (document.getElementById("miniName")?.value || "").trim();
+    const zip = (document.getElementById("miniZip")?.value || "").trim();
+    const size = (document.getElementById("miniSize")?.value || "").trim();
 
-    // See all features -> carrier vetting
-const featuresBtn = document.querySelector(".tru-simple-cta-btn");
-const onFeaturesClick = () => router.push("/vetting");
-featuresBtn?.addEventListener("click", onFeaturesClick);
-    
+    if (!name || !zip || !size) {
+      alert("Please fill out all fields to proceed.");
+      return;
+    }
 
-    // Contact form -> email for now
-const contactForm = document.getElementById("truContactForm");
-const onContactSubmit = (e) => {
-  e.preventDefault();
-
-  const name = document.getElementById("contactName")?.value || "";
-  const email = document.getElementById("contactEmail")?.value || "";
-  const message = document.getElementById("contactMessage")?.value || "";
-
-  const body =
-    `Name: ${name}%0D%0A` +
-    `Email: ${email}%0D%0A%0D%0A` +
-    `Message:%0D%0A${message}`;
-
-window.location.href = "/online-estimate";
-};
-
-
-    // 2) Mini form button -> route to estimate page (no external URL)
     const miniBtn = document.getElementById("truMiniSubmit");
-    const onMiniClick = () => {
-      const name = (document.getElementById("miniName")?.value || "").trim();
-      const zip = (document.getElementById("miniZip")?.value || "").trim();
-      const size = (document.getElementById("miniSize")?.value || "").trim();
+    if (miniBtn) {
+      miniBtn.setAttribute("data-step", "0");
+      miniBtn.classList.add("is-loading");
+    }
 
-if (!name || !zip || !size) {
-  alert("Please fill out all fields to proceed.");
-  return;
-}
+    setTimeout(() => {
+      miniBtn?.setAttribute("data-step", "1");
+    }, 260);
 
-window.location.href = "/online-estimate";
-};
-miniBtn?.addEventListener("click", onMiniClick);
+    setTimeout(() => {
+      miniBtn?.setAttribute("data-step", "2");
+    }, 520);
 
-    // 3) “See how TruMove works” button -> How It Works page (if you have it)
-    const howBtn = document.querySelector(".tru-hero-btn-secondary");
-    const onHowClick = () => router.push("/about");
-    howBtn?.addEventListener("click", onHowClick);
+    setTimeout(() => {
+      router.push("/online-estimate");
+    }, 780);
+  };
 
-    // 4) “Talk to a TruMove specialist” button -> book consult page
-    const talkBtn = document.querySelector(".tru-contact-secondary-btn");
-    const onTalkClick = () => router.push("/book");
-    talkBtn?.addEventListener("click", onTalkClick);
+  return (
+    <div className="tru-page-frame">
+      <div className="tru-page-inner">
+        <section className="tru-hero">
+          <div className="tru-hero-grid">
+            {/* LEFT */}
+            <div>
+              <h1 className="tru-hero-title">
+                Build your inventory.
+                <br />
+                Plan your route.
+                <br />
+                <span>See real pricing.</span>
+              </h1>
 
-    return () => {
-      miniBtn?.removeEventListener("click", onMiniClick);
-      howBtn?.removeEventListener("click", onHowClick);
-      talkBtn?.removeEventListener("click", onTalkClick);
-      contactForm?.removeEventListener("submit", onContactSubmit);
-featuresBtn?.removeEventListener("click", onFeaturesClick);
-    };
-  }, [router]);
+              <p className="tru-hero-sub">
+                TruMove turns a few simple inputs into real pricing guidance, vetted carrier options, and live support through the process.
+              </p>
 
-  return <main dangerouslySetInnerHTML={{ __html: HTML }} />;
+              {/* TRUST STRIP, INTEGRATED */}
+              <div className="tru-hero-trust" aria-label="Compliance and authority">
+                <div className="tru-hero-trust-row">
+                  {TRUST.map((t, idx) => (
+                    <div className="tru-hero-trust-item" key={t.tag}>
+                      <div className="tru-hero-trust-badge" aria-hidden="true">
+                        <div className="tru-hero-trust-top">Verified</div>
+                        <div className="tru-hero-trust-tag">{t.tag}</div>
+                      </div>
+                      <div className="tru-hero-trust-text">{t.text}</div>
+                      {idx < TRUST.length - 1 ? <div className="tru-hero-trust-div" aria-hidden="true" /> : null}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="tru-hero-bullets">
+                <div className="tru-hero-badge">
+                  <span className="tru-hero-badge-dot" />
+                  <span>Instant AI quotes</span>
+                </div>
+                <div className="tru-hero-badge">
+                  <span className="tru-hero-badge-dot" />
+                  <span>Vetted mover network</span>
+                </div>
+                <div className="tru-hero-badge">
+                  <span className="tru-hero-badge-dot" />
+                  <span>Real time updates</span>
+                </div>
+              </div>
+            </div>
+
+            {/* RIGHT */}
+            <div className="tru-hero-visual">
+              <div className="tru-hero-visual-tag is-premium">
+                <span className="tru-hero-visual-orb" />
+                <span className="tru-hero-visual-text">Start Your Move</span>
+              </div>
+
+              <div className="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
+                <div className="tru-hero-form-title">Get your quote in seconds</div>
+                <div className="tru-hero-form-sub">Enter a few details, then start your inventory.</div>
+
+                <form className="tru-hero-form" onSubmit={(e) => e.preventDefault()}>
+                  <div className="tru-hero-form-row">
+                    <input id="miniName" className="tru-hero-input" placeholder="Your name" />
+                  </div>
+
+                  <div className="tru-hero-form-row two">
+                    <input id="miniZip" className="tru-hero-input" placeholder="ZIP code" />
+                    <select id="miniSize" className="tru-hero-select" defaultValue="">
+                      <option value="" disabled>
+                        Move size
+                      </option>
+                      <option value="Studio">Studio</option>
+                      <option value="1 Bedroom">1 Bedroom</option>
+                      <option value="2 Bedroom">2 Bedroom</option>
+                      <option value="3 Bedroom">3 Bedroom</option>
+                      <option value="4+ Bedroom">4+ Bedroom</option>
+                    </select>
+                  </div>
+
+                  <button className="tru-hero-form-btn is-step" id="truMiniSubmit" type="button" onClick={onStart}>
+                    <span className="step-track">
+                      <span className="step s0">Inventory</span>
+                      <span className="step s1">Route</span>
+                      <span className="step s2">Pricing</span>
+                    </span>
+                    <span className="step-cta">Start</span>
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <style jsx>{`
+          .tru-page-frame {
+            width: 100%;
+          }
+          .tru-page-inner {
+            max-width: 1480px;
+            margin: 0 auto;
+            padding: 28px 26px 60px;
+          }
+
+          .tru-hero {
+            padding-top: 22px;
+          }
+
+          .tru-hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 28px;
+            align-items: start;
+          }
+
+          .tru-hero-title {
+            font-size: 52px;
+            line-height: 1.05;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin: 0 0 18px;
+          }
+          .tru-hero-title span {
+            color: #39ff14;
+            font-weight: 900;
+          }
+
+          .tru-hero-sub {
+            color: rgba(15, 23, 42, 0.72);
+            font-size: 16px;
+            line-height: 1.55;
+            margin: 0 0 14px;
+            max-width: 760px;
+          }
+
+          .tru-hero-bullets {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 14px;
+          }
+          .tru-hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            border: 1px solid rgba(15, 23, 42, 0.1);
+            background: linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.78));
+            box-shadow: 0 14px 34px rgba(15, 23, 42, 0.08);
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 750;
+            color: rgba(15, 23, 42, 0.86);
+          }
+          .tru-hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: #39ff14;
+            box-shadow: 0 0 0 5px rgba(57, 255, 20, 0.14);
+          }
+
+          .tru-hero-trust {
+            margin: 14px 0 6px;
+          }
+          .tru-hero-trust-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+          }
+          .tru-hero-trust-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+          }
+          .tru-hero-trust-div {
+            width: 1px;
+            height: 18px;
+            background: rgba(15, 23, 42, 0.14);
+            opacity: 0.7;
+            margin-left: 12px;
+          }
+          .tru-hero-trust-badge {
+            width: 52px;
+            height: 32px;
+            border-radius: 10px;
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.04), rgba(15, 23, 42, 0.01));
+            box-shadow: 0 12px 24px rgba(15, 23, 42, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            line-height: 1;
+            flex: 0 0 auto;
+          }
+          .tru-hero-trust-top {
+            font-size: 8px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: rgba(15, 23, 42, 0.55);
+            font-weight: 800;
+          }
+          .tru-hero-trust-tag {
+            margin-top: 4px;
+            font-size: 10px;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: rgba(15, 23, 42, 0.92);
+            font-weight: 900;
+          }
+          .tru-hero-trust-text {
+            font-size: 11px;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: rgba(15, 23, 42, 0.86);
+          }
+
+          .tru-hero-visual {
+            position: relative;
+          }
+
+          .tru-hero-formcard {
+            border-radius: 18px;
+            border: 1px solid rgba(15, 23, 42, 0.1);
+            box-shadow: 0 18px 50px rgba(15, 23, 42, 0.1);
+            background: #fff;
+            padding: 18px;
+          }
+
+          .tru-hero-form-title {
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+          }
+          .tru-hero-form-sub {
+            color: rgba(15, 23, 42, 0.7);
+            font-size: 13px;
+            line-height: 1.4;
+            margin-bottom: 14px;
+          }
+
+          .tru-hero-form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+          }
+          .tru-hero-form-row.two {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+          }
+
+          .tru-hero-input,
+          .tru-hero-select {
+            width: 100%;
+            height: 46px;
+            border-radius: 12px;
+            border: 1px solid rgba(15, 23, 42, 0.12);
+            padding: 0 14px;
+            outline: none;
+            background: #fff;
+          }
+          .tru-hero-input:focus,
+          .tru-hero-select:focus {
+            border-color: rgba(57, 255, 20, 0.55);
+            box-shadow: 0 0 0 5px rgba(57, 255, 20, 0.16);
+          }
+
+          .tru-hero-form-btn {
+            height: 46px;
+            border-radius: 999px;
+            border: 1px solid rgba(57, 255, 20, 0.45);
+            background: linear-gradient(180deg, rgba(57, 255, 20, 0.22), rgba(57, 255, 20, 0.1));
+            font-weight: 850;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 0 18px;
+          }
+          .tru-hero-form-btn.is-loading {
+            opacity: 0.85;
+            pointer-events: none;
+          }
+
+          .step-track {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+          }
+          .step {
+            font-size: 11px;
+            font-weight: 900;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            opacity: 0.35;
+          }
+          .step:not(:last-child)::after {
+            content: "→";
+            margin-left: 10px;
+            opacity: 0.4;
+          }
+
+          /* step highlight based on button data-step */
+          #truMiniSubmit[data-step="0"] .s0,
+          #truMiniSubmit[data-step="1"] .s1,
+          #truMiniSubmit[data-step="2"] .s2 {
+            opacity: 1;
+          }
+
+          .step-cta {
+            font-weight: 950;
+            letter-spacing: 0.08em;
+          }
+
+          .tru-hero-visual-tag.is-premium {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 16px;
+            border: 1px solid rgba(15, 23, 42, 0.1);
+            background: radial-gradient(circle at 18% 20%, rgba(57, 255, 20, 0.2), rgba(57, 255, 20, 0) 55%),
+              linear-gradient(180deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.72));
+            box-shadow: 0 18px 44px rgba(15, 23, 42, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+            margin-bottom: 14px;
+          }
+          .tru-hero-visual-orb {
+            width: 12px;
+            height: 12px;
+            border-radius: 999px;
+            background: #39ff14;
+            box-shadow: 0 0 0 6px rgba(57, 255, 20, 0.14);
+            flex: 0 0 auto;
+          }
+          .tru-hero-visual-text {
+            font-size: 12px;
+            font-weight: 950;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: rgba(15, 23, 42, 0.88);
+          }
+
+          @media (max-width: 980px) {
+            .tru-page-inner {
+              padding: 20px 16px 50px;
+            }
+            .tru-hero-grid {
+              grid-template-columns: 1fr;
+            }
+            .tru-hero-title {
+              font-size: 42px;
+            }
+          }
+        `}</style>
+      </div>
+    </div>
+  );
 }
