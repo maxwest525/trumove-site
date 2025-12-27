@@ -493,7 +493,6 @@ contactForm?.addEventListener("submit", onContactSubmit);
 
     // 1) Hero button scrolls to the mini form
     const heroBtn = document.getElementById("truHeroStartQuote");
-    const miniSection = document.getElementById("truMiniSection");
     const onHeroClick = () => {document.getElementById("miniName")?.focus();};
     heroBtn?.addEventListener("click", onHeroClick);
 
