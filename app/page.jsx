@@ -22,8 +22,9 @@ const HTML = `
 
 
 <p class="tru-hero-sub">
-  TruMove turns a few simple questions into instant pricing, vetted movers, and live support, built for long distance household moves.
+  TruMove turns a few simple questions into instant pricing, vetted movers, and live support.
 </p>
+
 
 
 <!-- TRUST STRIP (OFFICIAL PLAQUES) -->
