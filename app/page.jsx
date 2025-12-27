@@ -25,9 +25,9 @@ const HTML = `
               TruMove turns a few simple questions into instant pricing, vetted movers, and live support. No spam calls, no surprise add ons, no getting bounced around.
             </p>
 
-<!-- TRUST STRIP (OFFICIAL PLAQUES) -->
+{/* TRUST STRIP (OFFICIAL PLAQUES) */}
 <div class="tru-hero-trust">
-   <div class="tm-trust tm-trust--hero" aria-label="Compliance and authority">
+  <div class="tm-trust" aria-label="Compliance and authority">
     <div class="tm-trust-inner">
       <div class="tm-trust-items">
 
