@@ -14,9 +14,12 @@ const HTML = `
         <div class="tru-hero-grid">
           <div>
 
-            <h1 class="tru-hero-title">
-              Move day control, without the stress.
-            </h1>
+<h1 class="tru-hero-title">
+  Build your inventory.<br />
+  Plan your route.<br />
+  <span>See real pricing.</span>
+</h1>
+
 
             <p class="tru-hero-sub">
               TruMove turns a few simple questions into instant pricing, vetted movers, and live support. No spam calls, no surprise add ons, no getting bounced around.
