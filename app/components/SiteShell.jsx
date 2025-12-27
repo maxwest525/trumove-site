@@ -596,6 +596,20 @@ export default function SiteShell({ children }) {
   box-shadow:0 18px 50px rgba(15,23,42,0.10);
 }
 
+.tru-hero-title {
+  font-size: 52px;
+  line-height: 1.05;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+}
+
+.tru-hero-title span {
+  color: #39ff14;
+  font-weight: 900;
+}
+
+
 .tru-hero-form-title{
   font-size:18px;
   font-weight:700;
