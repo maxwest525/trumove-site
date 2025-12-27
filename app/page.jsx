@@ -491,11 +491,6 @@ const onContactSubmit = (e) => {
 contactForm?.addEventListener("submit", onContactSubmit);
 
 
-    // 1) Hero button scrolls to the mini form
-    const heroBtn = document.getElementById("truHeroStartQuote");
-    const onHeroClick = () => {document.getElementById("miniName")?.focus();};
-    heroBtn?.addEventListener("click", onHeroClick);
-
     // 2) Mini form button -> route to estimate page (no external URL)
     const miniBtn = document.getElementById("truMiniSubmit");
     const onMiniClick = () => {
@@ -524,7 +519,6 @@ contactForm?.addEventListener("submit", onContactSubmit);
     talkBtn?.addEventListener("click", onTalkClick);
 
     return () => {
-      heroBtn?.removeEventListener("click", onHeroClick);
       miniBtn?.removeEventListener("click", onMiniClick);
       howBtn?.removeEventListener("click", onHowClick);
       talkBtn?.removeEventListener("click", onTalkClick);
