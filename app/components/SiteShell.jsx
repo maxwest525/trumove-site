@@ -817,6 +817,43 @@ export default function SiteShell({ children }) {
   top:1px;
 }
 
+/* TRUST STRIP, HERO VARIANT (light, integrated) */
+.tm-trust--hero{
+  background:transparent !important;
+  border-bottom:0 !important;
+}
+
+.tm-trust--hero .tm-trust-inner{
+  padding:0 !important;
+  max-width:none !important;
+}
+
+.tm-trust--hero .tm-trust-items{
+  justify-content:flex-start;
+  gap:12px;
+}
+
+.tm-trust--hero .tm-trust-divider{
+  background:rgba(15,23,42,0.14) !important;
+}
+
+.tm-trust--hero .tm-trust-badge{
+  border:1px solid rgba(15,23,42,0.12) !important;
+  background:linear-gradient(180deg, rgba(15,23,42,0.04), rgba(15,23,42,0.01)) !important;
+  box-shadow:0 12px 24px rgba(15,23,42,0.10), inset 0 1px 0 rgba(255,255,255,0.80) !important;
+}
+
+.tm-trust--hero .tm-trust-badge-top{
+  color:rgba(15,23,42,0.55) !important;
+}
+
+.tm-trust--hero .tm-trust-badge-tag{
+  color:rgba(15,23,42,0.92) !important;
+}
+
+.tm-trust--hero .tm-trust-text{
+  color:rgba(15,23,42,0.88) !important;
+}
 
 
 
