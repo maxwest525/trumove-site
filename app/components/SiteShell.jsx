@@ -785,6 +785,39 @@ export default function SiteShell({ children }) {
   top:1px;
 }
 
+.tru-hero-visual-tag.is-premium{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:10px 18px;
+  border-radius:999px;
+  background:linear-gradient(180deg, rgba(57,255,20,0.18), rgba(57,255,20,0.06));
+  border:1px solid rgba(57,255,20,0.45);
+  box-shadow:
+    0 14px 40px rgba(15,23,42,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.7);
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:0.12em;
+  text-transform:uppercase;
+}
+
+.tru-hero-visual-orb{
+  width:12px;
+  height:12px;
+  border-radius:999px;
+  background:
+    radial-gradient(circle at 30% 30%, #ffffff 0%, rgba(255,255,255,0) 40%),
+    radial-gradient(circle at center, var(--tm-green) 0%, var(--tm-green) 60%, rgba(57,255,20,0.15) 100%);
+  box-shadow:0 0 0 5px rgba(57,255,20,0.18);
+}
+
+.tru-hero-visual-text{
+  position:relative;
+  top:1px;
+}
+
+
 
 
       `}</style>
