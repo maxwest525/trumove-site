@@ -72,22 +72,6 @@ const HTML = `
 </div>
 
 
-
-            <div class="tru-hero-bullets">
-              <div class="tru-hero-badge">
-                <span class="tru-hero-badge-dot"></span>
-                <span>Instant AI quotes</span>
-              </div>
-              <div class="tru-hero-badge">
-                <span class="tru-hero-badge-dot"></span>
-                <span>Vetted mover network</span>
-              </div>
-              <div class="tru-hero-badge">
-                <span class="tru-hero-badge-dot"></span>
-                <span>Real time updates</span>
-              </div>
-            </div>
-
             <div class="tru-hero-actions">
               <button class="tru-hero-btn-primary" id="truHeroStartQuote">
                 Start my quote
