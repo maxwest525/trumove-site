@@ -25,27 +25,52 @@ const HTML = `
               TruMove turns a few simple questions into instant pricing, vetted movers, and live support. No spam calls, no surprise add ons, no getting bounced around.
             </p>
 
-{/* TRUST STRIP (OFFICIAL PLAQUES) */}
-<div className="tru-hero-trust">
-  <div className="tm-trust" aria-label="Compliance and authority">
-    <div className="tm-trust-inner">
-      <div className="tm-trust-items">
-        {TRUST.map((t, idx) => (
-          <span key={t.tag} className="tm-trust-item">
-            <span className="tm-trust-badge" aria-hidden="true">
-              <span className="tm-trust-badge-top">Verified</span>
-              <span className="tm-trust-badge-tag">{t.tag}</span>
-            </span>
-            <span className="tm-trust-text">{t.text}</span>
-            {idx < TRUST.length - 1 ? (
-              <span className="tm-trust-divider" aria-hidden="true" />
-            ) : null}
+<!-- TRUST STRIP (OFFICIAL PLAQUES) -->
+<div class="tru-hero-trust">
+   <div class="tm-trust tm-trust--hero" aria-label="Compliance and authority">
+    <div class="tm-trust-inner">
+      <div class="tm-trust-items">
+
+        <span class="tm-trust-item">
+          <span class="tm-trust-badge" aria-hidden="true">
+            <span class="tm-trust-badge-top">Verified</span>
+            <span class="tm-trust-badge-tag">USDOT</span>
           </span>
-        ))}
+          <span class="tm-trust-text">USDOT Compliant</span>
+          <span class="tm-trust-divider" aria-hidden="true"></span>
+        </span>
+
+        <span class="tm-trust-item">
+          <span class="tm-trust-badge" aria-hidden="true">
+            <span class="tm-trust-badge-top">Verified</span>
+            <span class="tm-trust-badge-tag">INSURED</span>
+          </span>
+          <span class="tm-trust-text">Bonded and Insured</span>
+          <span class="tm-trust-divider" aria-hidden="true"></span>
+        </span>
+
+        <span class="tm-trust-item">
+          <span class="tm-trust-badge" aria-hidden="true">
+            <span class="tm-trust-badge-top">Verified</span>
+            <span class="tm-trust-badge-tag">FMCSA</span>
+          </span>
+          <span class="tm-trust-text">FMCSA Authorized Motor Carriers</span>
+          <span class="tm-trust-divider" aria-hidden="true"></span>
+        </span>
+
+        <span class="tm-trust-item">
+          <span class="tm-trust-badge" aria-hidden="true">
+            <span class="tm-trust-badge-top">Verified</span>
+            <span class="tm-trust-badge-tag">BROKER</span>
+          </span>
+          <span class="tm-trust-text">Licensed Interstate Moving Broker</span>
+        </span>
+
       </div>
     </div>
   </div>
 </div>
+
 
 
             <div class="tru-hero-bullets">
