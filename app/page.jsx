@@ -82,12 +82,6 @@ const HTML = `
 
 
 
-            <div class="tru-hero-note">
-              No hidden fees, no endless phone calls, just one clean dashboard for your whole move.
-            </div>
-          </div>
-
-
   <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
   <div class="tru-hero-visual-tag is-premium">
   <span class="tru-hero-visual-orb"></span>
