@@ -117,7 +117,7 @@ const HTML = `
     <span class="step">Route</span>
     <span class="step">Pricing</span>
   </span>
-  <span class="step-cta">Start</span>
+  <span class="step-cta">Build My Inventory →</span>
 </button>
 
 
@@ -496,15 +496,14 @@ window.location.href = "/online-estimate";
       const zip = (document.getElementById("miniZip")?.value || "").trim();
       const size = (document.getElementById("miniSize")?.value || "").trim();
 
-      if (!name || !zip || !size) {
-        alert("Please fill out all fields to proceed.");
-        return;
-      }
+if (!name || !zip || !size) {
+  alert("Please fill out all fields to proceed.");
+  return;
+}
 
-      // send them to your Next.js estimate page
-      router.push("/online-estimate");
-    };
-    miniBtn?.addEventListener("click", onMiniClick);
+window.location.href = "/online-estimate";
+};
+miniBtn?.addEventListener("click", onMiniClick);
 
     // 3) “See how TruMove works” button -> How It Works page (if you have it)
     const howBtn = document.querySelector(".tru-hero-btn-secondary");
