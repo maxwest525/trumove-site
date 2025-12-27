@@ -110,7 +110,7 @@ const HTML = `
         </select>
       </div>
 
-<button class="tru-hero-form-btn is-step" id="truMiniSubmit" type="button">
+<button class="tru-hero-form-btn is-step" id="truHeroStartQuote" type="button">
   <span class="step-track">
     <span class="step active">Inventory</span>
     <span class="step">Route</span>
@@ -494,7 +494,7 @@ contactForm?.addEventListener("submit", onContactSubmit);
     // 1) Hero button scrolls to the mini form
     const heroBtn = document.getElementById("truHeroStartQuote");
     const miniSection = document.getElementById("truMiniSection");
-    const onHeroClick = () => miniSection?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const onHeroClick = () => {document.getElementById("miniName")?.focus();};
     heroBtn?.addEventListener("click", onHeroClick);
 
     // 2) Mini form button -> route to estimate page (no external URL)
