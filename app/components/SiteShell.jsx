@@ -855,6 +855,39 @@ export default function SiteShell({ children }) {
   color:rgba(15,23,42,0.88) !important;
 }
 
+/* HERO: align + upgrade "Start Your Move" pill */
+.tru-hero-visual-tag.is-premium{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:flex-start;
+  gap:10px;
+  padding:12px 14px;
+  border-radius:16px;
+  border:1px solid rgba(15,23,42,0.10);
+  background:
+    radial-gradient(circle at 18% 20%, rgba(57,255,20,0.20), rgba(57,255,20,0) 55%),
+    linear-gradient(180deg, rgba(255,255,255,0.92), rgba(255,255,255,0.72));
+  box-shadow:0 18px 44px rgba(15,23,42,0.12), inset 0 1px 0 rgba(255,255,255,0.85);
+  margin-bottom:14px;
+}
+
+.tru-hero-visual-orb{
+  width:12px;
+  height:12px;
+  border-radius:999px;
+  background:var(--tm-green);
+  box-shadow:0 0 0 6px rgba(57,255,20,0.14);
+  flex:0 0 auto;
+}
+
+.tru-hero-visual-text{
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  color:rgba(15,23,42,0.88);
+}
 
 
       `}</style>
