@@ -89,12 +89,13 @@ const HTML = `
             </div>
           </div>
 
-<div class="tru-hero-visual-tag is-premium">
+
+  <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
+  <div class="tru-hero-visual-tag is-premium">
   <span class="tru-hero-visual-orb"></span>
   <span class="tru-hero-visual-text">Start Your Move</span>
 </div>
 
-  <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
     <div class="tru-hero-form-title">Get your quote in seconds</div>
     <div class="tru-hero-form-sub">
       Enter a few details, we’ll route you to your personalized estimate.
