@@ -21,9 +21,10 @@ const HTML = `
 </h1>
 
 
-            <p class="tru-hero-sub">
-              TruMove turns a few simple questions into instant pricing, vetted movers, and live support. No spam calls, no surprise add ons, no getting bounced around.
-            </p>
+<p class="tru-hero-sub">
+  TruMove turns a few simple questions into instant pricing, vetted movers, and live support, built for long distance household moves.
+</p>
+
 
 {/* TRUST STRIP (OFFICIAL PLAQUES) */}
 <div class="tru-hero-trust">
@@ -128,9 +129,6 @@ const HTML = `
 </button>
 
 
-      <div class="tru-hero-form-foot">
-        No spam calls, no lead reselling.
-      </div>
     </form>
   </div>
 </div>
