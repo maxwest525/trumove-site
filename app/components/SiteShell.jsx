@@ -480,75 +480,108 @@ export default function SiteShell({ children }) {
           background:linear-gradient(180deg, rgba(255,255,255,0.94), rgba(57,255,20,0.08));
         }
 
-        /* TRUST STRIP (OFFICIAL PLAQUES) */
-        .tm-trust{
-          border-bottom:1px solid rgba(255,255,255,0.10);
-          background:linear-gradient(180deg, #0b1220, #070b14);
-        }
-        .tm-trust-inner{
-          max-width:var(--tm-max);
-          margin:0 auto;
-          padding:12px 22px;
-        }
-        .tm-trust-items{
-          display:flex;
-          align-items:center;
-          justify-content:center;
-          gap:14px;
-          flex-wrap:wrap;
-        }
-        .tm-trust-item{
-          display:inline-flex;
-          align-items:center;
-          gap:12px;
-          white-space:nowrap;
-        }
-        .tm-trust-divider{
-          width:1px;
-          height:22px;
-          background:rgba(255,255,255,0.18);
-          display:inline-block;
-          margin-left:14px;
-        }
+/* TRUST STRIP (OFFICIAL PLAQUES) */
+.tm-trust{
+  border-bottom:1px solid rgba(255,255,255,0.12);
+  border-top:1px solid rgba(255,255,255,0.06);
+  background:
+    radial-gradient(circle at 15% 0%, rgba(255,255,255,0.08), rgba(255,255,255,0) 45%),
+    radial-gradient(circle at 85% 100%, rgba(57,255,20,0.08), rgba(57,255,20,0) 55%),
+    linear-gradient(180deg, #0b1220 0%, #070b14 100%);
+}
 
-        .tm-trust-badge{
-          width:56px;
-          height:34px;
-          border-radius:10px;
-          border:1px solid rgba(255,255,255,0.14);
-          background:
-            radial-gradient(circle at 20% 10%, rgba(255,255,255,0.18), rgba(255,255,255,0) 55%),
-            linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
-          box-shadow:0 16px 30px rgba(0,0,0,0.35), inset 0 1px 0 rgba(255,255,255,0.10);
-          display:flex;
-          flex-direction:column;
-          align-items:center;
-          justify-content:center;
-          line-height:1;
-          flex:0 0 auto;
-        }
-        .tm-trust-badge-top{
-          font-size:8px;
-          letter-spacing:0.18em;
-          text-transform:uppercase;
-          color:rgba(255,255,255,0.66);
-          font-weight:700;
-        }
-        .tm-trust-badge-tag{
-          margin-top:4px;
-          font-size:10px;
-          letter-spacing:0.22em;
-          text-transform:uppercase;
-          color:rgba(255,255,255,0.92);
-          font-weight:800;
-        }
-        .tm-trust-text{
-          font-size:12px;
-          letter-spacing:0.14em;
-          text-transform:uppercase;
-          font-weight:650;
-          color:rgba(255,255,255,0.92);
-        }
+.tm-trust-inner{
+  max-width:var(--tm-max);
+  margin:0 auto;
+  padding:12px 22px;
+}
+
+.tm-trust-items{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:14px;
+  flex-wrap:wrap;
+}
+
+/* each item reads like an authority plaque */
+.tm-trust-item{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  white-space:nowrap;
+  padding:6px 10px;
+  border-radius:14px;
+  border:1px solid rgba(255,255,255,0.08);
+  background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);
+}
+
+.tm-trust-divider{
+  width:1px;
+  height:20px;
+  background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.22), rgba(255,255,255,0.06));
+  display:inline-block;
+  margin-left:14px;
+}
+
+/* badge becomes more “seal” and less “app UI” */
+.tm-trust-badge{
+  width:58px;
+  height:34px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,0.14);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.16), rgba(255,255,255,0) 55%),
+    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
+  box-shadow:
+    0 12px 22px rgba(0,0,0,0.40),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  line-height:1;
+  flex:0 0 auto;
+}
+
+.tm-trust-badge-top{
+  font-size:8px;
+  letter-spacing:0.22em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.70);
+  font-weight:800;
+}
+
+.tm-trust-badge-tag{
+  margin-top:4px;
+  font-size:10px;
+  letter-spacing:0.26em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.95);
+  font-weight:900;
+}
+
+/* text reads more like “compliance mark” */
+.tm-trust-text{
+  font-size:12px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  font-weight:750;
+  color:rgba(255,255,255,0.92);
+}
+
+/* slightly calmer on mobile, stays clean */
+@media (max-width: 520px){
+  .tm-trust-item{
+    padding:6px 8px;
+    border-radius:12px;
+  }
+  .tm-trust-text{
+    font-size:11px;
+    letter-spacing:0.14em;
+  }
+}
 
         .tm-main{flex:1;width:100%}
 
