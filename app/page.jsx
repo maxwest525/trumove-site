@@ -42,9 +42,6 @@ const HTML = `
             </div>
 
             <div class="tru-hero-actions">
-              <button class="tru-hero-btn-primary" id="truHeroStartQuote">
-                Start my quote
-              </button>
 
                             <button class="tru-hero-btn-secondary" type="button">
                 <span>See how TruMove works</span>
@@ -465,11 +462,6 @@ const onContactSubmit = (e) => {
 contactForm?.addEventListener("submit", onContactSubmit);
 
 
-    // 1) Hero button scrolls to the mini form
-    const heroBtn = document.getElementById("truHeroStartQuote");
-    const miniSection = document.getElementById("truMiniSection");
-    const onHeroClick = () => miniSection?.scrollIntoView({ behavior: "smooth", block: "start" });
-    heroBtn?.addEventListener("click", onHeroClick);
 
     // 2) Mini form button -> route to estimate page (no external URL)
     const miniBtn = document.getElementById("truMiniSubmit");
@@ -499,7 +491,6 @@ contactForm?.addEventListener("submit", onContactSubmit);
     talkBtn?.addEventListener("click", onTalkClick);
 
     return () => {
-      heroBtn?.removeEventListener("click", onHeroClick);
       miniBtn?.removeEventListener("click", onMiniClick);
       howBtn?.removeEventListener("click", onHowClick);
       talkBtn?.removeEventListener("click", onTalkClick);
