@@ -508,7 +508,7 @@ export default function SiteShell({ children }) {
   white-space:nowrap;
 }
 
-/* clean divider, not “shiny” */
+/* clean divider, not shiny */
 .tm-trust-divider{
   width:1px;
   height:22px;
@@ -538,7 +538,7 @@ export default function SiteShell({ children }) {
   overflow:hidden;
 }
 
-/* subtle “certificate paper” grain, NOT glow */
+/* certificate paper grain */
 .tm-trust-badge::after{
   content:"";
   position:absolute;
@@ -555,7 +555,6 @@ export default function SiteShell({ children }) {
   pointer-events:none;
 }
 
-/* top label looks like a stamp */
 .tm-trust-badge-top{
   font-size:8px;
   letter-spacing:0.22em;
@@ -564,7 +563,6 @@ export default function SiteShell({ children }) {
   font-weight:750;
 }
 
-/* tag looks like an accreditation code */
 .tm-trust-badge-tag{
   margin-top:4px;
   font-size:10px;
@@ -574,7 +572,6 @@ export default function SiteShell({ children }) {
   font-weight:850;
 }
 
-/* text: tighter, more “official”, no hype */
 .tm-trust-text{
   font-size:12px;
   letter-spacing:0.12em;
@@ -582,6 +579,7 @@ export default function SiteShell({ children }) {
   font-weight:650;
   color:rgba(255,255,255,0.88);
 }
+
 
 
         .tm-main{flex:1;width:100%}
