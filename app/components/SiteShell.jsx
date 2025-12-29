@@ -480,11 +480,12 @@ export default function SiteShell({ children }) {
           background:linear-gradient(180deg, rgba(255,255,255,0.94), rgba(57,255,20,0.08));
         }
 
-/* TRUST STRIP (OFFICIAL PLAQUES) */
+/* TRUST STRIP (REGISTRY / CERTIFICATE STYLE) */
 .tm-trust{
-  border-bottom:1px solid rgba(15,23,42,0.10);
+  border-bottom:1px solid rgba(15,23,42,0.12);
   background:
-    linear-gradient(180deg, #0b1220, #070b14);
+    /* paper tint */
+    linear-gradient(180deg, #ffffff, #fbfcff);
 }
 
 .tm-trust-inner{
@@ -493,7 +494,29 @@ export default function SiteShell({ children }) {
   padding:12px 22px;
 }
 
+/* subtle “paper grain” across the band */
+.tm-trust-inner{
+  position:relative;
+}
+.tm-trust-inner::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:0.35;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(15,23,42,0.04) 0px,
+      rgba(15,23,42,0.04) 1px,
+      rgba(255,255,255,0) 1px,
+      rgba(255,255,255,0) 6px
+    );
+}
+
 .tm-trust-items{
+  position:relative;
+  z-index:1;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -508,26 +531,27 @@ export default function SiteShell({ children }) {
   white-space:nowrap;
 }
 
-/* clean divider, not shiny */
+/* divider like a form separator */
 .tm-trust-divider{
   width:1px;
   height:22px;
-  background:rgba(255,255,255,0.16);
+  background:rgba(15,23,42,0.18);
   display:inline-block;
   margin-left:14px;
 }
 
-/* plaque badge, no glow */
+/* plaque badge becomes an “ink stamp / registry plate” */
 .tm-trust-badge{
-  width:60px;
+  width:64px;
   height:36px;
-  border-radius:8px;
-  border:1px solid rgba(255,255,255,0.18);
+  border-radius:10px;
+  border:1px solid rgba(15,23,42,0.24);
   background:
-    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+    radial-gradient(circle at 20% 15%, rgba(15,23,42,0.08), rgba(255,255,255,0) 55%),
+    linear-gradient(180deg, #ffffff, #f3f6fb);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.08),
-    inset 0 -1px 0 rgba(0,0,0,0.35);
+    inset 0 1px 0 rgba(255,255,255,0.85),
+    inset 0 -1px 0 rgba(15,23,42,0.10);
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -538,47 +562,47 @@ export default function SiteShell({ children }) {
   overflow:hidden;
 }
 
-/* certificate paper grain */
+/* micro “security line” across stamp */
 .tm-trust-badge::after{
   content:"";
   position:absolute;
-  inset:0;
-  background:
-    repeating-linear-gradient(
-      135deg,
-      rgba(255,255,255,0.05) 0px,
-      rgba(255,255,255,0.05) 1px,
-      rgba(255,255,255,0.00) 1px,
-      rgba(255,255,255,0.00) 5px
-    );
-  opacity:0.20;
+  left:-20%;
+  top:58%;
+  width:140%;
+  height:1px;
+  background:rgba(15,23,42,0.14);
+  transform:rotate(-8deg);
   pointer-events:none;
 }
 
+/* top label reads like a registry caption */
 .tm-trust-badge-top{
   font-size:8px;
   letter-spacing:0.22em;
   text-transform:uppercase;
-  color:rgba(255,255,255,0.62);
+  color:rgba(15,23,42,0.62);
   font-weight:750;
 }
 
+/* tag reads like an official code */
 .tm-trust-badge-tag{
   margin-top:4px;
   font-size:10px;
   letter-spacing:0.26em;
   text-transform:uppercase;
-  color:rgba(255,255,255,0.92);
+  color:rgba(15,23,42,0.92);
   font-weight:850;
 }
 
+/* text reads like a compliance line item */
 .tm-trust-text{
   font-size:12px;
   letter-spacing:0.12em;
   text-transform:uppercase;
   font-weight:650;
-  color:rgba(255,255,255,0.88);
+  color:rgba(15,23,42,0.84);
 }
+
 
 
 
