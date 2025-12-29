@@ -12,7 +12,7 @@ const NAV = [
   { href: "/about", label: "About" },
 ];
 
-const  = [
+const TRUST = [
   { tag: "USDOT", text: "USDOT Compliant" },
   { tag: "INSURED", text: "Bonded and Insured" },
   { tag: "FMCSA", text: "FMCSA Authorized Motor Carriers" },
