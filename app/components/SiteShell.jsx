@@ -482,12 +482,9 @@ export default function SiteShell({ children }) {
 
 /* TRUST STRIP (OFFICIAL PLAQUES) */
 .tm-trust{
-  border-bottom:1px solid rgba(255,255,255,0.12);
-  border-top:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(15,23,42,0.10);
   background:
-    radial-gradient(circle at 15% 0%, rgba(255,255,255,0.08), rgba(255,255,255,0) 45%),
-    radial-gradient(circle at 85% 100%, rgba(57,255,20,0.08), rgba(57,255,20,0) 55%),
-    linear-gradient(180deg, #0b1220 0%, #070b14 100%);
+    linear-gradient(180deg, #0b1220, #070b14);
 }
 
 .tm-trust-inner{
@@ -504,83 +501,86 @@ export default function SiteShell({ children }) {
   flex-wrap:wrap;
 }
 
-/* each item reads like an authority plaque */
 .tm-trust-item{
   display:inline-flex;
   align-items:center;
   gap:12px;
   white-space:nowrap;
-  padding:6px 10px;
-  border-radius:14px;
-  border:1px solid rgba(255,255,255,0.08);
-  background:linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-  box-shadow:inset 0 1px 0 rgba(255,255,255,0.06);
 }
 
+/* clean divider, not “shiny” */
 .tm-trust-divider{
   width:1px;
-  height:20px;
-  background:linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.22), rgba(255,255,255,0.06));
+  height:22px;
+  background:rgba(255,255,255,0.16);
   display:inline-block;
   margin-left:14px;
 }
 
-/* badge becomes more “seal” and less “app UI” */
+/* plaque badge, no glow */
 .tm-trust-badge{
-  width:58px;
-  height:34px;
-  border-radius:12px;
-  border:1px solid rgba(255,255,255,0.14);
+  width:60px;
+  height:36px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.18);
   background:
-    radial-gradient(circle at 30% 20%, rgba(255,255,255,0.16), rgba(255,255,255,0) 55%),
-    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
+    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
   box-shadow:
-    0 12px 22px rgba(0,0,0,0.40),
-    inset 0 1px 0 rgba(255,255,255,0.10);
+    inset 0 1px 0 rgba(255,255,255,0.08),
+    inset 0 -1px 0 rgba(0,0,0,0.35);
   display:flex;
   flex-direction:column;
   align-items:center;
   justify-content:center;
   line-height:1;
   flex:0 0 auto;
+  position:relative;
+  overflow:hidden;
 }
 
+/* subtle “certificate paper” grain, NOT glow */
+.tm-trust-badge::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    repeating-linear-gradient(
+      135deg,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.05) 1px,
+      rgba(255,255,255,0.00) 1px,
+      rgba(255,255,255,0.00) 5px
+    );
+  opacity:0.20;
+  pointer-events:none;
+}
+
+/* top label looks like a stamp */
 .tm-trust-badge-top{
   font-size:8px;
   letter-spacing:0.22em;
   text-transform:uppercase;
-  color:rgba(255,255,255,0.70);
-  font-weight:800;
+  color:rgba(255,255,255,0.62);
+  font-weight:750;
 }
 
+/* tag looks like an accreditation code */
 .tm-trust-badge-tag{
   margin-top:4px;
   font-size:10px;
   letter-spacing:0.26em;
   text-transform:uppercase;
-  color:rgba(255,255,255,0.95);
-  font-weight:900;
+  color:rgba(255,255,255,0.92);
+  font-weight:850;
 }
 
-/* text reads more like “compliance mark” */
+/* text: tighter, more “official”, no hype */
 .tm-trust-text{
   font-size:12px;
-  letter-spacing:0.16em;
+  letter-spacing:0.12em;
   text-transform:uppercase;
-  font-weight:750;
-  color:rgba(255,255,255,0.92);
-}
-
-/* slightly calmer on mobile, stays clean */
-@media (max-width: 520px){
-  .tm-trust-item{
-    padding:6px 8px;
-    border-radius:12px;
-  }
-  .tm-trust-text{
-    font-size:11px;
-    letter-spacing:0.14em;
-  }
+  font-weight:650;
+  color:rgba(255,255,255,0.88);
 }
 
         .tm-main{flex:1;width:100%}
