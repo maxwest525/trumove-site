@@ -12,7 +12,7 @@ const NAV = [
   { href: "/about", label: "About" },
 ];
 
-const TRUST = [
+const  = [
   { tag: "USDOT", text: "USDOT Compliant" },
   { tag: "INSURED", text: "Bonded and Insured" },
   { tag: "FMCSA", text: "FMCSA Authorized Motor Carriers" },
@@ -482,9 +482,10 @@ export default function SiteShell({ children }) {
 
 /* TRUST STRIP (REGISTRY / CERTIFICATE STYLE) */
 .tm-trust{
-  border-bottom:1px solid rgba(15,23,42,0.14);
-  background:linear-gradient(180deg,#ffffff,#f7f9fc);
+  border-bottom:1px solid rgba(255,255,255,0.10);
+  background:linear-gradient(180deg,#05070c,#02030a);
 }
+
 
 .tm-trust-inner{
   max-width:var(--tm-max);
@@ -499,16 +500,17 @@ export default function SiteShell({ children }) {
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:0.22;
+ opacity:0.14;
   background:
     repeating-linear-gradient(
       135deg,
-      rgba(15,23,42,0.035) 0px,
-      rgba(15,23,42,0.035) 1px,
-      rgba(255,255,255,0) 1px,
-      rgba(255,255,255,0) 7px
+      rgba(255,255,255,0.06) 0px,
+      rgba(255,255,255,0.06) 1px,
+      rgba(0,0,0,0) 1px,
+      rgba(0,0,0,0) 7px
     );
 }
+
 
 .tm-trust-items{
   position:relative;
@@ -531,7 +533,7 @@ export default function SiteShell({ children }) {
 .tm-trust-divider{
   width:1px;
   height:14px;
-  background:rgba(15,23,42,0.22);
+  background:rgba(255,255,255,0.14);
   display:inline-block;
   margin-left:10px;
 }
@@ -592,10 +594,63 @@ export default function SiteShell({ children }) {
   letter-spacing:0.11em;
   text-transform:uppercase;
   font-weight:650;
-  color:rgba(15,23,42,0.86);
+  color:rgba(255,255,255,0.88);
 }
 
 
+/* SEAL BADGE (replaces unreadable badge text visually) */
+.tm-trust-badge{
+  width:22px;
+  height:22px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.55);
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.35), rgba(255,255,255,0) 55%),
+    radial-gradient(circle at center, rgba(57,255,20,0.18), rgba(57,255,20,0) 62%),
+    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -1px 0 rgba(0,0,0,0.55);
+  position:relative;
+  overflow:hidden;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+/* inner “seal ring” */
+.tm-trust-badge::before{
+  content:"";
+  position:absolute;
+  inset:3px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.35);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35);
+}
+
+/* micro “stamp lines” */
+.tm-trust-badge::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  opacity:0.18;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.10) 0px,
+      rgba(255,255,255,0.10) 1px,
+      rgba(0,0,0,0) 1px,
+      rgba(0,0,0,0) 4px
+    );
+}
+
+/* hide the badge text, keep the trust wording beside it unchanged */
+.tm-trust-badge-top,
+.tm-trust-badge-tag{
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
+}
 
 
 
