@@ -803,34 +803,20 @@ html.tm-scrolling .tm-trust .tm-trust-text{
     opacity 160ms ease;
 }
 /* =========================================
-   TRUST BADGE ENHANCEMENTS: MICRO EMBOSS ON SCROLL
-   ========================================= */
-
-@keyframes tm-emboss-pop{
-  0%   { transform: translateY(0) scale(1); filter: brightness(1); }
-  40%  { transform: translateY(-0.5px) scale(1.02); filter: brightness(1.06); }
-  100% { transform: translateY(0) scale(1); filter: brightness(1); }
-}
-
-/* While scrolling, soften the seal so it feels less noisy */
-html.tm-scrolling .tm-trust .tm-trust-badge{
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.18),
-    inset 0 -1px 0 rgba(0,0,0,0.55),
-    0 0 0 rgba(0,0,0,0);
-  border-color: rgba(255,255,255,0.60);
-}
-
-/* When scrolling stops, pop the emboss */
-html:not(.tm-scrolling) .tm-trust .tm-trust-badge{
-  animation: tm-emboss-pop 280ms ease-out;
-}
-/* =========================================
    TRUST BADGE SHAPE SYSTEM (ONE LINE TO SWITCH)
    ========================================= */
 
 /* Pick one:
    circle | shield | plaque
+*/
+:root{
+  --tm-trust-shape: shield;
+}
+
+/* shared */
+.tm-trust .tm-trust-badge{
+  border-radius: 999px; /* default circle */
+}
 
 /* shield */
 :root[style*="--tm-trust-shape: shield"] .tm-trust .tm-trust-badge{
@@ -844,6 +830,22 @@ html:not(.tm-scrolling) .tm-trust .tm-trust-badge{
     12% 18%
   );
 }
+
+/* plaque (notched rectangle) */
+:root[style*="--tm-trust-shape: plaque"] .tm-trust .tm-trust-badge{
+  border-radius: 8px;
+  clip-path: polygon(
+    10% 0%,
+    90% 0%,
+    100% 20%,
+    100% 80%,
+    90% 100%,
+    10% 100%,
+    0% 80%,
+    0% 20%
+  );
+}
+
 
 
       `}</style>
