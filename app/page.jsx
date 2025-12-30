@@ -49,6 +49,30 @@ const HTML = `
               </button>
             </div>
 
+            <!-- HERO TRUST STRIP (OFFICIAL) -->
+<div class="tru-hero-trust" aria-label="Compliance and authority">
+  <span class="tru-hero-trust-item">
+    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
+    <span class="tru-hero-trust-text">USDOT Compliant</span>
+  </span>
+
+  <span class="tru-hero-trust-item">
+    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
+    <span class="tru-hero-trust-text">Bonded and Insured</span>
+  </span>
+
+  <span class="tru-hero-trust-item">
+    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
+    <span class="tru-hero-trust-text">FMCSA Authorized Carriers</span>
+  </span>
+
+  <span class="tru-hero-trust-item">
+    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
+    <span class="tru-hero-trust-text">Licensed Interstate Broker</span>
+  </span>
+</div>
+
+
 
             <div class="tru-hero-note">
               No hidden fees, no endless phone calls, just one clean dashboard for your whole move.
