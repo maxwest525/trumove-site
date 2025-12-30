@@ -51,10 +51,10 @@ export default function SiteShell({ children }) {
   const routeKey = useMemo(() => getRouteKey(path), [path]);
 
   // Page-aware highlighting (CSS targets html[data-tm-route="..."])
-  useEffect(() => {
-    document.documentElement.setAttribute("data-tm-route", routeKey);
-    return () => {};
-  }, [routeKey]);
+useEffect(() => {
+  document.documentElement.setAttribute("data-tm-route", routeKey);
+  document.documentElement.setAttribute("data-tm-badge", "shield"); // circle | shield | plaque
+}, [routeKey]);
 
   // Pause while user scrolls (very light touch)
   useEffect(() => {
@@ -724,86 +724,72 @@ export default function SiteShell({ children }) {
   color:rgba(15,23,42,0.60);
 }
 
-/* =========================================
-   TRUST BADGE – TINY OFFICIAL ICON VERSION
-   ========================================= */
-
-/* nuke any old checkmark nonsense */
-.tm-trust .tm-trust-badge::before,
-.tm-trust .tm-trust-badge::after{
-  content:"";
-  background:none !important;
+/* Hover: slightly brighter, crisp, tiny lift */
+.tm-trust .tm-trust-item{
+  transition: transform .14s ease;
 }
 
-/* base badge */
-.tm-trust .tm-trust-badge{
-  width:22px;
-  height:22px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  flex:0 0 auto;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,0.75);
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.30), rgba(255,255,255,0.06) 55%),
-    radial-gradient(circle at center, rgba(0,0,0,0.30), rgba(0,0,0,0) 70%);
+.tm-trust .tm-trust-item:hover{
+  transform: translateY(-1px);
+}
+
+.tm-trust .tm-trust-item:hover .tm-trust-text{
+  color: rgba(255,255,255,1);
+}
+
+.tm-trust .tm-trust-item:hover .tm-trust-badge{
+  border-color: rgba(255,255,255,0.92);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.25),
-    inset 0 -1px 0 rgba(0,0,0,0.65),
-    0 1px 0 rgba(0,0,0,0.6);
-  position:relative;
+    inset 0 1px 0 rgba(255,255,255,0.30),
+    inset 0 -1px 0 rgba(0,0,0,0.70),
+    0 0 0 5px rgba(57,255,20,0.10),
+    0 10px 22px rgba(0,0,0,0.35);
 }
 
-/* inner icon */
+.tm-trust .tm-trust-item:hover .tm-trust-badge::after{
+  opacity: 1;
+  transform: scale(1.03);
+}
+
 .tm-trust .tm-trust-badge::after{
-  content:"";
-  width:11px;
-  height:11px;
-  background:#ffffff;
-  opacity:0.95;
-  mask-repeat:no-repeat;
-  mask-position:center;
-  mask-size:contain;
-  -webkit-mask-repeat:no-repeat;
-  -webkit-mask-position:center;
-  -webkit-mask-size:contain;
+  transition: opacity .14s ease, transform .14s ease;
 }
 
-/* USDOT – government building */
-.tm-trust .tm-trust-badge[data-tag="USDOT"]::after{
-  mask-image:url("data:image/svg+xml;utf8,\
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
-    <path fill='black' d='M3 10h18v2H3zm2 4h2v6H5zm4 0h2v6H9zm4 0h2v6h-2zm4 0h2v6h-2zM12 2L2 8v2h20V8z'/>\
-  </svg>");
+/* Micro emboss pulse while the user scrolls */
+.tm-trust .tm-trust-badge{
+  transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
 }
 
-/* INSURED – shield */
-.tm-trust .tm-trust-badge[data-tag="INSURED"]::after{
-  mask-image:url("data:image/svg+xml;utf8,\
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
-    <path fill='black' d='M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6z'/>\
-  </svg>");
+html.tm-scrolling .tm-trust .tm-trust-badge{
+  transform: translateY(0.5px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.34),
+    inset 0 -1px 0 rgba(0,0,0,0.78),
+    0 0 0 6px rgba(57,255,20,0.10),
+    0 12px 26px rgba(0,0,0,0.38);
 }
 
-/* FMCSA – document / registry */
-.tm-trust .tm-trust-badge[data-tag="FMCSA"]::after{
-  mask-image:url("data:image/svg+xml;utf8,\
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
-    <path fill='black' d='M6 2h9l5 5v15H6zM14 2v6h6'/>\
-  </svg>");
+html.tm-scrolling .tm-trust .tm-trust-text{
+  color: rgba(255,255,255,1);
 }
 
-/* BROKER – verified network */
-.tm-trust .tm-trust-badge[data-tag="BROKER"]::after{
-  mask-image:url("data:image/svg+xml;utf8,\
-  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
-    <path fill='black' d='M12 2a5 5 0 015 5c0 2.8-5 8-5 8s-5-5.2-5-8a5 5 0 015-5zm0 14l4 4H8z'/>\
-  </svg>");
+/* Micro emboss pulse while the user scrolls */
+.tm-trust .tm-trust-badge{
+  transition: box-shadow .18s ease, transform .18s ease, border-color .18s ease;
 }
 
+html.tm-scrolling .tm-trust .tm-trust-badge{
+  transform: translateY(0.5px);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.34),
+    inset 0 -1px 0 rgba(0,0,0,0.78),
+    0 0 0 6px rgba(57,255,20,0.10),
+    0 12px 26px rgba(0,0,0,0.38);
+}
 
-
+html.tm-scrolling .tm-trust .tm-trust-text{
+  color: rgba(255,255,255,1);
+}
 
       `}</style>
     </div>
