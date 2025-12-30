@@ -810,7 +810,7 @@ html.tm-scrolling .tm-trust .tm-trust-text{
    circle | shield | plaque
 */
 :root{
-  --tm-trust-shape: shield;
+  --tm-trust-shape: plaque;
 }
 
 /* shared */
