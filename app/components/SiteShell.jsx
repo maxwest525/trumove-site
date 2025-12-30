@@ -191,7 +191,7 @@ export default function SiteShell({ children }) {
           <div className="tm-trust-items">
 {TRUST.map((t) => (
   <span key={t.tag} className="tm-trust-item">
-    <span className="tm-trust-badge" aria-hidden="true" />
+    <span className="tm-trust-badge" data-tag={t.tag} aria-hidden="true" />
     <span className="tm-trust-text">{t.text}</span>
   </span>
 ))}
@@ -724,27 +724,63 @@ export default function SiteShell({ children }) {
   color:rgba(15,23,42,0.60);
 }
 
+/* TRUST BADGE: kill any old checkmark rules */
+.tm-trust .tm-trust-badge::before,
+.tm-trust .tm-trust-badge::after{
+  content:"" !important;
+  background-image:none !important;
+}
+
+/* TRUST BADGE: official seal + tag text */
 .tm-trust .tm-trust-badge{
-  width:22px; height:22px;
-  display:inline-block;
+  width:22px;
+  height:22px;
+  display:inline-grid;
+  place-items:center;
   flex:0 0 auto;
   border-radius:999px;
-  background:
-    radial-gradient(circle at center, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 70%),
-    conic-gradient(from 0deg, rgba(255,255,255,0.35), rgba(255,255,255,0.05), rgba(255,255,255,0.35));
   border:1px solid rgba(255,255,255,0.78);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 1px 0 rgba(0,0,0,0.60);
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.28), rgba(255,255,255,0.06) 55%),
+    radial-gradient(circle at center, rgba(0,0,0,0.22), rgba(0,0,0,0) 70%);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.20),
+    inset 0 -1px 0 rgba(0,0,0,0.70),
+    0 1px 0 rgba(0,0,0,0.60);
   position:relative;
-  outline:2px dotted rgba(255,255,255,0.55);
-  outline-offset:2px;
+  overflow:hidden;
 }
+
+/* inner ring */
 .tm-trust .tm-trust-badge::before{
   content:"" !important;
   position:absolute;
-  inset:5px;
+  inset:4px;
   border-radius:999px;
-  border:1px solid rgba(255,255,255,0.45);
+  border:1px solid rgba(255,255,255,0.40);
+  opacity:0.95;
 }
+
+/* the “registry mark” text */
+.tm-trust .tm-trust-badge::after{
+  content:attr(data-tag) !important;
+  position:relative;
+  font-size:8px;
+  letter-spacing:0.18em;
+  font-weight:900;
+  color:rgba(255,255,255,0.95);
+  text-transform:uppercase;
+  transform:translateX(0.09em);
+}
+
+/* optional micro lines for texture */
+.tm-trust .tm-trust-badge{
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.28), rgba(255,255,255,0.06) 55%),
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.10) 0px, rgba(255,255,255,0.10) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 4px),
+    radial-gradient(circle at center, rgba(0,0,0,0.22), rgba(0,0,0,0) 70%);
+}
+
 
 
       `}</style>
