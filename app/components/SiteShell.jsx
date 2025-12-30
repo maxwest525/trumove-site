@@ -831,15 +831,6 @@ html:not(.tm-scrolling) .tm-trust .tm-trust-badge{
 
 /* Pick one:
    circle | shield | plaque
-*/
-:root{
-  --tm-trust-shape: circle;
-}
-
-/* shared */
-.tm-trust .tm-trust-badge{
-  border-radius: 999px; /* default circle */
-}
 
 /* shield */
 :root[style*="--tm-trust-shape: shield"] .tm-trust .tm-trust-badge{
@@ -851,21 +842,6 @@ html:not(.tm-scrolling) .tm-trust .tm-trust-badge{
     50% 96%,
     12% 54%,
     12% 18%
-  );
-}
-
-/* plaque (notched rectangle) */
-:root[style*="--tm-trust-shape: plaque"] .tm-trust .tm-trust-badge{
-  border-radius: 8px;
-  clip-path: polygon(
-    10% 0%,
-    90% 0%,
-    100% 20%,
-    100% 80%,
-    90% 100%,
-    10% 100%,
-    0% 80%,
-    0% 20%
   );
 }
 
