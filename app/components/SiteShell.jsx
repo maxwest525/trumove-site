@@ -724,62 +724,84 @@ export default function SiteShell({ children }) {
   color:rgba(15,23,42,0.60);
 }
 
-/* TRUST BADGE: kill any old checkmark rules */
+/* =========================================
+   TRUST BADGE – TINY OFFICIAL ICON VERSION
+   ========================================= */
+
+/* nuke any old checkmark nonsense */
 .tm-trust .tm-trust-badge::before,
 .tm-trust .tm-trust-badge::after{
-  content:"" !important;
-  background-image:none !important;
+  content:"";
+  background:none !important;
 }
 
-/* TRUST BADGE: official seal + tag text */
+/* base badge */
 .tm-trust .tm-trust-badge{
   width:22px;
   height:22px;
-  display:inline-grid;
-  place-items:center;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
   flex:0 0 auto;
   border-radius:999px;
-  border:1px solid rgba(255,255,255,0.78);
+  border:1px solid rgba(255,255,255,0.75);
   background:
-    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.28), rgba(255,255,255,0.06) 55%),
-    radial-gradient(circle at center, rgba(0,0,0,0.22), rgba(0,0,0,0) 70%);
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.30), rgba(255,255,255,0.06) 55%),
+    radial-gradient(circle at center, rgba(0,0,0,0.30), rgba(0,0,0,0) 70%);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.20),
-    inset 0 -1px 0 rgba(0,0,0,0.70),
-    0 1px 0 rgba(0,0,0,0.60);
+    inset 0 1px 0 rgba(255,255,255,0.25),
+    inset 0 -1px 0 rgba(0,0,0,0.65),
+    0 1px 0 rgba(0,0,0,0.6);
   position:relative;
-  overflow:hidden;
 }
 
-/* inner ring */
-.tm-trust .tm-trust-badge::before{
-  content:"" !important;
-  position:absolute;
-  inset:4px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,0.40);
-  opacity:0.95;
-}
-
-/* the “registry mark” text */
+/* inner icon */
 .tm-trust .tm-trust-badge::after{
-  content:attr(data-tag) !important;
-  position:relative;
-  font-size:8px;
-  letter-spacing:0.18em;
-  font-weight:900;
-  color:rgba(255,255,255,0.95);
-  text-transform:uppercase;
-  transform:translateX(0.09em);
+  content:"";
+  width:11px;
+  height:11px;
+  background:#ffffff;
+  opacity:0.95;
+  mask-repeat:no-repeat;
+  mask-position:center;
+  mask-size:contain;
+  -webkit-mask-repeat:no-repeat;
+  -webkit-mask-position:center;
+  -webkit-mask-size:contain;
 }
 
-/* optional micro lines for texture */
-.tm-trust .tm-trust-badge{
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.28), rgba(255,255,255,0.06) 55%),
-    repeating-linear-gradient(45deg, rgba(255,255,255,0.10) 0px, rgba(255,255,255,0.10) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 4px),
-    radial-gradient(circle at center, rgba(0,0,0,0.22), rgba(0,0,0,0) 70%);
+/* USDOT – government building */
+.tm-trust .tm-trust-badge[data-tag="USDOT"]::after{
+  mask-image:url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
+    <path fill='black' d='M3 10h18v2H3zm2 4h2v6H5zm4 0h2v6H9zm4 0h2v6h-2zm4 0h2v6h-2zM12 2L2 8v2h20V8z'/>\
+  </svg>");
 }
+
+/* INSURED – shield */
+.tm-trust .tm-trust-badge[data-tag="INSURED"]::after{
+  mask-image:url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
+    <path fill='black' d='M12 2l8 4v6c0 5-3.4 9.4-8 10-4.6-.6-8-5-8-10V6z'/>\
+  </svg>");
+}
+
+/* FMCSA – document / registry */
+.tm-trust .tm-trust-badge[data-tag="FMCSA"]::after{
+  mask-image:url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
+    <path fill='black' d='M6 2h9l5 5v15H6zM14 2v6h6'/>\
+  </svg>");
+}
+
+/* BROKER – verified network */
+.tm-trust .tm-trust-badge[data-tag="BROKER"]::after{
+  mask-image:url("data:image/svg+xml;utf8,\
+  <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'>\
+    <path fill='black' d='M12 2a5 5 0 015 5c0 2.8-5 8-5 8s-5-5.2-5-8a5 5 0 015-5zm0 14l4 4H8z'/>\
+  </svg>");
+}
+
 
 
 
