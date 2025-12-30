@@ -597,7 +597,6 @@ export default function SiteShell({ children }) {
   display:none !important;
 }
 
-
         .tm-main{flex:1;width:100%}
 
         /* FOOTER */
