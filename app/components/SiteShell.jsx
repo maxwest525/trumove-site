@@ -740,6 +740,17 @@ export default function SiteShell({ children }) {
   color:rgba(15,23,42,0.60);
 }
 
+/* TRUST BADGE: hard reset so no old checkmark/icon rules can win */
+.tm-trust .tm-trust-badge,
+.tm-trust .tm-trust-badge::before,
+.tm-trust .tm-trust-badge::after{
+  content:"" !important;
+  background-image:none !important;
+  mask-image:none !important;
+  -webkit-mask-image:none !important;
+}
+
+
       `}</style>
     </div>
   );
