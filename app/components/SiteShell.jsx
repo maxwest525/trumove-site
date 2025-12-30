@@ -740,44 +740,24 @@ export default function SiteShell({ children }) {
   color:rgba(15,23,42,0.60);
 }
 
-/* TRUST BADGE: hard reset so no old checkmark/icon rules can win */
-.tm-trust .tm-trust-badge,
-.tm-trust .tm-trust-badge::before,
-.tm-trust .tm-trust-badge::after{
-  content:"" !important;
-  background-image:none !important;
-  mask-image:none !important;
-  -webkit-mask-image:none !important;
-}
-
 .tm-trust .tm-trust-badge{
-  width:22px; height:22px;
+  width:22px; height:24px;
   display:inline-block;
   flex:0 0 auto;
-  clip-path:polygon(25% 6%, 75% 6%, 94% 25%, 94% 75%, 75% 94%, 25% 94%, 6% 75%, 6% 25%);
-  background:linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.06));
-  border:1px solid rgba(255,255,255,0.78);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), inset 0 -1px 0 rgba(0,0,0,0.65), 0 1px 0 rgba(0,0,0,0.60);
+  clip-path:polygon(50% 0%, 88% 12%, 88% 58%, 50% 100%, 12% 58%, 12% 12%);
+  background:linear-gradient(180deg, rgba(255,255,255,0.24), rgba(255,255,255,0.06));
+  border:1px solid rgba(255,255,255,0.75);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.20), 0 1px 0 rgba(0,0,0,0.60);
   position:relative;
-  overflow:hidden;
 }
 .tm-trust .tm-trust-badge::before{
   content:"" !important;
   position:absolute;
   inset:4px;
-  clip-path:polygon(26% 8%, 74% 8%, 92% 26%, 92% 74%, 74% 92%, 26% 92%, 8% 74%, 8% 26%);
-  border:1px solid rgba(255,255,255,0.44);
-  background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.35), rgba(255,255,255,0) 60%);
+  clip-path:polygon(50% 2%, 84% 14%, 84% 56%, 50% 94%, 16% 56%, 16% 14%);
+  border:1px solid rgba(255,255,255,0.42);
+  background:radial-gradient(circle at 35% 30%, rgba(255,255,255,0.32), rgba(255,255,255,0) 60%);
 }
-.tm-trust .tm-trust-badge::after{
-  content:"" !important;
-  position:absolute;
-  inset:0;
-  opacity:0.18;
-  background:repeating-linear-gradient(45deg, rgba(255,255,255,0.18) 0px, rgba(255,255,255,0.18) 1px, rgba(0,0,0,0) 1px, rgba(0,0,0,0) 4px);
-}
-
-
 
       `}</style>
     </div>
