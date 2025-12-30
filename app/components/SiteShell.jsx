@@ -190,13 +190,11 @@ export default function SiteShell({ children }) {
         <div className="tm-trust-inner">
           <div className="tm-trust-items">
             {TRUST.map((t, idx) => (
-              <span key={t.tag} className="tm-trust-item">
-<span className="tm-trust-badge" aria-hidden="true" />
-                <span className="tm-trust-text">{t.text}</span>
-                {idx < TRUST.length - 1 ? (
-                  <span className="tm-trust-divider" aria-hidden="true" />
-                ) : null}
-              </span>
+<span key={t.tag} className="tm-trust-item">
+  <span className="tm-trust-badge" aria-hidden="true" />
+  <span className="tm-trust-text">{t.text}</span>
+</span>
+
             ))}
           </div>
         </div>
@@ -523,14 +521,6 @@ export default function SiteShell({ children }) {
   align-items:center;
   gap:14px;
   white-space:nowrap;
-}
-
-.tm-trust-divider{
-  width:1px;
-  height:12px;
-  background:rgba(255,255,255,0.22);
-  display:inline-block;
-  margin-left:36px;
 }
 
 /* brighter, more “registry” */
