@@ -192,9 +192,10 @@ export default function SiteShell({ children }) {
             {TRUST.map((t, idx) => (
               <span key={t.tag} className="tm-trust-item">
                 <span className="tm-trust-badge" aria-hidden="true">
-                  <span className="tm-trust-badge-top">Verified</span>
-                  <span className="tm-trust-badge-tag">{t.tag}</span>
-                </span>
+  <span aria-hidden="true" />
+  <span className="tm-trust-badge-top">Verified</span>
+  <span className="tm-trust-badge-tag">{t.tag}</span>
+</span>
                 <span className="tm-trust-text">{t.text}</span>
                 {idx < TRUST.length - 1 ? (
                   <span className="tm-trust-divider" aria-hidden="true" />
@@ -481,13 +482,13 @@ export default function SiteShell({ children }) {
         }
 
 /* =========================================================
-   TRUST STRIP – GOVERNMENT / REGISTRY SEAL STYLE
-   Smaller height, neutral, authoritative, non-marketing
+   TRUST STRIP – GOVERNMENT / REGISTRY SEAL STYLE (UPGRADED)
+   Brighter text, more spacing, seal-edge badge (not circles)
    ========================================================= */
 
 .tm-trust{
-  border-bottom:1px solid rgba(15,23,42,0.18);
-  background:linear-gradient(180deg,#0a0c12,#06080d);
+  border-bottom:1px solid rgba(255,255,255,0.14);
+  background:linear-gradient(180deg,#070912,#050610);
 }
 
 .tm-trust-inner{
@@ -497,20 +498,20 @@ export default function SiteShell({ children }) {
   position:relative;
 }
 
-/* subtle registry paper grain */
+/* restrained security paper grain */
 .tm-trust-inner::before{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
-  opacity:0.10;
+  opacity:0.08;
   background:
     repeating-linear-gradient(
       135deg,
-      rgba(255,255,255,0.05) 0px,
-      rgba(255,255,255,0.05) 1px,
+      rgba(255,255,255,0.06) 0px,
+      rgba(255,255,255,0.06) 1px,
       rgba(0,0,0,0) 1px,
-      rgba(0,0,0,0) 7px
+      rgba(0,0,0,0) 8px
     );
 }
 
@@ -520,150 +521,162 @@ export default function SiteShell({ children }) {
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:10px;
+  gap:34px;               /* spread items further apart */
   flex-wrap:wrap;
 }
 
 .tm-trust-item{
   display:inline-flex;
   align-items:center;
-  gap:8px;
+  gap:12px;
   white-space:nowrap;
 }
 
-/* thin registry divider */
+/* thin divider, with more air */
 .tm-trust-divider{
   width:1px;
   height:12px;
   background:rgba(255,255,255,0.18);
   display:inline-block;
-  margin-left:10px;
+  margin-left:28px;       /* pushes divider away for spacing */
 }
 
 /* =========================================================
-   SEAL BADGE (visual authority, not readable text)
+   SEAL BADGE – scalloped edge + inner ring + center insignia
    ========================================================= */
 
-.tm-trust-badge{
-  width:20px;
-  height:20px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,0.45);
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.28), rgba(255,255,255,0) 55%),
-    radial-gradient(circle at center, rgba(57,255,20,0.16), rgba(57,255,20,0) 65%),
-    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.18),
-    inset 0 -1px 0 rgba(0,0,0,0.55);
-  position:relative;
-  overflow:hidden;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-}
-
-/* inner seal ring */
-.tm-trust-badge::before{
-  content:"";
-  position:absolute;
-  inset:3px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,0.32);
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35);
-}
-
-/* micro stamp lines */
-.tm-trust-badge::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  opacity:0.16;
-  background:
-    repeating-linear-gradient(
-      45deg,
-      rgba(255,255,255,0.10) 0px,
-      rgba(255,255,255,0.10) 1px,
-      rgba(0,0,0,0) 1px,
-      rgba(0,0,0,0) 4px
-    );
-}
-
-/* hide badge text (seal is symbolic) */
-.tm-trust-badge-top,
-.tm-trust-badge-tag{
-  position:absolute;
-  opacity:0;
-  pointer-events:none;
-}
-
-/* =========================================================
-   TRUST TEXT – registry line item
-   ========================================================= */
-
-.tm-trust-text{
-  font-size:10.5px;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  font-weight:700;
-  color:rgba(255,255,255,0.86);
-}
-
-
-
-/* SEAL BADGE (replaces unreadable badge text visually) */
 .tm-trust-badge{
   width:22px;
   height:22px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,0.55);
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.35), rgba(255,255,255,0) 55%),
-    radial-gradient(circle at center, rgba(57,255,20,0.18), rgba(57,255,20,0) 62%),
-    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.18),
-    inset 0 -1px 0 rgba(0,0,0,0.55);
   position:relative;
-  overflow:hidden;
   display:inline-flex;
   align-items:center;
   justify-content:center;
+  flex:0 0 auto;
 }
 
-/* inner “seal ring” */
+/* scalloped edge */
 .tm-trust-badge::before{
   content:"";
   position:absolute;
-  inset:3px;
+  inset:0;
   border-radius:999px;
-  border:1px solid rgba(255,255,255,0.35);
-  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35);
+  background:
+    conic-gradient(
+      from 0deg,
+      rgba(255,255,255,0.95) 0deg 8deg,
+      rgba(255,255,255,0.40) 8deg 16deg,
+      rgba(255,255,255,0.95) 16deg 24deg,
+      rgba(255,255,255,0.40) 24deg 32deg,
+      rgba(255,255,255,0.95) 32deg 40deg,
+      rgba(255,255,255,0.40) 40deg 48deg,
+      rgba(255,255,255,0.95) 48deg 56deg,
+      rgba(255,255,255,0.40) 56deg 64deg,
+      rgba(255,255,255,0.95) 64deg 72deg,
+      rgba(255,255,255,0.40) 72deg 80deg,
+      rgba(255,255,255,0.95) 80deg 88deg,
+      rgba(255,255,255,0.40) 88deg 96deg,
+      rgba(255,255,255,0.95) 96deg 104deg,
+      rgba(255,255,255,0.40) 104deg 112deg,
+      rgba(255,255,255,0.95) 112deg 120deg,
+      rgba(255,255,255,0.40) 120deg 128deg,
+      rgba(255,255,255,0.95) 128deg 136deg,
+      rgba(255,255,255,0.40) 136deg 144deg,
+      rgba(255,255,255,0.95) 144deg 152deg,
+      rgba(255,255,255,0.40) 152deg 160deg,
+      rgba(255,255,255,0.95) 160deg 168deg,
+      rgba(255,255,255,0.40) 168deg 176deg,
+      rgba(255,255,255,0.95) 176deg 184deg,
+      rgba(255,255,255,0.40) 184deg 192deg,
+      rgba(255,255,255,0.95) 192deg 200deg,
+      rgba(255,255,255,0.40) 200deg 208deg,
+      rgba(255,255,255,0.95) 208deg 216deg,
+      rgba(255,255,255,0.40) 216deg 224deg,
+      rgba(255,255,255,0.95) 224deg 232deg,
+      rgba(255,255,255,0.40) 232deg 240deg,
+      rgba(255,255,255,0.95) 240deg 248deg,
+      rgba(255,255,255,0.40) 248deg 256deg,
+      rgba(255,255,255,0.95) 256deg 264deg,
+      rgba(255,255,255,0.40) 264deg 272deg,
+      rgba(255,255,255,0.95) 272deg 280deg,
+      rgba(255,255,255,0.40) 280deg 288deg,
+      rgba(255,255,255,0.95) 288deg 296deg,
+      rgba(255,255,255,0.40) 296deg 304deg,
+      rgba(255,255,255,0.95) 304deg 312deg,
+      rgba(255,255,255,0.40) 312deg 320deg,
+      rgba(255,255,255,0.95) 320deg 328deg,
+      rgba(255,255,255,0.40) 328deg 336deg,
+      rgba(255,255,255,0.95) 336deg 344deg,
+      rgba(255,255,255,0.40) 344deg 352deg,
+      rgba(255,255,255,0.95) 352deg 360deg
+    );
+  filter:drop-shadow(0 1px 0 rgba(0,0,0,0.45));
+  opacity:0.95;
 }
 
-/* micro “stamp lines” */
+/* inner plate + ring */
 .tm-trust-badge::after{
   content:"";
   position:absolute;
-  inset:0;
-  opacity:0.18;
+  inset:2px;
+  border-radius:999px;
   background:
-    repeating-linear-gradient(
-      45deg,
-      rgba(255,255,255,0.10) 0px,
-      rgba(255,255,255,0.10) 1px,
-      rgba(0,0,0,0) 1px,
-      rgba(0,0,0,0) 4px
-    );
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.28), rgba(255,255,255,0.04) 55%),
+    radial-gradient(circle at center, rgba(57,255,20,0.16), rgba(57,255,20,0) 62%),
+    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
+  border:1px solid rgba(255,255,255,0.40);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.16),
+    inset 0 -1px 0 rgba(0,0,0,0.60);
 }
 
-/* hide the badge text, keep the trust wording beside it unchanged */
+/* center insignia (shield + check) */
+.tm-trust-badge > span{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  pointer-events:none;
+}
+
+.tm-trust-badge > span::before{
+  content:"";
+  width:9px;
+  height:10px;
+  border-radius:2px 2px 5px 5px;
+  background:rgba(255,255,255,0.92);
+  box-shadow:0 0 0 1px rgba(0,0,0,0.35);
+  clip-path:polygon(12% 0%,88% 0%,88% 55%,50% 100%,12% 55%);
+}
+
+.tm-trust-badge > span::after{
+  content:"";
+  position:absolute;
+  width:7px;
+  height:4px;
+  border-left:2px solid rgba(0,0,0,0.70);
+  border-bottom:2px solid rgba(0,0,0,0.70);
+  transform:translateY(1px) rotate(-45deg);
+}
+
+/* hide badge text in markup */
 .tm-trust-badge-top,
 .tm-trust-badge-tag{
   position:absolute;
   opacity:0;
   pointer-events:none;
 }
+
+/* brighter, more official */
+.tm-trust-text{
+  font-size:11px;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  font-weight:800;
+  color:rgba(255,255,255,0.94); /* brighter */
+}
+
 
 
 
