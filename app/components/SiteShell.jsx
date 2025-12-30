@@ -193,7 +193,7 @@ export default function SiteShell({ children }) {
               <span key={t.tag} className="tm-trust-item">
                 <span className="tm-trust-badge" aria-hidden="true">
   <span aria-hidden="true" />
-  <span className="tm-trust-badge-top">Verified</span>
+  <span className="">Verified</span>
   <span className="tm-trust-badge-tag">{t.tag}</span>
 </span>
                 <span className="tm-trust-text">{t.text}</span>
@@ -541,144 +541,64 @@ export default function SiteShell({ children }) {
   margin-left:28px;       /* pushes divider away for spacing */
 }
 
-/* =========================================================
-   SEAL BADGE – scalloped edge + inner ring + center insignia
-   ========================================================= */
-
+/* BADGE: EMBOSSED GOVERNMENT SEAL */
 .tm-trust-badge{
   width:22px;
   height:22px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.70);
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.40), rgba(255,255,255,0) 55%),
+    radial-gradient(circle at center, rgba(255,255,255,0.10), rgba(0,0,0,0) 60%),
+    linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.02));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.22),
+    inset 0 -1px 0 rgba(0,0,0,0.60),
+    0 1px 0 rgba(0,0,0,0.55);
   position:relative;
+  overflow:hidden;
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  flex:0 0 auto;
 }
 
-/* scalloped edge */
+/* outer rim */
 .tm-trust-badge::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  border-radius:999px;
-  background:
-    conic-gradient(
-      from 0deg,
-      rgba(255,255,255,0.95) 0deg 8deg,
-      rgba(255,255,255,0.40) 8deg 16deg,
-      rgba(255,255,255,0.95) 16deg 24deg,
-      rgba(255,255,255,0.40) 24deg 32deg,
-      rgba(255,255,255,0.95) 32deg 40deg,
-      rgba(255,255,255,0.40) 40deg 48deg,
-      rgba(255,255,255,0.95) 48deg 56deg,
-      rgba(255,255,255,0.40) 56deg 64deg,
-      rgba(255,255,255,0.95) 64deg 72deg,
-      rgba(255,255,255,0.40) 72deg 80deg,
-      rgba(255,255,255,0.95) 80deg 88deg,
-      rgba(255,255,255,0.40) 88deg 96deg,
-      rgba(255,255,255,0.95) 96deg 104deg,
-      rgba(255,255,255,0.40) 104deg 112deg,
-      rgba(255,255,255,0.95) 112deg 120deg,
-      rgba(255,255,255,0.40) 120deg 128deg,
-      rgba(255,255,255,0.95) 128deg 136deg,
-      rgba(255,255,255,0.40) 136deg 144deg,
-      rgba(255,255,255,0.95) 144deg 152deg,
-      rgba(255,255,255,0.40) 152deg 160deg,
-      rgba(255,255,255,0.95) 160deg 168deg,
-      rgba(255,255,255,0.40) 168deg 176deg,
-      rgba(255,255,255,0.95) 176deg 184deg,
-      rgba(255,255,255,0.40) 184deg 192deg,
-      rgba(255,255,255,0.95) 192deg 200deg,
-      rgba(255,255,255,0.40) 200deg 208deg,
-      rgba(255,255,255,0.95) 208deg 216deg,
-      rgba(255,255,255,0.40) 216deg 224deg,
-      rgba(255,255,255,0.95) 224deg 232deg,
-      rgba(255,255,255,0.40) 232deg 240deg,
-      rgba(255,255,255,0.95) 240deg 248deg,
-      rgba(255,255,255,0.40) 248deg 256deg,
-      rgba(255,255,255,0.95) 256deg 264deg,
-      rgba(255,255,255,0.40) 264deg 272deg,
-      rgba(255,255,255,0.95) 272deg 280deg,
-      rgba(255,255,255,0.40) 280deg 288deg,
-      rgba(255,255,255,0.95) 288deg 296deg,
-      rgba(255,255,255,0.40) 296deg 304deg,
-      rgba(255,255,255,0.95) 304deg 312deg,
-      rgba(255,255,255,0.40) 312deg 320deg,
-      rgba(255,255,255,0.95) 320deg 328deg,
-      rgba(255,255,255,0.40) 328deg 336deg,
-      rgba(255,255,255,0.95) 336deg 344deg,
-      rgba(255,255,255,0.40) 344deg 352deg,
-      rgba(255,255,255,0.95) 352deg 360deg
-    );
-  filter:drop-shadow(0 1px 0 rgba(0,0,0,0.45));
-  opacity:0.95;
-}
-
-/* inner plate + ring */
-.tm-trust-badge::after{
   content:"";
   position:absolute;
   inset:2px;
   border-radius:999px;
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.28), rgba(255,255,255,0.04) 55%),
-    radial-gradient(circle at center, rgba(57,255,20,0.16), rgba(57,255,20,0) 62%),
-    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.03));
-  border:1px solid rgba(255,255,255,0.40);
+  border:1px solid rgba(255,255,255,0.34);
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.16),
-    inset 0 -1px 0 rgba(0,0,0,0.60);
+    inset 0 0 0 1px rgba(0,0,0,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.10);
 }
 
-/* center insignia (shield + check) */
-.tm-trust-badge > span{
+/* rosette texture */
+.tm-trust-badge::after{
+  content:"";
   position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
+  inset:-6px;
+  opacity:0.22;
+  background:
+    repeating-conic-gradient(
+      from 0deg,
+      rgba(255,255,255,0.16) 0deg,
+      rgba(255,255,255,0.16) 10deg,
+      rgba(0,0,0,0) 10deg,
+      rgba(0,0,0,0) 20deg
+    );
+  filter:blur(0.2px);
   pointer-events:none;
 }
 
-.tm-trust-badge > span::before{
-  content:"";
-  width:9px;
-  height:10px;
-  border-radius:2px 2px 5px 5px;
-  background:rgba(255,255,255,0.92);
-  box-shadow:0 0 0 1px rgba(0,0,0,0.35);
-  clip-path:polygon(12% 0%,88% 0%,88% 55%,50% 100%,12% 55%);
-}
-
-.tm-trust-badge > span::after{
-  content:"";
-  position:absolute;
-  width:7px;
-  height:4px;
-  border-left:2px solid rgba(0,0,0,0.70);
-  border-bottom:2px solid rgba(0,0,0,0.70);
-  transform:translateY(1px) rotate(-45deg);
-}
-
-/* hide badge text in markup */
+/* hide text inside badge */
 .tm-trust-badge-top,
 .tm-trust-badge-tag{
   position:absolute;
   opacity:0;
   pointer-events:none;
 }
-
-/* brighter, more official */
-.tm-trust-text{
-  font-size:11px;
-  letter-spacing:0.14em;
-  text-transform:uppercase;
-  font-weight:800;
-  color:rgba(255,255,255,0.94); /* brighter */
-}
-
-
-
 
         .tm-main{flex:1;width:100%}
 
