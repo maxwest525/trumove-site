@@ -586,22 +586,6 @@ export default function SiteShell({ children }) {
   opacity:0.95;
 }
 
-/* micro security lines */
-.tm-trust-badge::after{
-  content:"✓";
-  position:absolute;
-  inset:0;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  font-size:12px;
-  font-weight:900;
-  color:rgba(255,255,255,0.92);
-  text-shadow:0 1px 0 rgba(0,0,0,0.6);
-}
-
-
-
 /* in case any old spans still exist */
 .tm-trust-badge-top,
 .tm-trust-badge-tag{
