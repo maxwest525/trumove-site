@@ -189,13 +189,12 @@ export default function SiteShell({ children }) {
       <div className="tm-trust" aria-label="Compliance and authority">
         <div className="tm-trust-inner">
           <div className="tm-trust-items">
-            {TRUST.map((t, idx) => (
-<span key={t.tag} className="tm-trust-item">
-  <span className="tm-trust-badge" aria-hidden="true" />
-  <span className="tm-trust-text">{t.text}</span>
-</span>
-
-            ))}
+{TRUST.map((t) => (
+  <span key={t.tag} className="tm-trust-item">
+    <span className="tm-trust-badge" aria-hidden="true" />
+    <span className="tm-trust-text">{t.text}</span>
+  </span>
+))}
           </div>
         </div>
       </div>
