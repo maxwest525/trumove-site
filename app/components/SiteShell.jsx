@@ -542,18 +542,28 @@ export default function SiteShell({ children }) {
   color:rgba(255,255,255,0.96);
 }
 
-/* “official seal” feel, not a plain circle */
+/* BADGE: registry stamp, not a circle */
 .tm-trust-badge{
   width:22px;
   height:22px;
-  border-radius:999px;
   position:relative;
   display:inline-block;
-  border:1px solid rgba(255,255,255,0.75);
-  background:
-    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.40), rgba(255,255,255,0) 55%),
-    radial-gradient(circle at center, rgba(255,255,255,0.12), rgba(0,0,0,0) 62%),
-    linear-gradient(180deg, rgba(255,255,255,0.14), rgba(255,255,255,0.03));
+  flex:0 0 auto;
+
+  /* make it look like an official stamp */
+  clip-path:polygon(
+    25% 6%,
+    75% 6%,
+    94% 25%,
+    94% 75%,
+    75% 94%,
+    25% 94%,
+    6% 75%,
+    6% 25%
+  );
+
+  background:linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.06));
+  border:1px solid rgba(255,255,255,0.78);
   box-shadow:
     inset 0 1px 0 rgba(255,255,255,0.22),
     inset 0 -1px 0 rgba(0,0,0,0.65),
@@ -561,35 +571,46 @@ export default function SiteShell({ children }) {
   overflow:hidden;
 }
 
+/* inner “seal” ring */
 .tm-trust-badge::before{
   content:"";
   position:absolute;
-  inset:-6px;
-  background:repeating-conic-gradient(
-    from 0deg,
-    rgba(255,255,255,0.70) 0deg 7deg,
-    rgba(255,255,255,0.00) 7deg 14deg
+  inset:4px;
+
+  /* inner shape slightly rounded */
+  clip-path:polygon(
+    26% 8%,
+    74% 8%,
+    92% 26%,
+    92% 74%,
+    74% 92%,
+    26% 92%,
+    8% 74%,
+    8% 26%
   );
-  opacity:0.22;
-  filter:blur(0.2px);
+
+  border:1px solid rgba(255,255,255,0.44);
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.40), rgba(255,255,255,0) 60%),
+    radial-gradient(circle at center, rgba(0,0,0,0.25), rgba(0,0,0,0) 65%);
+  opacity:0.95;
 }
 
+/* micro security lines */
 .tm-trust-badge::after{
   content:"";
   position:absolute;
-  inset:3px;
-  border-radius:999px;
-  border:1px solid rgba(255,255,255,0.40);
-  box-shadow:inset 0 0 0 1px rgba(0,0,0,0.55);
+  inset:0;
+  opacity:0.20;
   background:repeating-linear-gradient(
     45deg,
-    rgba(255,255,255,0.10) 0px,
-    rgba(255,255,255,0.10) 1px,
+    rgba(255,255,255,0.20) 0px,
+    rgba(255,255,255,0.20) 1px,
     rgba(0,0,0,0) 1px,
     rgba(0,0,0,0) 4px
   );
-  opacity:0.55;
 }
+
 
 /* in case any old spans still exist */
 .tm-trust-badge-top,
