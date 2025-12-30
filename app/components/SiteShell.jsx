@@ -480,12 +480,15 @@ export default function SiteShell({ children }) {
           background:linear-gradient(180deg, rgba(255,255,255,0.94), rgba(57,255,20,0.08));
         }
 
-/* TRUST STRIP (REGISTRY / CERTIFICATE STYLE) */
-.tm-trust{
-  border-bottom:1px solid rgba(255,255,255,0.10);
-  background:linear-gradient(180deg,#05070c,#02030a);
-}
+/* =========================================================
+   TRUST STRIP – GOVERNMENT / REGISTRY SEAL STYLE
+   Smaller height, neutral, authoritative, non-marketing
+   ========================================================= */
 
+.tm-trust{
+  border-bottom:1px solid rgba(15,23,42,0.18);
+  background:linear-gradient(180deg,#0a0c12,#06080d);
+}
 
 .tm-trust-inner{
   max-width:var(--tm-max);
@@ -494,23 +497,22 @@ export default function SiteShell({ children }) {
   position:relative;
 }
 
-/* subtle paper grain, very restrained */
+/* subtle registry paper grain */
 .tm-trust-inner::before{
   content:"";
   position:absolute;
   inset:0;
   pointer-events:none;
- opacity:0.14;
+  opacity:0.10;
   background:
     repeating-linear-gradient(
       135deg,
-      rgba(255,255,255,0.06) 0px,
-      rgba(255,255,255,0.06) 1px,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.05) 1px,
       rgba(0,0,0,0) 1px,
       rgba(0,0,0,0) 7px
     );
 }
-
 
 .tm-trust-items{
   position:relative;
@@ -529,73 +531,84 @@ export default function SiteShell({ children }) {
   white-space:nowrap;
 }
 
-/* form-style divider */
+/* thin registry divider */
 .tm-trust-divider{
   width:1px;
-  height:14px;
-  background:rgba(255,255,255,0.14);
+  height:12px;
+  background:rgba(255,255,255,0.18);
   display:inline-block;
   margin-left:10px;
 }
 
-/* registry plate / ink stamp */
+/* =========================================================
+   SEAL BADGE (visual authority, not readable text)
+   ========================================================= */
+
 .tm-trust-badge{
-  width:44px;
+  width:20px;
   height:20px;
-  border-radius:6px;
-  border:1px solid rgba(15,23,42,0.28);
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.45);
   background:
-    linear-gradient(180deg,#ffffff,#eef2f8);
+    radial-gradient(circle at 35% 30%, rgba(255,255,255,0.28), rgba(255,255,255,0) 55%),
+    radial-gradient(circle at center, rgba(57,255,20,0.16), rgba(57,255,20,0) 65%),
+    linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
   box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.85),
-    inset 0 -1px 0 rgba(15,23,42,0.12);
-  display:flex;
-  flex-direction:column;
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -1px 0 rgba(0,0,0,0.55);
+  position:relative;
+  overflow:hidden;
+  display:inline-flex;
   align-items:center;
   justify-content:center;
-  line-height:1;
-  flex:0 0 auto;
-  position:relative;
 }
 
-/* single security line, no decoration */
+/* inner seal ring */
+.tm-trust-badge::before{
+  content:"";
+  position:absolute;
+  inset:3px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.32);
+  box-shadow: inset 0 0 0 1px rgba(0,0,0,0.35);
+}
+
+/* micro stamp lines */
 .tm-trust-badge::after{
   content:"";
   position:absolute;
-  left:8%;
-  right:8%;
-  bottom:5px;
-  height:1px;
-  background:rgba(15,23,42,0.18);
+  inset:0;
+  opacity:0.16;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.10) 0px,
+      rgba(255,255,255,0.10) 1px,
+      rgba(0,0,0,0) 1px,
+      rgba(0,0,0,0) 4px
+    );
 }
 
-/* registry caption */
-.tm-trust-badge-top{
-  font-size:7px;
-  letter-spacing:0.22em;
-  text-transform:uppercase;
-  color:rgba(15,23,42,0.60);
-  font-weight:700;
-}
-
-/* accreditation code */
+/* hide badge text (seal is symbolic) */
+.tm-trust-badge-top,
 .tm-trust-badge-tag{
-  margin-top:2px;
-  font-size:9px;
-  letter-spacing:0.24em;
-  text-transform:uppercase;
-  color:rgba(15,23,42,0.90);
-  font-weight:800;
+  position:absolute;
+  opacity:0;
+  pointer-events:none;
 }
 
-/* compliance line item text */
+/* =========================================================
+   TRUST TEXT – registry line item
+   ========================================================= */
+
 .tm-trust-text{
-  font-size:11px;
-  letter-spacing:0.11em;
+  font-size:10.5px;
+  letter-spacing:0.14em;
   text-transform:uppercase;
-  font-weight:650;
-  color:rgba(255,255,255,0.88);
+  font-weight:700;
+  color:rgba(255,255,255,0.86);
 }
+
 
 
 /* SEAL BADGE (replaces unreadable badge text visually) */
