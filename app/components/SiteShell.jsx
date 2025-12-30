@@ -846,6 +846,62 @@ html.tm-scrolling .tm-trust .tm-trust-text{
   );
 }
 
+/* HERO TRUST STRIP (inside hero) */
+.tru-hero-trust{
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+}
+
+.tru-hero-trust-item{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #f9fafb;
+  border: 1px solid rgba(15,23,42,0.10);
+  box-shadow: 0 10px 22px rgba(15,23,42,0.06);
+}
+
+.tru-hero-trust-text{
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(15,23,42,0.82);
+  white-space: nowrap;
+}
+
+/* tiny “official” seal icon */
+.tru-hero-trust-icon{
+  width: 16px;
+  height: 16px;
+  flex: 0 0 auto;
+  border-radius: 6px;
+  background: linear-gradient(180deg, rgba(57,255,20,0.30), rgba(57,255,20,0.10));
+  border: 1px solid rgba(15,23,42,0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.75),
+    0 6px 14px rgba(15,23,42,0.12);
+  position: relative;
+}
+
+.tru-hero-trust-icon::after{
+  content:"";
+  position:absolute;
+  inset: 3px;
+  border-radius: 4px;
+  border: 1px solid rgba(15,23,42,0.20);
+  opacity: 0.9;
+}
+
+@media (max-width: 520px){
+  .tru-hero-trust-text{ font-size: 0.68rem; letter-spacing: 0.12em; }
+  .tru-hero-trust-item{ padding: 6px 9px; }
+}
 
 
       `}</style>
