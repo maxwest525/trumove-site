@@ -511,9 +511,10 @@ export default function SiteShell({ children }) {
   display:flex;
   align-items:center;
   justify-content:center;
-  gap:44px;              /* spread further apart */
+  gap:28px;
   flex-wrap:wrap;
 }
+
 
 .tm-trust-item{
   display:inline-flex;
@@ -587,18 +588,18 @@ export default function SiteShell({ children }) {
 
 /* micro security lines */
 .tm-trust-badge::after{
-  content:"";
+  content:"✓";
   position:absolute;
   inset:0;
-  opacity:0.20;
-  background:repeating-linear-gradient(
-    45deg,
-    rgba(255,255,255,0.20) 0px,
-    rgba(255,255,255,0.20) 1px,
-    rgba(0,0,0,0) 1px,
-    rgba(0,0,0,0) 4px
-  );
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  font-weight:900;
+  color:rgba(255,255,255,0.92);
+  text-shadow:0 1px 0 rgba(0,0,0,0.6);
 }
+
 
 
 /* in case any old spans still exist */
