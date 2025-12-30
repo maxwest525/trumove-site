@@ -725,22 +725,27 @@ export default function SiteShell({ children }) {
 }
 
 .tm-trust .tm-trust-badge{
-  width:26px; height:18px;
+  width:22px; height:22px;
   display:inline-block;
   flex:0 0 auto;
-  clip-path:polygon(6% 0%, 94% 0%, 100% 22%, 100% 78%, 94% 100%, 6% 100%, 0% 78%, 0% 22%);
-  background:linear-gradient(180deg, rgba(255,255,255,0.22), rgba(255,255,255,0.06));
-  border:1px solid rgba(255,255,255,0.75);
+  border-radius:999px;
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,0.22) 0%, rgba(255,255,255,0.06) 70%),
+    conic-gradient(from 0deg, rgba(255,255,255,0.35), rgba(255,255,255,0.05), rgba(255,255,255,0.35));
+  border:1px solid rgba(255,255,255,0.78);
   box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), 0 1px 0 rgba(0,0,0,0.60);
   position:relative;
+  outline:2px dotted rgba(255,255,255,0.55);
+  outline-offset:2px;
 }
 .tm-trust .tm-trust-badge::before{
   content:"" !important;
   position:absolute;
-  inset:3px;
-  border:1px solid rgba(255,255,255,0.40);
-  opacity:0.9;
+  inset:5px;
+  border-radius:999px;
+  border:1px solid rgba(255,255,255,0.45);
 }
+
 
       `}</style>
     </div>
