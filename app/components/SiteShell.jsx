@@ -999,6 +999,71 @@ html.tm-scrolling .tm-trust .tm-trust-text{
   margin:0;
 }
 
+.tru-hero-visual-head{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 12px 10px;
+  border-radius:16px;
+  border:1px solid rgba(15,23,42,0.10);
+  background:
+    radial-gradient(circle at 20% 20%, rgba(57,255,20,0.10), transparent 55%),
+    radial-gradient(circle at 85% 80%, rgba(15,23,42,0.06), transparent 60%),
+    #ffffff;
+  box-shadow:0 14px 34px rgba(15,23,42,0.10);
+  margin-bottom:12px;
+}
+
+.tru-hero-visual-seal{
+  width:40px;
+  height:40px;
+  border-radius:14px;
+  border:1px solid rgba(57,255,20,0.45);
+  background:linear-gradient(180deg, rgba(57,255,20,0.18), rgba(57,255,20,0.06));
+  box-shadow:0 10px 22px rgba(15,23,42,0.14), inset 0 1px 0 rgba(255,255,255,0.75);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex:0 0 auto;
+  position:relative;
+  overflow:hidden;
+}
+
+.tru-hero-visual-seal-core{
+  width:14px;
+  height:14px;
+  border-radius:999px;
+  background:
+    radial-gradient(circle at 30% 30%, #ffffff 0%, rgba(255,255,255,0) 45%),
+    radial-gradient(circle at center, rgba(57,255,20,1) 0%, rgba(57,255,20,1) 62%, rgba(57,255,20,0.18) 100%);
+  box-shadow:0 0 0 5px rgba(57,255,20,0.14);
+}
+
+.tru-hero-visual-head-text{ min-width:0; }
+
+.tru-hero-visual-kicker{
+  font-size:11px;
+  letter-spacing:0.18em;
+  text-transform:uppercase;
+  color:rgba(15,23,42,0.55);
+  font-weight:800;
+  margin-bottom:3px;
+}
+
+.tru-hero-visual-head-title{
+  font-size:16px;
+  font-weight:850;
+  letter-spacing:-0.02em;
+  color:#0b1220;
+  line-height:1.1;
+  margin-bottom:2px;
+}
+
+.tru-hero-visual-head-sub{
+  font-size:12.5px;
+  color:rgba(15,23,42,0.70);
+  line-height:1.25;
+}
 
       `}</style>
     </div>
