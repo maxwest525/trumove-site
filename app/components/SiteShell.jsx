@@ -903,6 +903,40 @@ html.tm-scrolling .tm-trust .tm-trust-text{
   .tru-hero-trust-item{ padding: 6px 9px; }
 }
 
+.tru-hero-visual-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:10px;
+}
+
+.tru-hero-visual-seal{
+  width:20px;
+  height:20px;
+  border-radius:6px;
+  border:1px solid rgba(15,23,42,0.18);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0) 55%),
+    linear-gradient(180deg, rgba(57,255,20,0.35), rgba(57,255,20,0.10));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.7),
+    0 8px 18px rgba(15,23,42,0.10);
+  flex:0 0 auto;
+}
+
+.tru-hero-visual-head-title{
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:0.14em;
+  text-transform:uppercase;
+  color:#020617;
+  line-height:1.1;
+}
+
+.tru-hero-visual-head-sub{
+  font-size:12px;
+  color:rgba(15,23,42,0.65);
+}
 
       `}</style>
     </div>
