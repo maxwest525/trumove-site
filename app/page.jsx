@@ -68,13 +68,18 @@ const HTML = `
 
   <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
 
-  <div class="tru-hero-visual-head">
-  <span class="tru-hero-visual-seal" aria-hidden="true"></span>
+<div class="tru-hero-visual-head">
+  <div class="tru-hero-visual-seal" aria-hidden="true">
+    <span class="tru-hero-visual-seal-core"></span>
+  </div>
+
   <div class="tru-hero-visual-head-text">
-    <div class="tru-hero-visual-head-title">Start Your Quote</div>
-    <div class="tru-hero-visual-head-sub">Instant estimate, vetted carriers</div>
+    <div class="tru-hero-visual-kicker">Start your quote</div>
+    <div class="tru-hero-visual-head-title">Instant move estimate</div>
+    <div class="tru-hero-visual-head-sub">Vetted movers.</div>
   </div>
 </div>
+
 
 
 
