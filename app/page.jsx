@@ -41,13 +41,6 @@ const HTML = `
               </div>
             </div>
 
-            <div class="tru-hero-actions">
-
-                            <button class="tru-hero-btn-secondary" type="button">
-                <span>See how TruMove works</span>
-                <span class="chevron">→</span>
-              </button>
-            </div>
 
             <!-- HERO TRUST STRIP (OFFICIAL) -->
 <div class="tru-hero-trust" aria-label="Compliance and authority">
@@ -72,12 +65,6 @@ const HTML = `
   </span>
 </div>
 
-
-
-            <div class="tru-hero-note">
-              No hidden fees, no endless phone calls, just one clean dashboard for your whole move.
-            </div>
-          </div>
 
 <div class="tru-hero-visual">
   <div class="tru-hero-visual-tag">
@@ -112,9 +99,6 @@ const HTML = `
         Get My Quote →
       </button>
 
-      <div class="tru-hero-form-foot">
-        No spam calls, no lead reselling.
-      </div>
     </form>
   </div>
 </div>
@@ -504,10 +488,6 @@ contactForm?.addEventListener("submit", onContactSubmit);
     };
     miniBtn?.addEventListener("click", onMiniClick);
 
-    // 3) “See how TruMove works” button -> How It Works page (if you have it)
-    const howBtn = document.querySelector(".tru-hero-btn-secondary");
-    const onHowClick = () => router.push("/about");
-    howBtn?.addEventListener("click", onHowClick);
 
     // 4) “Talk to a TruMove specialist” button -> book consult page
     const talkBtn = document.querySelector(".tru-contact-secondary-btn");
@@ -516,7 +496,6 @@ contactForm?.addEventListener("submit", onContactSubmit);
 
     return () => {
       miniBtn?.removeEventListener("click", onMiniClick);
-      howBtn?.removeEventListener("click", onHowClick);
       talkBtn?.removeEventListener("click", onTalkClick);
       contactForm?.removeEventListener("submit", onContactSubmit);
 featuresBtn?.removeEventListener("click", onFeaturesClick);
