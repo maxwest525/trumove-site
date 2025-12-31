@@ -66,13 +66,25 @@ const HTML = `
 </div>
 
 
-<div class="tru-hero-visual">
-  <div class="tru-hero-visual-tag">
-    <span class="tru-hero-visual-tag-dot"></span>
-    <span>Start Your Move</span>
+<div class="tru-hero-visual-head">
+  <span class="tru-hero-visual-seal" aria-hidden="true"></span>
+  <div class="tru-hero-visual-head-text">
+    <div class="tru-hero-visual-head-title">Start Your Quote</div>
+    <div class="tru-hero-visual-head-sub">Instant estimate, then match with vetted movers</div>
   </div>
+</div>
+
 
   <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
+  
+  <div class="tru-hero-visual-head">
+  <span class="tru-hero-visual-seal" aria-hidden="true"></span>
+  <div class="tru-hero-visual-head-text">
+    <div class="tru-hero-visual-head-title">Start Your Quote</div>
+    <div class="tru-hero-visual-head-sub">Instant estimate, vetted carriers</div>
+  </div>
+</div>
+
     <div class="tru-hero-form-title">Get your quote in seconds</div>
     <div class="tru-hero-form-sub">
       Enter a few details, we’ll route you to your personalized estimate.
