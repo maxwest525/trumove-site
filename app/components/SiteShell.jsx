@@ -938,6 +938,68 @@ html.tm-scrolling .tm-trust .tm-trust-text{
   color:rgba(15,23,42,0.65);
 }
 
+/* HERO QUOTE CARD HEADER (premium, no pill) */
+.tru-hero-visual-head{
+  display:flex;
+  align-items:flex-start;
+  gap:12px;
+  margin:6px 0 14px;
+  padding:10px 12px;
+  border-radius:16px;
+  border:1px solid rgba(15,23,42,0.10);
+  background:
+    radial-gradient(circle at 30% 20%, rgba(57,255,20,0.14), rgba(57,255,20,0) 55%),
+    #ffffff;
+  box-shadow:0 10px 22px rgba(15,23,42,0.08);
+}
+
+.tru-hero-visual-seal{
+  width:26px;
+  height:26px;
+  flex:0 0 auto;
+  border-radius:10px;
+  border:1px solid rgba(15,23,42,0.14);
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.95), rgba(255,255,255,0) 55%),
+    linear-gradient(180deg, rgba(57,255,20,0.28), rgba(57,255,20,0.10));
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.75),
+    0 10px 18px rgba(15,23,42,0.14);
+  position:relative;
+}
+
+/* tiny “official” glyph inside, not a blank shape */
+.tru-hero-visual-seal::after{
+  content:"";
+  position:absolute;
+  inset:6px;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  opacity:0.95;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none'%3E%3Cpath d='M12 2.8l6.4 2.7v6.3c0 4.3-2.8 8-6.4 9.2-3.6-1.2-6.4-4.9-6.4-9.2V5.5L12 2.8z' stroke='%23020617' stroke-width='1.7' stroke-linejoin='round'/%3E%3Cpath d='M9.2 12.2l1.8 1.8 3.8-4' stroke='%23020617' stroke-width='1.7' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+}
+
+.tru-hero-visual-head-text{ min-width:0; }
+
+.tru-hero-visual-head-title{
+  font-size:14px;
+  font-weight:850;
+  letter-spacing:0.10em;
+  text-transform:uppercase;
+  color:#020617;
+  line-height:1.1;
+  margin:0 0 4px;
+}
+
+.tru-hero-visual-head-sub{
+  font-size:12.5px;
+  color:rgba(15,23,42,0.70);
+  line-height:1.35;
+  margin:0;
+}
+
+
       `}</style>
     </div>
   );
