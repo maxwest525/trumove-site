@@ -4,7 +4,6 @@ import "./globals.css";
 import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
-
 const HTML = `
   <div class="tru-page-frame">
     <div class="tru-page-inner">
@@ -23,7 +22,7 @@ const HTML = `
             </h1>
 
             <p class="tru-hero-sub">
-              TruMove turns a few simple questions into instant pricing, vetted movers, and live support. No spam calls, no surprise add ons, no getting bounced around.
+              TruMove turns a few simple questions into instant pricing, vetted movers, and live support, all in one clean workflow.
             </p>
 
             <div class="tru-hero-bullets">
@@ -42,86 +41,70 @@ const HTML = `
             </div>
 
             <div class="tru-hero-actions">
-
-                            <button class="tru-hero-btn-secondary" type="button">
-                <span>See how TruMove works</span>
-                <span class="chevron">→</span>
-              </button>
+              <!-- intentionally empty for now -->
             </div>
 
             <!-- HERO TRUST STRIP (OFFICIAL) -->
-<div class="tru-hero-trust" aria-label="Compliance and authority">
-  <span class="tru-hero-trust-item">
-    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
-    <span class="tru-hero-trust-text">USDOT Compliant</span>
-  </span>
+            <div class="tru-hero-trust" aria-label="Compliance and authority">
+              <span class="tru-hero-trust-item">
+                <span class="tru-hero-trust-icon" aria-hidden="true"></span>
+                <span class="tru-hero-trust-text">USDOT Compliant</span>
+              </span>
 
-  <span class="tru-hero-trust-item">
-    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
-    <span class="tru-hero-trust-text">Bonded and Insured</span>
-  </span>
+              <span class="tru-hero-trust-item">
+                <span class="tru-hero-trust-icon" aria-hidden="true"></span>
+                <span class="tru-hero-trust-text">Bonded and Insured</span>
+              </span>
 
-  <span class="tru-hero-trust-item">
-    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
-    <span class="tru-hero-trust-text">FMCSA Authorized Carriers</span>
-  </span>
+              <span class="tru-hero-trust-item">
+                <span class="tru-hero-trust-icon" aria-hidden="true"></span>
+                <span class="tru-hero-trust-text">FMCSA Authorized Carriers</span>
+              </span>
 
-  <span class="tru-hero-trust-item">
-    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
-    <span class="tru-hero-trust-text">Licensed Interstate Broker</span>
-  </span>
-</div>
-
-
-
-            <div class="tru-hero-note">
-              No hidden fees, no endless phone calls, just one clean dashboard for your whole move.
+              <span class="tru-hero-trust-item">
+                <span class="tru-hero-trust-icon" aria-hidden="true"></span>
+                <span class="tru-hero-trust-text">Licensed Interstate Broker</span>
+              </span>
             </div>
           </div>
 
-<div class="tru-hero-visual">
-  <div class="tru-hero-visual-tag">
-    <span class="tru-hero-visual-tag-dot"></span>
-    <span>Start Your Move</span>
-  </div>
+          <div class="tru-hero-visual">
+            <div class="tru-hero-visual-tag">
+              <span class="tru-hero-visual-tag-dot"></span>
+              <span>Start Your Move</span>
+            </div>
 
-  <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
-    <div class="tru-hero-form-title">Get your quote in seconds</div>
-    <div class="tru-hero-form-sub">
-      Enter a few details, we’ll route you to your personalized estimate.
-    </div>
+            <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
+              <div class="tru-hero-form-title">Get your quote in seconds</div>
+              <div class="tru-hero-form-sub">
+                Enter a few details, we’ll route you to your personalized estimate.
+              </div>
 
-    <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
-      <div class="tru-hero-form-row">
-        <input type="text" id="miniName" class="tru-hero-input" placeholder="Your name" required>
-      </div>
+              <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
+                <div class="tru-hero-form-row">
+                  <input type="text" id="miniName" class="tru-hero-input" placeholder="Your name" required>
+                </div>
 
-      <div class="tru-hero-form-row two">
-        <input type="text" id="miniZip" class="tru-hero-input" placeholder="ZIP code" required>
-        <select id="miniSize" class="tru-hero-select" required>
-          <option value="" disabled selected>Move size</option>
-          <option value="Studio">Studio</option>
-          <option value="1 Bedroom">1 Bedroom</option>
-          <option value="2 Bedroom">2 Bedroom</option>
-          <option value="3 Bedroom">3 Bedroom</option>
-          <option value="4+ Bedroom">4+ Bedroom</option>
-        </select>
-      </div>
+                <div class="tru-hero-form-row two">
+                  <input type="text" id="miniZip" class="tru-hero-input" placeholder="ZIP code" required>
+                  <select id="miniSize" class="tru-hero-select" required>
+                    <option value="" disabled selected>Move size</option>
+                    <option value="Studio">Studio</option>
+                    <option value="1 Bedroom">1 Bedroom</option>
+                    <option value="2 Bedroom">2 Bedroom</option>
+                    <option value="3 Bedroom">3 Bedroom</option>
+                    <option value="4+ Bedroom">4+ Bedroom</option>
+                  </select>
+                </div>
 
-      <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
-        Get My Quote →
-      </button>
-
-      <div class="tru-hero-form-foot">
-        No spam calls, no lead reselling.
-      </div>
-    </form>
-  </div>
-</div>
-
+                <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
+                  Get My Quote →
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
       </section>
-
-
 
       <!-- FEATURES SECTION -->
       <section class="tru-simple-wrap">
@@ -294,8 +277,8 @@ const HTML = `
                   </svg>
                 </div>
                 <div class="tru-mission-stat-copy">
-                  <div class="tru-mission-stat-number">0</div>
-                  <div class="tru-mission-stat-label">Spam Calls, Ever</div>
+                  <div class="tru-mission-stat-number">24/7</div>
+                  <div class="tru-mission-stat-label">Support Coverage</div>
                 </div>
               </div>
 
@@ -307,15 +290,15 @@ const HTML = `
               <div>
                 <div class="tru-guarantee-tag">
                   <span class="tru-guarantee-tag-dot"></span>
-                  <span>TruMove Guarantee</span>
+                  <span>TruMove Standard</span>
                 </div>
                 <div class="tru-guarantee-title">If it feels off, we flag it before you ever sign.</div>
                 <div class="tru-guarantee-text">
                   Every quote on TruMove passes through our checks so you do not waste time on carriers that are going to play games on price or service.
                 </div>
                 <ul class="tru-guarantee-list">
-                  <li>No spam calls sold to other brokers.</li>
-                  <li>No last minute surprise add ons without receipts.</li>
+                  <li>Vetting standards that screen out repeat issues.</li>
+                  <li>Clear quote terms, so you know what you are agreeing to.</li>
                   <li>Help from a real human if anything feels wrong on move day.</li>
                 </ul>
               </div>
@@ -449,45 +432,37 @@ const HTML = `
 
     </div>
   </div>
-
-  `;
-
-
+`;
 
 export default function HomePage() {
   const router = useRouter();
 
   useEffect(() => {
-
     // See all features -> carrier vetting
-const featuresBtn = document.querySelector(".tru-simple-cta-btn");
-const onFeaturesClick = () => router.push("/vetting");
-featuresBtn?.addEventListener("click", onFeaturesClick);
-    
+    const featuresBtn = document.querySelector(".tru-simple-cta-btn");
+    const onFeaturesClick = () => router.push("/vetting");
+    featuresBtn?.addEventListener("click", onFeaturesClick);
 
-    // Contact form -> email for now
-const contactForm = document.getElementById("truContactForm");
-const onContactSubmit = (e) => {
-  e.preventDefault();
+    // Contact form -> email
+    const contactForm = document.getElementById("truContactForm");
+    const onContactSubmit = (e) => {
+      e.preventDefault();
 
-  const name = document.getElementById("contactName")?.value || "";
-  const email = document.getElementById("contactEmail")?.value || "";
-  const message = document.getElementById("contactMessage")?.value || "";
+      const name = document.getElementById("contactName")?.value || "";
+      const email = document.getElementById("contactEmail")?.value || "";
+      const message = document.getElementById("contactMessage")?.value || "";
 
-  const body =
-    `Name: ${name}%0D%0A` +
-    `Email: ${email}%0D%0A%0D%0A` +
-    `Message:%0D%0A${message}`;
+      const body =
+        `Name: ${name}%0D%0A` +
+        `Email: ${email}%0D%0A%0D%0A` +
+        `Message:%0D%0A${message}`;
 
-  window.location.href =
-    `mailto:info@trumoveinc.com?subject=TruMove Contact Request&body=${body}`;
-};
+      window.location.href =
+        `mailto:info@trumoveinc.com?subject=TruMove Contact Request&body=${body}`;
+    };
+    contactForm?.addEventListener("submit", onContactSubmit);
 
-contactForm?.addEventListener("submit", onContactSubmit);
-
-
-
-    // 2) Mini form button -> route to estimate page (no external URL)
+    // Mini form button -> route to estimate page
     const miniBtn = document.getElementById("truMiniSubmit");
     const onMiniClick = () => {
       const name = (document.getElementById("miniName")?.value || "").trim();
@@ -499,27 +474,20 @@ contactForm?.addEventListener("submit", onContactSubmit);
         return;
       }
 
-      // send them to your Next.js estimate page
       router.push("/online-estimate");
     };
     miniBtn?.addEventListener("click", onMiniClick);
 
-    // 3) “See how TruMove works” button -> How It Works page (if you have it)
-    const howBtn = document.querySelector(".tru-hero-btn-secondary");
-    const onHowClick = () => router.push("/about");
-    howBtn?.addEventListener("click", onHowClick);
-
-    // 4) “Talk to a TruMove specialist” button -> book consult page
+    // Talk to a TruMove specialist -> book consult page
     const talkBtn = document.querySelector(".tru-contact-secondary-btn");
     const onTalkClick = () => router.push("/book");
     talkBtn?.addEventListener("click", onTalkClick);
 
     return () => {
-      miniBtn?.removeEventListener("click", onMiniClick);
-      howBtn?.removeEventListener("click", onHowClick);
-      talkBtn?.removeEventListener("click", onTalkClick);
+      featuresBtn?.removeEventListener("click", onFeaturesClick);
       contactForm?.removeEventListener("submit", onContactSubmit);
-featuresBtn?.removeEventListener("click", onFeaturesClick);
+      miniBtn?.removeEventListener("click", onMiniClick);
+      talkBtn?.removeEventListener("click", onTalkClick);
     };
   }, [router]);
 
