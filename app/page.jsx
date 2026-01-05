@@ -22,7 +22,7 @@ const HTML = `
             </h1>
 
             <p class="tru-hero-sub">
-              TruMove turns a few simple questions into instant pricing, vetted movers, and live support, all in one clean workflow.
+              TruMove turns a few simple questions into instant pricing, vetted movers, and live support. No spam calls, no surprise add ons, no getting bounced around.
             </p>
 
             <div class="tru-hero-bullets">
@@ -36,35 +36,42 @@ const HTML = `
               </div>
               <div class="tru-hero-badge">
                 <span class="tru-hero-badge-dot"></span>
-                <span>Real time updates</span>
+                <span>Real-time updates</span>
               </div>
             </div>
 
             <div class="tru-hero-actions">
-              <!-- intentionally empty for now -->
+              <button class="tru-hero-btn-secondary" type="button">
+                <span>See how TruMove works</span>
+                <span class="chevron">→</span>
+              </button>
             </div>
 
-            <!-- HERO TRUST STRIP (OFFICIAL) -->
-            <div class="tru-hero-trust" aria-label="Compliance and authority">
-              <span class="tru-hero-trust-item">
-                <span class="tru-hero-trust-icon" aria-hidden="true"></span>
-                <span class="tru-hero-trust-text">USDOT Compliant</span>
-              </span>
+            <!-- HERO TRUST (CLEAN, NOT BUBBLES) -->
+            <div class="tru-hero-trustbar" aria-label="Compliance and authority">
+              <div class="tru-hero-trustitem">
+                <span class="tru-hero-trustseal" data-code="USDOT" aria-hidden="true"></span>
+                <span class="tru-hero-trustlabel">USDOT Compliant</span>
+              </div>
 
-              <span class="tru-hero-trust-item">
-                <span class="tru-hero-trust-icon" aria-hidden="true"></span>
-                <span class="tru-hero-trust-text">Bonded and Insured</span>
-              </span>
+              <div class="tru-hero-trustitem">
+                <span class="tru-hero-trustseal" data-code="BOND" aria-hidden="true"></span>
+                <span class="tru-hero-trustlabel">Bonded and Insured</span>
+              </div>
 
-              <span class="tru-hero-trust-item">
-                <span class="tru-hero-trust-icon" aria-hidden="true"></span>
-                <span class="tru-hero-trust-text">FMCSA Authorized Carriers</span>
-              </span>
+              <div class="tru-hero-trustitem">
+                <span class="tru-hero-trustseal" data-code="FMCSA" aria-hidden="true"></span>
+                <span class="tru-hero-trustlabel">FMCSA Authorized Carriers</span>
+              </div>
 
-              <span class="tru-hero-trust-item">
-                <span class="tru-hero-trust-icon" aria-hidden="true"></span>
-                <span class="tru-hero-trust-text">Licensed Interstate Broker</span>
-              </span>
+              <div class="tru-hero-trustitem">
+                <span class="tru-hero-trustseal" data-code="BRKR" aria-hidden="true"></span>
+                <span class="tru-hero-trustlabel">Licensed Interstate Broker</span>
+              </div>
+            </div>
+
+            <div class="tru-hero-note">
+              No hidden fees, no endless phone calls, just one clean dashboard for your whole move.
             </div>
           </div>
 
@@ -100,9 +107,14 @@ const HTML = `
                 <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
                   Get My Quote →
                 </button>
+
+                <div class="tru-hero-form-foot">
+                  No spam calls, no lead reselling.
+                </div>
               </form>
             </div>
           </div>
+
         </div>
       </section>
 
@@ -239,7 +251,6 @@ const HTML = `
 
           <div class="tru-mission-stats-shell">
             <div class="tru-mission-stats-bar">
-
               <div class="tru-mission-stat">
                 <div class="tru-mission-stat-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none">
@@ -277,11 +288,10 @@ const HTML = `
                   </svg>
                 </div>
                 <div class="tru-mission-stat-copy">
-                  <div class="tru-mission-stat-number">24/7</div>
-                  <div class="tru-mission-stat-label">Support Coverage</div>
+                  <div class="tru-mission-stat-number">0</div>
+                  <div class="tru-mission-stat-label">Spam Calls, Ever</div>
                 </div>
               </div>
-
             </div>
           </div>
 
@@ -290,15 +300,15 @@ const HTML = `
               <div>
                 <div class="tru-guarantee-tag">
                   <span class="tru-guarantee-tag-dot"></span>
-                  <span>TruMove Standard</span>
+                  <span>TruMove Guarantee</span>
                 </div>
                 <div class="tru-guarantee-title">If it feels off, we flag it before you ever sign.</div>
                 <div class="tru-guarantee-text">
                   Every quote on TruMove passes through our checks so you do not waste time on carriers that are going to play games on price or service.
                 </div>
                 <ul class="tru-guarantee-list">
-                  <li>Vetting standards that screen out repeat issues.</li>
-                  <li>Clear quote terms, so you know what you are agreeing to.</li>
+                  <li>No spam calls sold to other brokers.</li>
+                  <li>No last minute surprise add ons without receipts.</li>
                   <li>Help from a real human if anything feels wrong on move day.</li>
                 </ul>
               </div>
@@ -354,13 +364,7 @@ const HTML = `
                             stroke-linecap="round" />
                     </svg>
                   </span>
-                  <input
-                    type="text"
-                    id="contactName"
-                    class="tru-contact-input"
-                    autocomplete="name"
-                    required
-                  />
+                  <input type="text" id="contactName" class="tru-contact-input" autocomplete="name" required />
                   <label for="contactName" class="tru-field-label">Your name</label>
                 </div>
                 <div class="tru-field-error-text">Please enter your name.</div>
@@ -374,13 +378,7 @@ const HTML = `
                       <path d="M4 7L12 12.5L20 7" stroke-width="1.6" stroke-linecap="round" />
                     </svg>
                   </span>
-                  <input
-                    type="email"
-                    id="contactEmail"
-                    class="tru-contact-input"
-                    autocomplete="email"
-                    required
-                  />
+                  <input type="email" id="contactEmail" class="tru-contact-input" autocomplete="email" required />
                   <label for="contactEmail" class="tru-field-label">Your email</label>
                 </div>
                 <div class="tru-field-error-text">Please enter a valid email address.</div>
@@ -390,16 +388,10 @@ const HTML = `
                 <div class="tru-field-inner">
                   <span class="tru-field-icon" aria-hidden="true" style="top: 18px; transform: none;">
                     <svg viewBox="0 0 24 24" fill="none">
-                      <path d="M5 5H19V14H9L5 18V5Z"
-                            stroke-width="1.6"
-                            stroke-linejoin="round" />
+                      <path d="M5 5H19V14H9L5 18V5Z" stroke-width="1.6" stroke-linejoin="round" />
                     </svg>
                   </span>
-                  <textarea
-                    id="contactMessage"
-                    class="tru-contact-textarea"
-                    required
-                  ></textarea>
+                  <textarea id="contactMessage" class="tru-contact-textarea" required></textarea>
                   <label for="contactMessage" class="tru-field-label textarea-label">Write your message here</label>
                 </div>
                 <div class="tru-field-error-text">Please add a short message.</div>
@@ -443,7 +435,7 @@ export default function HomePage() {
     const onFeaturesClick = () => router.push("/vetting");
     featuresBtn?.addEventListener("click", onFeaturesClick);
 
-    // Contact form -> email
+    // Contact form -> email for now
     const contactForm = document.getElementById("truContactForm");
     const onContactSubmit = (e) => {
       e.preventDefault();
@@ -457,8 +449,7 @@ export default function HomePage() {
         `Email: ${email}%0D%0A%0D%0A` +
         `Message:%0D%0A${message}`;
 
-      window.location.href =
-        `mailto:info@trumoveinc.com?subject=TruMove Contact Request&body=${body}`;
+      window.location.href = `mailto:info@trumoveinc.com?subject=TruMove Contact Request&body=${body}`;
     };
     contactForm?.addEventListener("submit", onContactSubmit);
 
@@ -478,7 +469,12 @@ export default function HomePage() {
     };
     miniBtn?.addEventListener("click", onMiniClick);
 
-    // Talk to a TruMove specialist -> book consult page
+    // “See how TruMove works” button -> About page
+    const howBtn = document.querySelector(".tru-hero-btn-secondary");
+    const onHowClick = () => router.push("/about");
+    howBtn?.addEventListener("click", onHowClick);
+
+    // “Talk to a TruMove specialist” button -> book consult page
     const talkBtn = document.querySelector(".tru-contact-secondary-btn");
     const onTalkClick = () => router.push("/book");
     talkBtn?.addEventListener("click", onTalkClick);
@@ -487,6 +483,7 @@ export default function HomePage() {
       featuresBtn?.removeEventListener("click", onFeaturesClick);
       contactForm?.removeEventListener("submit", onContactSubmit);
       miniBtn?.removeEventListener("click", onMiniClick);
+      howBtn?.removeEventListener("click", onHowClick);
       talkBtn?.removeEventListener("click", onTalkClick);
     };
   }, [router]);
