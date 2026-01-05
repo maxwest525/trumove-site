@@ -13,10 +13,10 @@ const NAV = [
 ];
 
 const TRUST = [
-  { tag: "USDOT", text: "USDOT Compliant" },
-  { tag: "INSURED", text: "Bonded and Insured" },
-  { tag: "FMCSA", text: "FMCSA Authorized Motor Carriers" },
-  { tag: "BROKER", text: "Licensed Interstate Moving Broker" },
+  { tag: "USDOT", code: "USDOT", text: "USDOT Compliant" },
+  { tag: "INSURED", code: "BOND", text: "Bonded and Insured" },
+  { tag: "FMCSA", code: "FMCSA", text: "FMCSA Authorized Motor Carriers" },
+  { tag: "BROKER", code: "BRKR", text: "Licensed Interstate Moving Broker" },
 ];
 
 // Status items: key is used for page-aware highlight + snap behavior
@@ -55,7 +55,7 @@ export default function SiteShell({ children }) {
     document.documentElement.setAttribute("data-tm-route", routeKey);
 
     // Pick one: "shield" | "plaque" | "circle"
-    document.documentElement.setAttribute("data-tm-badge", "shield");
+    document.documentElement.setAttribute("data-tm-badge", "plaque");
   }, [routeKey]);
 
   // Pause while user scrolls
@@ -63,6 +63,7 @@ export default function SiteShell({ children }) {
     const onScroll = () => {
       document.documentElement.classList.add("tm-scrolling");
       setPaused(true);
+
       if (scrollT.current) window.clearTimeout(scrollT.current);
       scrollT.current = window.setTimeout(() => {
         document.documentElement.classList.remove("tm-scrolling");
@@ -116,11 +117,7 @@ export default function SiteShell({ children }) {
       {/* STATUS STRIP (TOP) */}
       <div
         ref={statusStripRef}
-        className={[
-          "tm-status",
-          paused ? "is-paused" : "",
-          speed === "fast" ? "is-fast" : "",
-        ].join(" ")}
+        className={["tm-status", paused ? "is-paused" : "", speed === "fast" ? "is-fast" : ""].join(" ")}
         aria-label="Platform capabilities"
         onMouseEnter={() => setPaused(true)}
         onMouseLeave={() => setPaused(false)}
@@ -184,7 +181,7 @@ export default function SiteShell({ children }) {
           <div className="tm-trust-items">
             {TRUST.map((t) => (
               <span key={t.tag} className="tm-trust-item">
-                <span className="tm-trust-badge" data-tag={t.tag} aria-hidden="true" />
+                <span className="tm-trust-badge" data-code={t.code} aria-hidden="true" />
                 <span className="tm-trust-text">{t.text}</span>
               </span>
             ))}
@@ -222,7 +219,7 @@ export default function SiteShell({ children }) {
         :root {
           --tm-green: #39ff14;
           --tm-ink: #0f172a;
-          --tm-line: rgba(15, 23, 42, 0.10);
+          --tm-line: rgba(15, 23, 42, 0.1);
           --tm-max: 1480px;
           --tm-status-h: 44px;
           --tm-marquee-normal: 34s;
@@ -253,6 +250,7 @@ export default function SiteShell({ children }) {
           height: 100%;
           overflow: hidden;
         }
+
         .tm-status-inner {
           height: 100%;
           display: flex;
@@ -266,6 +264,7 @@ export default function SiteShell({ children }) {
         html.tm-scrolling .tm-status-inner {
           animation-play-state: paused;
         }
+
         .tm-status.is-paused .tm-status-inner {
           animation-play-state: paused;
         }
@@ -342,10 +341,12 @@ export default function SiteShell({ children }) {
           pointer-events: none;
           z-index: 2;
         }
+
         .tm-status-mask-left {
           left: 0;
           background: linear-gradient(90deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
         }
+
         .tm-status-mask-right {
           right: 0;
           background: linear-gradient(270deg, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
@@ -377,6 +378,7 @@ export default function SiteShell({ children }) {
           flex-shrink: 0;
           text-decoration: none;
         }
+
         .tm-logo-img {
           height: 62px;
           width: auto;
@@ -406,10 +408,12 @@ export default function SiteShell({ children }) {
           text-transform: uppercase;
           transition: opacity 0.15s ease, transform 0.15s ease;
         }
+
         .tm-nav-link:hover {
           opacity: 1;
           transform: translateY(-1px);
         }
+
         .tm-nav-link::after {
           content: "";
           position: absolute;
@@ -423,12 +427,15 @@ export default function SiteShell({ children }) {
           transform-origin: left;
           transition: transform 0.18s ease;
         }
+
         .tm-nav-link:hover::after {
           transform: scaleX(1);
         }
+
         .tm-nav-link.active {
           opacity: 1;
         }
+
         .tm-nav-link.active::after {
           transform: scaleX(1);
         }
@@ -454,14 +461,16 @@ export default function SiteShell({ children }) {
           white-space: nowrap;
           font-size: 12.5px;
           font-weight: 600;
-          letter-spacing: 0.10em;
+          letter-spacing: 0.1em;
           text-transform: uppercase;
           color: var(--tm-ink);
-          border: 1px solid rgba(57, 255, 20, 0.40);
+          border: 1px solid rgba(57, 255, 20, 0.4);
           background: linear-gradient(180deg, rgba(57, 255, 20, 0.18), rgba(57, 255, 20, 0.06));
-          box-shadow: 0 14px 30px rgba(15, 23, 42, 0.10), inset 0 1px 0 rgba(255, 255, 255, 0.7);
-          transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+          box-shadow: 0 14px 30px rgba(15, 23, 42, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+          transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease,
+            border-color 0.15s ease;
         }
+
         .tm-call::before,
         .tm-cta::before {
           content: "";
@@ -473,6 +482,7 @@ export default function SiteShell({ children }) {
           box-shadow: 0 0 0 4px rgba(57, 255, 20, 0.14);
           flex: 0 0 auto;
         }
+
         .tm-call:hover,
         .tm-cta:hover {
           transform: translateY(-1px);
@@ -481,192 +491,123 @@ export default function SiteShell({ children }) {
           background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(57, 255, 20, 0.08));
         }
 
-/* HERO TRUST STRIP (inside hero) */
-.tru-hero-trust{
-  margin-top: 14px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 14px;
-  align-items: center;
-}
+        /* TRUST STRIP (TOP, UNDER HEADER) */
+        .tm-trust {
+          background: linear-gradient(180deg, #070912, #050610);
+          border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+        }
 
-.tru-hero-trust-item{
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  background: #ffffff;
-  border: 1px solid rgba(15,23,42,0.12);
-  box-shadow: 0 12px 26px rgba(15,23,42,0.08);
-}
+        .tm-trust-inner {
+          max-width: var(--tm-max);
+          margin: 0 auto;
+          padding: 10px 16px;
+        }
 
-.tru-hero-trust-text{
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(15,23,42,0.86);
-  white-space: nowrap;
-}
+        .tm-trust-items {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 26px;
+          flex-wrap: wrap;
+        }
 
-/* mini seal that actually looks “official” */
-.tru-hero-trust-icon{
-  width: 18px;
-  height: 18px;
-  flex: 0 0 auto;
-  position: relative;
-  display: inline-grid;
-  place-items: center;
+        .tm-trust-item {
+          display: inline-flex;
+          align-items: center;
+          gap: 12px;
+          white-space: nowrap;
+          transition: transform 140ms ease;
+        }
 
-  border-radius: 6px;
-  clip-path: polygon(
-    10% 0%,
-    90% 0%,
-    100% 20%,
-    100% 80%,
-    90% 100%,
-    10% 100%,
-    0% 80%,
-    0% 20%
-  );
+        .tm-trust-item:hover {
+          transform: translateY(-1px);
+        }
 
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.70), rgba(255,255,255,0) 55%),
-    linear-gradient(180deg, rgba(57,255,20,0.30), rgba(57,255,20,0.10));
+        .tm-trust-text {
+          font-size: 10.5px;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          font-weight: 850;
+          color: rgba(255, 255, 255, 0.96);
+        }
 
-  border: 1px solid rgba(15,23,42,0.28);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.85),
-    0 8px 18px rgba(15,23,42,0.12);
-}
+        /* Seal base */
+        .tm-trust-badge {
+          width: 22px;
+          height: 22px;
+          position: relative;
+          display: inline-grid;
+          place-items: center;
+          flex: 0 0 auto;
 
-.tru-hero-trust-icon::before{
-  content:"";
-  position:absolute;
-  inset:3px;
-  border-radius:5px;
-  border:1px solid rgba(15,23,42,0.18);
-  opacity:0.9;
-}
+          background: radial-gradient(circle at 30% 25%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0) 55%),
+            linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.06));
 
+          border: 1px solid rgba(255, 255, 255, 0.78);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), inset 0 -1px 0 rgba(0, 0, 0, 0.7),
+            0 1px 0 rgba(0, 0, 0, 0.6);
+          overflow: hidden;
+        }
 
-/* ============================
-   TRUST STRIP: REAL SEALS (NOT BLANK)
-   ============================ */
+        /* SHAPE SWITCH (controlled by html data-tm-badge) */
+        html[data-tm-badge="circle"] .tm-trust-badge {
+          border-radius: 999px;
+          clip-path: none;
+        }
 
-.tm-trust-items{
-  position:relative;
-  z-index:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:28px;
-  flex-wrap:wrap;
-}
+        html[data-tm-badge="plaque"] .tm-trust-badge {
+          border-radius: 8px;
+          clip-path: polygon(10% 0%, 90% 0%, 100% 20%, 100% 80%, 90% 100%, 10% 100%, 0% 80%, 0% 20%);
+        }
 
-.tm-trust-item{
-  display:inline-flex;
-  align-items:center;
-  gap:12px;
-  white-space:nowrap;
-}
+        html[data-tm-badge="shield"] .tm-trust-badge {
+          border-radius: 10px 10px 14px 14px;
+          clip-path: polygon(50% 4%, 88% 18%, 88% 54%, 50% 96%, 12% 54%, 12% 18%);
+        }
 
-.tm-trust-text{
-  font-size:10.5px;
-  letter-spacing:0.16em;
-  text-transform:uppercase;
-  font-weight:850;
-  color:rgba(255,255,255,0.96);
-}
+        /* inner ring */
+        .tm-trust-badge::before {
+          content: "";
+          position: absolute;
+          inset: 4px;
+          border-radius: 6px;
+          border: 1px solid rgba(255, 255, 255, 0.4);
+          opacity: 0.95;
+        }
 
-/* Seal base */
-.tm-trust-badge{
-  width:22px;
-  height:22px;
-  position:relative;
-  display:inline-grid;
-  place-items:center;
-  flex:0 0 auto;
+        /* stamp text comes from data-code, this fixes the "blank badges" */
+        .tm-trust-badge::after {
+          content: attr(data-code);
+          position: absolute;
+          inset: 0;
+          display: grid;
+          place-items: center;
+          font-size: 8.5px;
+          font-weight: 950;
+          letter-spacing: 0.14em;
+          color: rgba(255, 255, 255, 0.95);
+          text-transform: uppercase;
+          text-shadow: 0 1px 0 rgba(0, 0, 0, 0.6);
+        }
 
-  /* plaque shape */
-  border-radius:8px;
-  clip-path: polygon(
-    10% 0%,
-    90% 0%,
-    100% 20%,
-    100% 80%,
-    90% 100%,
-    10% 100%,
-    0% 80%,
-    0% 20%
-  );
+        .tm-trust-item:hover .tm-trust-badge {
+          border-color: rgba(255, 255, 255, 0.92);
+          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.26), inset 0 -1px 0 rgba(0, 0, 0, 0.78),
+            0 0 0 6px rgba(57, 255, 20, 0.1), 0 10px 22px rgba(0, 0, 0, 0.35);
+        }
 
-  background:
-    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.22), rgba(255,255,255,0) 55%),
-    linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06));
-
-  border:1px solid rgba(255,255,255,0.78);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.20),
-    inset 0 -1px 0 rgba(0,0,0,0.70),
-    0 1px 0 rgba(0,0,0,0.60);
-  overflow:hidden;
-}
-
-/* inner ring */
-.tm-trust-badge::before{
-  content:"";
-  position:absolute;
-  inset:4px;
-  border-radius:6px;
-  border:1px solid rgba(255,255,255,0.40);
-  opacity:0.95;
-}
-
-/* the “mark” text (this is what makes it feel official) */
-.tm-trust-badge::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  font-size:8.5px;
-  font-weight:900;
-  letter-spacing:0.12em;
-  color:rgba(255,255,255,0.95);
-  text-transform:uppercase;
-  text-shadow:0 1px 0 rgba(0,0,0,0.55);
-}
-
-/* Set seal codes per item */
-.tm-trust-badge[data-tag="USDOT"]::after{ content:"USDOT"; }
-.tm-trust-badge[data-tag="INSURED"]::after{ content:"BOND"; }
-.tm-trust-badge[data-tag="FMCSA"]::after{ content:"FMCSA"; }
-.tm-trust-badge[data-tag="BROKER"]::after{ content:"BRKR"; }
-
-/* Hover: tiny lift, brighter ring */
-.tm-trust .tm-trust-item{
-  transition: transform 140ms ease;
-}
-.tm-trust .tm-trust-item:hover{
-  transform: translateY(-1px);
-}
-.tm-trust .tm-trust-item:hover .tm-trust-badge{
-  border-color: rgba(255,255,255,0.92);
-  box-shadow:
-    inset 0 1px 0 rgba(255,255,255,0.26),
-    inset 0 -1px 0 rgba(0,0,0,0.78),
-    0 0 0 6px rgba(57,255,20,0.10),
-    0 10px 22px rgba(0,0,0,0.35);
-}
-
+        /* MAIN */
+        .tm-main {
+          flex: 1;
+          width: 100%;
+        }
 
         /* FOOTER */
         .tm-footer {
           border-top: 1px solid var(--tm-line);
           background: #fff;
         }
+
         .tm-footer-inner {
           max-width: var(--tm-max);
           margin: 0 auto;
@@ -677,26 +618,31 @@ export default function SiteShell({ children }) {
           gap: 16px;
           flex-wrap: wrap;
         }
+
         .tm-footer-left {
           display: flex;
           flex-direction: column;
           gap: 6px;
         }
+
         .tm-footer-brand {
           font-weight: 800;
           color: #000;
         }
+
         .tm-footer-sub {
           color: #6b7280;
           font-size: 13px;
           max-width: 420px;
         }
+
         .tm-footer-right {
           display: flex;
           gap: 14px;
           flex-wrap: wrap;
           align-items: center;
         }
+
         .tm-footer-link {
           text-decoration: none;
           color: #111827;
@@ -704,6 +650,7 @@ export default function SiteShell({ children }) {
           padding: 8px 10px;
           border-radius: 10px;
         }
+
         .tm-footer-link:hover {
           background: #f3f4f6;
         }
@@ -713,14 +660,17 @@ export default function SiteShell({ children }) {
           :root {
             --tm-max: 1320px;
           }
+
           .tm-header-inner {
             grid-template-columns: auto 1fr;
             grid-template-rows: auto auto;
             row-gap: 10px;
           }
+
           .tm-header-actions {
             justify-content: flex-end;
           }
+
           .tm-nav {
             grid-column: 1 / -1;
             justify-content: flex-start;
@@ -729,9 +679,11 @@ export default function SiteShell({ children }) {
             padding-bottom: 6px;
             scrollbar-width: none;
           }
+
           .tm-nav::-webkit-scrollbar {
             display: none;
           }
+
           .tm-nav-link {
             font-size: 15px;
           }
@@ -741,11 +693,13 @@ export default function SiteShell({ children }) {
           .tm-logo-img {
             height: 54px;
           }
+
           .tm-call,
           .tm-cta {
             height: 38px;
             padding: 0 12px;
           }
+
           .tm-status-mask {
             width: 64px;
           }
