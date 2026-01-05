@@ -10,6 +10,75 @@ const HTML = `
     <div class="tru-page-inner">
 
       <!-- HERO -->
+      <section class="tru-hero">
+        <div class="tru-hero-grid">
+          <div>
+            <div class="tru-hero-pill">
+              <span class="tru-hero-pill-dot"></span>
+              <span>Smarter moving, powered by TruMove</span>
+            </div>
+
+            <h1 class="tru-hero-title">
+              Move day control, without the stress.
+            </h1>
+
+            <p class="tru-hero-sub">
+              TruMove turns a few simple questions into instant pricing, vetted movers, and live support. No spam calls, no surprise add ons, no getting bounced around.
+            </p>
+
+            <div class="tru-hero-bullets">
+              <div class="tru-hero-badge">
+                <span class="tru-hero-badge-dot"></span>
+                <span>Instant AI quotes</span>
+              </div>
+              <div class="tru-hero-badge">
+                <span class="tru-hero-badge-dot"></span>
+                <span>Vetted mover network</span>
+              </div>
+              <div class="tru-hero-badge">
+                <span class="tru-hero-badge-dot"></span>
+                <span>Real time updates</span>
+              </div>
+            </div>
+
+            <div class="tru-hero-actions">
+
+                            <button class="tru-hero-btn-secondary" type="button">
+                <span>See how TruMove works</span>
+                <span class="chevron">→</span>
+              </button>
+            </div>
+
+            <!-- HERO TRUST STRIP (OFFICIAL) -->
+<div class="tru-hero-trust" aria-label="Compliance and authority">
+  <span class="tru-hero-trust-item">
+    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
+    <span class="tru-hero-trust-text">USDOT Compliant</span>
+  </span>
+
+  <span class="tru-hero-trust-item">
+    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
+    <span class="tru-hero-trust-text">Bonded and Insured</span>
+  </span>
+
+  <span class="tru-hero-trust-item">
+    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
+    <span class="tru-hero-trust-text">FMCSA Authorized Carriers</span>
+  </span>
+
+  <span class="tru-hero-trust-item">
+    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
+    <span class="tru-hero-trust-text">Licensed Interstate Broker</span>
+  </span>
+</div>
+
+
+
+            <div class="tru-hero-note">
+              No hidden fees, no endless phone calls, just one clean dashboard for your whole move.
+            </div>
+          </div>
+
 <div class="tru-hero-visual">
   <div class="tru-hero-visual-tag">
     <span class="tru-hero-visual-tag-dot"></span>
@@ -24,28 +93,12 @@ const HTML = `
 
     <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
       <div class="tru-hero-form-row">
-        <input
-          type="text"
-          id="miniName"
-          class="tru-hero-input"
-          placeholder="Your name"
-          required
-        />
+        <input type="text" id="miniName" class="tru-hero-input" placeholder="Your name" required>
       </div>
 
       <div class="tru-hero-form-row two">
-        <input
-          type="text"
-          id="miniZip"
-          class="tru-hero-input"
-          placeholder="ZIP code"
-          required
-        />
-        <select
-          id="miniSize"
-          class="tru-hero-select"
-          required
-        >
+        <input type="text" id="miniZip" class="tru-hero-input" placeholder="ZIP code" required>
+        <select id="miniSize" class="tru-hero-select" required>
           <option value="" disabled selected>Move size</option>
           <option value="Studio">Studio</option>
           <option value="1 Bedroom">1 Bedroom</option>
@@ -55,17 +108,16 @@ const HTML = `
         </select>
       </div>
 
-      <button
-        class="tru-hero-form-btn"
-        id="truMiniSubmit"
-        type="button"
-      >
+      <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
         Get My Quote →
       </button>
+
+      <div class="tru-hero-form-foot">
+        No spam calls, no lead reselling.
+      </div>
     </form>
   </div>
 </div>
-
 
       </section>
 
@@ -452,6 +504,10 @@ contactForm?.addEventListener("submit", onContactSubmit);
     };
     miniBtn?.addEventListener("click", onMiniClick);
 
+    // 3) “See how TruMove works” button -> How It Works page (if you have it)
+    const howBtn = document.querySelector(".tru-hero-btn-secondary");
+    const onHowClick = () => router.push("/about");
+    howBtn?.addEventListener("click", onHowClick);
 
     // 4) “Talk to a TruMove specialist” button -> book consult page
     const talkBtn = document.querySelector(".tru-contact-secondary-btn");
@@ -460,6 +516,7 @@ contactForm?.addEventListener("submit", onContactSubmit);
 
     return () => {
       miniBtn?.removeEventListener("click", onMiniClick);
+      howBtn?.removeEventListener("click", onHowClick);
       talkBtn?.removeEventListener("click", onTalkClick);
       contactForm?.removeEventListener("submit", onContactSubmit);
 featuresBtn?.removeEventListener("click", onFeaturesClick);
