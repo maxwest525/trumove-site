@@ -481,155 +481,186 @@ export default function SiteShell({ children }) {
           background: linear-gradient(180deg, rgba(255, 255, 255, 0.94), rgba(57, 255, 20, 0.08));
         }
 
-        /* TRUST STRIP */
-        .tm-trust {
-          border-bottom: 1px solid rgba(255, 255, 255, 0.14);
-          background: linear-gradient(180deg, #070912, #050610);
-        }
+/* HERO TRUST STRIP (inside hero) */
+.tru-hero-trust{
+  margin-top: 14px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 14px;
+  align-items: center;
+}
 
-        .tm-trust-inner {
-          max-width: var(--tm-max);
-          margin: 0 auto;
-          padding: 3px 12px;
-          position: relative;
-        }
+.tru-hero-trust-item{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: #ffffff;
+  border: 1px solid rgba(15,23,42,0.12);
+  box-shadow: 0 12px 26px rgba(15,23,42,0.08);
+}
 
-        .tm-trust-inner::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          pointer-events: none;
-          opacity: 0.08;
-          background: repeating-linear-gradient(
-            135deg,
-            rgba(255, 255, 255, 0.06) 0px,
-            rgba(255, 255, 255, 0.06) 1px,
-            rgba(0, 0, 0, 0) 1px,
-            rgba(0, 0, 0, 0) 8px
-          );
-        }
+.tru-hero-trust-text{
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(15,23,42,0.86);
+  white-space: nowrap;
+}
 
-        .tm-trust-items {
-          position: relative;
-          z-index: 1;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 28px;
-          flex-wrap: wrap;
-        }
+/* mini seal that actually looks “official” */
+.tru-hero-trust-icon{
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  position: relative;
+  display: inline-grid;
+  place-items: center;
 
-        .tm-trust-item {
-          display: inline-flex;
-          align-items: center;
-          gap: 14px;
-          white-space: nowrap;
-          transition: transform 0.14s ease;
-        }
+  border-radius: 6px;
+  clip-path: polygon(
+    10% 0%,
+    90% 0%,
+    100% 20%,
+    100% 80%,
+    90% 100%,
+    10% 100%,
+    0% 80%,
+    0% 20%
+  );
 
-        .tm-trust-item:hover {
-          transform: translateY(-1px);
-        }
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.70), rgba(255,255,255,0) 55%),
+    linear-gradient(180deg, rgba(57,255,20,0.30), rgba(57,255,20,0.10));
 
-        .tm-trust-text {
-          font-size: 10.5px;
-          letter-spacing: 0.16em;
-          text-transform: uppercase;
-          font-weight: 800;
-          color: rgba(255, 255, 255, 0.96);
-        }
+  border: 1px solid rgba(15,23,42,0.28);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.85),
+    0 8px 18px rgba(15,23,42,0.12);
+}
 
-        /* BADGE: hard reset to prevent glyph/checkmark weirdness */
-        .tm-trust-badge {
-          width: 22px;
-          height: 22px;
-          position: relative;
-          display: inline-block;
-          flex: 0 0 auto;
-          overflow: hidden;
+.tru-hero-trust-icon::before{
+  content:"";
+  position:absolute;
+  inset:3px;
+  border-radius:5px;
+  border:1px solid rgba(15,23,42,0.18);
+  opacity:0.9;
+}
 
-          font: inherit;
-          line-height: 1;
-          background-image: none !important;
-          text-indent: 0;
-          letter-spacing: 0;
-          color: transparent;
-          -webkit-text-fill-color: transparent;
 
-          background: linear-gradient(180deg, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06));
-          border: 1px solid rgba(255, 255, 255, 0.78);
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), inset 0 -1px 0 rgba(0, 0, 0, 0.65), 0 1px 0 rgba(0, 0, 0, 0.60);
-        }
+/* ============================
+   TRUST STRIP: REAL SEALS (NOT BLANK)
+   ============================ */
 
-        .tm-trust-badge::before,
-        .tm-trust-badge::after {
-          content: "" !important;
-        }
+.tm-trust-items{
+  position:relative;
+  z-index:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:28px;
+  flex-wrap:wrap;
+}
 
-        /* inner ring */
-        .tm-trust-badge::before {
-          position: absolute;
-          inset: 4px;
-          border: 1px solid rgba(255, 255, 255, 0.44);
-          background: radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.40), rgba(255, 255, 255, 0) 60%),
-            radial-gradient(circle at center, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0) 65%);
-          opacity: 0.95;
-        }
+.tm-trust-item{
+  display:inline-flex;
+  align-items:center;
+  gap:12px;
+  white-space:nowrap;
+}
 
-        /* micro security lines */
-        .tm-trust-badge::after {
-          position: absolute;
-          inset: 0;
-          opacity: 0.20;
-          background: repeating-linear-gradient(
-            45deg,
-            rgba(255, 255, 255, 0.20) 0px,
-            rgba(255, 255, 255, 0.20) 1px,
-            rgba(0, 0, 0, 0) 1px,
-            rgba(0, 0, 0, 0) 4px
-          );
-          transition: opacity 0.14s ease, transform 0.14s ease;
-        }
+.tm-trust-text{
+  font-size:10.5px;
+  letter-spacing:0.16em;
+  text-transform:uppercase;
+  font-weight:850;
+  color:rgba(255,255,255,0.96);
+}
 
-        .tm-trust-item:hover .tm-trust-text {
-          color: rgba(255, 255, 255, 1);
-        }
-        .tm-trust-item:hover .tm-trust-badge {
-          border-color: rgba(255, 255, 255, 0.92);
-          box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.30), inset 0 -1px 0 rgba(0, 0, 0, 0.70),
-            0 0 0 5px rgba(57, 255, 20, 0.10), 0 10px 22px rgba(0, 0, 0, 0.35);
-        }
-        .tm-trust-item:hover .tm-trust-badge::after {
-          opacity: 1;
-          transform: scale(1.03);
-        }
+/* Seal base */
+.tm-trust-badge{
+  width:22px;
+  height:22px;
+  position:relative;
+  display:inline-grid;
+  place-items:center;
+  flex:0 0 auto;
 
-        /* SHAPE SWITCH (matches html[data-tm-badge]) */
-        html[data-tm-badge="circle"] .tm-trust-badge {
-          border-radius: 999px;
-          clip-path: none;
-        }
+  /* plaque shape */
+  border-radius:8px;
+  clip-path: polygon(
+    10% 0%,
+    90% 0%,
+    100% 20%,
+    100% 80%,
+    90% 100%,
+    10% 100%,
+    0% 80%,
+    0% 20%
+  );
 
-        html[data-tm-badge="shield"] .tm-trust-badge {
-          border-radius: 10px 10px 14px 14px;
-          clip-path: polygon(50% 4%, 88% 18%, 88% 54%, 50% 96%, 12% 54%, 12% 18%);
-        }
+  background:
+    radial-gradient(circle at 30% 25%, rgba(255,255,255,0.22), rgba(255,255,255,0) 55%),
+    linear-gradient(180deg, rgba(255,255,255,0.18), rgba(255,255,255,0.06));
 
-        html[data-tm-badge="plaque"] .tm-trust-badge {
-          border-radius: 8px;
-          clip-path: polygon(10% 0%, 90% 0%, 100% 20%, 100% 80%, 90% 100%, 10% 100%, 0% 80%, 0% 20%);
-        }
+  border:1px solid rgba(255,255,255,0.78);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.20),
+    inset 0 -1px 0 rgba(0,0,0,0.70),
+    0 1px 0 rgba(0,0,0,0.60);
+  overflow:hidden;
+}
 
-        /* Hide any legacy tag spans if they exist anywhere */
-        .tm-trust-badge-top,
-        .tm-trust-badge-tag {
-          display: none !important;
-        }
+/* inner ring */
+.tm-trust-badge::before{
+  content:"";
+  position:absolute;
+  inset:4px;
+  border-radius:6px;
+  border:1px solid rgba(255,255,255,0.40);
+  opacity:0.95;
+}
 
-        .tm-main {
-          flex: 1;
-          width: 100%;
-        }
+/* the “mark” text (this is what makes it feel official) */
+.tm-trust-badge::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  display:grid;
+  place-items:center;
+  font-size:8.5px;
+  font-weight:900;
+  letter-spacing:0.12em;
+  color:rgba(255,255,255,0.95);
+  text-transform:uppercase;
+  text-shadow:0 1px 0 rgba(0,0,0,0.55);
+}
+
+/* Set seal codes per item */
+.tm-trust-badge[data-tag="USDOT"]::after{ content:"USDOT"; }
+.tm-trust-badge[data-tag="INSURED"]::after{ content:"BOND"; }
+.tm-trust-badge[data-tag="FMCSA"]::after{ content:"FMCSA"; }
+.tm-trust-badge[data-tag="BROKER"]::after{ content:"BRKR"; }
+
+/* Hover: tiny lift, brighter ring */
+.tm-trust .tm-trust-item{
+  transition: transform 140ms ease;
+}
+.tm-trust .tm-trust-item:hover{
+  transform: translateY(-1px);
+}
+.tm-trust .tm-trust-item:hover .tm-trust-badge{
+  border-color: rgba(255,255,255,0.92);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.26),
+    inset 0 -1px 0 rgba(0,0,0,0.78),
+    0 0 0 6px rgba(57,255,20,0.10),
+    0 10px 22px rgba(0,0,0,0.35);
+}
+
 
         /* FOOTER */
         .tm-footer {
