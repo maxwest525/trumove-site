@@ -10,87 +10,42 @@ const HTML = `
     <div class="tru-page-inner">
 
       <!-- HERO -->
-      <section class="tru-hero">
-        <div class="tru-hero-grid">
-          <div>
-            <div class="tru-hero-pill">
-              <span class="tru-hero-pill-dot"></span>
-              <span>Smarter moving, powered by TruMove</span>
-            </div>
-
-            <h1 class="tru-hero-title">
-              Move day control, without the stress.
-            </h1>
-
-            <p class="tru-hero-sub">
-              TruMove turns a few simple questions into instant pricing, vetted movers, and live support. No spam calls, no surprise add ons, no getting bounced around.
-            </p>
-
-            <div class="tru-hero-bullets">
-              <div class="tru-hero-badge">
-                <span class="tru-hero-badge-dot"></span>
-                <span>Instant AI quotes</span>
-              </div>
-              <div class="tru-hero-badge">
-                <span class="tru-hero-badge-dot"></span>
-                <span>Vetted mover network</span>
-              </div>
-              <div class="tru-hero-badge">
-                <span class="tru-hero-badge-dot"></span>
-                <span>Real time updates</span>
-              </div>
-            </div>
-
-
-            <!-- HERO TRUST STRIP (OFFICIAL) -->
-<div class="tru-hero-trust" aria-label="Compliance and authority">
-  <span class="tru-hero-trust-item">
-    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
-    <span class="tru-hero-trust-text">USDOT Compliant</span>
-  </span>
-
-  <span class="tru-hero-trust-item">
-    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
-    <span class="tru-hero-trust-text">Bonded and Insured</span>
-  </span>
-
-  <span class="tru-hero-trust-item">
-    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
-    <span class="tru-hero-trust-text">FMCSA Authorized Carriers</span>
-  </span>
-
-  <span class="tru-hero-trust-item">
-    <span class="tru-hero-trust-icon" aria-hidden="true"></span>
-    <span class="tru-hero-trust-text">Licensed Interstate Broker</span>
-  </span>
-</div>
-
+<div class="tru-hero-visual">
+  <div class="tru-hero-visual-tag">
+    <span class="tru-hero-visual-tag-dot"></span>
+    <span>Start Your Move</span>
+  </div>
 
   <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
-
-<div class="tru-hero-visual-head">
-  <div class="tru-hero-visual-seal" aria-hidden="true">
-    <span class="tru-hero-visual-seal-core"></span>
-  </div>
-
-  <div class="tru-hero-visual-head-text">
-    <div class="tru-hero-visual-kicker">Start your quote</div>
-    <div class="tru-hero-visual-head-title">Instant move estimate</div>
-    <div class="tru-hero-visual-head-sub">Vetted movers.</div>
-  </div>
-</div>
-
-
-
+    <div class="tru-hero-form-title">Get your quote in seconds</div>
+    <div class="tru-hero-form-sub">
+      Enter a few details, we’ll route you to your personalized estimate.
+    </div>
 
     <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
       <div class="tru-hero-form-row">
-        <input type="text" id="miniName" class="tru-hero-input" placeholder="Your name" required>
+        <input
+          type="text"
+          id="miniName"
+          class="tru-hero-input"
+          placeholder="Your name"
+          required
+        />
       </div>
 
       <div class="tru-hero-form-row two">
-        <input type="text" id="miniZip" class="tru-hero-input" placeholder="ZIP code" required>
-        <select id="miniSize" class="tru-hero-select" required>
+        <input
+          type="text"
+          id="miniZip"
+          class="tru-hero-input"
+          placeholder="ZIP code"
+          required
+        />
+        <select
+          id="miniSize"
+          class="tru-hero-select"
+          required
+        >
           <option value="" disabled selected>Move size</option>
           <option value="Studio">Studio</option>
           <option value="1 Bedroom">1 Bedroom</option>
@@ -100,13 +55,17 @@ const HTML = `
         </select>
       </div>
 
-      <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
+      <button
+        class="tru-hero-form-btn"
+        id="truMiniSubmit"
+        type="button"
+      >
         Get My Quote →
       </button>
-
     </form>
   </div>
 </div>
+
 
       </section>
 
