@@ -1030,18 +1030,6 @@ export default function SiteShell({ children }) {
     inset 0 1px 0 rgba(255,255,255,0.85);
 }
 
-/* Title/sub spacing, more Apple-like */
-#truHeroQuoteCard .tru-hero-form-title{
-  margin: 0 0 6px;
-  font-weight: 900;
-  letter-spacing: 0.02em;
-}
-
-#truHeroQuoteCard .tru-hero-form-sub{
-  margin: 0 0 14px;
-  color: rgba(15,23,42,0.68);
-  line-height: 1.35;
-}
 
 /* Calm the layout: consistent row spacing */
 #truHeroQuoteCard .tru-hero-form{
