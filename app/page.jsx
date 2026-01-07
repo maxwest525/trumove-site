@@ -121,13 +121,15 @@ const HTML = `
     >
   </div>
 
-  <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
-    Get My Quote →
-  </button>
+<button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
+  Get Instant Estimate →
+</button>
 
-  <div class="tru-hero-form-foot">
-    No spam calls, no lead reselling.
-  </div>
+<div class="tru-hero-form-foot">
+  Takes 15 seconds, see your real range.
+</div>
+
+<div class="tru-hero-form-err" id="miniErr" aria-live="polite"></div>
 </form>
             </div>
           </div>
@@ -471,24 +473,53 @@ export default function HomePage() {
     contactForm?.addEventListener("submit", onContactSubmit);
 
     // Mini form button -> route to estimate page
-    const miniBtn = document.getElementById("truMiniSubmit");
-    const onMiniClick = () => {
-const fromZip = (document.getElementById("miniFromZip")?.value || "").trim();
-const toZip = (document.getElementById("miniToZip")?.value || "").trim();
-const size = (document.getElementById("miniSize")?.value || "").trim();
+const miniBtn = document.getElementById("truMiniSubmit");
 
-const zipOk = (z) => /^\d{5}$/.test(z);
+const onMiniClick = () => {
+  const fromEl = document.getElementById("miniFromZip");
+  const toEl = document.getElementById("miniToZip");
+  const sizeEl = document.getElementById("miniSize");
+  const errEl = document.getElementById("miniErr");
 
-if (!zipOk(fromZip) || !zipOk(toZip) || !size) {
-  alert("Please enter valid 5-digit ZIP codes and select a move size.");
-  return;
-}
+  const fromZip = (fromEl?.value || "").trim();
+  const toZip = (toEl?.value || "").trim();
+  const size = (sizeEl?.value || "").trim();
 
-// (Optional) pass into the estimate page as query params
-router.push(`/online-estimate?from=${encodeURIComponent(fromZip)}&to=${encodeURIComponent(toZip)}&size=${encodeURIComponent(size)}`);
+  const zipOk = (z) => /^\d{5}$/.test(z);
 
-    };
-    miniBtn?.addEventListener("click", onMiniClick);
+  // reset UI state
+  [fromEl, toEl, sizeEl].forEach((el) => el?.classList.remove("is-error"));
+  if (errEl) errEl.textContent = "";
+
+  let bad = false;
+
+  if (!zipOk(fromZip)) {
+    fromEl?.classList.add("is-error");
+    bad = true;
+  }
+  if (!zipOk(toZip)) {
+    toEl?.classList.add("is-error");
+    bad = true;
+  }
+  if (!size) {
+    sizeEl?.classList.add("is-error");
+    bad = true;
+  }
+
+  if (bad) {
+    if (errEl) errEl.textContent = "Enter valid 5 digit ZIP codes and pick a move size.";
+    return;
+  }
+
+  router.push(
+    `/online-estimate?from=${encodeURIComponent(fromZip)}&to=${encodeURIComponent(
+      toZip
+    )}&size=${encodeURIComponent(size)}`
+  );
+};
+
+miniBtn?.addEventListener("click", onMiniClick);
+
 
     // “See how TruMove works” button -> About page
     const howBtn = document.querySelector(".tru-hero-btn-secondary");
