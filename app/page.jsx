@@ -494,53 +494,111 @@ export default function HomePage() {
     };
     contactForm?.addEventListener("submit", onContactSubmit);
 
-    // Mini form button -> route to estimate page
-const miniBtn = document.getElementById("truMiniSubmit");
+// HERO INTENT + PANELS
+const btnSpecialist = document.getElementById("truIntentSpecialist");
+const btnEstimate = document.getElementById("truIntentEstimate");
 
-const onMiniClick = () => {
-  const fromEl = document.getElementById("miniFromZip");
-  const toEl = document.getElementById("miniToZip");
-  const sizeEl = document.getElementById("miniSize");
-  const errEl = document.getElementById("miniErr");
+const panelSpecialist = document.getElementById("truPanelSpecialist");
+const panelEstimate = document.getElementById("truPanelEstimate");
 
-  const fromZip = (fromEl?.value || "").trim();
-  const toZip = (toEl?.value || "").trim();
-  const size = (sizeEl?.value || "").trim();
+// Specialist fields
+const specNameEl = document.getElementById("specName");
+const specPhoneEl = document.getElementById("specPhone");
+const specFromZipEl = document.getElementById("specFromZip");
+const specToZipEl = document.getElementById("specToZip");
+const specialistSubmit = document.getElementById("truSpecialistSubmit");
 
-  const zipOk = (z) => /^\d{5}$/.test(z);
+// Estimate fields
+const fromZipEl = document.getElementById("miniFromZip");
+const toZipEl = document.getElementById("miniToZip");
+const sizeEl = document.getElementById("miniSize");
+const estimateSubmit = document.getElementById("truMiniSubmit");
 
-  // reset UI state
-  [fromEl, toEl, sizeEl].forEach((el) => el?.classList.remove("is-error"));
-  if (errEl) errEl.textContent = "";
+function showPanel(which) {
+  if (!panelSpecialist || !panelEstimate) return;
 
-  let bad = false;
-
-  if (!zipOk(fromZip)) {
-    fromEl?.classList.add("is-error");
-    bad = true;
+  if (which === "specialist") {
+    panelSpecialist.style.display = "block";
+    panelEstimate.style.display = "none";
+    // focus first field
+    setTimeout(() => specNameEl?.focus(), 0);
+  } else if (which === "estimate") {
+    panelSpecialist.style.display = "none";
+    panelEstimate.style.display = "block";
+    setTimeout(() => fromZipEl?.focus(), 0);
+  } else {
+    panelSpecialist.style.display = "none";
+    panelEstimate.style.display = "none";
   }
-  if (!zipOk(toZip)) {
-    toEl?.classList.add("is-error");
-    bad = true;
-  }
-  if (!size) {
-    sizeEl?.classList.add("is-error");
-    bad = true;
-  }
+}
 
-  if (bad) {
-    if (errEl) errEl.textContent = "Enter valid 5 digit ZIP codes and pick a move size.";
+const onSpecialistIntent = () => showPanel("specialist");
+const onEstimateIntent = () => showPanel("estimate");
+
+// Save lead locally so you can pick it up on the next page later
+function saveLead(payload) {
+  try {
+    localStorage.setItem("tm_lead", JSON.stringify(payload));
+  } catch (e) {
+    // ignore
+  }
+}
+
+// Specialist submit -> save lead + go to /book
+const onSpecialistSubmit = () => {
+  const name = (specNameEl?.value || "").trim();
+  const phone = (specPhoneEl?.value || "").trim();
+  const fromZip = (specFromZipEl?.value || "").trim();
+  const toZip = (specToZipEl?.value || "").trim();
+
+  if (!name || !phone || !fromZip || !toZip) {
+    alert("Please fill out all fields to proceed.");
     return;
   }
 
-  router.push(
-    `/online-estimate?from=${encodeURIComponent(fromZip)}&to=${encodeURIComponent(
-      toZip
-    )}&size=${encodeURIComponent(size)}`
-  );
+  saveLead({
+    intent: "specialist",
+    name,
+    phone,
+    fromZip,
+    toZip,
+    ts: Date.now(),
+  });
+
+  router.push("/book");
 };
 
-miniBtn?.addEventListener("click", onMiniClick);
+// Estimate submit -> save lead + go to /online-estimate
+const onEstimateSubmit = () => {
+  const fromZip = (fromZipEl?.value || "").trim();
+  const toZip = (toZipEl?.value || "").trim();
+  const size = (sizeEl?.value || "").trim();
+
+  if (!fromZip || !toZip || !size) {
+    alert("Please fill out all fields to proceed.");
+    return;
+  }
+
+  saveLead({
+    intent: "estimate",
+    fromZip,
+    toZip,
+    size,
+    ts: Date.now(),
+  });
+
+  router.push("/online-estimate");
+};
+
+// Wire clicks
+btnSpecialist?.addEventListener("click", onSpecialistIntent);
+btnEstimate?.addEventListener("click", onEstimateIntent);
+specialistSubmit?.addEventListener("click", onSpecialistSubmit);
+estimateSubmit?.addEventListener("click", onEstimateSubmit);
+
+// Default: nothing open
+showPanel(null);
+
 
 
     // “See how TruMove works” button -> About page
@@ -559,6 +617,10 @@ miniBtn?.addEventListener("click", onMiniClick);
       miniBtn?.removeEventListener("click", onMiniClick);
       howBtn?.removeEventListener("click", onHowClick);
       talkBtn?.removeEventListener("click", onTalkClick);
+      btnSpecialist?.removeEventListener("click", onSpecialistIntent);
+btnEstimate?.removeEventListener("click", onEstimateIntent);
+specialistSubmit?.removeEventListener("click", onSpecialistSubmit);
+estimateSubmit?.removeEventListener("click", onEstimateSubmit);
     };
   }, [router]);
 
