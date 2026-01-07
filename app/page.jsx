@@ -517,22 +517,15 @@ const estimateSubmit = document.getElementById("truMiniSubmit");
 function showPanel(which) {
   if (!panelSpecialist || !panelEstimate) return;
 
-  if (which === "specialist") {
-    panelSpecialist.style.display = "block";
-    panelEstimate.style.display = "block";
-    setTimeout(() => specNameEl?.focus(), 0);
-  } else if (which === "estimate") {
-    panelSpecialist.style.display = "block";
-    panelEstimate.style.display = "block";
-    setTimeout(() => fromZipEl?.focus(), 0);
-  } else if (which === "both") {
-    panelSpecialist.style.display = "block";
-    panelEstimate.style.display = "block";
-  } else {
-    panelSpecialist.style.display = "block";
-    panelEstimate.style.display = "block";
-  }
+  // Always show both panels
+  panelSpecialist.style.display = "block";
+  panelEstimate.style.display = "block";
+
+  // Optional: focus the first field of whichever button was clicked
+  if (which === "specialist") setTimeout(() => specNameEl?.focus(), 0);
+  if (which === "estimate") setTimeout(() => fromZipEl?.focus(), 0);
 }
+
 
 
 
@@ -601,7 +594,7 @@ specialistSubmit?.addEventListener("click", onSpecialistSubmit);
 estimateSubmit?.addEventListener("click", onEstimateSubmit);
 
 // Default: show both panels
-showPanel("both");
+showPanel(null);
 
 
 
@@ -618,7 +611,6 @@ showPanel("both");
     return () => {
       featuresBtn?.removeEventListener("click", onFeaturesClick);
       contactForm?.removeEventListener("submit", onContactSubmit);
-      miniBtn?.removeEventListener("click", onMiniClick);
       howBtn?.removeEventListener("click", onHowClick);
       talkBtn?.removeEventListener("click", onTalkClick);
       btnSpecialist?.removeEventListener("click", onSpecialistIntent);
