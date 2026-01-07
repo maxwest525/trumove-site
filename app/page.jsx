@@ -87,31 +87,48 @@ const HTML = `
                 Enter a few details, we’ll route you to your personalized estimate.
               </div>
 
-              <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
-                <div class="tru-hero-form-row">
-                  <input type="text" id="miniName" class="tru-hero-input" placeholder="Your name" required>
-                </div>
+            <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
+  <div class="tru-hero-form-row two">
+    <input
+      type="text"
+      inputmode="numeric"
+      id="miniFromZip"
+      class="tru-hero-input"
+      placeholder="Moving from (ZIP)"
+      maxlength="5"
+      required
+    >
+    <select id="miniSize" class="tru-hero-select" required>
+      <option value="" disabled selected>Move size</option>
+      <option value="Studio">Studio</option>
+      <option value="1 Bedroom">1 Bedroom</option>
+      <option value="2 Bedroom">2 Bedroom</option>
+      <option value="3 Bedroom">3 Bedroom</option>
+      <option value="4+ Bedroom">4+ Bedroom</option>
+      <option value="4+ Bedroom (Large)">4+ Bedroom (Large)</option>
+    </select>
+  </div>
 
-                <div class="tru-hero-form-row two">
-                  <input type="text" id="miniZip" class="tru-hero-input" placeholder="ZIP code" required>
-                  <select id="miniSize" class="tru-hero-select" required>
-                    <option value="" disabled selected>Move size</option>
-                    <option value="Studio">Studio</option>
-                    <option value="1 Bedroom">1 Bedroom</option>
-                    <option value="2 Bedroom">2 Bedroom</option>
-                    <option value="3 Bedroom">3 Bedroom</option>
-                    <option value="4+ Bedroom">4+ Bedroom</option>
-                  </select>
-                </div>
+  <div class="tru-hero-form-row">
+    <input
+      type="text"
+      inputmode="numeric"
+      id="miniToZip"
+      class="tru-hero-input"
+      placeholder="Moving to (ZIP)"
+      maxlength="5"
+      required
+    >
+  </div>
 
-                <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
-                  Get My Quote →
-                </button>
+  <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
+    Get My Quote →
+  </button>
 
-                <div class="tru-hero-form-foot">
-                  No spam calls, no lead reselling.
-                </div>
-              </form>
+  <div class="tru-hero-form-foot">
+    No spam calls, no lead reselling.
+  </div>
+</form>
             </div>
           </div>
 
@@ -456,16 +473,20 @@ export default function HomePage() {
     // Mini form button -> route to estimate page
     const miniBtn = document.getElementById("truMiniSubmit");
     const onMiniClick = () => {
-      const name = (document.getElementById("miniName")?.value || "").trim();
-      const zip = (document.getElementById("miniZip")?.value || "").trim();
-      const size = (document.getElementById("miniSize")?.value || "").trim();
+const fromZip = (document.getElementById("miniFromZip")?.value || "").trim();
+const toZip = (document.getElementById("miniToZip")?.value || "").trim();
+const size = (document.getElementById("miniSize")?.value || "").trim();
 
-      if (!name || !zip || !size) {
-        alert("Please fill out all fields to proceed.");
-        return;
-      }
+const zipOk = (z) => /^\d{5}$/.test(z);
 
-      router.push("/online-estimate");
+if (!zipOk(fromZip) || !zipOk(toZip) || !size) {
+  alert("Please enter valid 5-digit ZIP codes and select a move size.");
+  return;
+}
+
+// (Optional) pass into the estimate page as query params
+router.push(`/online-estimate?from=${encodeURIComponent(fromZip)}&to=${encodeURIComponent(toZip)}&size=${encodeURIComponent(size)}`);
+
     };
     miniBtn?.addEventListener("click", onMiniClick);
 
