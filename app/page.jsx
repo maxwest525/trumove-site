@@ -75,86 +75,88 @@ const HTML = `
             </div>
           </div>
 
-          <div class="tru-hero-visual">
-            <div class="tru-hero-visual-tag">
-              <span class="tru-hero-visual-tag-dot"></span>
-              <span>Start Your Move</span>
-            </div>
-
-            <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
-              <div class="tru-hero-form-title">Get your quote in seconds</div>
-              <div class="tru-hero-form-sub">
-                Enter a few details, we’ll route you to your personalized estimate.
-              </div>
-
-            <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
-<div class="tru-hero-form-row">
-  <label class="tru-hero-label" for="miniFromZip">Where are you moving from</label>
-  <input
-    type="text"
-    inputmode="numeric"
-    autocomplete="postal-code"
-    maxlength="5"
-    id="miniFromZip"
-    class="tru-hero-input"
-    placeholder="Enter ZIP code"
-    required
-  >
-</div>
-
-<div class="tru-hero-form-row">
-  <label class="tru-hero-label" for="miniSize">Move size</label>
-  <select id="miniSize" class="tru-hero-select" required>
-    <option value="" disabled selected>Select size</option>
-    <option value="Studio">Studio</option>
-    <option value="1 Bedroom">1 Bedroom</option>
-    <option value="2 Bedroom">2 Bedroom</option>
-    <option value="3 Bedroom">3 Bedroom</option>
-    <option value="4+ Bedroom">4+ Bedroom</option>
-  </select>
-</div>
-
-<div class="tru-hero-form-row">
-  <label class="tru-hero-label" for="miniToZip">Where are you moving to</label>
-  <input
-    type="text"
-    inputmode="numeric"
-    autocomplete="postal-code"
-    maxlength="5"
-    id="miniToZip"
-    class="tru-hero-input"
-    placeholder="Enter ZIP code"
-    required
-  >
-</div>
-
-
-  <div class="tru-hero-form-row">
-    <input
-      type="text"
-      inputmode="numeric"
-      id="miniToZip"
-      class="tru-hero-input"
-      placeholder="Moving to (ZIP)"
-      maxlength="5"
-      required
-    >
+<!-- HERO VISUAL -->
+<div class="tru-hero-visual">
+  <div class="tru-hero-visual-tag">
+    <span class="tru-hero-visual-tag-dot"></span>
+    <span>Start Your Move</span>
   </div>
 
-<button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
-  Get Instant Estimate →
-</button>
+  <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
 
-<div class="tru-hero-form-foot">
-  Takes 15 seconds, see your real range.
+    <div class="tru-hero-form-title">Start in one tap</div>
+    <div class="tru-hero-form-sub">
+      Choose how you want to build your move, we’ll take it from there.
+    </div>
+
+    <!-- INTENT BUTTONS -->
+    <div class="tru-intent-row">
+      <button class="tru-intent-btn tru-intent-primary" id="truIntentSpecialist" type="button">
+        Talk to a Specialist Now
+      </button>
+
+      <button class="tru-intent-btn tru-intent-secondary" id="truIntentEstimate" type="button">
+        Get an Online Estimate
+      </button>
+    </div>
+
+    <!-- PANEL: SPECIALIST (hidden until click) -->
+    <div class="tru-intent-panel" id="truPanelSpecialist" style="display:none;">
+      <div class="tru-hero-form-title">Connect with a specialist</div>
+      <div class="tru-hero-form-sub">We’ll help you build the move and confirm pricing.</div>
+
+      <form class="tru-hero-form" id="truSpecialistForm" onsubmit="return false;">
+        <div class="tru-hero-form-row">
+          <input type="text" id="specName" class="tru-hero-input" placeholder="Your name" required>
+        </div>
+
+        <div class="tru-hero-form-row">
+          <input type="tel" id="specPhone" class="tru-hero-input" placeholder="Phone number" required>
+        </div>
+
+        <div class="tru-hero-form-row two">
+          <input type="text" id="specFromZip" class="tru-hero-input" placeholder="Moving from (ZIP)" required>
+          <input type="text" id="specToZip" class="tru-hero-input" placeholder="Moving to (ZIP)" required>
+        </div>
+
+        <button class="tru-hero-form-btn" id="truSpecialistSubmit" type="button">
+          Request a Call
+        </button>
+      </form>
+    </div>
+
+    <!-- PANEL: ESTIMATE (hidden until click) -->
+    <div class="tru-intent-panel" id="truPanelEstimate" style="display:none;">
+      <div class="tru-hero-form-title">Get your estimate</div>
+      <div class="tru-hero-form-sub">Fast range, then refine with inventory if you want.</div>
+
+      <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
+        <div class="tru-hero-form-row two">
+          <input type="text" id="miniFromZip" class="tru-hero-input" placeholder="Moving from (ZIP)" required>
+
+          <select id="miniSize" class="tru-hero-select" required>
+            <option value="" disabled selected>Move size</option>
+            <option value="Studio">Studio</option>
+            <option value="1 Bedroom">1 Bedroom</option>
+            <option value="2 Bedroom">2 Bedroom</option>
+            <option value="3 Bedroom">3 Bedroom</option>
+            <option value="4+ Bedroom">4+ Bedroom</option>
+          </select>
+        </div>
+
+        <div class="tru-hero-form-row">
+          <input type="text" id="miniToZip" class="tru-hero-input" placeholder="Moving to (ZIP)" required>
+        </div>
+
+        <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
+          Continue →
+        </button>
+      </form>
+    </div>
+
+  </div>
 </div>
 
-<div class="tru-hero-form-err" id="miniErr" aria-live="polite"></div>
-</form>
-            </div>
-          </div>
-
-        </div>
       </section>
 
       <!-- FEATURES SECTION -->
