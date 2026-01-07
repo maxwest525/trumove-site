@@ -519,18 +519,22 @@ function showPanel(which) {
 
   if (which === "specialist") {
     panelSpecialist.style.display = "block";
-    panelEstimate.style.display = "none";
-    // focus first field
+    panelEstimate.style.display = "block";
     setTimeout(() => specNameEl?.focus(), 0);
   } else if (which === "estimate") {
-    panelSpecialist.style.display = "none";
+    panelSpecialist.style.display = "block";
     panelEstimate.style.display = "block";
     setTimeout(() => fromZipEl?.focus(), 0);
+  } else if (which === "both") {
+    panelSpecialist.style.display = "block";
+    panelEstimate.style.display = "block";
   } else {
-    panelSpecialist.style.display = "none";
-    panelEstimate.style.display = "none";
+    panelSpecialist.style.display = "block";
+    panelEstimate.style.display = "block";
   }
 }
+
+
 
 const onSpecialistIntent = () => showPanel("specialist");
 const onEstimateIntent = () => showPanel("estimate");
@@ -596,8 +600,8 @@ btnEstimate?.addEventListener("click", onEstimateIntent);
 specialistSubmit?.addEventListener("click", onSpecialistSubmit);
 estimateSubmit?.addEventListener("click", onEstimateSubmit);
 
-// Default: nothing open
-showPanel(null);
+// Default: show both panels
+showPanel("both");
 
 
 
