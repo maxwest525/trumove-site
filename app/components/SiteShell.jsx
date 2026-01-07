@@ -807,6 +807,175 @@ export default function SiteShell({ children }) {
   color: rgba(15,23,42,0.38);
 }
 
+/* =========================================================
+   HERO INTENT (2 BUTTONS) + PANELS (APPLE-LEVEL)
+   Paste at the very bottom of SiteShell <style jsx global>
+   ========================================================= */
+
+/* Container that holds the 2 intent buttons (if you already have one, this still works) */
+#truHeroQuoteCard .tru-intent-row,
+#truHeroQuoteCard .tru-hero-intent-row{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+/* Base button style */
+#truIntentSpecialist,
+#truIntentEstimate{
+  height:46px;
+  border-radius:14px;
+  border:1px solid rgba(15,23,42,0.14);
+  background:rgba(255,255,255,0.92);
+  box-shadow:
+    0 16px 40px rgba(15,23,42,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.85);
+  cursor:pointer;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, background 140ms ease;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  padding:0 14px;
+  font-weight:800;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  font-size:12px;
+  color:rgba(15,23,42,0.88);
+  white-space:nowrap;
+}
+
+/* Primary, specialist button, premium dark */
+#truIntentSpecialist{
+  background:linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
+  border-color:rgba(57,255,20,0.40);
+  color:rgba(255,255,255,0.96);
+  box-shadow:
+    0 18px 46px rgba(15,23,42,0.18),
+    0 0 0 5px rgba(57,255,20,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+}
+
+/* Tiny dot on both buttons for an “OS” feel */
+#truIntentSpecialist::before,
+#truIntentEstimate::before{
+  content:"";
+  width:9px;
+  height:9px;
+  border-radius:999px;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0) 45%),
+    radial-gradient(circle at center, rgba(57,255,20,1), rgba(57,255,20,0.35) 70%, rgba(57,255,20,0.10) 100%);
+  box-shadow:0 0 0 5px rgba(57,255,20,0.14);
+  flex:0 0 auto;
+}
+
+/* Softer dot on the secondary */
+#truIntentEstimate::before{
+  box-shadow:0 0 0 5px rgba(57,255,20,0.10);
+}
+
+/* Hover and focus */
+#truIntentSpecialist:hover,
+#truIntentEstimate:hover{
+  transform:translateY(-1px);
+  border-color:rgba(57,255,20,0.45);
+  box-shadow:
+    0 22px 56px rgba(15,23,42,0.16),
+    inset 0 1px 0 rgba(255,255,255,0.90);
+}
+#truIntentSpecialist:hover{
+  box-shadow:
+    0 24px 62px rgba(15,23,42,0.22),
+    0 0 0 6px rgba(57,255,20,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+#truIntentSpecialist:focus-visible,
+#truIntentEstimate:focus-visible{
+  outline:2px solid rgba(57,255,20,0.55);
+  outline-offset:2px;
+}
+
+/* Panels */
+#truPanelSpecialist,
+#truPanelEstimate{
+  margin-top:12px;
+  border-radius:18px;
+  border:1px solid rgba(15,23,42,0.12);
+  background:rgba(255,255,255,0.96);
+  box-shadow:0 22px 60px rgba(15,23,42,0.12);
+  padding:14px;
+  animation: tmPanelIn 180ms ease both;
+}
+
+@keyframes tmPanelIn{
+  from{ opacity:0; transform: translateY(6px) scale(0.995); }
+  to{ opacity:1; transform: translateY(0) scale(1); }
+}
+
+/* Make both panels use the same clean field styling, even if the markup differs */
+#truPanelSpecialist input,
+#truPanelSpecialist select,
+#truPanelEstimate input,
+#truPanelEstimate select{
+  width:100%;
+  height:46px;
+  border-radius:12px;
+  border:1px solid rgba(15,23,42,0.12);
+  padding:0 14px;
+  outline:none;
+  background:#fff;
+  transition: box-shadow 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+
+#truPanelSpecialist input:focus,
+#truPanelSpecialist select:focus,
+#truPanelEstimate input:focus,
+#truPanelEstimate select:focus{
+  border-color:rgba(57,255,20,0.55);
+  box-shadow:0 0 0 5px rgba(57,255,20,0.16);
+}
+
+/* Make “from/to” zip layout look premium if you are using rows */
+#truPanelEstimate .tru-hero-form-row.two,
+#truPanelSpecialist .tru-hero-form-row.two{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:10px;
+}
+
+/* Keep your submit buttons consistent, expensive */
+#truSpecialistSubmit,
+#truMiniSubmit{
+  height:46px;
+  width:100%;
+  border-radius:14px;
+  border:1px solid rgba(57,255,20,0.45);
+  background:linear-gradient(180deg, rgba(57,255,20,0.22), rgba(57,255,20,0.10));
+  font-weight:850;
+  letter-spacing:0.10em;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, border-color 150ms ease;
+}
+
+#truSpecialistSubmit:hover,
+#truMiniSubmit:hover{
+  transform:translateY(-1px);
+  border-color:rgba(57,255,20,0.60);
+  box-shadow:0 18px 44px rgba(15,23,42,0.14);
+  background:linear-gradient(180deg, rgba(57,255,20,0.26), rgba(57,255,20,0.12));
+}
+
+/* Mobile */
+@media (max-width: 520px){
+  #truHeroQuoteCard .tru-intent-row,
+  #truHeroQuoteCard .tru-hero-intent-row{
+    grid-template-columns: 1fr;
+  }
+}
 
 
       `}</style>
