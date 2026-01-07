@@ -1153,6 +1153,34 @@ export default function SiteShell({ children }) {
   margin-top: 10px;
 }
 
+/* INTENT BUTTON ACTIVE STATE */
+
+.tru-intent-btn.is-active{
+  border-color: rgba(57,255,20,0.65);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(57,255,20,0.12));
+  box-shadow:
+    0 24px 60px rgba(15,23,42,0.18),
+    0 0 0 6px rgba(57,255,20,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.95);
+  transform: translateY(-1px);
+}
+
+/* Primary (Specialist) active stays darker + premium */
+.tru-intent-primary.is-active{
+  background:
+    linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
+  border-color: rgba(57,255,20,0.7);
+  box-shadow:
+    0 26px 64px rgba(15,23,42,0.26),
+    0 0 0 7px rgba(57,255,20,0.16),
+    inset 0 1px 0 rgba(255,255,255,0.14);
+}
+
+/* Subtle press feel */
+.tru-intent-btn:active{
+  transform: translateY(0);
+}
 
 
       `}</style>
