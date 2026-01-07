@@ -129,6 +129,13 @@ const HTML = `
   </form>
 </div>
 
+<div class="tru-intent-divider" aria-hidden="true">
+  <span class="tru-intent-divider-line"></span>
+  <span class="tru-intent-divider-chip">OR</span>
+  <span class="tru-intent-divider-line"></span>
+</div>
+
+
 
     <!-- PANEL: ESTIMATE (hidden until click) -->
     <div class="tru-intent-panel" id="truPanelEstimate">
