@@ -661,14 +661,41 @@ const onEstimateSubmit = () => {
   router.push(`/online-estimate?from=${encodeURIComponent(fromZip)}&to=${encodeURIComponent(toZip)}&size=${encodeURIComponent(size)}`);
 };
 
-
 // Wire clicks
 btnSpecialist?.addEventListener("click", onSpecialistIntent);
 btnEstimate?.addEventListener("click", onEstimateIntent);
 specialistSubmit?.addEventListener("click", onSpecialistSubmit);
 estimateSubmit?.addEventListener("click", onEstimateSubmit);
+    btnSpecialist?.removeEventListener("click", onSpecialistIntentWrapped);
+btnEstimate?.removeEventListener("click", onEstimateIntentWrapped);
 
-// Default: show both panels
+
+// ACTIVE STATE (paste right here)
+function setActiveIntent(which) {
+  btnSpecialist?.classList.toggle("is-active", which === "specialist");
+  btnEstimate?.classList.toggle("is-active", which === "estimate");
+}
+
+// Wrap your existing handlers so they also set the active state
+const onSpecialistIntentWrapped = () => {
+  setActiveIntent("specialist");
+  onSpecialistIntent();
+};
+
+const onEstimateIntentWrapped = () => {
+  setActiveIntent("estimate");
+  onEstimateIntent();
+};
+
+// Rebind intent buttons to wrapped handlers
+btnSpecialist?.removeEventListener("click", onSpecialistIntent);
+btnEstimate?.removeEventListener("click", onEstimateIntent);
+
+btnSpecialist?.addEventListener("click", onSpecialistIntentWrapped);
+btnEstimate?.addEventListener("click", onEstimateIntentWrapped);
+
+// Default: show both panels (or estimate first)
+setActiveIntent("estimate");
 showPanel("estimate");
 
 
