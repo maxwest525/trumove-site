@@ -776,6 +776,23 @@ export default function SiteShell({ children }) {
   color:rgba(15,23,42,0.86);
   text-shadow:0 1px 0 rgba(255,255,255,0.70);
 }
+
+/* Mini form inline error UI */
+.tru-hero-form-err{
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(220, 38, 38, 0.92);
+  min-height: 16px;
+}
+
+.tru-hero-input.is-error,
+.tru-hero-select.is-error{
+  border-color: rgba(220, 38, 38, 0.55) !important;
+  box-shadow: 0 0 0 5px rgba(220, 38, 38, 0.12) !important;
+}
+
       `}</style>
     </div>
   );
