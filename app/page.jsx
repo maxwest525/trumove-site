@@ -87,70 +87,64 @@ const HTML = `
                 Enter a few details, we’ll route you to your personalized estimate.
               </div>
 
-            <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
-<div class="tru-hero-form-row">
-  <label class="tru-hero-label" for="miniFromZip">Where are you moving from</label>
-  <input
-    type="text"
-    inputmode="numeric"
-    autocomplete="postal-code"
-    maxlength="5"
-    id="miniFromZip"
-    class="tru-hero-input"
-    placeholder="Enter ZIP code"
-    required
-  >
-</div>
+              <!-- Mini hero form (cleaned up) -->
+              <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;" aria-describedby="miniErr">
+                <div class="tru-hero-form-row">
+                  <label class="tru-hero-label" for="miniFromZip">Where are you moving from</label>
+                  <input
+                    type="text"
+                    inputmode="numeric"
+                    autocomplete="postal-code"
+                    maxlength="5"
+                    id="miniFromZip"
+                    name="from"
+                    class="tru-hero-input"
+                    placeholder="Enter ZIP code"
+                    required
+                    aria-required="true"
+                  >
+                </div>
 
-<div class="tru-hero-form-row">
-  <label class="tru-hero-label" for="miniSize">Move size</label>
-  <select id="miniSize" class="tru-hero-select" required>
-    <option value="" disabled selected>Select size</option>
-    <option value="Studio">Studio</option>
-    <option value="1 Bedroom">1 Bedroom</option>
-    <option value="2 Bedroom">2 Bedroom</option>
-    <option value="3 Bedroom">3 Bedroom</option>
-    <option value="4+ Bedroom">4+ Bedroom</option>
-  </select>
-</div>
+                <div class="tru-hero-form-row">
+                  <label class="tru-hero-label" for="miniToZip">Where are you moving to</label>
+                  <input
+                    type="text"
+                    inputmode="numeric"
+                    autocomplete="postal-code"
+                    maxlength="5"
+                    id="miniToZip"
+                    name="to"
+                    class="tru-hero-input"
+                    placeholder="Enter ZIP code"
+                    required
+                    aria-required="true"
+                  >
+                </div>
 
-<div class="tru-hero-form-row">
-  <label class="tru-hero-label" for="miniToZip">Where are you moving to</label>
-  <input
-    type="text"
-    inputmode="numeric"
-    autocomplete="postal-code"
-    maxlength="5"
-    id="miniToZip"
-    class="tru-hero-input"
-    placeholder="Enter ZIP code"
-    required
-  >
-</div>
+                <div class="tru-hero-form-row">
+                  <label class="tru-hero-label" for="miniSize">Move size</label>
+                  <select id="miniSize" name="size" class="tru-hero-select" required aria-required="true">
+                    <option value="">Select size</option>
+                    <option value="Studio">Studio</option>
+                    <option value="1 Bedroom">1 Bedroom</option>
+                    <option value="2 Bedroom">2 Bedroom</option>
+                    <option value="3 Bedroom">3 Bedroom</option>
+                    <option value="4+ Bedroom">4+ Bedroom</option>
+                  </select>
+                </div>
 
+                <div class="tru-hero-form-row tru-hero-form-row-cta">
+                  <button class="tru-hero-form-btn tm-cta" id="truMiniSubmit" type="button" aria-describedby="miniErr">
+                    Get Instant Estimate →
+                  </button>
 
-  <div class="tru-hero-form-row">
-    <input
-      type="text"
-      inputmode="numeric"
-      id="miniToZip"
-      class="tru-hero-input"
-      placeholder="Moving to (ZIP)"
-      maxlength="5"
-      required
-    >
-  </div>
+                  <div class="tru-hero-form-foot" aria-hidden="true">
+                    Takes 15 seconds, see your real range.
+                  </div>
+                </div>
 
-<button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
-  Get Instant Estimate →
-</button>
-
-<div class="tru-hero-form-foot">
-  Takes 15 seconds, see your real range.
-</div>
-
-<div class="tru-hero-form-err" id="miniErr" aria-live="polite"></div>
-</form>
+                <div class="tru-hero-form-err" id="miniErr" aria-live="polite"></div>
+              </form>
             </div>
           </div>
 
@@ -319,7 +313,7 @@ const HTML = `
               </div>
 
               <div class="tru-mission-stat">
-                <div class="tru-mission-stat-icon" aria-hidden="true">
+                <div class="tru-mission-icon" aria-hidden="true">
                   <svg viewBox="0 0 24 24" fill="none">
                     <path d="M12 3L6 5.5V11.5C6 15.1 8.4 18.4 12 19.5C15.6 18.4 18 15.1 18 11.5V5.5L12 3Z"
                           stroke-width="1.5"
@@ -469,16 +463,19 @@ export default function HomePage() {
   const router = useRouter();
 
   useEffect(() => {
+    // Helper: safe add/remove event
+    const safeAdd = (el, ev, fn) => { if (el && fn) el.addEventListener(ev, fn); };
+    const safeRemove = (el, ev, fn) => { if (el && fn) el.removeEventListener(ev, fn); };
+
     // See all features -> carrier vetting
     const featuresBtn = document.querySelector(".tru-simple-cta-btn");
     const onFeaturesClick = () => router.push("/vetting");
-    featuresBtn?.addEventListener("click", onFeaturesClick);
+    safeAdd(featuresBtn, "click", onFeaturesClick);
 
-    // Contact form -> email for now
+    // Contact form -> mailto (keep simple)
     const contactForm = document.getElementById("truContactForm");
     const onContactSubmit = (e) => {
       e.preventDefault();
-
       const name = document.getElementById("contactName")?.value || "";
       const email = document.getElementById("contactEmail")?.value || "";
       const message = document.getElementById("contactMessage")?.value || "";
@@ -490,73 +487,86 @@ export default function HomePage() {
 
       window.location.href = `mailto:info@trumoveinc.com?subject=TruMove Contact Request&body=${body}`;
     };
-    contactForm?.addEventListener("submit", onContactSubmit);
+    safeAdd(contactForm, "submit", onContactSubmit);
 
-    // Mini form button -> route to estimate page
-const miniBtn = document.getElementById("truMiniSubmit");
+    // Mini form button -> route to estimate page (with validation and UX)
+    const miniBtn = document.getElementById("truMiniSubmit");
+    const miniForm = document.getElementById("truHeroForm");
+    const fromEl = () => document.getElementById("miniFromZip");
+    const toEl = () => document.getElementById("miniToZip");
+    const sizeEl = () => document.getElementById("miniSize");
+    const errEl = document.getElementById("miniErr");
 
-const onMiniClick = () => {
-  const fromEl = document.getElementById("miniFromZip");
-  const toEl = document.getElementById("miniToZip");
-  const sizeEl = document.getElementById("miniSize");
-  const errEl = document.getElementById("miniErr");
+    const zipOk = (z) => /^\d{5}$/.test(z);
 
-  const fromZip = (fromEl?.value || "").trim();
-  const toZip = (toEl?.value || "").trim();
-  const size = (sizeEl?.value || "").trim();
+    const onMiniClick = () => {
+      if (!miniForm) return;
 
-  const zipOk = (z) => /^\d{5}$/.test(z);
+      // Current values
+      const from = (fromEl()?.value || "").trim();
+      const to = (toEl()?.value || "").trim();
+      const size = (sizeEl()?.value || "").trim();
 
-  // reset UI state
-  [fromEl, toEl, sizeEl].forEach((el) => el?.classList.remove("is-error"));
-  if (errEl) errEl.textContent = "";
+      // Clear previous errors
+      [fromEl(), toEl(), sizeEl()].forEach((el) => el?.classList.remove("is-error"));
+      if (errEl) errEl.textContent = "";
 
-  let bad = false;
+      // Validate
+      const invalids = [];
+      if (!zipOk(from)) invalids.push({ el: fromEl(), msg: "Enter a valid 5 digit origin ZIP." });
+      if (!zipOk(to)) invalids.push({ el: toEl(), msg: "Enter a valid 5 digit destination ZIP." });
+      if (!size) invalids.push({ el: sizeEl(), msg: "Please select a move size." });
 
-  if (!zipOk(fromZip)) {
-    fromEl?.classList.add("is-error");
-    bad = true;
-  }
-  if (!zipOk(toZip)) {
-    toEl?.classList.add("is-error");
-    bad = true;
-  }
-  if (!size) {
-    sizeEl?.classList.add("is-error");
-    bad = true;
-  }
+      if (invalids.length) {
+        // mark and focus first invalid
+        invalids.forEach((it) => it.el?.classList.add("is-error"));
+        if (errEl) {
+          errEl.textContent = invalids[0].msg;
+        }
+        invalids[0].el?.focus();
+        return;
+      }
 
-  if (bad) {
-    if (errEl) errEl.textContent = "Enter valid 5 digit ZIP codes and pick a move size.";
-    return;
-  }
+      // Good: navigate and show immediate feedback
+      if (miniBtn) {
+        miniBtn.disabled = true;
+        miniBtn.setAttribute("aria-busy", "true");
+      }
 
-  router.push(
-    `/online-estimate?from=${encodeURIComponent(fromZip)}&to=${encodeURIComponent(
-      toZip
-    )}&size=${encodeURIComponent(size)}`
-  );
-};
+      router.push(
+        \`/online-estimate?from=\${encodeURIComponent(from)}&to=\${encodeURIComponent(to)}&size=\${encodeURIComponent(size)}\`
+      );
+    };
 
-miniBtn?.addEventListener("click", onMiniClick);
+    safeAdd(miniBtn, "click", onMiniClick);
 
+    // Submit on Enter inside inputs
+    const onMiniKey = (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        onMiniClick();
+      }
+    };
+    safeAdd(miniForm, "keydown", onMiniKey);
 
     // “See how TruMove works” button -> About page
     const howBtn = document.querySelector(".tru-hero-btn-secondary");
     const onHowClick = () => router.push("/about");
-    howBtn?.addEventListener("click", onHowClick);
+    safeAdd(howBtn, "click", onHowClick);
 
     // “Talk to a TruMove specialist” button -> book consult page
     const talkBtn = document.querySelector(".tru-contact-secondary-btn");
     const onTalkClick = () => router.push("/book");
-    talkBtn?.addEventListener("click", onTalkClick);
+    safeAdd(talkBtn, "click", onTalkClick);
 
+    // cleanup
     return () => {
-      featuresBtn?.removeEventListener("click", onFeaturesClick);
-      contactForm?.removeEventListener("submit", onContactSubmit);
-      miniBtn?.removeEventListener("click", onMiniClick);
-      howBtn?.removeEventListener("click", onHowClick);
-      talkBtn?.removeEventListener("click", onTalkClick);
+      safeRemove(featuresBtn, "click", onFeaturesClick);
+      safeRemove(contactForm, "submit", onContactSubmit);
+      safeRemove(miniBtn, "click", onMiniClick);
+      safeRemove(miniForm, "keydown", onMiniKey);
+      safeRemove(howBtn, "click", onHowClick);
+      safeRemove(talkBtn, "click", onTalkClick);
     };
   }, [router]);
 
