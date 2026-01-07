@@ -793,6 +793,22 @@ export default function SiteShell({ children }) {
   box-shadow: 0 0 0 5px rgba(220, 38, 38, 0.12) !important;
 }
 
+.tru-hero-label{
+  display:block;
+  margin: 2px 0 6px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(15,23,42,0.70);
+}
+
+.tru-hero-input::placeholder{
+  color: rgba(15,23,42,0.38);
+}
+
+
+
       `}</style>
     </div>
   );
