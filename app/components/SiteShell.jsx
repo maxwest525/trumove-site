@@ -1016,6 +1016,84 @@ export default function SiteShell({ children }) {
   pointer-events: none;
 }
 
+/* ===============================
+   HERO CARD — PREMIUM RHYTHM
+   =============================== */
+
+/* Make the card feel more “hardware” */
+#truHeroQuoteCard{
+  border: 1px solid rgba(15,23,42,0.10);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92));
+  box-shadow:
+    0 30px 90px rgba(15,23,42,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.85);
+}
+
+/* Title/sub spacing, more Apple-like */
+#truHeroQuoteCard .tru-hero-form-title{
+  margin: 0 0 6px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+#truHeroQuoteCard .tru-hero-form-sub{
+  margin: 0 0 14px;
+  color: rgba(15,23,42,0.68);
+  line-height: 1.35;
+}
+
+/* Calm the layout: consistent row spacing */
+#truHeroQuoteCard .tru-hero-form{
+  margin-top: 8px;
+}
+
+#truHeroQuoteCard .tru-hero-form-row{
+  margin: 0 0 10px;
+}
+
+/* Make inputs feel more precise */
+#truHeroQuoteCard .tru-hero-input,
+#truHeroQuoteCard .tru-hero-select{
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,0.12);
+  background: rgba(255,255,255,0.96);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.75);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* Better focus state (subtle but premium) */
+#truHeroQuoteCard .tru-hero-input:focus,
+#truHeroQuoteCard .tru-hero-select:focus{
+  border-color: rgba(57,255,20,0.55);
+  box-shadow:
+    0 0 0 6px rgba(57,255,20,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.85);
+}
+
+/* Buttons: slightly taller, stronger presence */
+#truHeroQuoteCard #truSpecialistSubmit,
+#truHeroQuoteCard #truMiniSubmit{
+  height: 48px;
+  border-radius: 16px;
+}
+
+/* Panels: slightly tighter padding, consistent */
+#truPanelSpecialist,
+#truPanelEstimate{
+  padding: 14px;
+}
+
+/* Small separator feel between intent row and fields */
+#truHeroQuoteCard .tru-intent-row{
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(15,23,42,0.08);
+}
+
+
 
       `}</style>
     </div>
