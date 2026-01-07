@@ -977,6 +977,45 @@ export default function SiteShell({ children }) {
   }
 }
 
+/* ===============================
+   HERO INTENT — ACTIVE STATE
+   =============================== */
+
+#truIntentSpecialist.is-active,
+#truIntentEstimate.is-active {
+  transform: translateY(-1px);
+  border-color: rgba(57,255,20,0.65);
+  box-shadow:
+    0 26px 68px rgba(15,23,42,0.22),
+    0 0 0 6px rgba(57,255,20,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+/* Secondary stays lighter even when active */
+#truIntentEstimate.is-active {
+  background: linear-gradient(
+    180deg,
+    rgba(255,255,255,0.96),
+    rgba(255,255,255,0.90)
+  );
+}
+
+/* Tiny glow pulse when switching intent */
+@keyframes tmIntentPulse {
+  0% { box-shadow: 0 0 0 0 rgba(57,255,20,0.25); }
+  100% { box-shadow: 0 0 0 10px rgba(57,255,20,0); }
+}
+
+#truIntentSpecialist.is-active::after,
+#truIntentEstimate.is-active::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  animation: tmIntentPulse 420ms ease-out;
+  pointer-events: none;
+}
+
 
       `}</style>
     </div>
