@@ -556,14 +556,39 @@ function saveLead(payload) {
 }
 
 // Specialist submit -> save lead + go to /book
+const specErrEl = document.getElementById("specErr");
+
 const onSpecialistSubmit = () => {
   const name = (specNameEl?.value || "").trim();
   const phone = (specPhoneEl?.value || "").trim();
   const fromZip = (specFromZipEl?.value || "").trim();
   const toZip = (specToZipEl?.value || "").trim();
 
-  if (!name || !phone || !fromZip || !toZip) {
-    alert("Please fill out all fields to proceed.");
+  // reset UI
+  [specNameEl, specPhoneEl, specFromZipEl, specToZipEl].forEach((el) => el?.classList.remove("is-error"));
+  if (specErrEl) specErrEl.textContent = "";
+
+  let bad = false;
+
+  if (!name) {
+    specNameEl?.classList.add("is-error");
+    bad = true;
+  }
+  if (!phone) {
+    specPhoneEl?.classList.add("is-error");
+    bad = true;
+  }
+  if (!/^\d{5}$/.test(fromZip)) {
+    specFromZipEl?.classList.add("is-error");
+    bad = true;
+  }
+  if (!/^\d{5}$/.test(toZip)) {
+    specToZipEl?.classList.add("is-error");
+    bad = true;
+  }
+
+  if (bad) {
+    if (specErrEl) specErrEl.textContent = "Please complete all fields, ZIP codes must be 5 digits.";
     return;
   }
 
@@ -578,6 +603,7 @@ const onSpecialistSubmit = () => {
 
   router.push("/book");
 };
+
 
 // Estimate submit -> save lead + go to /online-estimate
 const onEstimateSubmit = () => {
