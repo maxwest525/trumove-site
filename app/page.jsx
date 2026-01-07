@@ -517,20 +517,29 @@ const estimateSubmit = document.getElementById("truMiniSubmit");
 function showPanel(which) {
   if (!panelSpecialist || !panelEstimate) return;
 
-  // Always show both panels
+  // Always show BOTH panels
   panelSpecialist.style.display = "block";
   panelEstimate.style.display = "block";
 
-  // Optional: focus the first field of whichever button was clicked
-  if (which === "specialist") setTimeout(() => specNameEl?.focus(), 0);
-  if (which === "estimate") setTimeout(() => fromZipEl?.focus(), 0);
-}
+  // Clear active state first
+  btnSpecialist?.classList.remove("is-active");
+  btnEstimate?.classList.remove("is-active");
 
+  // Optional focus + active styling
+  if (which === "specialist") {
+    btnSpecialist?.classList.add("is-active");
+    setTimeout(() => specNameEl?.focus(), 0);
+  } else if (which === "estimate") {
+    btnEstimate?.classList.add("is-active");
+    setTimeout(() => fromZipEl?.focus(), 0);
+  }
+}
 
 
 
 const onSpecialistIntent = () => showPanel("specialist");
 const onEstimateIntent = () => showPanel("estimate");
+
 
 // Save lead locally so you can pick it up on the next page later
 function saveLead(payload) {
