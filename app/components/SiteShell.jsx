@@ -1093,6 +1093,23 @@ export default function SiteShell({ children }) {
   border-bottom: 1px solid rgba(15,23,42,0.08);
 }
 
+#truIntentSpecialist.is-active{
+  background:linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
+  border-color:rgba(57,255,20,0.55);
+  color:rgba(255,255,255,0.96);
+  box-shadow:
+    0 24px 62px rgba(15,23,42,0.22),
+    0 0 0 6px rgba(57,255,20,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+#truIntentEstimate.is-active{
+  border-color:rgba(57,255,20,0.55);
+  box-shadow:
+    0 22px 56px rgba(15,23,42,0.16),
+    0 0 0 6px rgba(57,255,20,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.90);
+}
 
 
       `}</style>
