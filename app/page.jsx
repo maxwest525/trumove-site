@@ -156,6 +156,7 @@ const HTML = `
         <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
           Continue →
         </button>
+        <div class="tru-hero-form-err" id="miniErr" aria-live="polite"></div>
       </form>
     </div>
 
@@ -522,23 +523,25 @@ const estimateSubmit = document.getElementById("truMiniSubmit");
 function showPanel(which) {
   if (!panelSpecialist || !panelEstimate) return;
 
-  // Always show BOTH panels
+  // Always visible
   panelSpecialist.style.display = "block";
   panelEstimate.style.display = "block";
 
-  // Clear active state first
-  btnSpecialist?.classList.remove("is-active");
-  btnEstimate?.classList.remove("is-active");
+  // Toggle active styling on the 2 intent buttons
+  btnSpecialist?.classList.toggle("is-active", which === "specialist");
+  btnEstimate?.classList.toggle("is-active", which === "estimate");
 
-  // Optional focus + active styling
+  // Optional: scroll to the chosen panel for clarity
   if (which === "specialist") {
-    btnSpecialist?.classList.add("is-active");
+    panelSpecialist.scrollIntoView({ behavior: "smooth", block: "start" });
     setTimeout(() => specNameEl?.focus(), 0);
-  } else if (which === "estimate") {
-    btnEstimate?.classList.add("is-active");
+  }
+  if (which === "estimate") {
+    panelEstimate.scrollIntoView({ behavior: "smooth", block: "start" });
     setTimeout(() => fromZipEl?.focus(), 0);
   }
 }
+
 
 
 
@@ -659,7 +662,7 @@ specialistSubmit?.addEventListener("click", onSpecialistSubmit);
 estimateSubmit?.addEventListener("click", onEstimateSubmit);
 
 // Default: show both panels
-showPanel(null);
+showPanel("estimate");
 
 
 
