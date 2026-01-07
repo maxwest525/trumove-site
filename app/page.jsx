@@ -61,11 +61,11 @@ const HTML = `
 
             <!-- INTENT BUTTONS -->
             <div class="tru-intent-row">
-              <button id="truIntentSpecialist" type="button">
+              <button id="truIntentSpecialist" class="tru-hero-btn-primary" type="button">
                 Talk to a Moving Specialist
               </button>
 
-              <button id="truIntentEstimate" type="button">
+              <button id="truIntentEstimate" class="tru-hero-btn-primary" type="button">
                 Get an Online Estimate
               </button>
             </div>
@@ -80,15 +80,23 @@ const HTML = `
               <form class="tru-hero-form" id="truSpecialistForm" onsubmit="return false;">
                 <div class="tru-hero-form-row">
                   <input id="specName" type="text" placeholder="Your name" required />
+                  <div class="tru-field-error-text" id="error-specName" style="display:none"></div>
                 </div>
 
                 <div class="tru-hero-form-row">
                   <input id="specPhone" type="tel" placeholder="Phone number" required />
+                  <div class="tru-field-error-text" id="error-specPhone" style="display:none"></div>
                 </div>
 
                 <div class="tru-hero-form-row two">
-                  <input id="specFromZip" type="text" inputmode="numeric" placeholder="Moving from ZIP" required />
-                  <input id="specToZip" type="text" inputmode="numeric" placeholder="Moving to ZIP" required />
+                  <div style="width:100%;">
+                    <input id="specFromZip" type="text" inputmode="numeric" placeholder="Moving from ZIP" required />
+                    <div class="tru-field-error-text" id="error-specFromZip" style="display:none"></div>
+                  </div>
+                  <div style="width:100%;">
+                    <input id="specToZip" type="text" inputmode="numeric" placeholder="Moving to ZIP" required />
+                    <div class="tru-field-error-text" id="error-specToZip" style="display:none"></div>
+                  </div>
                 </div>
 
                 <div class="tru-hero-form-row">
@@ -97,9 +105,10 @@ const HTML = `
                     <option value="Phone call">Phone call</option>
                     <option value="Video consult">Video consult</option>
                   </select>
+                  <div class="tru-field-error-text" id="error-specPreferred" style="display:none"></div>
                 </div>
 
-                <button id="truSpecialistSubmit" type="button">
+                <button id="truSpecialistSubmit" class="tru-hero-btn-primary" type="button">
                   Connect Me Now →
                 </button>
               </form>
@@ -114,8 +123,14 @@ const HTML = `
 
               <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
                 <div class="tru-hero-form-row two">
-                  <input id="miniFromZip" type="text" inputmode="numeric" placeholder="Moving from ZIP" required />
-                  <input id="miniToZip" type="text" inputmode="numeric" placeholder="Moving to ZIP" required />
+                  <div style="width:100%;">
+                    <input id="miniFromZip" type="text" inputmode="numeric" placeholder="Moving from ZIP" required />
+                    <div class="tru-field-error-text" id="error-miniFromZip" style="display:none"></div>
+                  </div>
+                  <div style="width:100%;">
+                    <input id="miniToZip" type="text" inputmode="numeric" placeholder="Moving to ZIP" required />
+                    <div class="tru-field-error-text" id="error-miniToZip" style="display:none"></div>
+                  </div>
                 </div>
 
                 <div class="tru-hero-form-row">
@@ -127,9 +142,10 @@ const HTML = `
                     <option value="3 Bedroom">3 Bedroom</option>
                     <option value="4+ Bedroom">4+ Bedroom</option>
                   </select>
+                  <div class="tru-field-error-text" id="error-miniSize" style="display:none"></div>
                 </div>
 
-                <button id="truMiniSubmit" type="button">
+                <button id="truMiniSubmit" class="tru-hero-btn-primary" type="button">
                   Get My Estimate →
                 </button>
               </form>
@@ -399,15 +415,42 @@ export default function HomePage() {
     const onSpecialistIntent = () => showPanel("specialist");
     const onEstimateIntent = () => showPanel("estimate");
 
+    // --- New: inline error helpers for hero forms ---
+    function clearAllHeroErrors() {
+      const errs = document.querySelectorAll('[id^="error-"]');
+      errs.forEach((el) => {
+        el.textContent = "";
+        el.style.display = "none";
+      });
+    }
+
+    function showFieldError(fieldId, msg) {
+      const el = document.getElementById("error-" + fieldId);
+      if (el) {
+        el.textContent = msg;
+        el.style.display = "block";
+      }
+    }
+
     const onSpecialistSubmit = () => {
+      clearAllHeroErrors();
+
       const name = (specNameEl?.value || "").trim();
       const phone = (specPhoneEl?.value || "").trim();
       const fromZip = (specFromZipEl?.value || "").trim();
       const toZip = (specToZipEl?.value || "").trim();
       const preferred = (specPreferredEl?.value || "").trim();
 
-      if (!name || !phone || !fromZip || !toZip || !preferred) {
-        alert("Please fill out all fields to proceed.");
+      let firstInvalid = null;
+
+      if (!name) { showFieldError("specName", "Please enter your name."); firstInvalid = firstInvalid || specNameEl; }
+      if (!phone) { showFieldError("specPhone", "Please enter your phone number."); firstInvalid = firstInvalid || specPhoneEl; }
+      if (!fromZip) { showFieldError("specFromZip", "Please enter the ZIP you are moving from."); firstInvalid = firstInvalid || specFromZipEl; }
+      if (!toZip) { showFieldError("specToZip", "Please enter the ZIP you are moving to."); firstInvalid = firstInvalid || specToZipEl; }
+      if (!preferred) { showFieldError("specPreferred", "Please select a preferred contact method."); firstInvalid = firstInvalid || specPreferredEl; }
+
+      if (firstInvalid) {
+        firstInvalid.focus();
         return;
       }
 
@@ -425,12 +468,20 @@ export default function HomePage() {
     };
 
     const onEstimateSubmit = () => {
+      clearAllHeroErrors();
+
       const fromZip = (fromZipEl?.value || "").trim();
       const toZip = (toZipEl?.value || "").trim();
       const size = (sizeEl?.value || "").trim();
 
-      if (!fromZip || !toZip || !size) {
-        alert("Please fill out all fields to proceed.");
+      let firstInvalid = null;
+
+      if (!fromZip) { showFieldError("miniFromZip", "Please enter the ZIP you are moving from."); firstInvalid = firstInvalid || fromZipEl; }
+      if (!toZip) { showFieldError("miniToZip", "Please enter the ZIP you are moving to."); firstInvalid = firstInvalid || toZipEl; }
+      if (!size) { showFieldError("miniSize", "Please select a move size."); firstInvalid = firstInvalid || sizeEl; }
+
+      if (firstInvalid) {
+        firstInvalid.focus();
         return;
       }
 
@@ -456,6 +507,27 @@ export default function HomePage() {
     specialistSubmit?.addEventListener("click", onSpecialistSubmit);
     estimateSubmit?.addEventListener("click", onEstimateSubmit);
 
+    // Clear individual field errors when user edits
+    const clearErrorListener = (fieldEl, fieldId) => {
+      if (!fieldEl) return;
+      const handler = () => {
+        const e = document.getElementById("error-" + fieldId);
+        if (e) { e.textContent = ""; e.style.display = "none"; }
+      };
+      fieldEl.addEventListener("input", handler);
+      return () => fieldEl.removeEventListener("input", handler);
+    };
+
+    const removeSpecName = clearErrorListener(specNameEl, "specName");
+    const removeSpecPhone = clearErrorListener(specPhoneEl, "specPhone");
+    const removeSpecFrom = clearErrorListener(specFromZipEl, "specFromZip");
+    const removeSpecTo = clearErrorListener(specToZipEl, "specToZip");
+    const removeSpecPref = clearErrorListener(specPreferredEl, "specPreferred");
+
+    const removeMiniFrom = clearErrorListener(fromZipEl, "miniFromZip");
+    const removeMiniTo = clearErrorListener(toZipEl, "miniToZip");
+    const removeMiniSize = clearErrorListener(sizeEl, "miniSize");
+
     // Start state: both panels hidden
     showPanel(null);
 
@@ -469,6 +541,17 @@ export default function HomePage() {
       btnEstimate?.removeEventListener("click", onEstimateIntent);
       specialistSubmit?.removeEventListener("click", onSpecialistSubmit);
       estimateSubmit?.removeEventListener("click", onEstimateSubmit);
+
+      // remove clear listeners
+      removeSpecName && removeSpecName();
+      removeSpecPhone && removeSpecPhone();
+      removeSpecFrom && removeSpecFrom();
+      removeSpecTo && removeSpecTo();
+      removeSpecPref && removeSpecPref();
+
+      removeMiniFrom && removeMiniFrom();
+      removeMiniTo && removeMiniTo();
+      removeMiniSize && removeMiniSize();
     };
   }, [router]);
 
