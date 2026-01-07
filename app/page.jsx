@@ -94,60 +94,28 @@ const HTML = `
 </div>
 
 <!-- PANEL: SPECIALIST -->
-<div id="truPanelSpecialist" hidden>
-  <div class="tru-hero-form-title">Speak with a specialist now</div>
-  <div class="tru-hero-form-sub">
-    Quick call or video consult with a licensed moving coordinator.
+<form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
+  <div class="tru-hero-form-row two">
+    <input id="miniFromZip" type="text" placeholder="Moving from ZIP" required />
+    <input id="miniToZip" type="text" placeholder="Moving to ZIP" required />
   </div>
 
-  <form class="tru-hero-form" onsubmit="return false;">
-    <div class="tru-hero-form-row">
-      <input type="text" placeholder="Your name" required />
-    </div>
-
-    <div class="tru-hero-form-row two">
-      <input type="tel" placeholder="Phone number" required />
-      <select required>
-        <option value="" disabled selected>Preferred contact</option>
-        <option>Phone call</option>
-        <option>Video consult</option>
-      </select>
-    </div>
-
-    <button id="truSpecialistSubmit" type="button">
-      Connect Me Now →
-    </button>
-  </form>
-</div>
-
-<!-- PANEL: ONLINE ESTIMATE -->
-<div id="truPanelEstimate">
-  <div class="tru-hero-form-title">Instant move estimate</div>
-  <div class="tru-hero-form-sub">
-    Enter a few details to see your pricing range.
+  <div class="tru-hero-form-row">
+    <select id="miniSize" required>
+      <option value="" disabled selected>Move size</option>
+      <option>Studio</option>
+      <option>1 Bedroom</option>
+      <option>2 Bedroom</option>
+      <option>3 Bedroom</option>
+      <option>4+ Bedroom</option>
+    </select>
   </div>
 
-  <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
-    <div class="tru-hero-form-row two">
-      <input type="text" placeholder="Moving from ZIP" required />
-      <input type="text" placeholder="Moving to ZIP" required />
-    </div>
+  <button id="truMiniSubmit" type="button">
+    Get My Estimate →
+  </button>
+</form>
 
-    <div class="tru-hero-form-row">
-      <select required>
-        <option value="" disabled selected>Move size</option>
-        <option>Studio</option>
-        <option>1 Bedroom</option>
-        <option>2 Bedroom</option>
-        <option>3 Bedroom</option>
-        <option>4+ Bedroom</option>
-      </select>
-    </div>
-
-    <button id="truMiniSubmit" type="button">
-      Get My Estimate →
-    </button>
-  </form>
 </div>
 
   </div>
@@ -491,11 +459,12 @@ export default function HomePage() {
     contactForm?.addEventListener("submit", onContactSubmit);
 
 // HERO INTENT + PANELS
-const btnSpecialist = document.getElementById("truIntentSpecialist");
-const btnEstimate = document.getElementById("truIntentEstimate");
-
 const panelSpecialist = document.getElementById("truPanelSpecialist");
 const panelEstimate = document.getElementById("truPanelEstimate");
+    // Force both panels hidden on initial load
+if (panelSpecialist) panelSpecialist.hidden = true;
+if (panelEstimate) panelEstimate.hidden = true;
+
 
 // Specialist fields
 const specNameEl = document.getElementById("specName");
