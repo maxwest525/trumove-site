@@ -606,13 +606,36 @@ const onSpecialistSubmit = () => {
 
 
 // Estimate submit -> save lead + go to /online-estimate
+const miniErrEl = document.getElementById("miniErr");
+
 const onEstimateSubmit = () => {
   const fromZip = (fromZipEl?.value || "").trim();
   const toZip = (toZipEl?.value || "").trim();
   const size = (sizeEl?.value || "").trim();
 
-  if (!fromZip || !toZip || !size) {
-    alert("Please fill out all fields to proceed.");
+  const zipOk = (z) => /^\d{5}$/.test(z);
+
+  // reset UI
+  [fromZipEl, toZipEl, sizeEl].forEach((el) => el?.classList.remove("is-error"));
+  if (miniErrEl) miniErrEl.textContent = "";
+
+  let bad = false;
+
+  if (!zipOk(fromZip)) {
+    fromZipEl?.classList.add("is-error");
+    bad = true;
+  }
+  if (!zipOk(toZip)) {
+    toZipEl?.classList.add("is-error");
+    bad = true;
+  }
+  if (!size) {
+    sizeEl?.classList.add("is-error");
+    bad = true;
+  }
+
+  if (bad) {
+    if (miniErrEl) miniErrEl.textContent = "Enter valid 5 digit ZIP codes and pick a move size.";
     return;
   }
 
@@ -624,8 +647,10 @@ const onEstimateSubmit = () => {
     ts: Date.now(),
   });
 
-  router.push("/online-estimate");
+  // keep your existing query params behavior if you want, but for now this matches your current /online-estimate push
+  router.push(`/online-estimate?from=${encodeURIComponent(fromZip)}&to=${encodeURIComponent(toZip)}&size=${encodeURIComponent(size)}`);
 };
+
 
 // Wire clicks
 btnSpecialist?.addEventListener("click", onSpecialistIntent);
