@@ -41,10 +41,33 @@ const HTML = `
             </div>
 
             <div class="tru-hero-actions">
-              <button class="tru-hero-btn-secondary" id="truHowBtn" type="button">
+              <button class="tru-hero-btn-secondary" type="button">
                 <span>See how TruMove works</span>
                 <span class="chevron">→</span>
               </button>
+            </div>
+
+            <!-- HERO TRUST (CLEAN, NOT BUBBLES) -->
+            <div class="tru-hero-trustbar" aria-label="Compliance and authority">
+              <div class="tru-hero-trustitem">
+                <span class="tru-hero-trustseal" data-code="USDOT" aria-hidden="true"></span>
+                <span class="tru-hero-trustlabel">USDOT Compliant</span>
+              </div>
+
+              <div class="tru-hero-trustitem">
+                <span class="tru-hero-trustseal" data-code="BOND" aria-hidden="true"></span>
+                <span class="tru-hero-trustlabel">Bonded and Insured</span>
+              </div>
+
+              <div class="tru-hero-trustitem">
+                <span class="tru-hero-trustseal" data-code="FMCSA" aria-hidden="true"></span>
+                <span class="tru-hero-trustlabel">FMCSA Authorized Carriers</span>
+              </div>
+
+              <div class="tru-hero-trustitem">
+                <span class="tru-hero-trustseal" data-code="BRKR" aria-hidden="true"></span>
+                <span class="tru-hero-trustlabel">Licensed Interstate Broker</span>
+              </div>
             </div>
 
             <div class="tru-hero-note">
@@ -52,90 +75,85 @@ const HTML = `
             </div>
           </div>
 
-          <!-- HERO VISUAL -->
           <div class="tru-hero-visual">
             <div class="tru-hero-visual-tag">
               <span class="tru-hero-visual-tag-dot"></span>
               <span>Start Your Move</span>
             </div>
 
-            <!-- INTENT BUTTONS -->
-            <div class="tru-intent-row">
-              <button id="truIntentSpecialist" type="button">
-                Talk to a Moving Specialist
-              </button>
-
-              <button id="truIntentEstimate" type="button">
-                Get an Online Estimate
-              </button>
-            </div>
-
-            <!-- PANEL: SPECIALIST (HIDDEN BY DEFAULT) -->
-            <div id="truPanelSpecialist" hidden>
-              <div class="tru-hero-form-title">Speak with a specialist now</div>
+            <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
+              <div class="tru-hero-form-title">Get your quote in seconds</div>
               <div class="tru-hero-form-sub">
-                Quick call or video consult with a licensed moving coordinator.
+                Enter a few details, we’ll route you to your personalized estimate.
               </div>
 
-              <form class="tru-hero-form" id="truSpecialistForm" onsubmit="return false;">
-                <div class="tru-hero-form-row">
-                  <input id="specName" type="text" placeholder="Your name" required />
-                </div>
+            <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
+<div class="tru-hero-form-row">
+  <label class="tru-hero-label" for="miniFromZip">Where are you moving from</label>
+  <input
+    type="text"
+    inputmode="numeric"
+    autocomplete="postal-code"
+    maxlength="5"
+    id="miniFromZip"
+    class="tru-hero-input"
+    placeholder="Enter ZIP code"
+    required
+  >
+</div>
 
-                <div class="tru-hero-form-row">
-                  <input id="specPhone" type="tel" placeholder="Phone number" required />
-                </div>
+<div class="tru-hero-form-row">
+  <label class="tru-hero-label" for="miniSize">Move size</label>
+  <select id="miniSize" class="tru-hero-select" required>
+    <option value="" disabled selected>Select size</option>
+    <option value="Studio">Studio</option>
+    <option value="1 Bedroom">1 Bedroom</option>
+    <option value="2 Bedroom">2 Bedroom</option>
+    <option value="3 Bedroom">3 Bedroom</option>
+    <option value="4+ Bedroom">4+ Bedroom</option>
+  </select>
+</div>
 
-                <div class="tru-hero-form-row two">
-                  <input id="specFromZip" type="text" inputmode="numeric" placeholder="Moving from ZIP" required />
-                  <input id="specToZip" type="text" inputmode="numeric" placeholder="Moving to ZIP" required />
-                </div>
+<div class="tru-hero-form-row">
+  <label class="tru-hero-label" for="miniToZip">Where are you moving to</label>
+  <input
+    type="text"
+    inputmode="numeric"
+    autocomplete="postal-code"
+    maxlength="5"
+    id="miniToZip"
+    class="tru-hero-input"
+    placeholder="Enter ZIP code"
+    required
+  >
+</div>
 
-                <div class="tru-hero-form-row">
-                  <select id="specPreferred" required>
-                    <option value="" disabled selected>Preferred contact</option>
-                    <option value="Phone call">Phone call</option>
-                    <option value="Video consult">Video consult</option>
-                  </select>
-                </div>
 
-                <button id="truSpecialistSubmit" type="button">
-                  Connect Me Now →
-                </button>
-              </form>
+  <div class="tru-hero-form-row">
+    <input
+      type="text"
+      inputmode="numeric"
+      id="miniToZip"
+      class="tru-hero-input"
+      placeholder="Moving to (ZIP)"
+      maxlength="5"
+      required
+    >
+  </div>
+
+<button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
+  Get Instant Estimate →
+</button>
+
+<div class="tru-hero-form-foot">
+  Takes 15 seconds, see your real range.
+</div>
+
+<div class="tru-hero-form-err" id="miniErr" aria-live="polite"></div>
+</form>
             </div>
-
-            <!-- PANEL: ONLINE ESTIMATE (HIDDEN BY DEFAULT) -->
-            <div id="truPanelEstimate" hidden>
-              <div class="tru-hero-form-title">Instant move estimate</div>
-              <div class="tru-hero-form-sub">
-                Enter a few details to see your pricing range.
-              </div>
-
-              <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
-                <div class="tru-hero-form-row two">
-                  <input id="miniFromZip" type="text" inputmode="numeric" placeholder="Moving from ZIP" required />
-                  <input id="miniToZip" type="text" inputmode="numeric" placeholder="Moving to ZIP" required />
-                </div>
-
-                <div class="tru-hero-form-row">
-                  <select id="miniSize" required>
-                    <option value="" disabled selected>Move size</option>
-                    <option value="Studio">Studio</option>
-                    <option value="1 Bedroom">1 Bedroom</option>
-                    <option value="2 Bedroom">2 Bedroom</option>
-                    <option value="3 Bedroom">3 Bedroom</option>
-                    <option value="4+ Bedroom">4+ Bedroom</option>
-                  </select>
-                </div>
-
-                <button id="truMiniSubmit" type="button">
-                  Get My Estimate →
-                </button>
-              </form>
-            </div>
-
           </div>
+
         </div>
       </section>
 
@@ -149,6 +167,7 @@ const HTML = `
           </p>
 
           <div class="tru-simple-grid">
+
             <article class="tru-simple-card">
               <div class="tru-simple-icon" aria-hidden="true">
                 <svg viewBox="0 0 24 24" fill="none">
@@ -250,10 +269,116 @@ const HTML = `
               <span class="tru-simple-cta-strong">Want the full breakdown.</span>
               Compare TruMove to a traditional moving broker in one quick view.
             </div>
-            <button class="tru-simple-cta-btn" id="truFeaturesBtn" type="button">
+            <button class="tru-simple-cta-btn" type="button">
               <span>See all features</span>
               <span class="chevron">→</span>
             </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- MISSION + STATS + GUARANTEE + TRUST -->
+      <section class="tru-mission-wrap">
+        <div class="tru-mission-inner">
+          <div class="tru-mission-kicker">OUR MISSION</div>
+          <h2 class="tru-mission-title">
+            Making moving <span>honest</span>, <span>clear</span>, and <span>predictable</span>.
+          </h2>
+          <p class="tru-mission-text">
+            Our mission is to make moving honest, clear, and predictable, using AI and real carrier data to give you transparent prices, trusted movers, and a move that goes the way it should.
+          </p>
+
+          <div class="tru-mission-stats-shell">
+            <div class="tru-mission-stats-bar">
+              <div class="tru-mission-stat">
+                <div class="tru-mission-stat-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 4L13.9 8.24L18.5 8.74L15 11.79L15.9 16.3L12 14.1L8.1 16.3L9 11.79L5.5 8.74L10.1 8.24L12 4Z"
+                          stroke-width="1.5"
+                          stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <div class="tru-mission-stat-copy">
+                  <div class="tru-mission-stat-number">4.9★</div>
+                  <div class="tru-mission-stat-label">Average Rating</div>
+                </div>
+              </div>
+
+              <div class="tru-mission-stat">
+                <div class="tru-mission-stat-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M4 8L12 4L20 8V16L12 20L20 16V8L12 12L4 8Z"
+                          stroke-width="1.5"
+                          stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <div class="tru-mission-stat-copy">
+                  <div class="tru-mission-stat-number">10,000+</div>
+                  <div class="tru-mission-stat-label">Moves Assisted</div>
+                </div>
+              </div>
+
+              <div class="tru-mission-stat">
+                <div class="tru-mission-stat-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none">
+                    <path d="M12 3L6 5.5V11.5C6 15.1 8.4 18.4 12 19.5C15.6 18.4 18 15.1 18 11.5V5.5L12 3Z"
+                          stroke-width="1.5"
+                          stroke-linejoin="round" />
+                  </svg>
+                </div>
+                <div class="tru-mission-stat-copy">
+                  <div class="tru-mission-stat-number">0</div>
+                  <div class="tru-mission-stat-label">Spam Calls, Ever</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="tru-guarantee-wrap">
+            <div class="tru-guarantee-card">
+              <div>
+                <div class="tru-guarantee-tag">
+                  <span class="tru-guarantee-tag-dot"></span>
+                  <span>TruMove Guarantee</span>
+                </div>
+                <div class="tru-guarantee-title">If it feels off, we flag it before you ever sign.</div>
+                <div class="tru-guarantee-text">
+                  Every quote on TruMove passes through our checks so you do not waste time on carriers that are going to play games on price or service.
+                </div>
+                <ul class="tru-guarantee-list">
+                  <li>No spam calls sold to other brokers.</li>
+                  <li>No last minute surprise add ons without receipts.</li>
+                  <li>Help from a real human if anything feels wrong on move day.</li>
+                </ul>
+              </div>
+
+              <div class="tru-guarantee-side">
+                <span class="tru-guarantee-highlight">We built TruMove from bad experiences.</span>
+                <br />
+                You should know the real range, the real crew, and the real reputation before you say yes. If we would not book a mover for our own families, they do not show up in your options.
+              </div>
+            </div>
+          </div>
+
+          <div class="tru-trust-wrap">
+            <div class="tru-trust-row">
+              <span class="tru-trust-label">Trusted across thousands of moves.</span>
+
+              <span class="tru-trust-badge">
+                <span class="tru-trust-dot"></span>
+                <span>Google Reviews</span>
+              </span>
+
+              <span class="tru-trust-badge">
+                <span class="tru-trust-dot"></span>
+                <span>Yelp Movers</span>
+              </span>
+
+              <span class="tru-trust-badge">
+                <span class="tru-trust-dot"></span>
+                <span>Better Business Bureau</span>
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -270,6 +395,14 @@ const HTML = `
             <form class="tru-contact-form" id="truContactForm" novalidate>
               <div class="tru-field" data-field="name">
                 <div class="tru-field-inner">
+                  <span class="tru-field-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <circle cx="12" cy="9" r="3.2" stroke-width="1.6" />
+                      <path d="M6.5 18.4C7.6 16.5 9.7 15.3 12 15.3C14.3 15.3 16.4 16.5 17.5 18.4"
+                            stroke-width="1.6"
+                            stroke-linecap="round" />
+                    </svg>
+                  </span>
                   <input type="text" id="contactName" class="tru-contact-input" autocomplete="name" required />
                   <label for="contactName" class="tru-field-label">Your name</label>
                 </div>
@@ -278,6 +411,12 @@ const HTML = `
 
               <div class="tru-field" data-field="email">
                 <div class="tru-field-inner">
+                  <span class="tru-field-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <rect x="3" y="5" width="18" height="14" rx="2" stroke-width="1.6" />
+                      <path d="M4 7L12 12.5L20 7" stroke-width="1.6" stroke-linecap="round" />
+                    </svg>
+                  </span>
                   <input type="email" id="contactEmail" class="tru-contact-input" autocomplete="email" required />
                   <label for="contactEmail" class="tru-field-label">Your email</label>
                 </div>
@@ -286,6 +425,11 @@ const HTML = `
 
               <div class="tru-field textarea-field" data-field="message">
                 <div class="tru-field-inner">
+                  <span class="tru-field-icon" aria-hidden="true" style="top: 18px; transform: none;">
+                    <svg viewBox="0 0 24 24" fill="none">
+                      <path d="M5 5H19V14H9L5 18V5Z" stroke-width="1.6" stroke-linejoin="round" />
+                    </svg>
+                  </span>
                   <textarea id="contactMessage" class="tru-contact-textarea" required></textarea>
                   <label for="contactMessage" class="tru-field-label textarea-label">Write your message here</label>
                 </div>
@@ -303,7 +447,13 @@ const HTML = `
 
           <div class="tru-contact-secondary">
             <span>Prefer to talk to a real person.</span>
-            <button class="tru-contact-secondary-btn" id="truTalkBtn" type="button">
+            <button class="tru-contact-secondary-btn" type="button">
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M6.5 4.5L9.5 4L11 7.5L9.3 8.7C9.9 9.9 10.8 10.9 12 11.7L13.9 10.4L17 12L16.3 15.3C16.2 15.8 15.8 16.1 15.3 16.2C14.1 16.5 12.3 16.1 10.3 14.8C8.3 13.4 6.9 11.7 6.1 10.1C5.5 8.9 5.3 7.8 5.5 6.9C5.6 6.4 5.9 5.9 6.5 4.5Z"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round" />
+              </svg>
               <span>Talk to a TruMove specialist</span>
               <span class="chevron">→</span>
             </button>
@@ -319,156 +469,94 @@ export default function HomePage() {
   const router = useRouter();
 
   useEffect(() => {
-    // Buttons
-    const featuresBtn = document.getElementById("truFeaturesBtn");
-    const howBtn = document.getElementById("truHowBtn");
-    const talkBtn = document.getElementById("truTalkBtn");
-
-    // Contact form
-    const contactForm = document.getElementById("truContactForm");
-
-    // Intent + panels
-    const btnSpecialist = document.getElementById("truIntentSpecialist");
-    const btnEstimate = document.getElementById("truIntentEstimate");
-    const panelSpecialist = document.getElementById("truPanelSpecialist");
-    const panelEstimate = document.getElementById("truPanelEstimate");
-
-    // Specialist fields
-    const specNameEl = document.getElementById("specName");
-    const specPhoneEl = document.getElementById("specPhone");
-    const specFromZipEl = document.getElementById("specFromZip");
-    const specToZipEl = document.getElementById("specToZip");
-    const specPreferredEl = document.getElementById("specPreferred");
-    const specialistSubmit = document.getElementById("truSpecialistSubmit");
-
-    // Estimate fields
-    const fromZipEl = document.getElementById("miniFromZip");
-    const toZipEl = document.getElementById("miniToZip");
-    const sizeEl = document.getElementById("miniSize");
-    const estimateSubmit = document.getElementById("truMiniSubmit");
-
+    // See all features -> carrier vetting
+    const featuresBtn = document.querySelector(".tru-simple-cta-btn");
     const onFeaturesClick = () => router.push("/vetting");
-    const onHowClick = () => router.push("/about");
-    const onTalkClick = () => router.push("/book");
+    featuresBtn?.addEventListener("click", onFeaturesClick);
 
-    // Contact submit -> mailto
+    // Contact form -> email for now
+    const contactForm = document.getElementById("truContactForm");
     const onContactSubmit = (e) => {
       e.preventDefault();
 
-      const name = (document.getElementById("contactName")?.value || "").trim();
-      const email = (document.getElementById("contactEmail")?.value || "").trim();
-      const message = (document.getElementById("contactMessage")?.value || "").trim();
+      const name = document.getElementById("contactName")?.value || "";
+      const email = document.getElementById("contactEmail")?.value || "";
+      const message = document.getElementById("contactMessage")?.value || "";
 
       const body =
-        `Name: ${encodeURIComponent(name)}%0D%0A` +
-        `Email: ${encodeURIComponent(email)}%0D%0A%0D%0A` +
-        `Message:%0D%0A${encodeURIComponent(message)}`;
+        `Name: ${name}%0D%0A` +
+        `Email: ${email}%0D%0A%0D%0A` +
+        `Message:%0D%0A${message}`;
 
       window.location.href = `mailto:info@trumoveinc.com?subject=TruMove Contact Request&body=${body}`;
     };
-
-    function saveLead(payload) {
-      try {
-        localStorage.setItem("tm_lead", JSON.stringify(payload));
-      } catch {
-        // ignore
-      }
-    }
-
-    function showPanel(which) {
-      if (!panelSpecialist || !panelEstimate) return;
-
-      if (which === "specialist") {
-        panelSpecialist.hidden = false;
-        panelEstimate.hidden = true;
-        setTimeout(() => specNameEl?.focus(), 0);
-        return;
-      }
-
-      if (which === "estimate") {
-        panelSpecialist.hidden = true;
-        panelEstimate.hidden = false;
-        setTimeout(() => fromZipEl?.focus(), 0);
-        return;
-      }
-
-      panelSpecialist.hidden = true;
-      panelEstimate.hidden = true;
-    }
-
-    const onSpecialistIntent = () => showPanel("specialist");
-    const onEstimateIntent = () => showPanel("estimate");
-
-    const onSpecialistSubmit = () => {
-      const name = (specNameEl?.value || "").trim();
-      const phone = (specPhoneEl?.value || "").trim();
-      const fromZip = (specFromZipEl?.value || "").trim();
-      const toZip = (specToZipEl?.value || "").trim();
-      const preferred = (specPreferredEl?.value || "").trim();
-
-      if (!name || !phone || !fromZip || !toZip || !preferred) {
-        alert("Please fill out all fields to proceed.");
-        return;
-      }
-
-      saveLead({
-        intent: "specialist",
-        name,
-        phone,
-        fromZip,
-        toZip,
-        preferred,
-        ts: Date.now(),
-      });
-
-      router.push("/book");
-    };
-
-    const onEstimateSubmit = () => {
-      const fromZip = (fromZipEl?.value || "").trim();
-      const toZip = (toZipEl?.value || "").trim();
-      const size = (sizeEl?.value || "").trim();
-
-      if (!fromZip || !toZip || !size) {
-        alert("Please fill out all fields to proceed.");
-        return;
-      }
-
-      saveLead({
-        intent: "estimate",
-        fromZip,
-        toZip,
-        size,
-        ts: Date.now(),
-      });
-
-      router.push("/online-estimate");
-    };
-
-    // Wire events
-    featuresBtn?.addEventListener("click", onFeaturesClick);
-    howBtn?.addEventListener("click", onHowClick);
-    talkBtn?.addEventListener("click", onTalkClick);
     contactForm?.addEventListener("submit", onContactSubmit);
 
-    btnSpecialist?.addEventListener("click", onSpecialistIntent);
-    btnEstimate?.addEventListener("click", onEstimateIntent);
-    specialistSubmit?.addEventListener("click", onSpecialistSubmit);
-    estimateSubmit?.addEventListener("click", onEstimateSubmit);
+    // Mini form button -> route to estimate page
+const miniBtn = document.getElementById("truMiniSubmit");
 
-    // Start state: both panels hidden
-    showPanel(null);
+const onMiniClick = () => {
+  const fromEl = document.getElementById("miniFromZip");
+  const toEl = document.getElementById("miniToZip");
+  const sizeEl = document.getElementById("miniSize");
+  const errEl = document.getElementById("miniErr");
+
+  const fromZip = (fromEl?.value || "").trim();
+  const toZip = (toEl?.value || "").trim();
+  const size = (sizeEl?.value || "").trim();
+
+  const zipOk = (z) => /^\d{5}$/.test(z);
+
+  // reset UI state
+  [fromEl, toEl, sizeEl].forEach((el) => el?.classList.remove("is-error"));
+  if (errEl) errEl.textContent = "";
+
+  let bad = false;
+
+  if (!zipOk(fromZip)) {
+    fromEl?.classList.add("is-error");
+    bad = true;
+  }
+  if (!zipOk(toZip)) {
+    toEl?.classList.add("is-error");
+    bad = true;
+  }
+  if (!size) {
+    sizeEl?.classList.add("is-error");
+    bad = true;
+  }
+
+  if (bad) {
+    if (errEl) errEl.textContent = "Enter valid 5 digit ZIP codes and pick a move size.";
+    return;
+  }
+
+  router.push(
+    `/online-estimate?from=${encodeURIComponent(fromZip)}&to=${encodeURIComponent(
+      toZip
+    )}&size=${encodeURIComponent(size)}`
+  );
+};
+
+miniBtn?.addEventListener("click", onMiniClick);
+
+
+    // “See how TruMove works” button -> About page
+    const howBtn = document.querySelector(".tru-hero-btn-secondary");
+    const onHowClick = () => router.push("/about");
+    howBtn?.addEventListener("click", onHowClick);
+
+    // “Talk to a TruMove specialist” button -> book consult page
+    const talkBtn = document.querySelector(".tru-contact-secondary-btn");
+    const onTalkClick = () => router.push("/book");
+    talkBtn?.addEventListener("click", onTalkClick);
 
     return () => {
       featuresBtn?.removeEventListener("click", onFeaturesClick);
+      contactForm?.removeEventListener("submit", onContactSubmit);
+      miniBtn?.removeEventListener("click", onMiniClick);
       howBtn?.removeEventListener("click", onHowClick);
       talkBtn?.removeEventListener("click", onTalkClick);
-      contactForm?.removeEventListener("submit", onContactSubmit);
-
-      btnSpecialist?.removeEventListener("click", onSpecialistIntent);
-      btnEstimate?.removeEventListener("click", onEstimateIntent);
-      specialistSubmit?.removeEventListener("click", onSpecialistSubmit);
-      estimateSubmit?.removeEventListener("click", onEstimateSubmit);
     };
   }, [router]);
 
