@@ -1111,6 +1111,49 @@ export default function SiteShell({ children }) {
     inset 0 1px 0 rgba(255,255,255,0.90);
 }
 
+/* Premium spacing inside the hero quote card */
+#truHeroQuoteCard .tru-hero-form-title{
+  margin-top: 2px;
+}
+#truHeroQuoteCard .tru-hero-form-sub{
+  margin-bottom: 12px;
+}
+
+/* Divider: subtle, expensive */
+#truHeroQuoteCard .tru-intent-divider{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  margin: 14px 0 12px;
+}
+
+#truHeroQuoteCard .tru-intent-divider-line{
+  height:1px;
+  flex:1 1 auto;
+  background: linear-gradient(90deg, rgba(15,23,42,0), rgba(15,23,42,0.14), rgba(15,23,42,0));
+}
+
+#truHeroQuoteCard .tru-intent-divider-chip{
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(15,23,42,0.62);
+  padding: 7px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 14px 30px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.85);
+}
+
+/* Give panels a little breathing room and consistent visual rhythm */
+#truPanelSpecialist,
+#truPanelEstimate{
+  margin-top: 10px;
+}
+
+
 
       `}</style>
     </div>
