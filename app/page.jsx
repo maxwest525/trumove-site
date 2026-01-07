@@ -102,8 +102,6 @@ const HTML = `
 
 <!-- PANEL: SPECIALIST -->
 <div class="tru-intent-panel" id="truPanelSpecialist">
-  <div class="tru-hero-form-title">Connect with a specialist</div>
-  <div class="tru-hero-form-sub">We’ll help you build the move and confirm pricing.</div>
 
   <form class="tru-hero-form" id="truSpecialistForm" onsubmit="return false;">
     <div class="tru-hero-form-row">
@@ -139,8 +137,6 @@ const HTML = `
 
     <!-- PANEL: ESTIMATE (hidden until click) -->
     <div class="tru-intent-panel" id="truPanelEstimate">
-      <div class="tru-hero-form-title">Get your estimate</div>
-      <div class="tru-hero-form-sub">Fast range, then refine with inventory if you want.</div>
 
       <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
         <div class="tru-hero-form-row two">
