@@ -501,6 +501,7 @@ export default function HomePage() {
     };
     contactForm?.addEventListener("submit", onContactSubmit);
 
+
 // HERO INTENT + PANELS
 const btnSpecialist = document.getElementById("truIntentSpecialist");
 const btnEstimate = document.getElementById("truIntentEstimate");
@@ -524,6 +525,7 @@ const estimateSubmit = document.getElementById("truMiniSubmit");
 function showPanel(which) {
   if (!panelSpecialist || !panelEstimate) return;
 
+  // OPTIONAL: if your HTML does not have id="truIntentDivider", switch this to querySelector(".tru-intent-divider")
   const divider = document.getElementById("truIntentDivider");
 
   const showSpecialist = which === "specialist";
@@ -532,14 +534,11 @@ function showPanel(which) {
   panelSpecialist.style.display = showSpecialist ? "block" : "none";
   panelEstimate.style.display = showEstimate ? "block" : "none";
 
-  // Only show the OR divider if you ever decide to show both, for now keep it hidden
   if (divider) divider.style.display = "none";
 
-  // Active styling on the intent buttons
   btnSpecialist?.classList.toggle("is-active", showSpecialist);
   btnEstimate?.classList.toggle("is-active", showEstimate);
 
-  // Optional scroll + focus
   if (showSpecialist) {
     panelSpecialist.scrollIntoView({ behavior: "smooth", block: "start" });
     setTimeout(() => specNameEl?.focus(), 0);
@@ -549,16 +548,15 @@ function showPanel(which) {
   }
 }
 
-
-
+// ✅ ADD THIS (these handlers were missing)
+const onSpecialistIntent = () => showPanel("specialist");
+const onEstimateIntent = () => showPanel("estimate");
 
 // Save lead locally so you can pick it up on the next page later
 function saveLead(payload) {
   try {
     localStorage.setItem("tm_lead", JSON.stringify(payload));
-  } catch (e) {
-    // ignore
-  }
+  } catch (e) {}
 }
 
 // Specialist submit -> save lead + go to /book
@@ -570,46 +568,24 @@ const onSpecialistSubmit = () => {
   const fromZip = (specFromZipEl?.value || "").trim();
   const toZip = (specToZipEl?.value || "").trim();
 
-  // reset UI
   [specNameEl, specPhoneEl, specFromZipEl, specToZipEl].forEach((el) => el?.classList.remove("is-error"));
   if (specErrEl) specErrEl.textContent = "";
 
   let bad = false;
 
-  if (!name) {
-    specNameEl?.classList.add("is-error");
-    bad = true;
-  }
-  if (!phone) {
-    specPhoneEl?.classList.add("is-error");
-    bad = true;
-  }
-  if (!/^\d{5}$/.test(fromZip)) {
-    specFromZipEl?.classList.add("is-error");
-    bad = true;
-  }
-  if (!/^\d{5}$/.test(toZip)) {
-    specToZipEl?.classList.add("is-error");
-    bad = true;
-  }
+  if (!name) { specNameEl?.classList.add("is-error"); bad = true; }
+  if (!phone) { specPhoneEl?.classList.add("is-error"); bad = true; }
+  if (!/^\d{5}$/.test(fromZip)) { specFromZipEl?.classList.add("is-error"); bad = true; }
+  if (!/^\d{5}$/.test(toZip)) { specToZipEl?.classList.add("is-error"); bad = true; }
 
   if (bad) {
     if (specErrEl) specErrEl.textContent = "Please complete all fields, ZIP codes must be 5 digits.";
     return;
   }
 
-  saveLead({
-    intent: "specialist",
-    name,
-    phone,
-    fromZip,
-    toZip,
-    ts: Date.now(),
-  });
-
+  saveLead({ intent: "specialist", name, phone, fromZip, toZip, ts: Date.now() });
   router.push("/book");
 };
-
 
 // Estimate submit -> save lead + go to /online-estimate
 const miniErrEl = document.getElementById("miniErr");
@@ -621,39 +597,21 @@ const onEstimateSubmit = () => {
 
   const zipOk = (z) => /^\d{5}$/.test(z);
 
-  // reset UI
   [fromZipEl, toZipEl, sizeEl].forEach((el) => el?.classList.remove("is-error"));
   if (miniErrEl) miniErrEl.textContent = "";
 
   let bad = false;
 
-  if (!zipOk(fromZip)) {
-    fromZipEl?.classList.add("is-error");
-    bad = true;
-  }
-  if (!zipOk(toZip)) {
-    toZipEl?.classList.add("is-error");
-    bad = true;
-  }
-  if (!size) {
-    sizeEl?.classList.add("is-error");
-    bad = true;
-  }
+  if (!zipOk(fromZip)) { fromZipEl?.classList.add("is-error"); bad = true; }
+  if (!zipOk(toZip)) { toZipEl?.classList.add("is-error"); bad = true; }
+  if (!size) { sizeEl?.classList.add("is-error"); bad = true; }
 
   if (bad) {
     if (miniErrEl) miniErrEl.textContent = "Enter valid 5 digit ZIP codes and pick a move size.";
     return;
   }
 
-  saveLead({
-    intent: "estimate",
-    fromZip,
-    toZip,
-    size,
-    ts: Date.now(),
-  });
-
-  // keep your existing query params behavior if you want, but for now this matches your current /online-estimate push
+  saveLead({ intent: "estimate", fromZip, toZip, size, ts: Date.now() });
   router.push(`/online-estimate?from=${encodeURIComponent(fromZip)}&to=${encodeURIComponent(toZip)}&size=${encodeURIComponent(size)}`);
 };
 
@@ -663,33 +621,23 @@ btnEstimate?.addEventListener("click", onEstimateIntent);
 specialistSubmit?.addEventListener("click", onSpecialistSubmit);
 estimateSubmit?.addEventListener("click", onEstimateSubmit);
 
-// Default: show both panels and highlight estimate first (or specialist, your choice)
-setActiveIntent("estimate");
+// Default view
 showPanel("estimate");
 
-    // “See how TruMove works” button -> About page
-    const howBtn = document.querySelector(".tru-hero-btn-secondary");
-    const onHowClick = () => router.push("/about");
-    howBtn?.addEventListener("click", onHowClick);
-
-    // “Talk to a TruMove specialist” button -> book consult page
-    const talkBtn = document.querySelector(".tru-contact-secondary-btn");
-    const onTalkClick = () => router.push("/book");
-    talkBtn?.addEventListener("click", onTalkClick);
-
+// Cleanup
 return () => {
-  // Existing cleanup you already had for the HERO
   btnSpecialist?.removeEventListener("click", onSpecialistIntent);
   btnEstimate?.removeEventListener("click", onEstimateIntent);
   specialistSubmit?.removeEventListener("click", onSpecialistSubmit);
   estimateSubmit?.removeEventListener("click", onEstimateSubmit);
 
-  // Add these back (you added these listeners above, so remove them too)
-  featuresBtn?.removeEventListener("click", onFeaturesClick);
-  contactForm?.removeEventListener("submit", onContactSubmit);
   howBtn?.removeEventListener("click", onHowClick);
   talkBtn?.removeEventListener("click", onTalkClick);
+
+  featuresBtn?.removeEventListener("click", onFeaturesClick);
+  contactForm?.removeEventListener("submit", onContactSubmit);
 };
+
   }, [router]);
 
   return <main dangerouslySetInnerHTML={{ __html: HTML }} />;
