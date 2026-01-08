@@ -545,10 +545,20 @@ function showPanel(which) {
   }
 }
 
+function setActiveIntent(which) {
+  btnSpecialist?.classList.toggle("is-active", which === "specialist");
+  btnEstimate?.classList.toggle("is-active", which === "estimate");
+}
 
+const onSpecialistIntent = () => {
+  setActiveIntent("specialist");
+  showPanel("specialist");
+};
 
-const onSpecialistIntent = () => showPanel("specialist");
-const onEstimateIntent = () => showPanel("estimate");
+const onEstimateIntent = () => {
+  setActiveIntent("estimate");
+  showPanel("estimate");
+};
 
 
 
@@ -664,6 +674,7 @@ specialistSubmit?.addEventListener("click", onSpecialistSubmit);
 estimateSubmit?.addEventListener("click", onEstimateSubmit);
 
 // Default: show both panels and highlight estimate first (or specialist, your choice)
+setActiveIntent("estimate");
 showPanel("estimate");
 
     // “See how TruMove works” button -> About page
