@@ -1170,6 +1170,7 @@ export default function SiteShell({ children }) {
   transform: translateY(0);
 }
 
+<div class="tru-intent-panel" id="truPanelEstimate">
 
       `}</style>
     </div>
