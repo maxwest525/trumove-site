@@ -101,8 +101,6 @@ const HTML = `
     </div>
 
 <!-- PANEL: SPECIALIST -->
-<div class="tru-intent-panel" id="truPanelSpecialist">
-
   <form class="tru-hero-form" id="truSpecialistForm" onsubmit="return false;">
     <div class="tru-hero-form-row">
       <input type="text" id="specName" class="tru-hero-input" placeholder="Your name" required>
@@ -127,7 +125,7 @@ const HTML = `
   </form>
 </div>
 
-<div class="tru-intent-divider" aria-hidden="true">
+<div class="tru-intent-divider" id="truIntentDivider" aria-hidden="true" style="display:none;">
   <span class="tru-intent-divider-line"></span>
   <span class="tru-intent-divider-chip">OR</span>
   <span class="tru-intent-divider-line"></span>
@@ -136,7 +134,7 @@ const HTML = `
 
 
     <!-- PANEL: ESTIMATE (hidden until click) -->
-    <div class="tru-intent-panel" id="truPanelEstimate">
+<div class="tru-intent-panel" id="truPanelEstimate" style="display:block;">
 
       <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
         <div class="tru-hero-form-row two">
@@ -526,35 +524,31 @@ const estimateSubmit = document.getElementById("truMiniSubmit");
 function showPanel(which) {
   if (!panelSpecialist || !panelEstimate) return;
 
-  // Always visible
-  panelSpecialist.style.display = "block";
-  panelEstimate.style.display = "block";
+  const divider = document.getElementById("truIntentDivider");
 
-  // Optional: scroll to the chosen panel for clarity
-  if (which === "specialist") {
+  const showSpecialist = which === "specialist";
+  const showEstimate = which === "estimate";
+
+  panelSpecialist.style.display = showSpecialist ? "block" : "none";
+  panelEstimate.style.display = showEstimate ? "block" : "none";
+
+  // Only show the OR divider if you ever decide to show both, for now keep it hidden
+  if (divider) divider.style.display = "none";
+
+  // Active styling on the intent buttons
+  btnSpecialist?.classList.toggle("is-active", showSpecialist);
+  btnEstimate?.classList.toggle("is-active", showEstimate);
+
+  // Optional scroll + focus
+  if (showSpecialist) {
     panelSpecialist.scrollIntoView({ behavior: "smooth", block: "start" });
     setTimeout(() => specNameEl?.focus(), 0);
-  }
-  if (which === "estimate") {
+  } else if (showEstimate) {
     panelEstimate.scrollIntoView({ behavior: "smooth", block: "start" });
     setTimeout(() => fromZipEl?.focus(), 0);
   }
 }
 
-function setActiveIntent(which) {
-  btnSpecialist?.classList.toggle("is-active", which === "specialist");
-  btnEstimate?.classList.toggle("is-active", which === "estimate");
-}
-
-const onSpecialistIntent = () => {
-  setActiveIntent("specialist");
-  showPanel("specialist");
-};
-
-const onEstimateIntent = () => {
-  setActiveIntent("estimate");
-  showPanel("estimate");
-};
 
 
 
