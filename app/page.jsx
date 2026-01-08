@@ -547,9 +547,9 @@ function showPanel(which) {
 
 
 
-
 const onSpecialistIntent = () => showPanel("specialist");
 const onEstimateIntent = () => showPanel("estimate");
+
 
 
 // Save lead locally so you can pick it up on the next page later
@@ -662,39 +662,9 @@ btnSpecialist?.addEventListener("click", onSpecialistIntent);
 btnEstimate?.addEventListener("click", onEstimateIntent);
 specialistSubmit?.addEventListener("click", onSpecialistSubmit);
 estimateSubmit?.addEventListener("click", onEstimateSubmit);
-    btnSpecialist?.removeEventListener("click", onSpecialistIntentWrapped);
-btnEstimate?.removeEventListener("click", onEstimateIntentWrapped);
 
-
-// ACTIVE STATE (paste right here)
-function setActiveIntent(which) {
-  btnSpecialist?.classList.toggle("is-active", which === "specialist");
-  btnEstimate?.classList.toggle("is-active", which === "estimate");
-}
-
-// Wrap your existing handlers so they also set the active state
-const onSpecialistIntentWrapped = () => {
-  setActiveIntent("specialist");
-  onSpecialistIntent();
-};
-
-const onEstimateIntentWrapped = () => {
-  setActiveIntent("estimate");
-  onEstimateIntent();
-};
-
-// Rebind intent buttons to wrapped handlers
-btnSpecialist?.removeEventListener("click", onSpecialistIntent);
-btnEstimate?.removeEventListener("click", onEstimateIntent);
-
-btnSpecialist?.addEventListener("click", onSpecialistIntentWrapped);
-btnEstimate?.addEventListener("click", onEstimateIntentWrapped);
-
-// Default: show both panels (or estimate first)
-setActiveIntent("estimate");
+// Default: show both panels and highlight estimate first (or specialist, your choice)
 showPanel("estimate");
-
-
 
     // “See how TruMove works” button -> About page
     const howBtn = document.querySelector(".tru-hero-btn-secondary");
@@ -706,16 +676,19 @@ showPanel("estimate");
     const onTalkClick = () => router.push("/book");
     talkBtn?.addEventListener("click", onTalkClick);
 
-    return () => {
-      featuresBtn?.removeEventListener("click", onFeaturesClick);
-      contactForm?.removeEventListener("submit", onContactSubmit);
-      howBtn?.removeEventListener("click", onHowClick);
-      talkBtn?.removeEventListener("click", onTalkClick);
-      btnSpecialist?.removeEventListener("click", onSpecialistIntent);
-btnEstimate?.removeEventListener("click", onEstimateIntent);
-specialistSubmit?.removeEventListener("click", onSpecialistSubmit);
-estimateSubmit?.removeEventListener("click", onEstimateSubmit);
-    };
+return () => {
+  // Existing cleanup you already had for the HERO
+  btnSpecialist?.removeEventListener("click", onSpecialistIntent);
+  btnEstimate?.removeEventListener("click", onEstimateIntent);
+  specialistSubmit?.removeEventListener("click", onSpecialistSubmit);
+  estimateSubmit?.removeEventListener("click", onEstimateSubmit);
+
+  // Add these back (you added these listeners above, so remove them too)
+  featuresBtn?.removeEventListener("click", onFeaturesClick);
+  contactForm?.removeEventListener("submit", onContactSubmit);
+  howBtn?.removeEventListener("click", onHowClick);
+  talkBtn?.removeEventListener("click", onTalkClick);
+};
   }, [router]);
 
   return <main dangerouslySetInnerHTML={{ __html: HTML }} />;
