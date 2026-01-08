@@ -83,7 +83,6 @@ const HTML = `
   </div>
 
   <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
-
     <div class="tru-hero-form-title">Start in one tap</div>
     <div class="tru-hero-form-sub">
       Choose how you want to build your move, we’ll take it from there.
@@ -100,42 +99,39 @@ const HTML = `
       </button>
     </div>
 
-<!-- PANEL: SPECIALIST -->
-  <form class="tru-hero-form" id="truSpecialistForm" onsubmit="return false;">
-    <div class="tru-hero-form-row">
-      <input type="text" id="specName" class="tru-hero-input" placeholder="Your name" required>
+    <!-- PANEL: SPECIALIST -->
+    <div class="tru-intent-panel" id="truPanelSpecialist">
+      <form class="tru-hero-form" id="truSpecialistForm" onsubmit="return false;">
+        <div class="tru-hero-form-row">
+          <input type="text" id="specName" class="tru-hero-input" placeholder="Your name" required>
+        </div>
+
+        <div class="tru-hero-form-row">
+          <input type="tel" id="specPhone" class="tru-hero-input" placeholder="Phone number" required>
+        </div>
+
+        <div class="tru-hero-form-row two">
+          <input type="text" id="specFromZip" class="tru-hero-input" placeholder="Moving from (ZIP)" required>
+          <input type="text" id="specToZip" class="tru-hero-input" placeholder="Moving to (ZIP)" required>
+        </div>
+
+        <button class="tru-hero-form-btn" id="truSpecialistSubmit" type="button">
+          Request a Call
+        </button>
+
+        <div class="tru-hero-form-err" id="specErr" aria-live="polite"></div>
+      </form>
     </div>
 
-    <div class="tru-hero-form-row">
-      <input type="tel" id="specPhone" class="tru-hero-input" placeholder="Phone number" required>
+    <!-- Divider stays hidden -->
+    <div class="tru-intent-divider" id="truIntentDivider" aria-hidden="true" style="display:none;">
+      <span class="tru-intent-divider-line"></span>
+      <span class="tru-intent-divider-chip">OR</span>
+      <span class="tru-intent-divider-line"></span>
     </div>
 
-    <div class="tru-hero-form-row two">
-      <input type="text" id="specFromZip" class="tru-hero-input" placeholder="Moving from (ZIP)" required>
-      <input type="text" id="specToZip" class="tru-hero-input" placeholder="Moving to (ZIP)" required>
-    </div>
-
-    <button class="tru-hero-form-btn" id="truSpecialistSubmit" type="button">
-      Request a Call
-    </button>
-
-    <!-- ADD THIS LINE -->
-    <div class="tru-hero-form-err" id="specErr" aria-live="polite"></div>
-
-  </form>
-</div>
-
-<div class="tru-intent-divider" id="truIntentDivider" aria-hidden="true" style="display:none;">
-  <span class="tru-intent-divider-line"></span>
-  <span class="tru-intent-divider-chip">OR</span>
-  <span class="tru-intent-divider-line"></span>
-</div>
-
-
-
-    <!-- PANEL: ESTIMATE (hidden until click) -->
-<div class="tru-intent-panel" id="truPanelEstimate" style="display:block;">
-
+    <!-- PANEL: ESTIMATE -->
+    <div class="tru-intent-panel" id="truPanelEstimate">
       <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
         <div class="tru-hero-form-row two">
           <input type="text" id="miniFromZip" class="tru-hero-input" placeholder="Moving from (ZIP)" required>
@@ -163,6 +159,7 @@ const HTML = `
 
   </div>
 </div>
+
 
       </section>
 
