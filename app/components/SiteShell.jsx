@@ -1170,6 +1170,47 @@ export default function SiteShell({ children }) {
   transform: translateY(0);
 }
 
+/* Make intent buttons able to handle active styling cleanly */
+#truIntentSpecialist,
+#truIntentEstimate{
+  position: relative;
+}
+
+/* Kill the “panel inside a card inside a card” look */
+#truPanelSpecialist,
+#truPanelEstimate{
+  margin-top: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+  animation: tmPanelIn 180ms ease both;
+}
+
+/* Active button state, clean and premium */
+#truIntentSpecialist.is-active,
+#truIntentEstimate.is-active{
+  transform: translateY(-1px);
+  border-color: rgba(57,255,20,0.62);
+  box-shadow:
+    0 22px 56px rgba(15,23,42,0.16),
+    0 0 0 6px rgba(57,255,20,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.85);
+}
+
+/* Keep specialist as the dark premium one when active */
+#truIntentSpecialist.is-active{
+  background: linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
+  color: rgba(255,255,255,0.96);
+  border-color: rgba(57,255,20,0.55);
+}
+
+/* Estimate stays light when active */
+#truIntentEstimate.is-active{
+  background: rgba(255,255,255,0.92);
+  color: rgba(15,23,42,0.88);
+}
+
 
       `}</style>
     </div>
