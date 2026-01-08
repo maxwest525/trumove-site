@@ -530,10 +530,6 @@ function showPanel(which) {
   panelSpecialist.style.display = "block";
   panelEstimate.style.display = "block";
 
-  // Toggle active styling on the 2 intent buttons
-  btnSpecialist?.classList.toggle("is-active", which === "specialist");
-  btnEstimate?.classList.toggle("is-active", which === "estimate");
-
   // Optional: scroll to the chosen panel for clarity
   if (which === "specialist") {
     panelSpecialist.scrollIntoView({ behavior: "smooth", block: "start" });
