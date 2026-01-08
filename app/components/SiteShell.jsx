@@ -1170,7 +1170,62 @@ export default function SiteShell({ children }) {
   transform: translateY(0);
 }
 
-<div class="tru-intent-panel" id="truPanelEstimate">
+/* =========================================================
+   HERO INTENT – DEFAULT SELECTED STATE
+   ========================================================= */
+
+/* Default: Online Estimate is selected */
+#truIntentEstimate {
+  background: linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
+  color: rgba(255,255,255,0.96);
+  border-color: rgba(57,255,20,0.45);
+  box-shadow:
+    0 20px 50px rgba(15,23,42,0.22),
+    0 0 0 6px rgba(57,255,20,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+}
+
+/* Make the other one clearly secondary */
+#truIntentSpecialist {
+  background: rgba(255,255,255,0.92);
+  color: rgba(15,23,42,0.88);
+  border-color: rgba(15,23,42,0.14);
+  box-shadow:
+    0 14px 34px rgba(15,23,42,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.85);
+}
+
+/* When JS sets a selected state, honor it */
+#truIntentSpecialist.is-selected{
+  background: linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
+  color: rgba(255,255,255,0.96);
+  border-color: rgba(57,255,20,0.45);
+  box-shadow:
+    0 20px 50px rgba(15,23,42,0.22),
+    0 0 0 6px rgba(57,255,20,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+}
+
+#truIntentEstimate.is-selected{
+  background: linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
+  color: rgba(255,255,255,0.96);
+  border-color: rgba(57,255,20,0.45);
+  box-shadow:
+    0 20px 50px rgba(15,23,42,0.22),
+    0 0 0 6px rgba(57,255,20,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+}
+
+/* If one is selected, the other should look secondary */
+#truIntentSpecialist.is-selected ~ #truIntentEstimate,
+#truIntentEstimate.is-selected ~ #truIntentSpecialist{
+  background: rgba(255,255,255,0.92);
+  color: rgba(15,23,42,0.88);
+  border-color: rgba(15,23,42,0.14);
+  box-shadow:
+    0 14px 34px rgba(15,23,42,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.85);
+}
 
       `}</style>
     </div>
