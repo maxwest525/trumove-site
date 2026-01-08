@@ -475,167 +475,170 @@ export default function HomePage() {
   const router = useRouter();
 
   useEffect(() => {
-    // See all features -> carrier vetting
-    const featuresBtn = document.querySelector(".tru-simple-cta-btn");
-    const onFeaturesClick = () => router.push("/vetting");
-    featuresBtn?.addEventListener("click", onFeaturesClick);
+  // See all features -> carrier vetting
+  const featuresBtn = document.querySelector(".tru-simple-cta-btn");
+  const onFeaturesClick = () => router.push("/vetting");
+  featuresBtn?.addEventListener("click", onFeaturesClick);
 
-    // Contact form -> email for now
-    const contactForm = document.getElementById("truContactForm");
-    const onContactSubmit = (e) => {
-      e.preventDefault();
+  // Contact form -> email for now
+  const contactForm = document.getElementById("truContactForm");
+  const onContactSubmit = (e) => {
+    e.preventDefault();
 
-      const name = document.getElementById("contactName")?.value || "";
-      const email = document.getElementById("contactEmail")?.value || "";
-      const message = document.getElementById("contactMessage")?.value || "";
+    const name = document.getElementById("contactName")?.value || "";
+    const email = document.getElementById("contactEmail")?.value || "";
+    const message = document.getElementById("contactMessage")?.value || "";
 
-      const body =
-        `Name: ${name}%0D%0A` +
-        `Email: ${email}%0D%0A%0D%0A` +
-        `Message:%0D%0A${message}`;
+    const body =
+      `Name: ${name}%0D%0A` +
+      `Email: ${email}%0D%0A%0D%0A` +
+      `Message:%0D%0A${message}`;
 
-      window.location.href = `mailto:info@trumoveinc.com?subject=TruMove Contact Request&body=${body}`;
-    };
-    contactForm?.addEventListener("submit", onContactSubmit);
+    window.location.href = `mailto:info@trumoveinc.com?subject=TruMove Contact Request&body=${body}`;
+  };
+  contactForm?.addEventListener("submit", onContactSubmit);
 
+  // HERO INTENT + PANELS
+  const btnSpecialist = document.getElementById("truIntentSpecialist");
+  const btnEstimate = document.getElementById("truIntentEstimate");
 
-// HERO INTENT + PANELS
-const btnSpecialist = document.getElementById("truIntentSpecialist");
-const btnEstimate = document.getElementById("truIntentEstimate");
+  const panelSpecialist = document.getElementById("truPanelSpecialist");
+  const panelEstimate = document.getElementById("truPanelEstimate");
 
-const panelSpecialist = document.getElementById("truPanelSpecialist");
-const panelEstimate = document.getElementById("truPanelEstimate");
+  // Specialist fields
+  const specNameEl = document.getElementById("specName");
+  const specPhoneEl = document.getElementById("specPhone");
+  const specFromZipEl = document.getElementById("specFromZip");
+  const specToZipEl = document.getElementById("specToZip");
+  const specialistSubmit = document.getElementById("truSpecialistSubmit");
 
-// Specialist fields
-const specNameEl = document.getElementById("specName");
-const specPhoneEl = document.getElementById("specPhone");
-const specFromZipEl = document.getElementById("specFromZip");
-const specToZipEl = document.getElementById("specToZip");
-const specialistSubmit = document.getElementById("truSpecialistSubmit");
+  // Estimate fields
+  const fromZipEl = document.getElementById("miniFromZip");
+  const toZipEl = document.getElementById("miniToZip");
+  const sizeEl = document.getElementById("miniSize");
+  const estimateSubmit = document.getElementById("truMiniSubmit");
 
-// Estimate fields
-const fromZipEl = document.getElementById("miniFromZip");
-const toZipEl = document.getElementById("miniToZip");
-const sizeEl = document.getElementById("miniSize");
-const estimateSubmit = document.getElementById("truMiniSubmit");
+  function showPanel(which) {
+    if (!panelSpecialist || !panelEstimate) return;
 
-function showPanel(which) {
-  if (!panelSpecialist || !panelEstimate) return;
+    const divider = document.getElementById("truIntentDivider");
 
-  // OPTIONAL: if your HTML does not have id="truIntentDivider", switch this to querySelector(".tru-intent-divider")
-  const divider = document.getElementById("truIntentDivider");
+    const showSpecialist = which === "specialist";
+    const showEstimate = which === "estimate";
 
-  const showSpecialist = which === "specialist";
-  const showEstimate = which === "estimate";
+    panelSpecialist.style.display = showSpecialist ? "block" : "none";
+    panelEstimate.style.display = showEstimate ? "block" : "none";
 
-  panelSpecialist.style.display = showSpecialist ? "block" : "none";
-  panelEstimate.style.display = showEstimate ? "block" : "none";
+    if (divider) divider.style.display = "none";
 
-  if (divider) divider.style.display = "none";
+    btnSpecialist?.classList.toggle("is-active", showSpecialist);
+    btnEstimate?.classList.toggle("is-active", showEstimate);
 
-  btnSpecialist?.classList.toggle("is-active", showSpecialist);
-  btnEstimate?.classList.toggle("is-active", showEstimate);
-
-  if (showSpecialist) {
-    panelSpecialist.scrollIntoView({ behavior: "smooth", block: "start" });
-    setTimeout(() => specNameEl?.focus(), 0);
-  } else if (showEstimate) {
-    panelEstimate.scrollIntoView({ behavior: "smooth", block: "start" });
-    setTimeout(() => fromZipEl?.focus(), 0);
-  }
-}
-
-// ✅ ADD THIS (these handlers were missing)
-const onSpecialistIntent = () => showPanel("specialist");
-const onEstimateIntent = () => showPanel("estimate");
-
-// Save lead locally so you can pick it up on the next page later
-function saveLead(payload) {
-  try {
-    localStorage.setItem("tm_lead", JSON.stringify(payload));
-  } catch (e) {}
-}
-
-// Specialist submit -> save lead + go to /book
-const specErrEl = document.getElementById("specErr");
-
-const onSpecialistSubmit = () => {
-  const name = (specNameEl?.value || "").trim();
-  const phone = (specPhoneEl?.value || "").trim();
-  const fromZip = (specFromZipEl?.value || "").trim();
-  const toZip = (specToZipEl?.value || "").trim();
-
-  [specNameEl, specPhoneEl, specFromZipEl, specToZipEl].forEach((el) => el?.classList.remove("is-error"));
-  if (specErrEl) specErrEl.textContent = "";
-
-  let bad = false;
-
-  if (!name) { specNameEl?.classList.add("is-error"); bad = true; }
-  if (!phone) { specPhoneEl?.classList.add("is-error"); bad = true; }
-  if (!/^\d{5}$/.test(fromZip)) { specFromZipEl?.classList.add("is-error"); bad = true; }
-  if (!/^\d{5}$/.test(toZip)) { specToZipEl?.classList.add("is-error"); bad = true; }
-
-  if (bad) {
-    if (specErrEl) specErrEl.textContent = "Please complete all fields, ZIP codes must be 5 digits.";
-    return;
+    if (showSpecialist) {
+      panelSpecialist.scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => specNameEl?.focus(), 0);
+    } else if (showEstimate) {
+      panelEstimate.scrollIntoView({ behavior: "smooth", block: "start" });
+      setTimeout(() => fromZipEl?.focus(), 0);
+    }
   }
 
-  saveLead({ intent: "specialist", name, phone, fromZip, toZip, ts: Date.now() });
-  router.push("/book");
-};
+  const onSpecialistIntent = () => showPanel("specialist");
+  const onEstimateIntent = () => showPanel("estimate");
 
-// Estimate submit -> save lead + go to /online-estimate
-const miniErrEl = document.getElementById("miniErr");
-
-const onEstimateSubmit = () => {
-  const fromZip = (fromZipEl?.value || "").trim();
-  const toZip = (toZipEl?.value || "").trim();
-  const size = (sizeEl?.value || "").trim();
-
-  const zipOk = (z) => /^\d{5}$/.test(z);
-
-  [fromZipEl, toZipEl, sizeEl].forEach((el) => el?.classList.remove("is-error"));
-  if (miniErrEl) miniErrEl.textContent = "";
-
-  let bad = false;
-
-  if (!zipOk(fromZip)) { fromZipEl?.classList.add("is-error"); bad = true; }
-  if (!zipOk(toZip)) { toZipEl?.classList.add("is-error"); bad = true; }
-  if (!size) { sizeEl?.classList.add("is-error"); bad = true; }
-
-  if (bad) {
-    if (miniErrEl) miniErrEl.textContent = "Enter valid 5 digit ZIP codes and pick a move size.";
-    return;
+  function saveLead(payload) {
+    try {
+      localStorage.setItem("tm_lead", JSON.stringify(payload));
+    } catch (e) {}
   }
 
-  saveLead({ intent: "estimate", fromZip, toZip, size, ts: Date.now() });
-  router.push(`/online-estimate?from=${encodeURIComponent(fromZip)}&to=${encodeURIComponent(toZip)}&size=${encodeURIComponent(size)}`);
-};
+  const specErrEl = document.getElementById("specErr");
+  const onSpecialistSubmit = () => {
+    const name = (specNameEl?.value || "").trim();
+    const phone = (specPhoneEl?.value || "").trim();
+    const fromZip = (specFromZipEl?.value || "").trim();
+    const toZip = (specToZipEl?.value || "").trim();
 
-// Wire clicks
-btnSpecialist?.addEventListener("click", onSpecialistIntent);
-btnEstimate?.addEventListener("click", onEstimateIntent);
-specialistSubmit?.addEventListener("click", onSpecialistSubmit);
-estimateSubmit?.addEventListener("click", onEstimateSubmit);
+    [specNameEl, specPhoneEl, specFromZipEl, specToZipEl].forEach((el) => el?.classList.remove("is-error"));
+    if (specErrEl) specErrEl.textContent = "";
 
-// Default view
-showPanel("estimate");
+    let bad = false;
+    if (!name) { specNameEl?.classList.add("is-error"); bad = true; }
+    if (!phone) { specPhoneEl?.classList.add("is-error"); bad = true; }
+    if (!/^\d{5}$/.test(fromZip)) { specFromZipEl?.classList.add("is-error"); bad = true; }
+    if (!/^\d{5}$/.test(toZip)) { specToZipEl?.classList.add("is-error"); bad = true; }
 
-// Cleanup
-return () => {
-  btnSpecialist?.removeEventListener("click", onSpecialistIntent);
-  btnEstimate?.removeEventListener("click", onEstimateIntent);
-  specialistSubmit?.removeEventListener("click", onSpecialistSubmit);
-  estimateSubmit?.removeEventListener("click", onEstimateSubmit);
+    if (bad) {
+      if (specErrEl) specErrEl.textContent = "Please complete all fields, ZIP codes must be 5 digits.";
+      return;
+    }
 
-  howBtn?.removeEventListener("click", onHowClick);
-  talkBtn?.removeEventListener("click", onTalkClick);
+    saveLead({ intent: "specialist", name, phone, fromZip, toZip, ts: Date.now() });
+    router.push("/book");
+  };
 
-  featuresBtn?.removeEventListener("click", onFeaturesClick);
-  contactForm?.removeEventListener("submit", onContactSubmit);
-};
+  const miniErrEl = document.getElementById("miniErr");
+  const onEstimateSubmit = () => {
+    const fromZip = (fromZipEl?.value || "").trim();
+    const toZip = (toZipEl?.value || "").trim();
+    const size = (sizeEl?.value || "").trim();
 
-  }, [router]);
+    const zipOk = (z) => /^\d{5}$/.test(z);
+
+    [fromZipEl, toZipEl, sizeEl].forEach((el) => el?.classList.remove("is-error"));
+    if (miniErrEl) miniErrEl.textContent = "";
+
+    let bad = false;
+    if (!zipOk(fromZip)) { fromZipEl?.classList.add("is-error"); bad = true; }
+    if (!zipOk(toZip)) { toZipEl?.classList.add("is-error"); bad = true; }
+    if (!size) { sizeEl?.classList.add("is-error"); bad = true; }
+
+    if (bad) {
+      if (miniErrEl) miniErrEl.textContent = "Enter valid 5 digit ZIP codes and pick a move size.";
+      return;
+    }
+
+    saveLead({ intent: "estimate", fromZip, toZip, size, ts: Date.now() });
+    router.push(`/online-estimate?from=${encodeURIComponent(fromZip)}&to=${encodeURIComponent(toZip)}&size=${encodeURIComponent(size)}`);
+  };
+
+  // HERO: other buttons
+  const howBtn = document.querySelector(".tru-hero-btn-secondary");
+  const onHowClick = () => router.push("/about");
+  howBtn?.addEventListener("click", onHowClick);
+
+  const talkBtn = document.querySelector(".tru-contact-secondary-btn");
+  const onTalkClick = () => router.push("/book");
+  talkBtn?.addEventListener("click", onTalkClick);
+
+  // Wire clicks (only if hero exists)
+  const canWireHero = btnSpecialist && btnEstimate && panelSpecialist && panelEstimate && specialistSubmit && estimateSubmit;
+
+  if (canWireHero) {
+    btnSpecialist.addEventListener("click", onSpecialistIntent);
+    btnEstimate.addEventListener("click", onEstimateIntent);
+    specialistSubmit.addEventListener("click", onSpecialistSubmit);
+    estimateSubmit.addEventListener("click", onEstimateSubmit);
+
+    // Default view
+    showPanel("estimate");
+  }
+
+  return () => {
+    if (canWireHero) {
+      btnSpecialist.removeEventListener("click", onSpecialistIntent);
+      btnEstimate.removeEventListener("click", onEstimateIntent);
+      specialistSubmit.removeEventListener("click", onSpecialistSubmit);
+      estimateSubmit.removeEventListener("click", onEstimateSubmit);
+    }
+
+    howBtn?.removeEventListener("click", onHowClick);
+    talkBtn?.removeEventListener("click", onTalkClick);
+
+    featuresBtn?.removeEventListener("click", onFeaturesClick);
+    contactForm?.removeEventListener("submit", onContactSubmit);
+  };
+}, [router]);
 
   return <main dangerouslySetInnerHTML={{ __html: HTML }} />;
 }
