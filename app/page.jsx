@@ -100,7 +100,7 @@ const HTML = `
     </div>
 
     <!-- PANEL: SPECIALIST -->
-    <div class="tru-intent-panel" id="truPanelSpecialist">
+   <div class="tru-intent-panel" id="truPanelSpecialist" style="display:none;">
       <form class="tru-hero-form" id="truSpecialistForm" onsubmit="return false;">
         <div class="tru-hero-form-row">
           <input type="text" id="specName" class="tru-hero-input" placeholder="Your name" required>
@@ -131,7 +131,7 @@ const HTML = `
     </div>
 
     <!-- PANEL: ESTIMATE -->
-    <div class="tru-intent-panel" id="truPanelEstimate">
+    <div class="tru-intent-panel" id="truPanelEstimate" style="display:block;">
       <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
         <div class="tru-hero-form-row two">
           <input type="text" id="miniFromZip" class="tru-hero-input" placeholder="Moving from (ZIP)" required>
