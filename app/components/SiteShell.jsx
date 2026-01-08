@@ -1227,6 +1227,29 @@ export default function SiteShell({ children }) {
     inset 0 1px 0 rgba(255,255,255,0.85);
 }
 
+/* ACTIVE STATE for intent buttons */
+#truIntentSpecialist.is-active,
+#truIntentEstimate.is-active{
+  transform: translateY(-1px);
+  border-color: rgba(57,255,20,0.62);
+  box-shadow:
+    0 24px 62px rgba(15,23,42,0.18),
+    0 0 0 6px rgba(57,255,20,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.90);
+}
+
+#truIntentEstimate.is-active{
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(57,255,20,0.08));
+}
+
+#truIntentSpecialist.is-active{
+  box-shadow:
+    0 28px 70px rgba(15,23,42,0.24),
+    0 0 0 7px rgba(57,255,20,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+
       `}</style>
     </div>
   );
