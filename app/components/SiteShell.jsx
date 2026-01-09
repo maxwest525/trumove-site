@@ -807,408 +807,163 @@ export default function SiteShell({ children }) {
   color: rgba(15,23,42,0.38);
 }
 
+
+
 /* =========================================================
-   HERO INTENT (2 BUTTONS) + PANELS (APPLE-LEVEL)
-   Paste at the very bottom of SiteShell <style jsx global>
+   HERO TOGGLE (ONE CLEAN SYSTEM)
+   Only one panel visible at a time (JS controls display)
    ========================================================= */
 
-/* Container that holds the 2 intent buttons (if you already have one, this still works) */
-#truHeroQuoteCard .tru-intent-row,
-#truHeroQuoteCard .tru-hero-intent-row{
+#truHeroQuoteCard { 
+  border: 1px solid rgba(15,23,42,0.10);
+  border-radius: 22px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92));
+  box-shadow: 0 30px 90px rgba(15,23,42,0.14), inset 0 1px 0 rgba(255,255,255,0.85);
+}
+
+#truHeroQuoteCard .tru-intent-row{
   display:grid;
   grid-template-columns: 1fr 1fr;
   gap:10px;
-  margin-bottom:12px;
+  margin: 10px 0 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(15,23,42,0.08);
 }
 
-/* Base button style */
-#truIntentSpecialist,
-#truIntentEstimate{
-  height:46px;
-  border-radius:14px;
-  border:1px solid rgba(15,23,42,0.14);
-  background:rgba(255,255,255,0.92);
-  box-shadow:
-    0 16px 40px rgba(15,23,42,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.85);
-  cursor:pointer;
-  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, background 140ms ease;
+#truHeroQuoteCard .tru-intent-btn{
+  position: relative;
+  min-width: 0;
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,0.14);
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 16px 40px rgba(15,23,42,0.10), inset 0 1px 0 rgba(255,255,255,0.85);
+  cursor: pointer;
   display:flex;
   align-items:center;
   justify-content:center;
   gap:10px;
-  padding:0 14px;
-  font-weight:800;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-  font-size:12px;
-  color:rgba(15,23,42,0.88);
-  white-space:nowrap;
+  padding: 0 12px;
+  font-weight: 850;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: rgba(15,23,42,0.88);
+  text-align: center;
+  line-height: 1.1;
+  white-space: normal;
+  transition: transform 140ms ease, box-shadow 140ms ease, border-color 140ms ease, background 140ms ease;
 }
 
-/* Primary, specialist button, premium dark */
-#truIntentSpecialist{
-  background:linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
-  border-color:rgba(57,255,20,0.40);
-  color:rgba(255,255,255,0.96);
-  box-shadow:
-    0 18px 46px rgba(15,23,42,0.18),
-    0 0 0 5px rgba(57,255,20,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.10);
-}
-
-/* Tiny dot on both buttons for an “OS” feel */
-#truIntentSpecialist::before,
-#truIntentEstimate::before{
+#truHeroQuoteCard .tru-intent-btn::before{
   content:"";
-  width:9px;
-  height:9px;
-  border-radius:999px;
+  width: 9px;
+  height: 9px;
+  border-radius: 999px;
   background:
     radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0) 45%),
     radial-gradient(circle at center, rgba(57,255,20,1), rgba(57,255,20,0.35) 70%, rgba(57,255,20,0.10) 100%);
-  box-shadow:0 0 0 5px rgba(57,255,20,0.14);
-  flex:0 0 auto;
+  box-shadow: 0 0 0 5px rgba(57,255,20,0.12);
+  flex: 0 0 auto;
 }
 
-/* Softer dot on the secondary */
-#truIntentEstimate::before{
-  box-shadow:0 0 0 5px rgba(57,255,20,0.10);
+/* Specialist button has the premium dark base */
+#truHeroQuoteCard .tru-intent-primary{
+  background: linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
+  border-color: rgba(57,255,20,0.35);
+  color: rgba(255,255,255,0.96);
+  box-shadow: 0 18px 46px rgba(15,23,42,0.18), 0 0 0 5px rgba(57,255,20,0.08), inset 0 1px 0 rgba(255,255,255,0.10);
 }
 
-/* Hover and focus */
-#truIntentSpecialist:hover,
-#truIntentEstimate:hover{
-  transform:translateY(-1px);
-  border-color:rgba(57,255,20,0.45);
-  box-shadow:
-    0 22px 56px rgba(15,23,42,0.16),
-    inset 0 1px 0 rgba(255,255,255,0.90);
-}
-#truIntentSpecialist:hover{
-  box-shadow:
-    0 24px 62px rgba(15,23,42,0.22),
-    0 0 0 6px rgba(57,255,20,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.12);
+#truHeroQuoteCard .tru-intent-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(57,255,20,0.45);
+  box-shadow: 0 22px 56px rgba(15,23,42,0.14), inset 0 1px 0 rgba(255,255,255,0.90);
 }
 
-#truIntentSpecialist:focus-visible,
-#truIntentEstimate:focus-visible{
-  outline:2px solid rgba(57,255,20,0.55);
-  outline-offset:2px;
-}
-
-/* Panels */
-#truPanelSpecialist,
-#truPanelEstimate{
-  margin-top:12px;
-  border-radius:18px;
-  border:1px solid rgba(15,23,42,0.12);
-  background:rgba(255,255,255,0.96);
-  box-shadow:0 22px 60px rgba(15,23,42,0.12);
-  padding:14px;
-  animation: tmPanelIn 180ms ease both;
-}
-
-@keyframes tmPanelIn{
-  from{ opacity:0; transform: translateY(6px) scale(0.995); }
-  to{ opacity:1; transform: translateY(0) scale(1); }
-}
-
-/* Make both panels use the same clean field styling, even if the markup differs */
-#truPanelSpecialist input,
-#truPanelSpecialist select,
-#truPanelEstimate input,
-#truPanelEstimate select{
-  width:100%;
-  height:46px;
-  border-radius:12px;
-  border:1px solid rgba(15,23,42,0.12);
-  padding:0 14px;
-  outline:none;
-  background:#fff;
-  transition: box-shadow 150ms ease, border-color 150ms ease, transform 150ms ease;
-}
-
-#truPanelSpecialist input:focus,
-#truPanelSpecialist select:focus,
-#truPanelEstimate input:focus,
-#truPanelEstimate select:focus{
-  border-color:rgba(57,255,20,0.55);
-  box-shadow:0 0 0 5px rgba(57,255,20,0.16);
-}
-
-/* Make “from/to” zip layout look premium if you are using rows */
-#truPanelEstimate .tru-hero-form-row.two,
-#truPanelSpecialist .tru-hero-form-row.two{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:10px;
-}
-
-/* Keep your submit buttons consistent, expensive */
-#truSpecialistSubmit,
-#truMiniSubmit{
-  height:46px;
-  width:100%;
-  border-radius:14px;
-  border:1px solid rgba(57,255,20,0.45);
-  background:linear-gradient(180deg, rgba(57,255,20,0.22), rgba(57,255,20,0.10));
-  font-weight:850;
-  letter-spacing:0.10em;
-  text-transform:uppercase;
-  cursor:pointer;
-  transition: transform 150ms ease, box-shadow 150ms ease, background 150ms ease, border-color 150ms ease;
-}
-
-#truSpecialistSubmit:hover,
-#truMiniSubmit:hover{
-  transform:translateY(-1px);
-  border-color:rgba(57,255,20,0.60);
-  box-shadow:0 18px 44px rgba(15,23,42,0.14);
-  background:linear-gradient(180deg, rgba(57,255,20,0.26), rgba(57,255,20,0.12));
-}
-
-/* Mobile */
-@media (max-width: 520px){
-  #truHeroQuoteCard .tru-intent-row,
-  #truHeroQuoteCard .tru-hero-intent-row{
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ===============================
-   HERO INTENT — ACTIVE STATE
-   =============================== */
-
-#truIntentSpecialist.is-active,
-#truIntentEstimate.is-active {
+/* Active state ONLY driven by JS adding .is-active */
+#truHeroQuoteCard .tru-intent-btn.is-active{
   transform: translateY(-1px);
   border-color: rgba(57,255,20,0.65);
-  box-shadow:
-    0 26px 68px rgba(15,23,42,0.22),
-    0 0 0 6px rgba(57,255,20,0.12),
-    inset 0 1px 0 rgba(255,255,255,0.12);
+  box-shadow: 0 26px 68px rgba(15,23,42,0.20), 0 0 0 6px rgba(57,255,20,0.12), inset 0 1px 0 rgba(255,255,255,0.90);
 }
 
-/* Secondary stays lighter even when active */
-#truIntentEstimate.is-active {
-  background: linear-gradient(
-    180deg,
-    rgba(255,255,255,0.96),
-    rgba(255,255,255,0.90)
-  );
+#truHeroQuoteCard .tru-intent-primary.is-active{
+  background: linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
+  color: rgba(255,255,255,0.96);
+  border-color: rgba(57,255,20,0.55);
 }
 
-/* Tiny glow pulse when switching intent */
-@keyframes tmIntentPulse {
-  0% { box-shadow: 0 0 0 0 rgba(57,255,20,0.25); }
-  100% { box-shadow: 0 0 0 10px rgba(57,255,20,0); }
+#truHeroQuoteCard .tru-intent-secondary.is-active{
+  background: rgba(255,255,255,0.92);
+  color: rgba(15,23,42,0.88);
 }
 
-#truIntentSpecialist.is-active::after,
-#truIntentEstimate.is-active::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  animation: tmIntentPulse 420ms ease-out;
-  pointer-events: none;
+/* Panel is not another card */
+#truHeroQuoteCard .tru-intent-panel{
+  margin-top: 12px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
-/* ===============================
-   HERO CARD — PREMIUM RHYTHM
-   =============================== */
-
-/* Make the card feel more “hardware” */
-#truHeroQuoteCard{
-  border: 1px solid rgba(15,23,42,0.10);
-  border-radius: 22px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92));
-  box-shadow:
-    0 30px 90px rgba(15,23,42,0.14),
-    inset 0 1px 0 rgba(255,255,255,0.85);
+/* Fields */
+#truHeroQuoteCard .tru-hero-input,
+#truHeroQuoteCard .tru-hero-select{
+  width: 100%;
+  height: 48px;
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,0.12);
+  background: rgba(255,255,255,0.96);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.75);
+  padding: 0 14px;
+  outline: none;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  transition: box-shadow 150ms ease, border-color 150ms ease;
 }
 
+#truHeroQuoteCard .tru-hero-input:focus,
+#truHeroQuoteCard .tru-hero-select:focus{
+  border-color: rgba(57,255,20,0.55);
+  box-shadow: 0 0 0 6px rgba(57,255,20,0.14), inset 0 1px 0 rgba(255,255,255,0.85);
+}
 
-/* Calm the layout: consistent row spacing */
-#truHeroQuoteCard .tru-hero-form{
-  margin-top: 8px;
+#truHeroQuoteCard .tru-hero-form-row.two{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
 }
 
 #truHeroQuoteCard .tru-hero-form-row{
   margin: 0 0 10px;
 }
 
-/* Make inputs feel more precise */
-#truHeroQuoteCard .tru-hero-input,
-#truHeroQuoteCard .tru-hero-select{
+#truHeroQuoteCard .tru-hero-form-btn{
   height: 48px;
-  border-radius: 14px;
-  border: 1px solid rgba(15,23,42,0.12);
-  background: rgba(255,255,255,0.96);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.75);
-  font-weight: 700;
-  letter-spacing: 0.01em;
-}
-
-/* Better focus state (subtle but premium) */
-#truHeroQuoteCard .tru-hero-input:focus,
-#truHeroQuoteCard .tru-hero-select:focus{
-  border-color: rgba(57,255,20,0.55);
-  box-shadow:
-    0 0 0 6px rgba(57,255,20,0.14),
-    inset 0 1px 0 rgba(255,255,255,0.85);
-}
-
-/* Buttons: slightly taller, stronger presence */
-#truHeroQuoteCard #truSpecialistSubmit,
-#truHeroQuoteCard #truMiniSubmit{
-  height: 48px;
+  width: 100%;
   border-radius: 16px;
-}
-
-/* Panels: slightly tighter padding, consistent */
-#truPanelSpecialist,
-#truPanelEstimate{
-  padding: 14px;
-}
-
-/* Small separator feel between intent row and fields */
-#truHeroQuoteCard .tru-intent-row{
-  margin-bottom: 14px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(15,23,42,0.08);
-}
-
-#truIntentSpecialist.is-active{
-  background:linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
-  border-color:rgba(57,255,20,0.55);
-  color:rgba(255,255,255,0.96);
-  box-shadow:
-    0 24px 62px rgba(15,23,42,0.22),
-    0 0 0 6px rgba(57,255,20,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.12);
-}
-
-#truIntentEstimate.is-active{
-  border-color:rgba(57,255,20,0.55);
-  box-shadow:
-    0 22px 56px rgba(15,23,42,0.16),
-    0 0 0 6px rgba(57,255,20,0.08),
-    inset 0 1px 0 rgba(255,255,255,0.90);
-}
-
-/* Premium spacing inside the hero quote card */
-#truHeroQuoteCard .tru-hero-form-title{
-  margin-top: 2px;
-}
-#truHeroQuoteCard .tru-hero-form-sub{
-  margin-bottom: 12px;
-}
-
-/* Divider: subtle, expensive */
-#truHeroQuoteCard .tru-intent-divider{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:12px;
-  margin: 14px 0 12px;
-}
-
-#truHeroQuoteCard .tru-intent-divider-line{
-  height:1px;
-  flex:1 1 auto;
-  background: linear-gradient(90deg, rgba(15,23,42,0), rgba(15,23,42,0.14), rgba(15,23,42,0));
-}
-
-#truHeroQuoteCard .tru-intent-divider-chip{
-  font-size: 11px;
+  border: 1px solid rgba(57,255,20,0.45);
+  background: linear-gradient(180deg, rgba(57,255,20,0.22), rgba(57,255,20,0.10));
   font-weight: 900;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
-  color: rgba(15,23,42,0.62);
-  padding: 7px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(15,23,42,0.10);
-  background: rgba(255,255,255,0.92);
-  box-shadow: 0 14px 30px rgba(15,23,42,0.08), inset 0 1px 0 rgba(255,255,255,0.85);
+  cursor: pointer;
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease, background 150ms ease;
 }
 
-/* Give panels a little breathing room and consistent visual rhythm */
-#truPanelSpecialist,
-#truPanelEstimate{
-  margin-top: 10px;
-}
-
-/* INTENT BUTTON ACTIVE STATE */
-
-.tru-intent-btn.is-active{
-  border-color: rgba(57,255,20,0.65);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(57,255,20,0.12));
-  box-shadow:
-    0 24px 60px rgba(15,23,42,0.18),
-    0 0 0 6px rgba(57,255,20,0.12),
-    inset 0 1px 0 rgba(255,255,255,0.95);
+#truHeroQuoteCard .tru-hero-form-btn:hover{
   transform: translateY(-1px);
+  border-color: rgba(57,255,20,0.60);
+  box-shadow: 0 18px 44px rgba(15,23,42,0.14);
+  background: linear-gradient(180deg, rgba(57,255,20,0.26), rgba(57,255,20,0.12));
 }
 
-/* Primary (Specialist) active stays darker + premium */
-.tru-intent-primary.is-active{
-  background:
-    linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
-  border-color: rgba(57,255,20,0.7);
-  box-shadow:
-    0 26px 64px rgba(15,23,42,0.26),
-    0 0 0 7px rgba(57,255,20,0.16),
-    inset 0 1px 0 rgba(255,255,255,0.14);
-}
-
-/* Subtle press feel */
-.tru-intent-btn:active{
-  transform: translateY(0);
-}
-
-/* Make intent buttons able to handle active styling cleanly */
-#truIntentSpecialist,
-#truIntentEstimate{
-  position: relative;
-}
-
-/* Kill the “panel inside a card inside a card” look */
-#truPanelSpecialist,
-#truPanelEstimate{
-  margin-top: 12px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  box-shadow: none;
-  animation: tmPanelIn 180ms ease both;
-}
-
-/* Active button state, clean and premium */
-#truIntentSpecialist.is-active,
-#truIntentEstimate.is-active{
-  transform: translateY(-1px);
-  border-color: rgba(57,255,20,0.62);
-  box-shadow:
-    0 22px 56px rgba(15,23,42,0.16),
-    0 0 0 6px rgba(57,255,20,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.85);
-}
-
-/* Keep specialist as the dark premium one when active */
-#truIntentSpecialist.is-active{
-  background: linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
-  color: rgba(255,255,255,0.96);
-  border-color: rgba(57,255,20,0.55);
-}
-
-/* Estimate stays light when active */
-#truIntentEstimate.is-active{
-  background: rgba(255,255,255,0.92);
-  color: rgba(15,23,42,0.88);
+@media (max-width: 520px){
+  #truHeroQuoteCard .tru-intent-row{ grid-template-columns: 1fr; }
+  #truHeroQuoteCard .tru-hero-form-row.two{ grid-template-columns: 1fr; }
+  }
 }
 
 
