@@ -621,7 +621,7 @@ const onEstimateIntent = () => setIntent("estimate", { focus: true });
     estimateSubmit.addEventListener("click", onEstimateSubmit);
 
     // INIT: no scroll on load
-    setIntent("estimate", { scroll: false });
+    setIntent("estimate", { focus: false });
   }
 
   return () => {
