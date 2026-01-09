@@ -1,4 +1,4 @@
-1q  "use client";
+"use client";
 
 import "./globals.css";
 import { useEffect } from "react";
