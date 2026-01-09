@@ -1,4 +1,4 @@
-"use client";
+1q  "use client";
 
 import "./globals.css";
 import { useEffect } from "react";
@@ -539,17 +539,14 @@ export default function HomePage() {
 
     if (!opts || opts.scroll === false) return;
 
-    if (showSpecialist) {
-      panelSpecialist.scrollIntoView({ behavior: "smooth", block: "start" });
-      setTimeout(() => specNameEl?.focus(), 0);
-    } else if (showEstimate) {
-      panelEstimate.scrollIntoView({ behavior: "smooth", block: "start" });
-      setTimeout(() => fromZipEl?.focus(), 0);
-    }
+if (opts && opts.focus === true) {
+  if (showSpecialist) setTimeout(() => specNameEl?.focus({ preventScroll: true }), 0);
+  if (showEstimate) setTimeout(() => fromZipEl?.focus({ preventScroll: true }), 0);
+}
   }
 
-  const onSpecialistIntent = () => setIntent("specialist", { scroll: true });
-  const onEstimateIntent = () => setIntent("estimate", { scroll: true });
+const onSpecialistIntent = () => setIntent("specialist", { focus: true });
+const onEstimateIntent = () => setIntent("estimate", { focus: true });
 
   function saveLead(payload) {
     try {
