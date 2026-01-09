@@ -149,7 +149,15 @@ export default function SiteShell({ children }) {
       <header ref={headerRef} className="tm-header">
         <div className="tm-header-inner">
           <Link href="/" className="tm-logo" aria-label="TruMove Home">
-            <img className="tm-logo-img" src="/logo.png" alt="TruMove" />
+            import Image from "next/image";
+<Image
+  className="tm-logo-img"
+  src="/logo.png"
+  alt="TruMove"
+  width={280}
+  height={62}
+  priority
+/>
           </Link>
 
           <nav className="tm-nav" aria-label="Primary">
@@ -379,12 +387,12 @@ export default function SiteShell({ children }) {
           text-decoration: none;
         }
 
-        .tm-logo-img {
-          height: 62px;
-          width: auto;
-          display: block;
-          max-width: 280px;
-        }
+.tm-logo-img {
+  width: min(280px, 42vw);
+  height: auto;
+  display: block;
+}
+
 
         .tm-nav {
           display: flex;
