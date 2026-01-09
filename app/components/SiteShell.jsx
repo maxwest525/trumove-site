@@ -159,7 +159,6 @@ export default function SiteShell({ children }) {
     priority
   />
 </Link>
-/>
           
 
           <nav className="tm-nav" aria-label="Primary">
