@@ -150,15 +150,9 @@ export default function SiteShell({ children }) {
       <header ref={headerRef} className="tm-header">
         <div className="tm-header-inner">
 <Link href="/" className="tm-logo" aria-label="TruMove Home">
-  <Image
-    className="tm-logo-img"
-    src="/logo.png"
-    alt="TruMove"
-    width={280}
-    height={62}
-    priority
-  />
+  <img className="tm-logo-img" src="/logo.png" alt="TruMove" />
 </Link>
+
           
 
           <nav className="tm-nav" aria-label="Primary">
