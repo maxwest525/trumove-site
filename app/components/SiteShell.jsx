@@ -150,15 +150,15 @@ export default function SiteShell({ children }) {
         <div className="tm-header-inner">
           <Link href="/" className="tm-logo" aria-label="TruMove Home">
             import Image from "next/image";
-<Image
-  className="tm-logo-img"
+<Image className="tm-logo-img"
   src="/logo.png"
   alt="TruMove"
   width={280}
   height={62}
   priority
+  </Link>
 />
-          </Link>
+          
 
           <nav className="tm-nav" aria-label="Primary">
             {NAV.map((item) => (
