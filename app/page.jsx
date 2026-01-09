@@ -505,20 +505,26 @@ export default function HomePage() {
   const panelSpecialist = document.getElementById("truPanelSpecialist");
   const panelEstimate = document.getElementById("truPanelEstimate");
 
+  const divider = document.getElementById("truIntentDivider");
+
+  // Specialist fields
   const specNameEl = document.getElementById("specName");
   const specPhoneEl = document.getElementById("specPhone");
   const specFromZipEl = document.getElementById("specFromZip");
   const specToZipEl = document.getElementById("specToZip");
   const specialistSubmit = document.getElementById("truSpecialistSubmit");
+  const specErrEl = document.getElementById("specErr");
 
+  // Estimate fields
   const fromZipEl = document.getElementById("miniFromZip");
   const toZipEl = document.getElementById("miniToZip");
   const sizeEl = document.getElementById("miniSize");
   const estimateSubmit = document.getElementById("truMiniSubmit");
+  const miniErrEl = document.getElementById("miniErr");
 
-  // Single source of truth for toggle
-  function setIntent(which, opts = { focus: false }) {
-    if (!panelSpecialist || !panelEstimate) return;
+  // Single source of truth for toggle state
+  function setIntent(which, opts = { scroll: true }) {
+    if (!panelSpecialist || !panelEstimate || !btnSpecialist || !btnEstimate) return;
 
     const showSpecialist = which === "specialist";
     const showEstimate = which === "estimate";
@@ -526,18 +532,21 @@ export default function HomePage() {
     panelSpecialist.style.display = showSpecialist ? "block" : "none";
     panelEstimate.style.display = showEstimate ? "block" : "none";
 
-    btnSpecialist?.classList.toggle("is-active", showSpecialist);
-    btnEstimate?.classList.toggle("is-active", showEstimate);
+    if (divider) divider.style.display = "none";
 
-    // Focus without scrolling the page
-    if (opts.focus === true) {
-      if (showSpecialist) setTimeout(() => specNameEl?.focus?.({ preventScroll: true }), 0);
-      if (showEstimate) setTimeout(() => fromZipEl?.focus?.({ preventScroll: true }), 0);
-    }
+    btnSpecialist.classList.toggle("is-active", showSpecialist);
+    btnEstimate.classList.toggle("is-active", showEstimate);
+
+    if (!opts || opts.scroll === false) return;
+
+if (opts && opts.focus === true) {
+  if (showSpecialist) setTimeout(() => specNameEl?.focus({ preventScroll: true }), 0);
+  if (showEstimate) setTimeout(() => fromZipEl?.focus({ preventScroll: true }), 0);
+}
   }
 
-  const onSpecialistIntent = () => setIntent("specialist", { focus: true });
-  const onEstimateIntent = () => setIntent("estimate", { focus: true });
+const onSpecialistIntent = () => setIntent("specialist", { focus: true });
+const onEstimateIntent = () => setIntent("estimate", { focus: true });
 
   function saveLead(payload) {
     try {
@@ -545,7 +554,6 @@ export default function HomePage() {
     } catch (e) {}
   }
 
-  const specErrEl = document.getElementById("specErr");
   const onSpecialistSubmit = () => {
     const name = (specNameEl?.value || "").trim();
     const phone = (specPhoneEl?.value || "").trim();
@@ -570,7 +578,6 @@ export default function HomePage() {
     router.push("/book");
   };
 
-  const miniErrEl = document.getElementById("miniErr");
   const onEstimateSubmit = () => {
     const fromZip = (fromZipEl?.value || "").trim();
     const toZip = (toZipEl?.value || "").trim();
@@ -604,22 +611,21 @@ export default function HomePage() {
   const onTalkClick = () => router.push("/book");
   talkBtn?.addEventListener("click", onTalkClick);
 
-  // Wire only if hero exists
-  const canWireHero =
-    btnSpecialist && btnEstimate && panelSpecialist && panelEstimate && specialistSubmit && estimateSubmit;
+  // Wire hero only if the hero actually exists
+  const heroReady = !!(btnSpecialist && btnEstimate && panelSpecialist && panelEstimate && specialistSubmit && estimateSubmit);
 
-  if (canWireHero) {
+  if (heroReady) {
     btnSpecialist.addEventListener("click", onSpecialistIntent);
     btnEstimate.addEventListener("click", onEstimateIntent);
     specialistSubmit.addEventListener("click", onSpecialistSubmit);
     estimateSubmit.addEventListener("click", onEstimateSubmit);
 
-    // Default view (no focus on load)
+    // INIT: no scroll on load
     setIntent("estimate", { focus: false });
   }
 
   return () => {
-    if (canWireHero) {
+    if (heroReady) {
       btnSpecialist.removeEventListener("click", onSpecialistIntent);
       btnEstimate.removeEventListener("click", onEstimateIntent);
       specialistSubmit.removeEventListener("click", onSpecialistSubmit);
