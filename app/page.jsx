@@ -505,23 +505,26 @@ export default function HomePage() {
   const panelSpecialist = document.getElementById("truPanelSpecialist");
   const panelEstimate = document.getElementById("truPanelEstimate");
 
+  const divider = document.getElementById("truIntentDivider");
+
   // Specialist fields
   const specNameEl = document.getElementById("specName");
   const specPhoneEl = document.getElementById("specPhone");
   const specFromZipEl = document.getElementById("specFromZip");
   const specToZipEl = document.getElementById("specToZip");
   const specialistSubmit = document.getElementById("truSpecialistSubmit");
+  const specErrEl = document.getElementById("specErr");
 
   // Estimate fields
   const fromZipEl = document.getElementById("miniFromZip");
   const toZipEl = document.getElementById("miniToZip");
   const sizeEl = document.getElementById("miniSize");
   const estimateSubmit = document.getElementById("truMiniSubmit");
+  const miniErrEl = document.getElementById("miniErr");
 
-  function showPanel(which) {
-    if (!panelSpecialist || !panelEstimate) return;
-
-    const divider = document.getElementById("truIntentDivider");
+  // Single source of truth for toggle state
+  function setIntent(which, opts = { scroll: true }) {
+    if (!panelSpecialist || !panelEstimate || !btnSpecialist || !btnEstimate) return;
 
     const showSpecialist = which === "specialist";
     const showEstimate = which === "estimate";
@@ -531,8 +534,10 @@ export default function HomePage() {
 
     if (divider) divider.style.display = "none";
 
-    btnSpecialist?.classList.toggle("is-active", showSpecialist);
-    btnEstimate?.classList.toggle("is-active", showEstimate);
+    btnSpecialist.classList.toggle("is-active", showSpecialist);
+    btnEstimate.classList.toggle("is-active", showEstimate);
+
+    if (!opts || opts.scroll === false) return;
 
     if (showSpecialist) {
       panelSpecialist.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -543,8 +548,8 @@ export default function HomePage() {
     }
   }
 
-  const onSpecialistIntent = () => showPanel("specialist");
-  const onEstimateIntent = () => showPanel("estimate");
+  const onSpecialistIntent = () => setIntent("specialist", { scroll: true });
+  const onEstimateIntent = () => setIntent("estimate", { scroll: true });
 
   function saveLead(payload) {
     try {
@@ -552,7 +557,6 @@ export default function HomePage() {
     } catch (e) {}
   }
 
-  const specErrEl = document.getElementById("specErr");
   const onSpecialistSubmit = () => {
     const name = (specNameEl?.value || "").trim();
     const phone = (specPhoneEl?.value || "").trim();
@@ -577,7 +581,6 @@ export default function HomePage() {
     router.push("/book");
   };
 
-  const miniErrEl = document.getElementById("miniErr");
   const onEstimateSubmit = () => {
     const fromZip = (fromZipEl?.value || "").trim();
     const toZip = (toZipEl?.value || "").trim();
@@ -611,21 +614,21 @@ export default function HomePage() {
   const onTalkClick = () => router.push("/book");
   talkBtn?.addEventListener("click", onTalkClick);
 
-  // Wire clicks (only if hero exists)
-  const canWireHero = btnSpecialist && btnEstimate && panelSpecialist && panelEstimate && specialistSubmit && estimateSubmit;
+  // Wire hero only if the hero actually exists
+  const heroReady = !!(btnSpecialist && btnEstimate && panelSpecialist && panelEstimate && specialistSubmit && estimateSubmit);
 
-  if (canWireHero) {
+  if (heroReady) {
     btnSpecialist.addEventListener("click", onSpecialistIntent);
     btnEstimate.addEventListener("click", onEstimateIntent);
     specialistSubmit.addEventListener("click", onSpecialistSubmit);
     estimateSubmit.addEventListener("click", onEstimateSubmit);
 
-    // Default view
-    showPanel("estimate");
+    // INIT: no scroll on load
+    setIntent("estimate", { scroll: false });
   }
 
   return () => {
-    if (canWireHero) {
+    if (heroReady) {
       btnSpecialist.removeEventListener("click", onSpecialistIntent);
       btnEstimate.removeEventListener("click", onEstimateIntent);
       specialistSubmit.removeEventListener("click", onSpecialistSubmit);
