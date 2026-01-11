@@ -1055,6 +1055,8 @@ export default function SiteShell({ children }) {
   padding: 0 !important;
 }
 
+#truHeroQuoteCard{ outline: 6px solid #39ff14 !important; }
+
  
       `}</style>
     </div>
