@@ -1252,6 +1252,38 @@ export default function SiteShell({ children }) {
   max-width: 420px;
 }
 
+/* =========================================
+   HERO FORM — SYSTEM HEADER
+   ========================================= */
+
+#truHeroQuoteCard .tru-hero-form-title{
+  font-size: 13px;
+  font-weight: 900;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: rgba(15,23,42,0.75);
+  margin: 0;
+}
+
+#truHeroQuoteCard .tru-hero-form-sub{
+  font-size: 16px;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  color: rgba(15,23,42,0.92);
+  margin: 6px 0 6px;
+}
+
+#truHeroQuoteCard .tru-hero-form-helper{
+  font-size: 13px;
+  color: rgba(15,23,42,0.55);
+  margin-bottom: 14px;
+}
+
+/* System divider */
+#truHeroQuoteCard .tru-hero-form-helper{
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(15,23,42,0.10);
+}
 
       `}</style>
     </div>
