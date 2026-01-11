@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
 
 const NAV = [
   { href: "/", label: "Home" },
@@ -148,9 +149,16 @@ export default function SiteShell({ children }) {
       {/* HEADER */}
       <header ref={headerRef} className="tm-header">
         <div className="tm-header-inner">
-          <Link href="/" className="tm-logo" aria-label="TruMove Home">
-            <img className="tm-logo-img" src="/logo.png" alt="TruMove" />
-          </Link>
+    <Link href="/" className="tm-logo" aria-label="TruMove Home">
+  <Image
+    className="tm-logo-img"
+    src="/logo.png"
+    alt="TruMove"
+    width={280}
+    height={62}
+    priority
+  />
+</Link>
 
           <nav className="tm-nav" aria-label="Primary">
             {NAV.map((item) => (
@@ -379,12 +387,18 @@ export default function SiteShell({ children }) {
           text-decoration: none;
         }
 
-        .tm-logo-img {
-          height: 62px;
-          width: auto;
-          display: block;
-          max-width: 280px;
-        }
+.tm-logo-img{
+  width: 280px;
+  height: 62px;
+  display: block;
+}
+
+@media (max-width: 520px){
+  .tm-logo-img{
+    width: 220px;
+    height: auto;
+  }
+}
 
         .tm-nav {
           display: flex;
@@ -689,10 +703,11 @@ export default function SiteShell({ children }) {
           }
         }
 
-        @media (max-width: 520px) {
-          .tm-logo-img {
-            height: 54px;
-          }
+@media (max-width: 520px) {
+  .tm-logo-img {
+    width: 220px;
+  }
+}
 
           .tm-call,
           .tm-cta {
