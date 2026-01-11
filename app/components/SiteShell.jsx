@@ -1109,6 +1109,123 @@ export default function SiteShell({ children }) {
   text-transform: uppercase;
 }
 
+/* =========================================================
+   HERO FORM HEADER — BIG TECH / PREMIUM
+   Paste at VERY bottom of SiteShell CSS
+   ========================================================= */
+
+/* Make the entire hero quote card feel like a flagship product surface */
+#truHeroQuoteCard{
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient highlight like a premium product card (very subtle) */
+#truHeroQuoteCard::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(900px 320px at 15% 0%, rgba(57,255,20,0.10), rgba(57,255,20,0.00) 55%),
+    radial-gradient(700px 260px at 95% 30%, rgba(15,23,42,0.06), rgba(15,23,42,0.00) 55%);
+  pointer-events:none;
+}
+
+/* Add a clean “header band” inside the card without adding a new box */
+#truHeroQuoteCard .tru-hero-form-title{
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(15,23,42,0.82);
+  margin: 0;
+}
+
+#truHeroQuoteCard .tru-hero-form-sub{
+  font-size: 13px;
+  line-height: 1.35;
+  color: rgba(15,23,42,0.60);
+  margin: 6px 0 0;
+}
+
+/* Create a premium header section with spacing + divider */
+#truHeroQuoteCard .tru-hero-form-title,
+#truHeroQuoteCard .tru-hero-form-sub{
+  position: relative;
+  z-index: 1;
+}
+
+#truHeroQuoteCard .tru-hero-form-sub{
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(15,23,42,0.08);
+  margin-bottom: 12px;
+}
+
+/* Tighten the toggle row so it looks like a product control, not two random buttons */
+#truHeroQuoteCard .tru-intent-row{
+  margin: 10px 0 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(15,23,42,0.08);
+}
+
+/* Make the toggle buttons feel like “enterprise UI controls” */
+#truHeroQuoteCard .tru-intent-btn{
+  height: 44px;
+  border-radius: 14px;
+  letter-spacing: 0.16em;
+  font-weight: 900;
+  font-size: 10.5px;
+  box-shadow:
+    0 14px 34px rgba(15,23,42,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.80);
+}
+
+/* Reduce the glow intensity so it feels expensive not neon */
+#truHeroQuoteCard .tru-intent-btn::before{
+  box-shadow: 0 0 0 4px rgba(57,255,20,0.10);
+}
+
+/* Active state: clean emphasis, less “loud” */
+#truHeroQuoteCard .tru-intent-btn.is-active{
+  box-shadow:
+    0 18px 44px rgba(15,23,42,0.14),
+    0 0 0 6px rgba(57,255,20,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.88);
+}
+
+/* Make the dark button look like premium hardware */
+#truHeroQuoteCard .tru-intent-primary{
+  box-shadow:
+    0 18px 46px rgba(15,23,42,0.20),
+    0 0 0 5px rgba(57,255,20,0.07),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+}
+
+/* Give the form fields a slightly more “precision UI” look */
+#truHeroQuoteCard .tru-hero-input,
+#truHeroQuoteCard .tru-hero-select{
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.98);
+}
+
+/* CTA feels like the primary action for a tech platform */
+#truHeroQuoteCard .tru-hero-form-btn{
+  height: 50px;
+  border-radius: 16px;
+  letter-spacing: 0.18em;
+  font-weight: 950;
+  box-shadow:
+    0 18px 44px rgba(15,23,42,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.85);
+}
+
+/* Mobile spacing polish */
+@media (max-width: 520px){
+  #truHeroQuoteCard .tru-hero-form-sub{
+    padding-bottom: 12px;
+  }
+}
 
 
       `}</style>
