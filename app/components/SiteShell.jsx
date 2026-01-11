@@ -1227,6 +1227,31 @@ export default function SiteShell({ children }) {
   }
 }
 
+/* =========================================
+   HERO FORM — SYSTEM HEADER
+   ========================================= */
+
+.tru-hero-form-header{
+  margin-bottom: 14px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(15,23,42,0.10);
+}
+
+.tru-hero-form-title{
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  margin: 0 0 6px;
+}
+
+.tru-hero-form-sub{
+  font-size: 13.5px;
+  line-height: 1.45;
+  color: rgba(15,23,42,0.65);
+  max-width: 420px;
+}
+
 
       `}</style>
     </div>
