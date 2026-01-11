@@ -981,12 +981,12 @@ export default function SiteShell({ children }) {
   }
 }
 
-/* =========================================================
-   HERO FORM — SINGLE PREMIUM BOX (kills double-card look)
-   Paste at the very bottom so it overrides everything
-   ========================================================= */
+/* =========================================
+   HERO FORM — SINGLE CLEAN CARD (OVERRIDES)
+   Paste at the VERY BOTTOM of SiteShell CSS
+   ========================================= */
 
-/* Remove any outer “container card” styling */
+/* Make the outer container NOT look like a card */
 .tru-hero-visual{
   background: transparent !important;
   border: 0 !important;
@@ -994,7 +994,7 @@ export default function SiteShell({ children }) {
   padding: 0 !important;
 }
 
-/* If you have any styling on these that creates the 2nd box, kill it */
+/* If your layout uses an inner wrapper around the card, neutralize it too */
 .tru-hero-visual-body,
 .tru-hero-formcard{
   background: transparent !important;
@@ -1003,82 +1003,41 @@ export default function SiteShell({ children }) {
   padding: 0 !important;
 }
 
-/* The ONE real card */
+/* The ONE card */
 #truHeroQuoteCard{
-  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92)) !important;
   border: 1px solid rgba(15,23,42,0.10) !important;
   border-radius: 22px !important;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.94)) !important;
   box-shadow:
-    0 30px 90px rgba(15,23,42,0.14),
-    inset 0 1px 0 rgba(255,255,255,0.85) !important;
-
-  padding: 18px 18px 16px !important;
+    0 34px 100px rgba(15,23,42,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.90) !important;
+  padding: 22px 22px 20px !important;
 }
 
-/* Header typography inside the card */
+/* Premium header rhythm */
 #truHeroQuoteCard .tru-hero-form-title{
-  font-size: 14px;
-  font-weight: 900;
-  letter-spacing: 0.02em;
-  color: rgba(15,23,42,0.92);
-  margin: 2px 0 6px;
+  font-size: 18px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.02em !important;
+  color: rgba(15,23,42,0.95) !important;
+  margin: 0 0 6px !important;
 }
 
+/* Subheader: cleaner, more “expensive” */
 #truHeroQuoteCard .tru-hero-form-sub{
-  font-size: 12.5px;
-  line-height: 1.35;
-  color: rgba(15,23,42,0.62);
-  margin: 0 0 12px;
+  font-size: 12.5px !important;
+  font-weight: 650 !important;
+  line-height: 1.35 !important;
+  color: rgba(15,23,42,0.62) !important;
+  margin: 0 0 14px !important;
 }
 
-/* subtle divider line under header */
-#truHeroQuoteCard .tru-hero-form-sub::after{
-  content:"";
-  display:block;
-  margin-top: 12px;
-  height: 1px;
-  background: linear-gradient(90deg,
-    rgba(15,23,42,0),
-    rgba(15,23,42,0.10),
-    rgba(15,23,42,0)
-  );
+/* Optional subtle divider under the header (helps it feel “designed”) */
+#truHeroQuoteCard .tru-intent-row{
+  margin-top: 10px !important;
+  padding-top: 12px !important;
+  border-top: 1px solid rgba(15,23,42,0.08) !important;
 }
-
-/* Center the pill and make it look intentional */
-.tru-hero-visual{
-  position: relative;
-}
-
-.tru-hero-visual-tag{
-  width: fit-content;
-  margin: 0 auto 10px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px 12px;
-  border-radius: 999px;
-  border: 1px solid rgba(15,23,42,0.10);
-  background: rgba(255,255,255,0.90);
-  box-shadow: 0 12px 26px rgba(15,23,42,0.08);
-}
-
-.tru-hero-visual-tag-dot{
-  width: 8px;
-  height: 8px;
-  border-radius: 999px;
-  background: rgba(57,255,20,1);
-  box-shadow: 0 0 0 5px rgba(57,255,20,0.12);
-}
-
-/* Kill the inner form card — THIS is the remaining box */
-#truHeroQuoteCard .tru-hero-form{
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  border-radius: 0 !important;
-  padding: 0 !important;
-}
-
 
 
       `}</style>
