@@ -669,45 +669,37 @@ export default function SiteShell({ children }) {
           background: #f3f4f6;
         }
 
-        /* RESPONSIVE */
-        @media (max-width: 1280px) {
-          :root {
-            --tm-max: 1320px;
-          }
+/* RESPONSIVE */
+@media (max-width: 1280px) {
+  :root { --tm-max: 1320px; }
 
-          .tm-header-inner {
-            grid-template-columns: auto 1fr;
-            grid-template-rows: auto auto;
-            row-gap: 10px;
-          }
+  .tm-header-inner {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    row-gap: 10px;
+  }
 
-          .tm-header-actions {
-            justify-content: flex-end;
-          }
+  .tm-header-actions { justify-content: flex-end; }
 
-          .tm-nav {
-            grid-column: 1 / -1;
-            justify-content: flex-start;
-            overflow-x: auto;
-            -webkit-overflow-scrolling: touch;
-            padding-bottom: 6px;
-            scrollbar-width: none;
-          }
+  .tm-nav {
+    grid-column: 1 / -1;
+    justify-content: flex-start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
 
-          .tm-nav::-webkit-scrollbar {
-            display: none;
-          }
-
-          .tm-nav-link {
-            font-size: 15px;
-          }
-        }
+  .tm-nav::-webkit-scrollbar { display: none; }
+  .tm-nav-link { font-size: 15px; }
+}
 
 @media (max-width: 520px) {
-  .tm-logo-img {
-    width: 220px;
-  }
+  .tm-logo-img { width: 220px; height: auto; }
+  .tm-call, .tm-cta { height: 38px; padding: 0 12px; }
+  .tm-status-mask { width: 64px; }
 }
+
 
           .tm-call,
           .tm-cta {
@@ -1056,6 +1048,29 @@ export default function SiteShell({ children }) {
 }
 
 #truHeroQuoteCard{ outline: 6px solid #39ff14 !important; }
+
+html body #truHeroQuoteCard,
+html body #truHeroQuoteCard.tru-hero-formcard,
+html body .tru-hero-visual-body#truHeroQuoteCard{
+  background: #fff !important;
+  border: 1px solid rgba(15,23,42,0.10) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 34px 100px rgba(15,23,42,0.14), inset 0 1px 0 rgba(255,255,255,0.90) !important;
+  padding: 22px 22px 20px !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+html body #truHeroQuoteCard::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:-2px !important;
+  background:
+    radial-gradient(900px 320px at 12% 0%, rgba(57,255,20,0.10), rgba(57,255,20,0.00) 55%),
+    radial-gradient(760px 320px at 92% 20%, rgba(15,23,42,0.07), rgba(15,23,42,0.00) 60%) !important;
+  pointer-events:none !important;
+}
+
 
  
       `}</style>
