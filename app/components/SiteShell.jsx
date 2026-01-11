@@ -1285,6 +1285,26 @@ export default function SiteShell({ children }) {
   border-bottom: 1px solid rgba(15,23,42,0.10);
 }
 
+/* FORCE: one clean hero form box, no nested panel cards */
+#truHeroQuoteCard{
+  background: #ffffff !important;        /* kills gradient */
+  border: 1px solid rgba(15,23,42,0.10) !important;
+  border-radius: 22px !important;
+  box-shadow: 0 30px 90px rgba(15,23,42,0.14), inset 0 1px 0 rgba(255,255,255,0.85) !important;
+}
+
+/* panels must NOT look like separate cards */
+#truHeroQuoteCard .tru-intent-panel,
+#truPanelSpecialist,
+#truPanelEstimate{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+  margin-top: 12px !important;
+}
+
+
       `}</style>
     </div>
   );
