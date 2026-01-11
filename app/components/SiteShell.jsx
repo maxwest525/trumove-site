@@ -978,313 +978,84 @@ export default function SiteShell({ children }) {
 @media (max-width: 520px){
   #truHeroQuoteCard .tru-intent-row{ grid-template-columns: 1fr; }
   #truHeroQuoteCard .tru-hero-form-row.two{ grid-template-columns: 1fr; }
-  }
+}
 }
 
-/* =========================================
-   HERO FORM — SINGLE CLEAN CARD (OVERRIDES)
-   Paste at the VERY BOTTOM of SiteShell CSS
-   ========================================= */
+/* =========================================================
+   HERO FORM — PREMIUM CONTROL HEADER (FINAL)
+   Paste ONCE at the very bottom
+   ========================================================= */
 
-/* Make the outer container NOT look like a card */
-.tru-hero-visual{
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-}
-
-/* If your layout uses an inner wrapper around the card, neutralize it too */
-.tru-hero-visual-body,
-.tru-hero-formcard{
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-}
-
-/* The ONE card */
 #truHeroQuoteCard{
+  position: relative;
+  overflow: hidden;
+  background: #ffffff !important; /* kill the gradient */
   border: 1px solid rgba(15,23,42,0.10) !important;
   border-radius: 22px !important;
-  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.94)) !important;
   box-shadow:
     0 34px 100px rgba(15,23,42,0.14),
     inset 0 1px 0 rgba(255,255,255,0.90) !important;
   padding: 22px 22px 20px !important;
 }
 
-/* Premium header rhythm */
+/* subtle “tech” ambient lighting */
+#truHeroQuoteCard::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(900px 320px at 12% 0%, rgba(57,255,20,0.10), rgba(57,255,20,0.00) 55%),
+    radial-gradient(760px 320px at 92% 20%, rgba(15,23,42,0.07), rgba(15,23,42,0.00) 60%);
+  pointer-events:none;
+}
+
+/* header feels like a “system module” */
 #truHeroQuoteCard .tru-hero-form-title{
-  font-size: 18px !important;
-  font-weight: 950 !important;
-  letter-spacing: 0.02em !important;
-  color: rgba(15,23,42,0.95) !important;
-  margin: 0 0 6px !important;
+  position: relative;
+  z-index: 1;
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(15,23,42,0.78);
+  margin: 0;
 }
 
-/* Subheader: cleaner, more “expensive” */
+/* main statement, big-tech */
 #truHeroQuoteCard .tru-hero-form-sub{
-  font-size: 12.5px !important;
-  font-weight: 650 !important;
-  line-height: 1.35 !important;
-  color: rgba(15,23,42,0.62) !important;
-  margin: 0 0 14px !important;
+  position: relative;
+  z-index: 1;
+  font-size: 15px;
+  font-weight: 850;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: rgba(15,23,42,0.95);
+  margin: 8px 0 0;
 }
 
-/* Optional subtle divider under the header (helps it feel “designed”) */
-#truHeroQuoteCard .tru-intent-row{
-  margin-top: 10px !important;
-  padding-top: 12px !important;
-  border-top: 1px solid rgba(15,23,42,0.08) !important;
+/* add a helper line under your subcopy by using the existing element */
+#truHeroQuoteCard .tru-hero-form-sub::after{
+  content:"Choose a workflow below, your move stays organized in one place.";
+  display:block;
+  margin-top: 10px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(15,23,42,0.08);
+  font-size: 12.5px;
+  font-weight: 650;
+  line-height: 1.35;
+  color: rgba(15,23,42,0.60);
 }
 
-/* =========================================
-   HERO FORM: REMOVE DOUBLE BOX (KEEP ONE CARD)
-   Paste at VERY bottom of SiteShell CSS
-   ========================================= */
-
-/* The OUTER wrapper is causing the extra grey rounded box */
-.tru-hero-visual{
+/* ensure no inner wrapper becomes a second card */
+.tru-hero-visual-body,
+.tru-hero-formcard{
   background: transparent !important;
   border: 0 !important;
   box-shadow: none !important;
   padding: 0 !important;
 }
 
-/* If you have any inner wrapper styles on the visual body, kill them too */
-.tru-hero-visual-body,
-.tru-hero-formcard{
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-}
-
-/* Optional: if the right column container has a background, kill it */
-.tru-hero-grid > .tru-hero-visual,
-.tru-hero-grid > div:last-child{
-  background: transparent !important;
-}
-
-/* =========================================
-   HERO FORM HEADER: MORE PREMIUM
-   ========================================= */
-
-#truHeroQuoteCard .tru-hero-form-title{
-  font-size: 12px;
-  font-weight: 950;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(15,23,42,0.82);
-  margin: 2px 0 6px;
-}
-
-#truHeroQuoteCard .tru-hero-form-sub{
-  font-size: 13px;
-  line-height: 1.35;
-  color: rgba(15,23,42,0.60);
-  margin: 0 0 12px;
-}
-
-/* subtle divider that makes it feel “designed” */
-#truHeroQuoteCard .tru-hero-form-sub{
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(15,23,42,0.08);
-}
-
-.tru-hero-visual-tag{
-  width: fit-content;
-  margin: 0 auto 10px !important;
-  border-radius: 999px;
-  padding: 8px 12px;
-  border: 1px solid rgba(15,23,42,0.10);
-  background: rgba(255,255,255,0.92);
-  box-shadow: 0 14px 30px rgba(15,23,42,0.08);
-}
-
-.tru-hero-visual-tag span{
-  font-size: 10.5px;
-  font-weight: 900;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-/* =========================================================
-   HERO FORM HEADER — BIG TECH / PREMIUM
-   Paste at VERY bottom of SiteShell CSS
-   ========================================================= */
-
-/* Make the entire hero quote card feel like a flagship product surface */
-#truHeroQuoteCard{
-  position: relative;
-  overflow: hidden;
-}
-
-/* Ambient highlight like a premium product card (very subtle) */
-#truHeroQuoteCard::before{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  background:
-    radial-gradient(900px 320px at 15% 0%, rgba(57,255,20,0.10), rgba(57,255,20,0.00) 55%),
-    radial-gradient(700px 260px at 95% 30%, rgba(15,23,42,0.06), rgba(15,23,42,0.00) 55%);
-  pointer-events:none;
-}
-
-/* Add a clean “header band” inside the card without adding a new box */
-#truHeroQuoteCard .tru-hero-form-title{
-  font-size: 12px;
-  font-weight: 950;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: rgba(15,23,42,0.82);
-  margin: 0;
-}
-
-#truHeroQuoteCard .tru-hero-form-sub{
-  font-size: 13px;
-  line-height: 1.35;
-  color: rgba(15,23,42,0.60);
-  margin: 6px 0 0;
-}
-
-/* Create a premium header section with spacing + divider */
-#truHeroQuoteCard .tru-hero-form-title,
-#truHeroQuoteCard .tru-hero-form-sub{
-  position: relative;
-  z-index: 1;
-}
-
-#truHeroQuoteCard .tru-hero-form-sub{
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(15,23,42,0.08);
-  margin-bottom: 12px;
-}
-
-/* Tighten the toggle row so it looks like a product control, not two random buttons */
-#truHeroQuoteCard .tru-intent-row{
-  margin: 10px 0 14px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(15,23,42,0.08);
-}
-
-/* Make the toggle buttons feel like “enterprise UI controls” */
-#truHeroQuoteCard .tru-intent-btn{
-  height: 44px;
-  border-radius: 14px;
-  letter-spacing: 0.16em;
-  font-weight: 900;
-  font-size: 10.5px;
-  box-shadow:
-    0 14px 34px rgba(15,23,42,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.80);
-}
-
-/* Reduce the glow intensity so it feels expensive not neon */
-#truHeroQuoteCard .tru-intent-btn::before{
-  box-shadow: 0 0 0 4px rgba(57,255,20,0.10);
-}
-
-/* Active state: clean emphasis, less “loud” */
-#truHeroQuoteCard .tru-intent-btn.is-active{
-  box-shadow:
-    0 18px 44px rgba(15,23,42,0.14),
-    0 0 0 6px rgba(57,255,20,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.88);
-}
-
-/* Make the dark button look like premium hardware */
-#truHeroQuoteCard .tru-intent-primary{
-  box-shadow:
-    0 18px 46px rgba(15,23,42,0.20),
-    0 0 0 5px rgba(57,255,20,0.07),
-    inset 0 1px 0 rgba(255,255,255,0.10);
-}
-
-/* Give the form fields a slightly more “precision UI” look */
-#truHeroQuoteCard .tru-hero-input,
-#truHeroQuoteCard .tru-hero-select{
-  border-radius: 14px;
-  border: 1px solid rgba(15,23,42,0.10);
-  background: rgba(255,255,255,0.98);
-}
-
-/* CTA feels like the primary action for a tech platform */
-#truHeroQuoteCard .tru-hero-form-btn{
-  height: 50px;
-  border-radius: 16px;
-  letter-spacing: 0.18em;
-  font-weight: 950;
-  box-shadow:
-    0 18px 44px rgba(15,23,42,0.12),
-    inset 0 1px 0 rgba(255,255,255,0.85);
-}
-
-/* Mobile spacing polish */
-@media (max-width: 520px){
-  #truHeroQuoteCard .tru-hero-form-sub{
-    padding-bottom: 12px;
-  }
-}
-
-/* =========================================
-   HERO FORM — SYSTEM HEADER
-   ========================================= */
-
-.tru-hero-form-header{
-  margin-bottom: 14px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(15,23,42,0.10);
-}
-
-.tru-hero-form-title{
-  font-size: 22px;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  color: #0f172a;
-  margin: 0 0 6px;
-}
-
-.tru-hero-form-sub{
-  font-size: 13.5px;
-  line-height: 1.45;
-  color: rgba(15,23,42,0.65);
-  max-width: 420px;
-}
-
-/* =========================================
-   HERO FORM — SYSTEM HEADER
-   ========================================= */
-
-#truHeroQuoteCard .tru-hero-form-title{
-  font-size: 13px;
-  font-weight: 900;
-  letter-spacing: 0.24em;
-  text-transform: uppercase;
-  color: rgba(15,23,42,0.75);
-  margin: 0;
-}
-
-#truHeroQuoteCard .tru-hero-form-sub{
-  font-size: 16px;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  color: rgba(15,23,42,0.92);
-  margin: 6px 0 6px;
-}
-
-#truHeroQuoteCard .tru-hero-form-helper{
-  font-size: 13px;
-  color: rgba(15,23,42,0.55);
-  margin-bottom: 14px;
-}
-
-/* System divider */
-#truHeroQuoteCard .tru-hero-form-helper{
-  padding-bottom: 12px;
-  border-bottom: 1px solid rgba(15,23,42,0.10);
-}
-
+ 
       `}</style>
     </div>
   );
