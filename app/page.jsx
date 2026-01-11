@@ -78,11 +78,14 @@ const HTML = `
 <!-- HERO VISUAL -->
 <div class="tru-hero-visual">
 
-  <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
-    <div class="tru-hero-form-title">Start in one tap</div>
+<div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
+
+  <div class="tru-hero-form-header">
+    <div class="tru-hero-form-title">Start Your Move</div>
     <div class="tru-hero-form-sub">
-      Choose how you want to build your move, we’ll take it from there.
+      TruMove gives you full control over your inventory and routing, with expert support whenever you want it.
     </div>
+  </div>
 
     <!-- INTENT BUTTONS -->
     <div class="tru-intent-row">
