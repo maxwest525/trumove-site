@@ -1039,6 +1039,77 @@ export default function SiteShell({ children }) {
   border-top: 1px solid rgba(15,23,42,0.08) !important;
 }
 
+/* =========================================
+   HERO FORM: REMOVE DOUBLE BOX (KEEP ONE CARD)
+   Paste at VERY bottom of SiteShell CSS
+   ========================================= */
+
+/* The OUTER wrapper is causing the extra grey rounded box */
+.tru-hero-visual{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* If you have any inner wrapper styles on the visual body, kill them too */
+.tru-hero-visual-body,
+.tru-hero-formcard{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* Optional: if the right column container has a background, kill it */
+.tru-hero-grid > .tru-hero-visual,
+.tru-hero-grid > div:last-child{
+  background: transparent !important;
+}
+
+/* =========================================
+   HERO FORM HEADER: MORE PREMIUM
+   ========================================= */
+
+#truHeroQuoteCard .tru-hero-form-title{
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(15,23,42,0.82);
+  margin: 2px 0 6px;
+}
+
+#truHeroQuoteCard .tru-hero-form-sub{
+  font-size: 13px;
+  line-height: 1.35;
+  color: rgba(15,23,42,0.60);
+  margin: 0 0 12px;
+}
+
+/* subtle divider that makes it feel “designed” */
+#truHeroQuoteCard .tru-hero-form-sub{
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(15,23,42,0.08);
+}
+
+.tru-hero-visual-tag{
+  width: fit-content;
+  margin: 0 auto 10px !important;
+  border-radius: 999px;
+  padding: 8px 12px;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.92);
+  box-shadow: 0 14px 30px rgba(15,23,42,0.08);
+}
+
+.tru-hero-visual-tag span{
+  font-size: 10.5px;
+  font-weight: 900;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
 
       `}</style>
     </div>
