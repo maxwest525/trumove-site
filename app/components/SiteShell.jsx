@@ -981,6 +981,95 @@ export default function SiteShell({ children }) {
   }
 }
 
+/* =========================================================
+   HERO FORM — SINGLE PREMIUM BOX (kills double-card look)
+   Paste at the very bottom so it overrides everything
+   ========================================================= */
+
+/* Remove any outer “container card” styling */
+.tru-hero-visual{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* If you have any styling on these that creates the 2nd box, kill it */
+.tru-hero-visual-body,
+.tru-hero-formcard{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* The ONE real card */
+#truHeroQuoteCard{
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.92)) !important;
+  border: 1px solid rgba(15,23,42,0.10) !important;
+  border-radius: 22px !important;
+  box-shadow:
+    0 30px 90px rgba(15,23,42,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.85) !important;
+
+  padding: 18px 18px 16px !important;
+}
+
+/* Header typography inside the card */
+#truHeroQuoteCard .tru-hero-form-title{
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  color: rgba(15,23,42,0.92);
+  margin: 2px 0 6px;
+}
+
+#truHeroQuoteCard .tru-hero-form-sub{
+  font-size: 12.5px;
+  line-height: 1.35;
+  color: rgba(15,23,42,0.62);
+  margin: 0 0 12px;
+}
+
+/* subtle divider line under header */
+#truHeroQuoteCard .tru-hero-form-sub::after{
+  content:"";
+  display:block;
+  margin-top: 12px;
+  height: 1px;
+  background: linear-gradient(90deg,
+    rgba(15,23,42,0),
+    rgba(15,23,42,0.10),
+    rgba(15,23,42,0)
+  );
+}
+
+/* Center the pill and make it look intentional */
+.tru-hero-visual{
+  position: relative;
+}
+
+.tru-hero-visual-tag{
+  width: fit-content;
+  margin: 0 auto 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid rgba(15,23,42,0.10);
+  background: rgba(255,255,255,0.90);
+  box-shadow: 0 12px 26px rgba(15,23,42,0.08);
+}
+
+.tru-hero-visual-tag-dot{
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: rgba(57,255,20,1);
+  box-shadow: 0 0 0 5px rgba(57,255,20,0.12);
+}
+
 
       `}</style>
     </div>
