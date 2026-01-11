@@ -77,6 +77,10 @@ const HTML = `
 
 <!-- HERO VISUAL -->
 <div class="tru-hero-visual">
+  <div class="tru-hero-visual-tag">
+    <span class="tru-hero-visual-tag-dot"></span>
+    <span>Start Your Move</span>
+  </div>
 
   <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
     <div class="tru-hero-form-title">Start in one tap</div>
