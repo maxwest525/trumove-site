@@ -10,7 +10,7 @@ const HTML = `
 
       <!-- HERO -->
       <section class="tru-hero">
-        <div class="tru-hero-grid">
+
           <div>
             <div class="tru-hero-pill">
               <span class="tru-hero-pill-dot"></span>
