@@ -1070,6 +1070,16 @@ export default function SiteShell({ children }) {
   box-shadow: 0 0 0 5px rgba(57,255,20,0.12);
 }
 
+/* Kill the inner form card — THIS is the remaining box */
+#truHeroQuoteCard .tru-hero-form{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  padding: 0 !important;
+}
+
+
 
       `}</style>
     </div>
