@@ -1289,6 +1289,111 @@ Terms
   box-shadow: none !important;
 }
 
+/* =========================================================
+   TRUMOVE — SECURE CONSOLE DENSITY PASS (SPACING + RHYTHM)
+   Paste at VERY BOTTOM (after all other hero form CSS)
+   ========================================================= */
+
+#truHeroQuoteCard{
+  padding: 20px 20px 18px !important;
+}
+
+#truHeroQuoteCard .tru-form-micro{
+  margin-bottom: 10px !important;
+  padding: 6px 10px !important;
+  font-size: 9.5px !important;
+  letter-spacing: 0.24em !important;
+}
+
+#truHeroQuoteCard .tru-hero-form-title{
+  margin: 0 !important;
+  line-height: 1.05 !important;
+}
+
+#truHeroQuoteCard .tru-hero-form-sub{
+  margin: 6px 0 12px !important;
+  padding-bottom: 12px !important;
+}
+
+/* tighten rows */
+#truHeroQuoteCard .tru-hero-form{
+  margin-top: 12px !important;
+}
+
+#truHeroQuoteCard .tru-hero-form-row{
+  margin: 0 0 9px !important;
+}
+
+#truHeroQuoteCard .tru-hero-form-row.two{
+  gap: 9px !important;
+}
+
+/* tighten input height + make it feel “device-grade” */
+#truHeroQuoteCard .tru-hero-input,
+#truHeroQuoteCard .tru-hero-select{
+  height: 46px !important;
+  border-radius: 13px !important;
+  padding: 0 12px !important;
+  font-weight: 850 !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.92),
+    0 10px 22px rgba(15,23,42,0.06) !important;
+}
+
+/* choice buttons: tighter + more “control surface” */
+#truHeroQuoteCard .tru-choice-wrap{
+  margin: 10px 0 10px !important;
+  gap: 9px !important;
+}
+
+#truHeroQuoteCard .tru-choice-btn{
+  height: 42px !important;
+  border-radius: 13px !important;
+  letter-spacing: 0.16em !important;
+  background: rgba(255,255,255,0.72) !important;
+}
+
+/* selected: crisp, not neon */
+#truHeroQuoteCard .tru-choice-btn.is-selected{
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(57,255,20,0.06)) !important;
+  box-shadow:
+    0 18px 46px rgba(15,23,42,0.14),
+    0 0 0 5px rgba(57,255,20,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.92) !important;
+}
+
+/* main CTA: more “secure action” */
+#truHeroQuoteCard .tru-primary-cta{
+  height: 52px !important;
+  border-radius: 15px !important;
+  letter-spacing: 0.20em !important;
+  box-shadow:
+    0 24px 64px rgba(15,23,42,0.22),
+    0 0 0 6px rgba(57,255,20,0.06),
+    inset 0 1px 0 rgba(255,255,255,0.10) !important;
+}
+
+#truHeroQuoteCard #miniErr{
+  margin-top: 9px !important;
+}
+
+/* mobile: keep it tight and “executive” */
+@media (max-width: 520px){
+  #truHeroQuoteCard{
+    padding: 16px 14px 14px !important;
+  }
+  #truHeroQuoteCard .tru-hero-form-row{
+    margin-bottom: 8px !important;
+  }
+  #truHeroQuoteCard .tru-hero-form-row.two{
+    gap: 8px !important;
+  }
+  #truHeroQuoteCard .tru-choice-wrap{
+    gap: 8px !important;
+  }
+}
+
+
      `}</style>
 </div>
 );
