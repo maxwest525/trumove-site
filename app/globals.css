@@ -1742,53 +1742,6 @@
   }
   .tru-quote-cta-btn span.icon{ font-size:0.9rem; }
 
-  /* Mobile */
-  @media (max-width:900px){
-    .tru-inv-grid{ grid-template-columns:minmax(0, 1fr); }
-    .tru-quote-grid{ grid-template-columns:minmax(0, 1fr); }
-    .tru-quote-header{ flex-direction:column; padding:18px 18px 20px; }
-    .tru-quote-heading{ font-size:1.8rem; }
-    .tru-quote-header-side{ max-width:100%; }
-    .tru-inv-left{
-      border-right:none;
-      border-bottom:1px solid #e5e7eb;
-      padding-right:0;
-      padding-bottom:18px;
-      margin-bottom:6px;
-    }
-  }
-  @media (max-width:600px){
-    .tru-inv-inline{ grid-template-columns:minmax(0, 1fr); }
-    .tru-quote-inline{ grid-template-columns:minmax(0, 1fr); }
-  }
-  @media (max-width:640px){
-    .tru-quote-wrap{ padding:40px 16px 56px; }
-  }
-
-  /* Print styles */
-  @media print{
-    body{ background:#ffffff; }
-    .tru-print-inventory{
-      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-      padding:16px;
-      color:#111827;
-    }
-    .tru-print-inventory h1{
-      font-size:1.4rem;
-      margin-bottom:6px;
-    }
-    .tru-print-inventory table{
-      width:100%;
-      border-collapse:collapse;
-      font-size:0.8rem;
-      margin-top:8px;
-    }
-    .tru-print-inventory th,
-    .tru-print-inventory td{
-      border:1px solid #d1d5db;
-      padding:4px 6px;
-      text-align:left;
-    }
         /* --- TruMove homepage polish --- */
 .tru-page-inner{
   max-width:1120px;
@@ -1873,6 +1826,55 @@
   background:var(--tru-green);
   box-shadow:0 0 0 4px rgba(57,255,20,0.18);
 }
+
+  /* Mobile */
+  @media (max-width:900px){
+    .tru-inv-grid{ grid-template-columns:minmax(0, 1fr); }
+    .tru-quote-grid{ grid-template-columns:minmax(0, 1fr); }
+    .tru-quote-header{ flex-direction:column; padding:18px 18px 20px; }
+    .tru-quote-heading{ font-size:1.8rem; }
+    .tru-quote-header-side{ max-width:100%; }
+    .tru-inv-left{
+      border-right:none;
+      border-bottom:1px solid #e5e7eb;
+      padding-right:0;
+      padding-bottom:18px;
+      margin-bottom:6px;
+    }
+  }
+  @media (max-width:600px){
+    .tru-inv-inline{ grid-template-columns:minmax(0, 1fr); }
+    .tru-quote-inline{ grid-template-columns:minmax(0, 1fr); }
+  }
+  @media (max-width:640px){
+    .tru-quote-wrap{ padding:40px 16px 56px; }
+  }
+
+  /* Print styles */
+  @media print{
+    body{ background:#ffffff; }
+    .tru-print-inventory{
+      font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+      padding:16px;
+      color:#111827;
+    }
+    .tru-print-inventory h1{
+      font-size:1.4rem;
+      margin-bottom:6px;
+    }
+    .tru-print-inventory table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:0.8rem;
+      margin-top:8px;
+    }
+    .tru-print-inventory th,
+    .tru-print-inventory td{
+      border:1px solid #d1d5db;
+      padding:4px 6px;
+      text-align:left;
+    }
+
 
 /* =========================================
    HERO QUOTE FORM (RESTORE STYLING)
