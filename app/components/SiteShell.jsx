@@ -1232,7 +1232,6 @@ html body #truHeroQuoteCard::before{
 #truHeroQuoteCard .tru-hero-select:focus{
   border-color: rgba(57,255,20,0.55);
   box-shadow:
-    0 0 0 6px rgba(57,255,20,0.12),
     inset 0 1px 0 rgba(255,255,255,0.92),
     0 18px 40px rgba(15,23,42,0.08);
 }
@@ -1272,7 +1271,6 @@ html body #truHeroQuoteCard::before{
   background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(57,255,20,0.10));
   box-shadow:
     0 22px 62px rgba(15,23,42,0.16),
-    0 0 0 6px rgba(57,255,20,0.10),
     inset 0 1px 0 rgba(255,255,255,0.92);
 }
 
@@ -1291,7 +1289,6 @@ html body #truHeroQuoteCard::before{
   cursor: pointer;
   box-shadow:
     0 26px 70px rgba(15,23,42,0.22),
-    0 0 0 6px rgba(57,255,20,0.08),
     inset 0 1px 0 rgba(255,255,255,0.10);
   transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
 }
@@ -1301,7 +1298,6 @@ html body #truHeroQuoteCard::before{
   border-color: rgba(57,255,20,0.40);
   box-shadow:
     0 34px 90px rgba(15,23,42,0.26),
-    0 0 0 7px rgba(57,255,20,0.10),
     inset 0 1px 0 rgba(255,255,255,0.12);
 }
 
@@ -1381,7 +1377,7 @@ html body #truHeroQuoteCard::before{
 #truHeroQuoteCard .tru-choice-btn.is-selected{
   border-color: rgba(57,255,20,0.62);
   background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(57,255,20,0.10));
-  box-shadow: 0 22px 62px rgba(15,23,42,0.16), 0 0 0 6px rgba(57,255,20,0.10), inset 0 1px 0 rgba(255,255,255,0.92);
+  box-shadow: 0 22px 62px rgba(15,23,42,0.16), inset 0 1px 0 rgba(255,255,255,0.92);
 }
 
 /* Primary CTA */
@@ -1397,7 +1393,7 @@ html body #truHeroQuoteCard::before{
   letter-spacing: 0.18em;
   text-transform: uppercase;
   cursor: pointer;
-  box-shadow: 0 26px 70px rgba(15,23,42,0.22), 0 0 0 6px rgba(57,255,20,0.08), inset 0 1px 0 rgba(255,255,255,0.10);
+  box-shadow: 0 26px 70px rgba(15,23,42,0.22), inset 0 1px 0 rgba(255,255,255,0.10);
 }
 
 
