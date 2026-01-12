@@ -1,3 +1,230 @@
+"use client";
+
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
+import { useEffect, useMemo, useRef, useState } from "react";
+import Image from "next/image";
+
+const NAV = [
+{ href: "/", label: "Home" },
+{ href: "/online-estimate", label: "Get an Estimate" },
+{ href: "/vetting", label: "Carrier Standards" },
+{ href: "/faq", label: "FAQ" },
+{ href: "/about", label: "About" },
+];
+
+const TRUST = [
+{ tag: "USDOT", code: "USDOT", text: "USDOT Compliant" },
+{ tag: "INSURED", code: "BOND", text: "Bonded and Insured" },
+{ tag: "FMCSA", code: "FMCSA", text: "FMCSA Authorized Motor Carriers" },
+{ tag: "BROKER", code: "BRKR", text: "Licensed Interstate Moving Broker" },
+];
+
+// Status items: key is used for page-aware highlight + snap behavior
+const STATUS = [
+{ text: "Instant AI quotes", key: "online-estimate", href: "/online-estimate" },
+{ text: "Vetted mover network", key: "vetting", href: "/vetting" },
+{ text: "Real time updates", key: "home", href: "/" },
+{ text: "Virtual video consults", key: "book", href: "/book" },
+{ text: "Live review and claims monitoring", key: "home", href: "/" },
+{ text: "Load tracking", key: "home", href: "/" },
+];
+
+function getRouteKey(path) {
+const route = (path || "/").toLowerCase();
+if (route.startsWith("/online-estimate")) return "online-estimate";
+if (route.startsWith("/vetting")) return "vetting";
+if (route.startsWith("/book")) return "book";
+return "home";
+}
+
+export default function SiteShell({ children }) {
+const path = usePathname();
+const router = useRouter();
+
+const headerRef = useRef(null);
+const statusStripRef = useRef(null);
+
+const [paused, setPaused] = useState(false);
+const [speed, setSpeed] = useState("normal"); // "normal" | "fast"
+const scrollT = useRef(null);
+
+const routeKey = useMemo(() => getRouteKey(path), [path]);
+
+// Page-aware highlighting + badge shape selector
+useEffect(() => {
+document.documentElement.setAttribute("data-tm-route", routeKey);
+
+// Pick one: "shield" | "plaque" | "circle"
+document.documentElement.setAttribute("data-tm-badge", "plaque");
+}, [routeKey]);
+
+// Pause while user scrolls
+useEffect(() => {
+const onScroll = () => {
+document.documentElement.classList.add("tm-scrolling");
+setPaused(true);
+
+if (scrollT.current) window.clearTimeout(scrollT.current);
+scrollT.current = window.setTimeout(() => {
+document.documentElement.classList.remove("tm-scrolling");
+setPaused(false);
+}, 160);
+};
+
+window.addEventListener("scroll", onScroll, { passive: true });
+return () => {
+window.removeEventListener("scroll", onScroll);
+if (scrollT.current) window.clearTimeout(scrollT.current);
+};
+}, []);
+
+// Auto-pause when header enters viewport
+useEffect(() => {
+if (!headerRef.current) return;
+
+const obs = new IntersectionObserver(
+(entries) => {
+const entry = entries[0];
+if (entry && entry.isIntersecting) setPaused(true);
+else setPaused(false);
+},
+{ threshold: 0.65 }
+);
+
+obs.observe(headerRef.current);
+return () => obs.disconnect();
+}, []);
+
+const loop = useMemo(() => [...STATUS, ...STATUS], []);
+
+function snapTo(item) {
+const targetHref = item.href || "/";
+const onSamePage = (path || "/") === targetHref;
+
+if (!onSamePage) {
+router.push(targetHref);
+return;
+}
+
+const id = `tm-${item.key}`;
+const el = document.getElementById(id);
+if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+else window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+return (
+<div className="tm-shell">
+{/* STATUS STRIP (TOP) */}
+<div
+ref={statusStripRef}
+className={["tm-status", paused ? "is-paused" : "", speed === "fast" ? "is-fast" : ""].join(" ")}
+aria-label="Platform capabilities"
+onMouseEnter={() => setPaused(true)}
+onMouseLeave={() => setPaused(false)}
+>
+<div className="tm-status-mask tm-status-mask-left" aria-hidden="true" />
+<div className="tm-status-mask tm-status-mask-right" aria-hidden="true" />
+
+<div className="tm-status-track" role="list">
+<div className="tm-status-inner" role="presentation">
+{loop.map((s, i) => (
+<button
+key={`${s.text}-${i}`}
+type="button"
+className="tm-status-item"
+data-page={s.key}
+role="listitem"
+onClick={() => snapTo(s)}
+aria-label={s.text}
+>
+<span className="tm-status-dot" aria-hidden="true" />
+<span className="tm-status-text">{s.text}</span>
+</button>
+))}
+</div>
+</div>
+</div>
+
+{/* HEADER */}
+<header ref={headerRef} className="tm-header">
+<div className="tm-header-inner">
+<Link href="/" className="tm-logo" aria-label="TruMove Home">
+<Image
+className="tm-logo-img"
+src="/logo.png"
+alt="TruMove"
+width={280}
+height={62}
+priority
+/>
+</Link>
+
+<nav className="tm-nav" aria-label="Primary">
+{NAV.map((item) => (
+<Link
+key={item.href}
+href={item.href}
+className={`tm-nav-link ${path === item.href ? "active" : ""}`}
+>
+{item.label}
+</Link>
+))}
+</nav>
+
+<div className="tm-header-actions">
+<a className="tm-call" href="tel:+10000000000">
+Call Us Now
+</a>
+<Link className="tm-cta" href="/book">
+Book a Consult
+</Link>
+</div>
+</div>
+</header>
+
+{/* TRUST STRIP (OFFICIAL) */}
+<div className="tm-trust" aria-label="Compliance and authority">
+<div className="tm-trust-inner">
+<div className="tm-trust-items">
+{TRUST.map((t) => (
+<span key={t.tag} className="tm-trust-item">
+<span className="tm-trust-badge" data-code={t.code} aria-hidden="true" />
+<span className="tm-trust-text">{t.text}</span>
+</span>
+))}
+</div>
+</div>
+</div>
+
+<main className="tm-main">{children}</main>
+
+<footer className="tm-footer">
+<div className="tm-footer-inner">
+<div className="tm-footer-left">
+<div className="tm-footer-brand">TruMove</div>
+<div className="tm-footer-sub">AI-powered moving quotes and carrier coordination.</div>
+</div>
+
+<div className="tm-footer-right">
+<Link className="tm-footer-link" href="/vetting">
+Carrier Standards
+</Link>
+<Link className="tm-footer-link" href="/book">
+Book a consult
+</Link>
+<Link className="tm-footer-link" href="/privacy">
+Privacy
+</Link>
+<Link className="tm-footer-link" href="/terms">
+Terms
+</Link>
+</div>
+</div>
+</footer>
+
+
+
 <style jsx global>{`
   :root {
     --tm-green: #39ff14;
