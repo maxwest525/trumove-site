@@ -479,55 +479,40 @@ export default function HomePage() {
   };
   contactForm?.addEventListener("submit", onContactSubmit);
 
-  // HERO INTENT + PANELS
-  const btnSpecialist = document.getElementById("truIntentSpecialist");
-  const btnEstimate = document.getElementById("truIntentEstimate");
+  // HERO: secure intake console (single form + choice buttons)
+  const choiceSpecialist = document.getElementById("truChoiceSpecialist");
+  const choiceVirtual = document.getElementById("truChoiceVirtual");
+  const startBuildBtn = document.getElementById("truStartBuild");
 
-  const panelSpecialist = document.getElementById("truPanelSpecialist");
-  const panelEstimate = document.getElementById("truPanelEstimate");
-
-  const divider = document.getElementById("truIntentDivider");
-
-  // Specialist fields
-  const specNameEl = document.getElementById("specName");
-  const specPhoneEl = document.getElementById("specPhone");
-  const specFromZipEl = document.getElementById("specFromZip");
-  const specToZipEl = document.getElementById("specToZip");
-  const specialistSubmit = document.getElementById("truSpecialistSubmit");
-  const specErrEl = document.getElementById("specErr");
-
-  // Estimate fields
   const fromZipEl = document.getElementById("miniFromZip");
   const toZipEl = document.getElementById("miniToZip");
   const sizeEl = document.getElementById("miniSize");
-  const estimateSubmit = document.getElementById("truMiniSubmit");
+  const dateEl = document.getElementById("miniMoveDate");
+  const phoneEl = document.getElementById("miniPhone");
   const miniErrEl = document.getElementById("miniErr");
 
-  // Single source of truth for toggle state
-  function setIntent(which, opts = { scroll: true }) {
-    if (!panelSpecialist || !panelEstimate || !btnSpecialist || !btnEstimate) return;
+  let selectedPath = ""; // "specialist" | "virtual"
 
-    const showSpecialist = which === "specialist";
-    const showEstimate = which === "estimate";
+  const zipOk = (z) => /^\d{5}$/.test((z || "").trim());
+  const phoneOk = (p) => {
+    const digits = (p || "").replace(/\D/g, "");
+    return digits.length >= 10;
+  };
 
-    panelSpecialist.style.display = showSpecialist ? "block" : "none";
-    panelEstimate.style.display = showEstimate ? "block" : "none";
-
-    if (divider) divider.style.display = "none";
-
-    btnSpecialist.classList.toggle("is-active", showSpecialist);
-    btnEstimate.classList.toggle("is-active", showEstimate);
-
-    if (!opts || opts.scroll === false) return;
-
-if (opts && opts.focus === true) {
-  if (showSpecialist) setTimeout(() => specNameEl?.focus({ preventScroll: true }), 0);
-  if (showEstimate) setTimeout(() => fromZipEl?.focus({ preventScroll: true }), 0);
-}
+  function clearErrors() {
+    [fromZipEl, toZipEl, sizeEl, dateEl, phoneEl].forEach((el) => el?.classList.remove("is-error"));
+    if (miniErrEl) miniErrEl.textContent = "";
   }
 
-const onSpecialistIntent = () => setIntent("specialist", { focus: true });
-const onEstimateIntent = () => setIntent("estimate", { focus: true });
+  function setChoice(which) {
+    selectedPath = which;
+
+    choiceSpecialist?.classList.toggle("is-selected", which === "specialist");
+    choiceVirtual?.classList.toggle("is-selected", which === "virtual");
+
+    // also remove any old focus outline error feel after picking
+    if (miniErrEl && miniErrEl.textContent) miniErrEl.textContent = "";
+  }
 
   function saveLead(payload) {
     try {
@@ -535,53 +520,54 @@ const onEstimateIntent = () => setIntent("estimate", { focus: true });
     } catch (e) {}
   }
 
-  const onSpecialistSubmit = () => {
-    const name = (specNameEl?.value || "").trim();
-    const phone = (specPhoneEl?.value || "").trim();
-    const fromZip = (specFromZipEl?.value || "").trim();
-    const toZip = (specToZipEl?.value || "").trim();
+  const onPickSpecialist = () => setChoice("specialist");
+  const onPickVirtual = () => setChoice("virtual");
 
-    [specNameEl, specPhoneEl, specFromZipEl, specToZipEl].forEach((el) => el?.classList.remove("is-error"));
-    if (specErrEl) specErrEl.textContent = "";
+  const onStartBuild = () => {
+    clearErrors();
 
-    let bad = false;
-    if (!name) { specNameEl?.classList.add("is-error"); bad = true; }
-    if (!phone) { specPhoneEl?.classList.add("is-error"); bad = true; }
-    if (!/^\d{5}$/.test(fromZip)) { specFromZipEl?.classList.add("is-error"); bad = true; }
-    if (!/^\d{5}$/.test(toZip)) { specToZipEl?.classList.add("is-error"); bad = true; }
-
-    if (bad) {
-      if (specErrEl) specErrEl.textContent = "Please complete all fields, ZIP codes must be 5 digits.";
-      return;
-    }
-
-    saveLead({ intent: "specialist", name, phone, fromZip, toZip, ts: Date.now() });
-    router.push("/book");
-  };
-
-  const onEstimateSubmit = () => {
     const fromZip = (fromZipEl?.value || "").trim();
     const toZip = (toZipEl?.value || "").trim();
     const size = (sizeEl?.value || "").trim();
-
-    const zipOk = (z) => /^\d{5}$/.test(z);
-
-    [fromZipEl, toZipEl, sizeEl].forEach((el) => el?.classList.remove("is-error"));
-    if (miniErrEl) miniErrEl.textContent = "";
+    const moveDate = (dateEl?.value || "").trim();
+    const phone = (phoneEl?.value || "").trim();
 
     let bad = false;
-    if (!zipOk(fromZip)) { fromZipEl?.classList.add("is-error"); bad = true; }
-    if (!zipOk(toZip)) { toZipEl?.classList.add("is-error"); bad = true; }
-    if (!size) { sizeEl?.classList.add("is-error"); bad = true; }
 
-    if (bad) {
-      if (miniErrEl) miniErrEl.textContent = "Enter valid 5 digit ZIP codes and pick a move size.";
+    if (!zipOk(fromZip)) { fromZipEl?.classList.add("is-error"); bad = true; }
+    if (!size) { sizeEl?.classList.add("is-error"); bad = true; }
+    if (!zipOk(toZip)) { toZipEl?.classList.add("is-error"); bad = true; }
+    if (!moveDate) { dateEl?.classList.add("is-error"); bad = true; }
+    if (!phoneOk(phone)) { phoneEl?.classList.add("is-error"); bad = true; }
+
+    if (!selectedPath) {
+      bad = true;
+      if (miniErrEl) miniErrEl.textContent = "Select Talk to a Specialist or Book a Virtual Meet to continue.";
       return;
     }
 
-    saveLead({ intent: "estimate", fromZip, toZip, size, ts: Date.now() });
-    router.push(`/online-estimate?from=${encodeURIComponent(fromZip)}&to=${encodeURIComponent(toZip)}&size=${encodeURIComponent(size)}`);
+    if (bad) {
+      if (miniErrEl && !miniErrEl.textContent) {
+        miniErrEl.textContent = "Please complete all fields, ZIP codes must be 5 digits.";
+      }
+      return;
+    }
+
+    saveLead({ intent: selectedPath, fromZip, toZip, size, moveDate, phone, ts: Date.now() });
+
+    // Routing later, per your request.
+    // For now, keep it neutral and do nothing except validate and store.
+    // When you're ready, we will route based on selectedPath.
+    if (miniErrEl) miniErrEl.textContent = "";
   };
+
+  const heroReady = !!(choiceSpecialist && choiceVirtual && startBuildBtn && fromZipEl && toZipEl && sizeEl && dateEl && phoneEl);
+
+  if (heroReady) {
+    choiceSpecialist.addEventListener("click", onPickSpecialist);
+    choiceVirtual.addEventListener("click", onPickVirtual);
+    startBuildBtn.addEventListener("click", onStartBuild);
+  }
 
   // HERO: other buttons
   const howBtn = document.querySelector(".tru-hero-btn-secondary");
@@ -592,25 +578,11 @@ const onEstimateIntent = () => setIntent("estimate", { focus: true });
   const onTalkClick = () => router.push("/book");
   talkBtn?.addEventListener("click", onTalkClick);
 
-  // Wire hero only if the hero actually exists
-  const heroReady = !!(btnSpecialist && btnEstimate && panelSpecialist && panelEstimate && specialistSubmit && estimateSubmit);
-
-  if (heroReady) {
-    btnSpecialist.addEventListener("click", onSpecialistIntent);
-    btnEstimate.addEventListener("click", onEstimateIntent);
-    specialistSubmit.addEventListener("click", onSpecialistSubmit);
-    estimateSubmit.addEventListener("click", onEstimateSubmit);
-
-    // INIT: no scroll on load
-    setIntent("estimate", { focus: false });
-  }
-
   return () => {
     if (heroReady) {
-      btnSpecialist.removeEventListener("click", onSpecialistIntent);
-      btnEstimate.removeEventListener("click", onEstimateIntent);
-      specialistSubmit.removeEventListener("click", onSpecialistSubmit);
-      estimateSubmit.removeEventListener("click", onEstimateSubmit);
+      choiceSpecialist.removeEventListener("click", onPickSpecialist);
+      choiceVirtual.removeEventListener("click", onPickVirtual);
+      startBuildBtn.removeEventListener("click", onStartBuild);
     }
 
     howBtn?.removeEventListener("click", onHowClick);
@@ -619,6 +591,7 @@ const onEstimateIntent = () => setIntent("estimate", { focus: true });
     featuresBtn?.removeEventListener("click", onFeaturesClick);
     contactForm?.removeEventListener("submit", onContactSubmit);
   };
+
 }, [router]);
 
   return <main dangerouslySetInnerHTML={{ __html: HTML }} />;
