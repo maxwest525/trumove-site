@@ -1111,6 +1111,171 @@ Terms
   outline: none !important;
 }
 
+/* =========================================================
+   TRUMOVE — HERO CARD FINAL LOCK (PRESIDENTIAL CONSOLE)
+   Paste at VERY BOTTOM of SiteShell CSS
+   ========================================================= */
+
+/* Kill any old “workflow” helper line someone injected */
+#truHeroQuoteCard .tru-hero-form-sub::after{
+  content: none !important;
+  display: none !important;
+}
+
+/* ONE official card, no cheesy gradient */
+#truHeroQuoteCard{
+  background: #ffffff !important;
+  border: 1px solid rgba(15,23,42,0.18) !important;
+  border-radius: 22px !important;
+  box-shadow:
+    0 42px 120px rgba(15,23,42,0.16),
+    0 2px 0 rgba(255,255,255,0.9) inset,
+    0 -1px 0 rgba(15,23,42,0.06) inset !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* “Secure console” lighting, no green wash */
+#truHeroQuoteCard::before{
+  content:"" !important;
+  position:absolute !important;
+  inset:-2px !important;
+  pointer-events:none !important;
+  background:
+    radial-gradient(900px 380px at 12% 0%, rgba(15,23,42,0.06), rgba(15,23,42,0) 60%),
+    radial-gradient(740px 340px at 92% 18%, rgba(15,23,42,0.08), rgba(15,23,42,0) 58%),
+    linear-gradient(180deg, rgba(255,255,255,0.65), rgba(255,255,255,0)) !important;
+}
+
+/* Thin “device edge” */
+#truHeroQuoteCard::after{
+  content:"" !important;
+  position:absolute !important;
+  left:16px !important;
+  right:16px !important;
+  top:12px !important;
+  height:1px !important;
+  pointer-events:none !important;
+  background: linear-gradient(90deg, rgba(15,23,42,0), rgba(15,23,42,0.16), rgba(15,23,42,0)) !important;
+}
+
+/* Micro label, classified feel */
+#truHeroQuoteCard .tru-form-micro{
+  position: relative !important;
+  z-index: 1 !important;
+  width: fit-content !important;
+  padding: 7px 10px !important;
+  border-radius: 999px !important;
+  border: 1px solid rgba(15,23,42,0.16) !important;
+  background: rgba(248,250,252,0.92) !important;
+  box-shadow: 0 16px 40px rgba(15,23,42,0.10) !important;
+  font-size: 10px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.22em !important;
+  text-transform: uppercase !important;
+  color: rgba(15,23,42,0.72) !important;
+  margin-bottom: 12px !important;
+}
+
+/* Title, official */
+#truHeroQuoteCard .tru-hero-form-title{
+  position: relative !important;
+  z-index: 1 !important;
+  margin: 0 !important;
+  font-size: 22px !important;
+  font-weight: 980 !important;
+  letter-spacing: -0.02em !important;
+  color: rgba(15,23,42,0.96) !important;
+}
+
+/* Subheader, controlled */
+#truHeroQuoteCard .tru-hero-form-sub{
+  position: relative !important;
+  z-index: 1 !important;
+  margin: 8px 0 14px !important;
+  font-size: 13.5px !important;
+  line-height: 1.45 !important;
+  font-weight: 750 !important;
+  color: rgba(15,23,42,0.62) !important;
+  padding-bottom: 14px !important;
+  border-bottom: 1px solid rgba(15,23,42,0.10) !important;
+}
+
+/* Inputs, expensive, no neon focus ring */
+#truHeroQuoteCard .tru-hero-input,
+#truHeroQuoteCard .tru-hero-select{
+  background: rgba(255,255,255,0.98) !important;
+  border: 1px solid rgba(15,23,42,0.16) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.92),
+    0 12px 28px rgba(15,23,42,0.06) !important;
+}
+
+#truHeroQuoteCard .tru-hero-input:focus,
+#truHeroQuoteCard .tru-hero-select:focus{
+  border-color: rgba(15,23,42,0.34) !important;
+  box-shadow:
+    0 0 0 6px rgba(15,23,42,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.92),
+    0 18px 40px rgba(15,23,42,0.08) !important;
+}
+
+/* Choice buttons, enterprise */
+#truHeroQuoteCard .tru-choice-btn{
+  height: 46px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(15,23,42,0.16) !important;
+  background: rgba(255,255,255,0.90) !important;
+  box-shadow:
+    0 18px 46px rgba(15,23,42,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.90) !important;
+  font-size: 11px !important;
+  font-weight: 950 !important;
+  letter-spacing: 0.16em !important;
+  text-transform: uppercase !important;
+  color: rgba(15,23,42,0.90) !important;
+}
+
+#truHeroQuoteCard .tru-choice-btn:hover{
+  transform: translateY(-1px) !important;
+  box-shadow:
+    0 24px 64px rgba(15,23,42,0.14),
+    inset 0 1px 0 rgba(255,255,255,0.92) !important;
+}
+
+#truHeroQuoteCard .tru-choice-btn.is-selected{
+  border-color: rgba(15,23,42,0.36) !important;
+  background: rgba(248,250,252,0.96) !important;
+  box-shadow:
+    0 26px 72px rgba(15,23,42,0.16),
+    0 0 0 6px rgba(15,23,42,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.92) !important;
+}
+
+/* Main CTA, premium, no goofy green */
+#truHeroQuoteCard .tru-primary-cta{
+  height: 56px !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(15,23,42,0.22) !important;
+  background: linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98)) !important;
+  color: rgba(255,255,255,0.96) !important;
+  font-size: 12px !important;
+  font-weight: 980 !important;
+  letter-spacing: 0.18em !important;
+  text-transform: uppercase !important;
+  box-shadow:
+    0 30px 84px rgba(15,23,42,0.24),
+    inset 0 1px 0 rgba(255,255,255,0.10) !important;
+}
+
+#truHeroQuoteCard .tru-primary-cta:hover{
+  transform: translateY(-1px) !important;
+  box-shadow:
+    0 38px 100px rgba(15,23,42,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.12) !important;
+}
+
+
      `}</style>
 </div>
 );
