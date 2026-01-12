@@ -1410,7 +1410,26 @@ Terms
 #truHeroQuoteCard .tru-choice-btn{ height: 42px !important; border-radius: 13px !important; }
 
 #truHeroQuoteCard .tru-primary-cta{ height: 52px !important; border-radius: 15px !important; }
-pi
+
+/* FINAL OVERRIDE — MUST BE LAST IN SiteShell */
+html body #truHeroQuoteCard{ padding: 20px 20px 18px !important; }
+
+html body #truHeroQuoteCard .tru-hero-form-row{ margin: 0 0 9px !important; }
+html body #truHeroQuoteCard .tru-hero-form-row.two{ gap: 9px !important; }
+
+html body #truHeroQuoteCard .tru-hero-input,
+html body #truHeroQuoteCard .tru-hero-select{
+  height: 46px !important;
+  border-radius: 13px !important;
+  padding: 0 12px !important;
+  font-weight: 850 !important;
+}
+
+html body #truHeroQuoteCard .tru-choice-wrap{ margin: 10px 0 10px !important; gap: 9px !important; }
+html body #truHeroQuoteCard .tru-choice-btn{ height: 42px !important; border-radius: 13px !important; }
+
+html body #truHeroQuoteCard .tru-primary-cta{ height: 52px !important; border-radius: 15px !important; }
+
 
      `}</style>
 </div>
