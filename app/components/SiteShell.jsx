@@ -694,22 +694,22 @@ export default function SiteShell({ children }) {
 }
 
 @media (max-width: 520px) {
-  .tm-logo-img { width: 220px; height: auto; }
-  .tm-call, .tm-cta { height: 38px; padding: 0 12px; }
-  .tm-status-mask { width: 64px; }
+  .tm-logo-img {
+    width: 220px;
+  }
+
+  .tm-call,
+  .tm-cta {
+    height: 38px;
+    padding: 0 12px;
+  }
+
+  .tm-status-mask {
+    width: 64px;
+  }
 }
 
-
-          .tm-call,
-          .tm-cta {
-            height: 38px;
-            padding: 0 12px;
-          }
-
-          .tm-status-mask {
-            width: 64px;
-          }
-        }
+        
         /* HERO TRUSTBAR (clean seals, not bubbles) */
 .tru-hero-trustbar{
   margin-top:14px;
