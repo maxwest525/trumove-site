@@ -96,27 +96,36 @@ const HTML = `
   <!-- SINGLE FORM -->
   <form class="tru-hero-form" id="truSecureMoveForm" onsubmit="return false;">
 
-    <div class="tru-hero-form-row two">
-      <input type="text" id="miniFromZip" class="tru-hero-input" placeholder="Moving from (ZIP)" required>
+<!-- Row 1: Moving from -->
+<div class="tru-hero-form-row">
+  <input type="text" id="miniFromZip" class="tru-hero-input" placeholder="Moving from (ZIP)" required>
+</div>
 
-      <select id="miniSize" class="tru-hero-select" required>
-        <option value="" disabled selected>Move size</option>
-        <option value="Studio">Studio</option>
-        <option value="1 Bedroom">1 Bedroom</option>
-        <option value="2 Bedroom">2 Bedroom</option>
-        <option value="3 Bedroom">3 Bedroom</option>
-        <option value="4+ Bedroom">4+ Bedroom</option>
-      </select>
-    </div>
+<!-- Row 2: Moving to -->
+<div class="tru-hero-form-row">
+  <input type="text" id="miniToZip" class="tru-hero-input" placeholder="Moving to (ZIP)" required>
+</div>
 
-    <div class="tru-hero-form-row">
-      <input type="text" id="miniToZip" class="tru-hero-input" placeholder="Moving to (ZIP)" required>
-    </div>
+<!-- Row 3: Move size + Date -->
+<div class="tru-hero-form-row two">
+  <select id="miniSize" class="tru-hero-select" required>
+    <option value="" disabled selected>Move size</option>
+    <option value="Studio">Studio</option>
+    <option value="1 Bedroom">1 Bedroom</option>
+    <option value="2 Bedroom">2 Bedroom</option>
+    <option value="3 Bedroom">3 Bedroom</option>
+    <option value="4+ Bedroom">4+ Bedroom</option>
+  </select>
 
-    <div class="tru-hero-form-row two">
-      <input type="date" id="miniMoveDate" class="tru-hero-input" required>
-      <input type="tel" id="miniPhone" class="tru-hero-input" placeholder="Mobile number" required>
-    </div>
+  <input type="date" id="miniMoveDate" class="tru-hero-input" required>
+</div>
+
+<!-- Row 4: Mobile + Email -->
+<div class="tru-hero-form-row two">
+  <input type="tel" id="miniPhone" class="tru-hero-input" placeholder="Mobile number" required>
+  <input type="email" id="miniEmail" class="tru-hero-input" placeholder="Email" autocomplete="email" required>
+</div>
+
 
     <!-- CHOICE: specialist vs virtual -->
     <div class="tru-choice-wrap" role="group" aria-label="How would you like to proceed">
@@ -489,7 +498,9 @@ export default function HomePage() {
   const sizeEl = document.getElementById("miniSize");
   const dateEl = document.getElementById("miniMoveDate");
   const phoneEl = document.getElementById("miniPhone");
+    const emailEl = document.getElementById("miniEmail");
   const miniErrEl = document.getElementById("miniErr");
+    
 
   let selectedPath = ""; // "specialist" | "virtual"
 
@@ -500,7 +511,7 @@ export default function HomePage() {
   };
 
   function clearErrors() {
-    [fromZipEl, toZipEl, sizeEl, dateEl, phoneEl].forEach((el) => el?.classList.remove("is-error"));
+    [fromZipEl, toZipEl, sizeEl, dateEl, phoneEl, emailEl].forEach((el) => el?.classList.remove("is-error"));
     if (miniErrEl) miniErrEl.textContent = "";
   }
 
@@ -531,6 +542,8 @@ export default function HomePage() {
     const size = (sizeEl?.value || "").trim();
     const moveDate = (dateEl?.value || "").trim();
     const phone = (phoneEl?.value || "").trim();
+    const email = (emailEl?.value || "").trim();
+
 
     let bad = false;
 
@@ -539,6 +552,10 @@ export default function HomePage() {
     if (!zipOk(toZip)) { toZipEl?.classList.add("is-error"); bad = true; }
     if (!moveDate) { dateEl?.classList.add("is-error"); bad = true; }
     if (!phoneOk(phone)) { phoneEl?.classList.add("is-error"); bad = true; }
+    if (!emailOk(email)) { emailEl?.classList.add("is-error"); bad = true; }
+
+
+    const emailOk = (e) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test((e || "").trim());
 
     if (!selectedPath) {
       bad = true;
@@ -553,7 +570,7 @@ export default function HomePage() {
       return;
     }
 
-    saveLead({ intent: selectedPath, fromZip, toZip, size, moveDate, phone, ts: Date.now() });
+    saveLead({ intent: selectedPath, fromZip, toZip, size, moveDate, phone, email, ts: Date.now() });
 
     // Routing later, per your request.
     // For now, keep it neutral and do nothing except validate and store.
@@ -561,7 +578,7 @@ export default function HomePage() {
     if (miniErrEl) miniErrEl.textContent = "";
   };
 
-  const heroReady = !!(choiceSpecialist && choiceVirtual && startBuildBtn && fromZipEl && toZipEl && sizeEl && dateEl && phoneEl);
+  const heroReady = !!(choiceSpecialist && choiceVirtual && startBuildBtn && fromZipEl && toZipEl && sizeEl && dateEl && phoneEl && emailEl);
 
   if (heroReady) {
     choiceSpecialist.addEventListener("click", onPickSpecialist);
