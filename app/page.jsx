@@ -607,21 +607,21 @@ export default function HomePage() {
   const onTalkClick = () => router.push("/book");
   talkBtn?.addEventListener("click", onTalkClick);
 
-  return () => {
-    if (heroReady) {
-      choiceSpecialist.removeEventListener("click", onPickSpecialist);
-      choiceVirtual.removeEventListener("click", onPickVirtual);
-      startBuildBtn.removeEventListener("click", onStartBuild);
-    }
+    return () => {
+      if (heroReady) {
+        choiceSpecialist.removeEventListener("click", onPickSpecialist);
+        choiceVirtual.removeEventListener("click", onPickVirtual);
+        startBuildBtn.removeEventListener("click", onStartBuild);
+      }
 
-    howBtn?.removeEventListener("click", onHowClick);
-    talkBtn?.removeEventListener("click", onTalkClick);
+      howBtn?.removeEventListener("click", onHowClick);
+      talkBtn?.removeEventListener("click", onTalkClick);
 
-    featuresBtn?.removeEventListener("click", onFeaturesClick);
-    contactForm?.removeEventListener("submit", onContactSubmit);
-  };
+      featuresBtn?.removeEventListener("click", onFeaturesClick);
+      contactForm?.removeEventListener("submit", onContactSubmit);
+    };
+  }, [router]);
 
-}, [router]);
 
   return <main dangerouslySetInnerHTML={{ __html: HTML }} />;
     
