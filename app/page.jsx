@@ -96,17 +96,13 @@ const HTML = `
   <!-- SINGLE FORM -->
   <form class="tru-hero-form" id="truSecureMoveForm" onsubmit="return false;">
 
-<!-- Row 1: Moving from -->
-<div class="tru-hero-form-row">
+<!-- Row 1: Moving from + Moving to -->
+<div class="tru-hero-form-row two">
   <input type="text" id="miniFromZip" class="tru-hero-input" placeholder="Moving from (ZIP)" required>
-</div>
-
-<!-- Row 2: Moving to -->
-<div class="tru-hero-form-row">
   <input type="text" id="miniToZip" class="tru-hero-input" placeholder="Moving to (ZIP)" required>
 </div>
 
-<!-- Row 3: Move size + Date -->
+<!-- Row 2: Move size + Date -->
 <div class="tru-hero-form-row two">
   <select id="miniSize" class="tru-hero-select" required>
     <option value="" disabled selected>Move size</option>
@@ -120,7 +116,7 @@ const HTML = `
   <input type="date" id="miniMoveDate" class="tru-hero-input" required>
 </div>
 
-<!-- Row 4: Mobile + Email -->
+<!-- Row 3: Mobile + Email -->
 <div class="tru-hero-form-row two">
   <input type="tel" id="miniPhone" class="tru-hero-input" placeholder="Mobile number" required>
   <input type="email" id="miniEmail" class="tru-hero-input" placeholder="Email" autocomplete="email" required>
