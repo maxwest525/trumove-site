@@ -83,8 +83,8 @@ const HTML = `
   <div class="tru-hero-form-header">
     <div class="tru-hero-form-title">Start Your Move</div>
     <div class="tru-hero-form-sub">
-      TruMove gives you full control over your inventory and routing, with expert support whenever you want it.
-    </div>
+  Build your move, we’ll take it from there.
+</div>
   </div>
 
     <!-- INTENT BUTTONS -->
