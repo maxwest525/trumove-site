@@ -1393,6 +1393,8 @@ Terms
   }
 }
 
+/* TEMP TEST — REMOVE AFTER */
+#truHeroQuoteCard{ outline: 4px solid hotpink !important; }
 
      `}</style>
 </div>
