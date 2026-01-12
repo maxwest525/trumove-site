@@ -1499,6 +1499,20 @@ html body #truHeroQuoteCard .tru-primary-cta{ height: 52px !important; border-ra
     inset 0 1px 0 rgba(255,255,255,0.10) !important;
 }
 
+/* FORCE WIN — matches your inspector selector exactly */
+html body #truHeroQuoteCard .tru-hero-input,
+html body #truHeroQuoteCard .tru-hero-select{
+  height: 48px !important;
+  border-radius: 12px !important;
+  padding: 0 12px !important;
+  border: 1px solid rgba(15,23,42,0.18) !important;
+  background: rgba(255,255,255,0.96) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.92),
+    0 10px 22px rgba(15,23,42,0.05) !important;
+}
+
+
      `}</style>
 </div>
 );
