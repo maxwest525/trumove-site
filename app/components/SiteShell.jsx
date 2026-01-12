@@ -815,47 +815,6 @@ Terms
 }
 
 
-
-
-
-
-
-/* ================================
-  HERO RIGHT COLUMN: ONE CARD ONLY
-  Put at VERY BOTTOM
-  ================================ */
-
-/* The right column wrappers must not look like cards */
-.tru-hero-visual,
-.tru-hero-visual-body,
-.tru-hero-formcard{
- background: transparent !important;
- border: 0 !important;
- box-shadow: none !important;
-}
-
-/* Remove hidden width limits that create the smaller inner box */
-.tru-hero-visual,
-.tru-hero-visual-body{
- width: 100% !important;
- max-width: none !important;
- min-width: 0 !important;
- padding: 0 !important;
- margin: 0 !important;
-}
-
-/* Make the card span the full width of the right column */
-#truHeroQuoteCard{
- width: 100% !important;
- max-width: none !important;
- margin: 0 !important;
-}
-
-/* If the card is inside a flex container, allow it to stretch */
-.tru-hero-visual-body{
- display: block !important;
-}
-
 /* =========================================================
    TRUMOVE — SECURE INTAKE CONSOLE (HERO FORM)
    Paste at VERY BOTTOM of SiteShell CSS
