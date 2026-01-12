@@ -1275,6 +1275,19 @@ Terms
     inset 0 1px 0 rgba(255,255,255,0.12) !important;
 }
 
+/* Step 3.2 — micro pill: remove green wash */
+#truHeroQuoteCard .tru-form-micro{
+  background: rgba(248,250,252,0.92) !important;
+  border-color: rgba(15,23,42,0.18) !important;
+  box-shadow: 0 16px 40px rgba(15,23,42,0.10) !important;
+}
+
+/* If any green “dot” exists inside the pill, neutralize it */
+#truHeroQuoteCard .tru-form-micro::before,
+#truHeroQuoteCard .tru-form-micro::after{
+  background: none !important;
+  box-shadow: none !important;
+}
 
      `}</style>
 </div>
