@@ -80,81 +80,63 @@ const HTML = `
 
 <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
 
-  <div class="tru-hero-form-header">
-    <div class="tru-hero-form-title">Start Your Move</div>
-    <div class="tru-hero-form-sub">
-  Build your move, we’ll take it from there.
-</div>
+  <!-- SYSTEM MICRO LABEL -->
+  <div class="tru-form-micro">
+    Secure Intake Console
   </div>
 
-    <!-- INTENT BUTTONS -->
-    <div class="tru-intent-row">
-      <button class="tru-intent-btn tru-intent-primary" id="truIntentSpecialist" type="button">
-        Talk to a Specialist Now
+  <!-- PRIMARY HEADER -->
+  <div class="tru-hero-form-title">Start your move</div>
+
+  <!-- SUBHEADER (remove “choose a workflow” language) -->
+  <div class="tru-hero-form-sub">
+    Enter your move details, then choose how you want to proceed.
+  </div>
+
+  <!-- SINGLE FORM -->
+  <form class="tru-hero-form" id="truSecureMoveForm" onsubmit="return false;">
+
+    <div class="tru-hero-form-row two">
+      <input type="text" id="miniFromZip" class="tru-hero-input" placeholder="Moving from (ZIP)" required>
+
+      <select id="miniSize" class="tru-hero-select" required>
+        <option value="" disabled selected>Move size</option>
+        <option value="Studio">Studio</option>
+        <option value="1 Bedroom">1 Bedroom</option>
+        <option value="2 Bedroom">2 Bedroom</option>
+        <option value="3 Bedroom">3 Bedroom</option>
+        <option value="4+ Bedroom">4+ Bedroom</option>
+      </select>
+    </div>
+
+    <div class="tru-hero-form-row">
+      <input type="text" id="miniToZip" class="tru-hero-input" placeholder="Moving to (ZIP)" required>
+    </div>
+
+    <div class="tru-hero-form-row two">
+      <input type="date" id="miniMoveDate" class="tru-hero-input" required>
+      <input type="tel" id="miniPhone" class="tru-hero-input" placeholder="Mobile number" required>
+    </div>
+
+    <!-- CHOICE: specialist vs virtual -->
+    <div class="tru-choice-wrap" role="group" aria-label="How would you like to proceed">
+      <button type="button" class="tru-choice-btn" id="truChoiceSpecialist">
+        Talk to a Specialist
       </button>
-
-      <button class="tru-intent-btn tru-intent-secondary" id="truIntentEstimate" type="button">
-        Get an Online Estimate
+      <button type="button" class="tru-choice-btn" id="truChoiceVirtual">
+        Book a Virtual Meet
       </button>
     </div>
 
-    <!-- PANEL: SPECIALIST -->
-   <div class="tru-intent-panel" id="truPanelSpecialist" style="display:none;">
-      <form class="tru-hero-form" id="truSpecialistForm" onsubmit="return false;">
-        <div class="tru-hero-form-row">
-          <input type="text" id="specName" class="tru-hero-input" placeholder="Your name" required>
-        </div>
+    <!-- MAIN CTA -->
+    <button class="tru-primary-cta" id="truStartBuild" type="button">
+      Start building your move →
+    </button>
 
-        <div class="tru-hero-form-row">
-          <input type="tel" id="specPhone" class="tru-hero-input" placeholder="Phone number" required>
-        </div>
+    <div class="tru-hero-form-err" id="miniErr" aria-live="polite"></div>
+  </form>
+</div>
 
-        <div class="tru-hero-form-row two">
-          <input type="text" id="specFromZip" class="tru-hero-input" placeholder="Moving from (ZIP)" required>
-          <input type="text" id="specToZip" class="tru-hero-input" placeholder="Moving to (ZIP)" required>
-        </div>
-
-        <button class="tru-hero-form-btn" id="truSpecialistSubmit" type="button">
-          Request a Call
-        </button>
-
-        <div class="tru-hero-form-err" id="specErr" aria-live="polite"></div>
-      </form>
-    </div>
-
-    <!-- Divider stays hidden -->
-    <div class="tru-intent-divider" id="truIntentDivider" aria-hidden="true" style="display:none;">
-      <span class="tru-intent-divider-line"></span>
-      <span class="tru-intent-divider-chip">OR</span>
-      <span class="tru-intent-divider-line"></span>
-    </div>
-
-    <!-- PANEL: ESTIMATE -->
-    <div class="tru-intent-panel" id="truPanelEstimate" style="display:block;">
-      <form class="tru-hero-form" id="truHeroForm" onsubmit="return false;">
-        <div class="tru-hero-form-row two">
-          <input type="text" id="miniFromZip" class="tru-hero-input" placeholder="Moving from (ZIP)" required>
-
-          <select id="miniSize" class="tru-hero-select" required>
-            <option value="" disabled selected>Move size</option>
-            <option value="Studio">Studio</option>
-            <option value="1 Bedroom">1 Bedroom</option>
-            <option value="2 Bedroom">2 Bedroom</option>
-            <option value="3 Bedroom">3 Bedroom</option>
-            <option value="4+ Bedroom">4+ Bedroom</option>
-          </select>
-        </div>
-
-        <div class="tru-hero-form-row">
-          <input type="text" id="miniToZip" class="tru-hero-input" placeholder="Moving to (ZIP)" required>
-        </div>
-
-        <button class="tru-hero-form-btn" id="truMiniSubmit" type="button">
-          Continue →
-        </button>
-        <div class="tru-hero-form-err" id="miniErr" aria-live="polite"></div>
-      </form>
-    </div>
 
   </div>
 </div>
