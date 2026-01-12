@@ -1742,91 +1742,6 @@
   }
   .tru-quote-cta-btn span.icon{ font-size:0.9rem; }
 
-        /* --- TruMove homepage polish --- */
-.tru-page-inner{
-  max-width:1120px;
-  margin:0 auto;
-  padding:0 18px;
-}
-
-.tru-hero{
-  padding:54px 0 18px;
-}
-
-.tru-hero-title{
-  letter-spacing:-0.02em;
-  line-height:1.05;
-}
-
-.tru-hero-sub{
-  line-height:1.55;
-}
-
-.tru-mini-wrap{
-  padding:22px 0 10px;
-}
-
-.tru-simple-wrap,
-.tru-mission-wrap,
-.tru-contact-wrap{
-  padding:54px 0;
-}
-
-.tru-simple-title,
-.tru-mission-title,
-.tru-contact-title{
-  letter-spacing:-0.02em;
-}
-
-.tru-contact-card{
-  box-shadow:0 12px 30px rgba(15,23,42,0.08);
-}
-
-@media (max-width: 860px){
-  .tru-hero{ padding:32px 0 12px; }
-  .tru-simple-wrap,
-  .tru-mission-wrap,
-  .tru-contact-wrap{ padding:34px 0; }
-}
-  
-/* ===== TruMove Trust Strip Lock ===== */
-.tru-trust-row{
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-}
-
-.tru-trust-label{
-  font-size:0.82rem;
-  color:#6b7280;
-  opacity:0.95;
-}
-
-.tru-trust-badge{
-  display:inline-flex;
-  align-items:center;
-  gap:8px;
-  padding:8px 12px;
-  border-radius:999px;
-  border:1px solid rgba(2,6,23,0.12);
-  background:#ffffff;
-  color:#111827;
-  font-size:0.82rem;
-  font-weight:600;
-  line-height:1;
-  box-shadow:0 10px 24px rgba(15,23,42,0.06);
-}
-
-.tru-trust-badge .tru-trust-dot{
-  width:8px;
-  height:8px;
-  border-radius:999px;
-  background:var(--tru-green);
-  box-shadow:0 0 0 4px rgba(57,255,20,0.18);
-}
-
   /* Mobile */
   @media (max-width:900px){
     .tru-inv-grid{ grid-template-columns:minmax(0, 1fr); }
@@ -1874,6 +1789,89 @@
       padding:4px 6px;
       text-align:left;
     }
+        /* --- TruMove homepage polish --- */
+.tru-page-inner{
+  max-width:1120px;
+  margin:0 auto;
+  padding:0 18px;
+}
+
+.tru-hero{
+  padding:54px 0 18px;
+}
+
+.tru-hero-title{
+  letter-spacing:-0.02em;
+  line-height:1.05;
+}
+
+.tru-hero-sub{
+  line-height:1.55;
+}
+
+.tru-mini-wrap{
+  padding:22px 0 10px;
+}
+
+.tru-simple-wrap,
+.tru-mission-wrap,
+.tru-contact-wrap{
+  padding:54px 0;
+}
+
+.tru-simple-title,
+.tru-mission-title,
+.tru-contact-title{
+  letter-spacing:-0.02em;
+}
+
+.tru-contact-card{
+  box-shadow:0 12px 30px rgba(15,23,42,0.08);
+}
+
+@media (max-width: 860px){
+  .tru-hero{ padding:32px 0 12px; }
+  .tru-simple-wrap,
+  .tru-mission-wrap,
+  .tru-contact-wrap{ padding:34px 0; }
+}
+  }
+/* ===== TruMove Trust Strip Lock ===== */
+.tru-trust-row{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.tru-trust-label{
+  font-size:0.82rem;
+  color:#6b7280;
+  opacity:0.95;
+}
+
+.tru-trust-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:999px;
+  border:1px solid rgba(2,6,23,0.12);
+  background:#ffffff;
+  color:#111827;
+  font-size:0.82rem;
+  font-weight:600;
+  line-height:1;
+  box-shadow:0 10px 24px rgba(15,23,42,0.06);
+}
+
+.tru-trust-badge .tru-trust-dot{
+  width:8px;
+  height:8px;
+  border-radius:999px;
+  background:var(--tru-green);
+  box-shadow:0 0 0 4px rgba(57,255,20,0.18);
 }
 
 /* =========================================
@@ -1959,4 +1957,3 @@
 .tru-hero-form-btn:active{
   transform:translateY(0px);
 }
-
