@@ -77,69 +77,82 @@ const HTML = `
 
 <!-- HERO VISUAL -->
 <div class="tru-hero-visual">
+  <div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
 
-<div class="tru-hero-visual-body tru-hero-formcard" id="truHeroQuoteCard">
+    <!-- MICRO LABEL (SYSTEM) -->
+    <div class="tru-form-micro">SECURE INTAKE</div>
 
-  <!-- SYSTEM MICRO LABEL -->
-  <div class="tru-form-micro">
-    Secure Intake Console
-  </div>
-
-  <!-- PRIMARY HEADER -->
-  <div class="tru-hero-form-title">Start your move</div>
-
-  <!-- SUBHEADER (remove “choose a workflow” language) -->
-  <div class="tru-hero-form-sub">
-    Enter your move details, then choose how you want to proceed.
-  </div>
-
-  <!-- SINGLE FORM -->
-  <form class="tru-hero-form" id="truSecureMoveForm" onsubmit="return false;">
-
-    <div class="tru-hero-form-row two">
-      <input type="text" id="miniFromZip" class="tru-hero-input" placeholder="Moving from (ZIP)" required>
-
-      <select id="miniSize" class="tru-hero-select" required>
-        <option value="" disabled selected>Move size</option>
-        <option value="Studio">Studio</option>
-        <option value="1 Bedroom">1 Bedroom</option>
-        <option value="2 Bedroom">2 Bedroom</option>
-        <option value="3 Bedroom">3 Bedroom</option>
-        <option value="4+ Bedroom">4+ Bedroom</option>
-      </select>
+    <!-- HEADER -->
+    <div class="tru-hero-form-title">Start your move</div>
+    <div class="tru-hero-form-sub">
+      Enter the essentials, then choose how you want to proceed.
     </div>
 
-    <div class="tru-hero-form-row">
-      <input type="text" id="miniToZip" class="tru-hero-input" placeholder="Moving to (ZIP)" required>
-    </div>
+    <!-- SINGLE FORM (FIELDS FIRST) -->
+    <form class="tru-hero-form" id="truSecureMoveForm" onsubmit="return false;">
 
-    <div class="tru-hero-form-row two">
-      <input type="date" id="miniMoveDate" class="tru-hero-input" required>
-      <input type="tel" id="miniPhone" class="tru-hero-input" placeholder="Mobile number" required>
-    </div>
+      <!-- Row 1: From ZIP + Move Size -->
+      <div class="tru-hero-form-row two">
+        <div class="tru-field-wrap">
+          <label class="tru-field-label" for="miniFromZip">Moving from</label>
+          <input type="text" id="miniFromZip" class="tru-hero-input" inputmode="numeric" placeholder="ZIP code" required>
+        </div>
 
-    <!-- CHOICE: specialist vs virtual -->
-    <div class="tru-choice-wrap" role="group" aria-label="How would you like to proceed">
-      <button type="button" class="tru-choice-btn" id="truChoiceSpecialist">
-        Talk to a Specialist
+        <div class="tru-field-wrap">
+          <label class="tru-field-label" for="miniSize">Move size</label>
+          <select id="miniSize" class="tru-hero-select" required>
+            <option value="" disabled selected>Select</option>
+            <option value="Studio">Studio</option>
+            <option value="1 Bedroom">1 Bedroom</option>
+            <option value="2 Bedroom">2 Bedroom</option>
+            <option value="3 Bedroom">3 Bedroom</option>
+            <option value="4+ Bedroom">4+ Bedroom</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Row 2: To ZIP -->
+      <div class="tru-hero-form-row">
+        <div class="tru-field-wrap">
+          <label class="tru-field-label" for="miniToZip">Moving to</label>
+          <input type="text" id="miniToZip" class="tru-hero-input" inputmode="numeric" placeholder="ZIP code" required>
+        </div>
+      </div>
+
+      <!-- Row 3: Date + Phone -->
+      <div class="tru-hero-form-row two">
+        <div class="tru-field-wrap">
+          <label class="tru-field-label" for="miniMoveDate">Move date</label>
+          <input type="date" id="miniMoveDate" class="tru-hero-input" required>
+        </div>
+
+        <div class="tru-field-wrap">
+          <label class="tru-field-label" for="miniPhone">Mobile number</label>
+          <input type="tel" id="miniPhone" class="tru-hero-input" placeholder="(###) ###-####" required>
+        </div>
+      </div>
+
+      <!-- Choice -->
+      <div class="tru-choice-head">Proceed with</div>
+      <div class="tru-choice-wrap" role="group" aria-label="How would you like to proceed">
+        <button type="button" class="tru-choice-btn" id="truChoiceSpecialist">
+          Talk to a Specialist
+        </button>
+        <button type="button" class="tru-choice-btn" id="truChoiceVirtual">
+          Book a Virtual Meet
+        </button>
+      </div>
+
+      <!-- CTA -->
+      <button class="tru-primary-cta" id="truStartBuild" type="button">
+        Start building your move
       </button>
-      <button type="button" class="tru-choice-btn" id="truChoiceVirtual">
-        Book a Virtual Meet
-      </button>
-    </div>
 
-    <!-- MAIN CTA -->
-<button class="tru-primary-cta" id="truStartBuild" type="button">
-  <span id="truStartBuildText">Start building your move →</span>
-</button>
-
-
-    <div class="tru-hero-form-err" id="miniErr" aria-live="polite"></div>
-  </form>
+      <div class="tru-hero-form-err" id="miniErr" aria-live="polite"></div>
+    </form>
+  </div>
 </div>
 
-
-  </div>
 </div>
 
 
