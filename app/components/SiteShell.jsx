@@ -866,47 +866,80 @@ Terms
   pointer-events:none;
 }
 
-/* Micro label: system style */
+/* Micro label: “classified console” */
 #truHeroQuoteCard .tru-form-micro{
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: fit-content;
-  padding: 7px 10px;
+  padding: 7px 12px;
   border-radius: 999px;
-  border: 1px solid rgba(15,23,42,0.12);
-  background: rgba(255,255,255,0.78);
-  box-shadow: 0 14px 34px rgba(15,23,42,0.08);
+  border: 1px solid rgba(15,23,42,0.16);
+  background: linear-gradient(180deg, rgba(255,255,255,0.82), rgba(248,250,252,0.72));
+  box-shadow:
+    0 18px 46px rgba(15,23,42,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.92);
   font-size: 10px;
-  font-weight: 900;
-  letter-spacing: 0.22em;
+  font-weight: 950;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
   color: rgba(15,23,42,0.72);
   margin-bottom: 12px;
 }
 
-/* Header: big-tech, “official” */
+/* add an “authorization strip” effect */
+#truHeroQuoteCard .tru-form-micro::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  border-radius: 999px;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,
+      rgba(57,255,20,0.00),
+      rgba(57,255,20,0.10),
+      rgba(57,255,20,0.00)
+    );
+  opacity: 0.85;
+}
+
+/* Title: “presidential / official” */
 #truHeroQuoteCard .tru-hero-form-title{
   position: relative;
-  z-index: 1;
+  z-index: 2;
   margin: 0;
   font-size: 22px;
   font-weight: 950;
   letter-spacing: -0.02em;
   color: rgba(15,23,42,0.96);
+  text-shadow: 0 1px 0 rgba(255,255,255,0.70);
 }
 
-/* Subheader: controlled + confident */
+/* Subheader: tight, enterprise */
 #truHeroQuoteCard .tru-hero-form-sub{
   position: relative;
-  z-index: 1;
+  z-index: 2;
   margin: 8px 0 14px;
-  font-size: 13.5px;
+  font-size: 13px;
   line-height: 1.45;
-  font-weight: 700;
+  font-weight: 750;
   color: rgba(15,23,42,0.62);
   padding-bottom: 14px;
   border-bottom: 1px solid rgba(15,23,42,0.10);
 }
+
+/* optional: add a subtle “secure system” divider line under title area */
+#truHeroQuoteCard .tru-hero-form-sub::after{
+  content:"";
+  display:block;
+  margin-top: 12px;
+  height: 1px;
+  background: linear-gradient(90deg,
+    rgba(15,23,42,0.00),
+    rgba(15,23,42,0.10),
+    rgba(15,23,42,0.00)
+  );
+}
+
 
 /* Form spacing */
 #truHeroQuoteCard .tru-hero-form{
