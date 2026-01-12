@@ -1071,10 +1071,6 @@ html body #truHeroQuoteCard::before{
   pointer-events:none !important;
 }
 
-.tru-hero-visual{ outline: 4px solid rgba(255,0,0,.8) !important; }
-.tru-hero-visual-body{ outline: 4px solid rgba(0,140,255,.8) !important; }
-#truHeroQuoteCard{ outline: 6px solid #39ff14 !important; }
-}
 
  /* ================================
    HERO RIGHT COLUMN: ONE CARD ONLY
