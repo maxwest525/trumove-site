@@ -955,4 +955,8 @@ Terms
     #truHeroQuoteCard .tru-hero-form-row.two{ grid-template-columns: 1fr !important; gap: 8px !important; }
     #truHeroQuoteCard .tru-choice-wrap{ grid-template-columns: 1fr !important; gap: 8px !important; }
   }
-`}</style>
+     `}</style>
+</div>
+);
+}
+
