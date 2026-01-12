@@ -815,6 +815,239 @@ Terms
 }
 
 
+/* =========================================================
+   TRUMOVE — SECURE INTAKE CONSOLE (HERO FORM)
+   Paste at VERY BOTTOM of SiteShell CSS
+   ========================================================= */
+
+/* Remove any “double box” / wrapper card styling */
+.tru-hero-visual,
+.tru-hero-visual-body,
+.tru-hero-formcard{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* The ONE official card */
+#truHeroQuoteCard{
+  position: relative;
+  overflow: hidden;
+  border-radius: 22px !important;
+  border: 1px solid rgba(15,23,42,0.14) !important;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.96)) !important;
+  box-shadow:
+    0 34px 110px rgba(15,23,42,0.16),
+    inset 0 1px 0 rgba(255,255,255,0.92) !important;
+  padding: 22px 22px 18px !important;
+}
+
+/* Subtle “secure console” scan + edge light, not neon */
+#truHeroQuoteCard::before{
+  content:"";
+  position:absolute;
+  inset:-2px;
+  background:
+    radial-gradient(900px 360px at 10% 0%, rgba(57,255,20,0.09), rgba(57,255,20,0.00) 58%),
+    radial-gradient(700px 300px at 95% 25%, rgba(15,23,42,0.07), rgba(15,23,42,0.00) 55%),
+    linear-gradient(180deg, rgba(255,255,255,0.60), rgba(255,255,255,0.00));
+  pointer-events:none;
+}
+
+/* Hairline “top edge” like a premium device */
+#truHeroQuoteCard::after{
+  content:"";
+  position:absolute;
+  left:14px;
+  right:14px;
+  top:12px;
+  height:1px;
+  background: linear-gradient(90deg, rgba(15,23,42,0.00), rgba(15,23,42,0.12), rgba(15,23,42,0.00));
+  pointer-events:none;
+}
+
+/* Micro label: system style */
+#truHeroQuoteCard .tru-form-micro{
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(15,23,42,0.12);
+  background: rgba(255,255,255,0.78);
+  box-shadow: 0 14px 34px rgba(15,23,42,0.08);
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(15,23,42,0.72);
+  margin-bottom: 12px;
+}
+
+/* Header: big-tech, “official” */
+#truHeroQuoteCard .tru-hero-form-title{
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: 22px;
+  font-weight: 950;
+  letter-spacing: -0.02em;
+  color: rgba(15,23,42,0.96);
+}
+
+/* Subheader: controlled + confident */
+#truHeroQuoteCard .tru-hero-form-sub{
+  position: relative;
+  z-index: 1;
+  margin: 8px 0 14px;
+  font-size: 13.5px;
+  line-height: 1.45;
+  font-weight: 700;
+  color: rgba(15,23,42,0.62);
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(15,23,42,0.10);
+}
+
+/* Form spacing */
+#truHeroQuoteCard .tru-hero-form{
+  position: relative;
+  z-index: 1;
+  margin-top: 14px;
+}
+
+#truHeroQuoteCard .tru-hero-form-row{
+  margin: 0 0 10px;
+}
+
+#truHeroQuoteCard .tru-hero-form-row.two{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+/* Precision fields: “secure console” */
+#truHeroQuoteCard .tru-hero-input,
+#truHeroQuoteCard .tru-hero-select{
+  width: 100%;
+  height: 50px;
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,0.14);
+  background: rgba(255,255,255,0.96);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.92),
+    0 12px 28px rgba(15,23,42,0.06);
+  padding: 0 14px;
+  outline: none;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  color: rgba(15,23,42,0.92);
+  transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+}
+
+#truHeroQuoteCard .tru-hero-input::placeholder{
+  color: rgba(15,23,42,0.38);
+  font-weight: 750;
+}
+
+#truHeroQuoteCard .tru-hero-input:focus,
+#truHeroQuoteCard .tru-hero-select:focus{
+  border-color: rgba(57,255,20,0.55);
+  box-shadow:
+    0 0 0 6px rgba(57,255,20,0.12),
+    inset 0 1px 0 rgba(255,255,255,0.92),
+    0 18px 40px rgba(15,23,42,0.08);
+}
+
+/* Choice buttons: enterprise toggle row */
+#truHeroQuoteCard .tru-choice-wrap{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 10px 0 12px;
+}
+
+#truHeroQuoteCard .tru-choice-btn{
+  height: 46px;
+  border-radius: 14px;
+  border: 1px solid rgba(15,23,42,0.14);
+  background: rgba(255,255,255,0.84);
+  box-shadow: 0 16px 40px rgba(15,23,42,0.10), inset 0 1px 0 rgba(255,255,255,0.85);
+  cursor: pointer;
+  font-size: 11px;
+  font-weight: 950;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(15,23,42,0.86);
+  transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
+}
+
+#truHeroQuoteCard .tru-choice-btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(57,255,20,0.38);
+  box-shadow: 0 20px 52px rgba(15,23,42,0.14), inset 0 1px 0 rgba(255,255,255,0.90);
+}
+
+/* “Selected” state (Step 3 JS will toggle .is-selected) */
+#truHeroQuoteCard .tru-choice-btn.is-selected{
+  border-color: rgba(57,255,20,0.62);
+  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(57,255,20,0.10));
+  box-shadow:
+    0 22px 62px rgba(15,23,42,0.16),
+    0 0 0 6px rgba(57,255,20,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.92);
+}
+
+/* Primary CTA: expensive, not cheesy */
+#truHeroQuoteCard .tru-primary-cta{
+  height: 54px;
+  width: 100%;
+  border-radius: 16px;
+  border: 1px solid rgba(15,23,42,0.16);
+  background: linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
+  color: rgba(255,255,255,0.96);
+  font-size: 12px;
+  font-weight: 950;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow:
+    0 26px 70px rgba(15,23,42,0.22),
+    0 0 0 6px rgba(57,255,20,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.10);
+  transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
+}
+
+#truHeroQuoteCard .tru-primary-cta:hover{
+  transform: translateY(-1px);
+  border-color: rgba(57,255,20,0.40);
+  box-shadow:
+    0 34px 90px rgba(15,23,42,0.26),
+    0 0 0 7px rgba(57,255,20,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.12);
+}
+
+#truHeroQuoteCard .tru-primary-cta:active{
+  transform: translateY(0);
+}
+
+/* Error message alignment */
+#truHeroQuoteCard #miniErr{
+  margin-top: 10px;
+}
+
+/* Mobile */
+@media (max-width: 520px){
+  #truHeroQuoteCard{
+    padding: 18px 16px 16px !important;
+  }
+  #truHeroQuoteCard .tru-hero-form-row.two{
+    grid-template-columns: 1fr;
+  }
+  #truHeroQuoteCard .tru-choice-wrap{
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ================================
    STEP 1 — HERO FORM: kill the green wash + force one premium card
    Paste at VERY BOTTOM of SiteShell CSS
