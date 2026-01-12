@@ -129,9 +129,10 @@ const HTML = `
     </div>
 
     <!-- MAIN CTA -->
-    <button class="tru-primary-cta" id="truStartBuild" type="button">
-      Start building your move →
-    </button>
+<button class="tru-primary-cta" id="truStartBuild" type="button">
+  <span id="truStartBuildText">Start building your move →</span>
+</button>
+
 
     <div class="tru-hero-form-err" id="miniErr" aria-live="polite"></div>
   </form>
@@ -490,8 +491,10 @@ export default function HomePage() {
   const dateEl = document.getElementById("miniMoveDate");
   const phoneEl = document.getElementById("miniPhone");
   const miniErrEl = document.getElementById("miniErr");
+  const startBuildText = document.getElementById("truStartBuildText");
 
   let selectedPath = ""; // "specialist" | "virtual"
+
 
   const zipOk = (z) => /^\d{5}$/.test((z || "").trim());
   const phoneOk = (p) => {
@@ -510,9 +513,14 @@ export default function HomePage() {
     choiceSpecialist?.classList.toggle("is-selected", which === "specialist");
     choiceVirtual?.classList.toggle("is-selected", which === "virtual");
 
-    // also remove any old focus outline error feel after picking
+    if (startBuildText) {
+      startBuildText.textContent =
+        which === "virtual" ? "Book a virtual meet →" : "Start building your move →";
+    }
+
     if (miniErrEl && miniErrEl.textContent) miniErrEl.textContent = "";
   }
+
 
   function saveLead(payload) {
     try {
@@ -555,11 +563,16 @@ export default function HomePage() {
 
     saveLead({ intent: selectedPath, fromZip, toZip, size, moveDate, phone, ts: Date.now() });
 
-    // Routing later, per your request.
-    // For now, keep it neutral and do nothing except validate and store.
-    // When you're ready, we will route based on selectedPath.
     if (miniErrEl) miniErrEl.textContent = "";
-  };
+
+    if (selectedPath === "virtual") {
+      router.push("/book");
+      return;
+    }
+
+    // specialist path goes to the build / estimate flow
+    router.push("/online-estimate");
+
 
   const heroReady = !!(choiceSpecialist && choiceVirtual && startBuildBtn && fromZipEl && toZipEl && sizeEl && dateEl && phoneEl);
 
@@ -567,7 +580,10 @@ export default function HomePage() {
     choiceSpecialist.addEventListener("click", onPickSpecialist);
     choiceVirtual.addEventListener("click", onPickVirtual);
     startBuildBtn.addEventListener("click", onStartBuild);
+
+    setChoice("specialist");
   }
+
 
   // HERO: other buttons
   const howBtn = document.querySelector(".tru-hero-btn-secondary");
