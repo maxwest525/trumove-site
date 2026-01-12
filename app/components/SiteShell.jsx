@@ -971,7 +971,6 @@ Terms
  #truHeroQuoteCard .tru-intent-row{ grid-template-columns: 1fr; }
  #truHeroQuoteCard .tru-hero-form-row.two{ grid-template-columns: 1fr; }
 }
-}
 
 /* =========================================================
   HERO FORM — PREMIUM CONTROL HEADER (FINAL)
