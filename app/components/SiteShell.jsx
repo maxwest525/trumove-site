@@ -1338,6 +1338,35 @@ html body #truHeroQuoteCard::before{
   }
 }
 
+/* ================================
+   STEP 1 — HERO FORM: kill the green wash + force one premium card
+   Paste at VERY BOTTOM of SiteShell CSS
+   ================================ */
+
+/* If any wrapper is acting like a second card, kill it */
+.tru-hero-visual,
+.tru-hero-visual-body,
+.tru-hero-formcard{
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+/* The only card that should look “official” */
+#truHeroQuoteCard{
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.96)) !important;
+  border: 1px solid rgba(15,23,42,0.14) !important;
+  box-shadow: 0 34px 110px rgba(15,23,42,0.16), inset 0 1px 0 rgba(255,255,255,0.92) !important;
+}
+
+/* Remove any neon/green outline effects coming from old rules */
+#truHeroQuoteCard *{
+  outline-color: transparent !important;
+}
+#truHeroQuoteCard :focus{
+  outline: none !important;
+}
 
      `}</style>
 </div>
