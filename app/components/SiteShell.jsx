@@ -695,11 +695,22 @@ Terms
 }
 
 @media (max-width: 520px) {
-  .tm-logo-img { width: 220px; height: auto; }
-  .tm-call, .tm-cta { height: 38px; padding: 0 12px; }
-  .tm-status-mask { width: 64px; }
+ .tm-logo-img { width: 220px; height: auto; }
+ .tm-call, .tm-cta { height: 38px; padding: 0 12px; }
+ .tm-status-mask { width: 64px; }
 }
 
+
+         .tm-call,
+         .tm-cta {
+           height: 38px;
+           padding: 0 12px;
+         }
+
+         .tm-status-mask {
+           width: 64px;
+         }
+       }
        /* HERO TRUSTBAR (clean seals, not bubbles) */
 .tru-hero-trustbar{
  margin-top:14px;
@@ -1232,6 +1243,7 @@ html body #truHeroQuoteCard::before{
 #truHeroQuoteCard .tru-hero-select:focus{
   border-color: rgba(57,255,20,0.55);
   box-shadow:
+    0 0 0 6px rgba(57,255,20,0.12),
     inset 0 1px 0 rgba(255,255,255,0.92),
     0 18px 40px rgba(15,23,42,0.08);
 }
@@ -1271,6 +1283,7 @@ html body #truHeroQuoteCard::before{
   background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(57,255,20,0.10));
   box-shadow:
     0 22px 62px rgba(15,23,42,0.16),
+    0 0 0 6px rgba(57,255,20,0.10),
     inset 0 1px 0 rgba(255,255,255,0.92);
 }
 
@@ -1289,6 +1302,7 @@ html body #truHeroQuoteCard::before{
   cursor: pointer;
   box-shadow:
     0 26px 70px rgba(15,23,42,0.22),
+    0 0 0 6px rgba(57,255,20,0.08),
     inset 0 1px 0 rgba(255,255,255,0.10);
   transition: transform 150ms ease, box-shadow 150ms ease, border-color 150ms ease;
 }
@@ -1298,6 +1312,7 @@ html body #truHeroQuoteCard::before{
   border-color: rgba(57,255,20,0.40);
   box-shadow:
     0 34px 90px rgba(15,23,42,0.26),
+    0 0 0 7px rgba(57,255,20,0.10),
     inset 0 1px 0 rgba(255,255,255,0.12);
 }
 
@@ -1322,80 +1337,6 @@ html body #truHeroQuoteCard::before{
     grid-template-columns: 1fr;
   }
 }
-
-/* ================================
-   HERO: SINGLE SOURCE OF TRUTH
-   ================================ */
-
-/* No double-card wrappers */
-.tru-hero-visual,
-.tru-hero-visual-body,
-.tru-hero-formcard{
-  background: transparent !important;
-  border: 0 !important;
-  box-shadow: none !important;
-  padding: 0 !important;
-}
-
-/* The ONE official card */
-#truHeroQuoteCard{
-  width: 100% !important;
-  max-width: none !important;
-  margin: 0 !important;
-  position: relative;
-  overflow: hidden;
-  border-radius: 22px;
-  border: 1px solid rgba(15,23,42,0.14);
-  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(248,250,252,0.96));
-  box-shadow: 0 34px 110px rgba(15,23,42,0.16), inset 0 1px 0 rgba(255,255,255,0.92);
-  padding: 22px 22px 18px;
-}
-
-/* Toggle buttons use ONE class: .is-selected */
-#truHeroQuoteCard .tru-choice-wrap{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 10px 0 12px;
-}
-
-#truHeroQuoteCard .tru-choice-btn{
-  height: 46px;
-  border-radius: 14px;
-  border: 1px solid rgba(15,23,42,0.14);
-  background: rgba(255,255,255,0.84);
-  box-shadow: 0 16px 40px rgba(15,23,42,0.10), inset 0 1px 0 rgba(255,255,255,0.85);
-  cursor: pointer;
-  font-size: 11px;
-  font-weight: 950;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: rgba(15,23,42,0.86);
-  transition: transform 140ms ease, border-color 140ms ease, box-shadow 140ms ease, background 140ms ease;
-}
-
-#truHeroQuoteCard .tru-choice-btn.is-selected{
-  border-color: rgba(57,255,20,0.62);
-  background: linear-gradient(180deg, rgba(255,255,255,0.92), rgba(57,255,20,0.10));
-  box-shadow: 0 22px 62px rgba(15,23,42,0.16), inset 0 1px 0 rgba(255,255,255,0.92);
-}
-
-/* Primary CTA */
-#truHeroQuoteCard .tru-primary-cta{
-  height: 54px;
-  width: 100%;
-  border-radius: 16px;
-  border: 1px solid rgba(15,23,42,0.16);
-  background: linear-gradient(180deg, rgba(10,12,18,0.98), rgba(0,0,0,0.98));
-  color: rgba(255,255,255,0.96);
-  font-size: 12px;
-  font-weight: 950;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  cursor: pointer;
-  box-shadow: 0 26px 70px rgba(15,23,42,0.22), inset 0 1px 0 rgba(255,255,255,0.10);
-}
-
 
 
      `}</style>
