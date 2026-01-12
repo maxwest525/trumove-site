@@ -1430,6 +1430,72 @@ html body #truHeroQuoteCard .tru-choice-btn{ height: 42px !important; border-rad
 
 html body #truHeroQuoteCard .tru-primary-cta{ height: 52px !important; border-radius: 15px !important; }
 
+/* ================================
+   STEP 3 — EXEC CONSOLE TIGHTEN
+   Paste at VERY BOTTOM of SiteShell
+   ================================ */
+
+#truHeroQuoteCard{
+  padding: 18px 18px 16px !important;
+  border-radius: 22px !important;
+  border: 1px solid rgba(15,23,42,0.18) !important;
+  background: rgba(255,255,255,0.98) !important;
+  box-shadow:
+    0 38px 120px rgba(15,23,42,0.18),
+    inset 0 1px 0 rgba(255,255,255,0.94) !important;
+}
+
+/* Tighten vertical rhythm */
+#truHeroQuoteCard .tru-hero-form{
+  margin-top: 10px !important;
+}
+
+#truHeroQuoteCard .tru-hero-form-row{
+  margin: 0 0 8px !important;
+}
+
+#truHeroQuoteCard .tru-hero-form-row.two{
+  gap: 8px !important;
+}
+
+/* Inputs feel more “secure terminal”, less bubbly */
+#truHeroQuoteCard .tru-hero-input,
+#truHeroQuoteCard .tru-hero-select{
+  height: 48px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(15,23,42,0.18) !important;
+  background: rgba(255,255,255,0.96) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,0.92),
+    0 10px 22px rgba(15,23,42,0.05) !important;
+  padding: 0 12px !important;
+}
+
+/* Choice row feels like an enterprise toggle */
+#truHeroQuoteCard .tru-choice-wrap{
+  margin: 10px 0 10px !important;
+  gap: 8px !important;
+}
+
+#truHeroQuoteCard .tru-choice-btn{
+  height: 44px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(15,23,42,0.18) !important;
+  background: rgba(255,255,255,0.86) !important;
+  box-shadow:
+    0 14px 34px rgba(15,23,42,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.88) !important;
+}
+
+/* Main CTA looks “device grade”, not marketing grade */
+#truHeroQuoteCard .tru-primary-cta{
+  height: 52px !important;
+  border-radius: 14px !important;
+  border: 1px solid rgba(15,23,42,0.22) !important;
+  box-shadow:
+    0 26px 70px rgba(15,23,42,0.22),
+    inset 0 1px 0 rgba(255,255,255,0.10) !important;
+}
 
      `}</style>
 </div>
