@@ -504,10 +504,8 @@ export default function HomePage() {
   const dateEl = document.getElementById("miniMoveDate");
   const phoneEl = document.getElementById("miniPhone");
   const miniErrEl = document.getElementById("miniErr");
-  const startBuildText = document.getElementById("truStartBuildText");
 
   let selectedPath = ""; // "specialist" | "virtual"
-
 
   const zipOk = (z) => /^\d{5}$/.test((z || "").trim());
   const phoneOk = (p) => {
@@ -522,18 +520,10 @@ export default function HomePage() {
 
   function setChoice(which) {
     selectedPath = which;
-
     choiceSpecialist?.classList.toggle("is-selected", which === "specialist");
     choiceVirtual?.classList.toggle("is-selected", which === "virtual");
-
-    if (startBuildText) {
-      startBuildText.textContent =
-        which === "virtual" ? "Book a virtual meet →" : "Start building your move →";
-    }
-
     if (miniErrEl && miniErrEl.textContent) miniErrEl.textContent = "";
   }
-
 
   function saveLead(payload) {
     try {
@@ -562,7 +552,6 @@ export default function HomePage() {
     if (!phoneOk(phone)) { phoneEl?.classList.add("is-error"); bad = true; }
 
     if (!selectedPath) {
-      bad = true;
       if (miniErrEl) miniErrEl.textContent = "Select Talk to a Specialist or Book a Virtual Meet to continue.";
       return;
     }
@@ -575,17 +564,8 @@ export default function HomePage() {
     }
 
     saveLead({ intent: selectedPath, fromZip, toZip, size, moveDate, phone, ts: Date.now() });
-
     if (miniErrEl) miniErrEl.textContent = "";
-
-    if (selectedPath === "virtual") {
-      router.push("/book");
-      return;
-    }
-
-    // specialist path goes to the build / estimate flow
-    router.push("/online-estimate");
-
+  };
 
   const heroReady = !!(choiceSpecialist && choiceVirtual && startBuildBtn && fromZipEl && toZipEl && sizeEl && dateEl && phoneEl);
 
@@ -593,10 +573,7 @@ export default function HomePage() {
     choiceSpecialist.addEventListener("click", onPickSpecialist);
     choiceVirtual.addEventListener("click", onPickVirtual);
     startBuildBtn.addEventListener("click", onStartBuild);
-
-    setChoice("specialist");
   }
-
 
   // HERO: other buttons
   const howBtn = document.querySelector(".tru-hero-btn-secondary");
@@ -607,20 +584,20 @@ export default function HomePage() {
   const onTalkClick = () => router.push("/book");
   talkBtn?.addEventListener("click", onTalkClick);
 
-    return () => {
-      if (heroReady) {
-        choiceSpecialist.removeEventListener("click", onPickSpecialist);
-        choiceVirtual.removeEventListener("click", onPickVirtual);
-        startBuildBtn.removeEventListener("click", onStartBuild);
-      }
+  return () => {
+    if (heroReady) {
+      choiceSpecialist.removeEventListener("click", onPickSpecialist);
+      choiceVirtual.removeEventListener("click", onPickVirtual);
+      startBuildBtn.removeEventListener("click", onStartBuild);
+    }
 
-      howBtn?.removeEventListener("click", onHowClick);
-      talkBtn?.removeEventListener("click", onTalkClick);
+    howBtn?.removeEventListener("click", onHowClick);
+    talkBtn?.removeEventListener("click", onTalkClick);
 
-      featuresBtn?.removeEventListener("click", onFeaturesClick);
-      contactForm?.removeEventListener("submit", onContactSubmit);
-    };
-  }, [router]);
+    featuresBtn?.removeEventListener("click", onFeaturesClick);
+    contactForm?.removeEventListener("submit", onContactSubmit);
+  };
+}, [router]);
 
 
   return <main dangerouslySetInnerHTML={{ __html: HTML }} />;
